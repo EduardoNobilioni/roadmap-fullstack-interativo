@@ -1,0 +1,10 @@
+{
+  "tracks": [
+    { "id": "frontend", "file": "frontend.json" },
+    { "id": "backend", "file": "backend.json" },
+    { "id": "fullstack", "file": "fullstack.json" },
+    { "id": "dados", "file": "dados.json" },
+    { "id": "mobile", "file": "mobile.json" },
+    { "id": "devops", "file": "devops.json" }
+  ]
+}

@@ -1,0 +1,1260 @@
+{
+  "phases": [
+    {
+      "id": "ds-fase-1",
+      "number": 1,
+      "badgeTitle": "Python",
+      "title": "Python e ambiente",
+      "topics": [
+        {
+          "id": "ds-python",
+          "level": "iniciante",
+          "hours": 12,
+          "prerequisites": [],
+          "tags": [
+            "Python",
+            "Funções",
+            "Listas"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial de Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Estruturas de dados em Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/datastructures.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Python essencial",
+          "description": "Tipos, funções, listas, dicionários e arquivos. O bastante para um notebook não virar um script de uma célula só.",
+          "quiz": [
+            {
+              "id": "ds-python-quiz-q1",
+              "prompt": "Depois de estudar \"Python essencial\", o que você deve conseguir?",
+              "reviewTopicId": "ds-python",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "ds-python-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "ds-python",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ds-env",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [
+            "ds-python"
+          ],
+          "tags": [
+            "venv",
+            "Jupyter",
+            "Git"
+          ],
+          "resources": [
+            {
+              "title": "Ambientes virtuais em Python",
+              "url": "https://docs.python.org/pt-br/3/library/venv.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Notebooks no VS Code",
+              "url": "https://code.visualstudio.com/docs/datascience/jupyter-notebooks",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Notebook, ambiente e Git",
+          "description": "venv, Jupyter e um repositório com requirements ou equivalente. Quem abrir o projeto consegue rodar a mesma análise."
+        },
+        {
+          "id": "ds-terminal",
+          "level": "iniciante",
+          "hours": 3,
+          "prerequisites": [],
+          "tags": [
+            "Terminal",
+            "Git"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Terminal para dados",
+          "description": "Entrar na pasta, criar o ambiente, rodar o notebook e não commitar o arquivo de dados enorme sem querer."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Script de resumo",
+          "description": "Leia um CSV pequeno com a biblioteca padrão ou com pandas e imprima contagem, mínimo e máximo de uma coluna.",
+          "steps": [
+            "Escreva em uma linha o que \"Script de resumo\" precisa mostrar.",
+            "Leia um CSV pequeno com a biblioteca padrão ou com pandas e imprima contagem, mínimo e máximo de uma coluna.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Repositório reproduzível",
+          "description": "Deixe um notebook, o requirements e o README com os comandos exatos. Outra pessoa recria o ambiente sem o seu computador.",
+          "steps": [
+            "Escreva em uma linha o que \"Repositório reproduzível\" precisa mostrar.",
+            "Deixe um notebook, o requirements e o README com os comandos exatos. Outra pessoa recria o ambiente sem o seu computador.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Dados que não vão para o Git",
+          "description": "Separe dado bruto, dado gerado e segredo. O .gitignore explica o que ficou de fora e por quê.",
+          "steps": [
+            "Escreva em uma linha o que \"Dados que não vão para o Git\" precisa mostrar.",
+            "Separe dado bruto, dado gerado e segredo. O .gitignore explica o que ficou de fora e por quê.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-1-q1",
+          "prompt": "Python aqui é a base para ler, filtrar e resumir dados. Isso está certo?",
+          "reviewTopicId": "ds-python",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-1-q2",
+          "prompt": "O que combina com \"Notebook, ambiente e Git\"?",
+          "reviewTopicId": "ds-env",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O ambiente e o requirements existem para outra pessoa rodar o mesmo notebook.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ds-fase-2",
+      "number": 2,
+      "badgeTitle": "Estatística",
+      "title": "Estatística para não se enganar",
+      "topics": [
+        {
+          "id": "ds-desc",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "Média",
+            "Mediana",
+            "Dispersão"
+          ],
+          "resources": [
+            {
+              "title": "Resumindo dados quantitativos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability/summarizing-quantitative-data",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Módulo statistics do Python",
+              "url": "https://docs.python.org/pt-br/3/library/statistics.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Estatística descritiva",
+          "description": "Média, mediana, dispersão e a diferença entre o que o número diz e o que o gráfico esconde. Uma média sozinha quase nunca basta."
+        },
+        {
+          "id": "ds-prob",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "ds-desc"
+          ],
+          "tags": [
+            "Probabilidade",
+            "Independência"
+          ],
+          "resources": [
+            {
+              "title": "Biblioteca de probabilidade (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability/probability-library",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ],
+          "title": "Probabilidade básica",
+          "description": "Chance, independência e por que \"deu certo uma vez\" não é evidência. O vocabulário serve para ler um resultado de modelo."
+        },
+        {
+          "id": "ds-inference",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "ds-prob"
+          ],
+          "tags": [
+            "Amostra",
+            "Teste de hipótese"
+          ],
+          "resources": [
+            {
+              "title": "Testes de significância (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability/significance-tests-one-sample",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Planejando estudos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability/designing-studies",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ],
+          "title": "Inferência com cuidado",
+          "description": "Amostra, intervalo e teste de hipótese no nível de quem precisa ler um resultado, não de quem vai demonstrar o teorema. Diga o que você não pode concluir."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Retrato de uma turma",
+          "description": "Com dados fictícios ou públicos de notas, calcule média, mediana e dispersão e escreva três frases que não exageram o resultado.",
+          "steps": [
+            "Escreva em uma linha o que \"Retrato de uma turma\" precisa mostrar.",
+            "Com dados fictícios ou públicos de notas, calcule média, mediana e dispersão e escreva três frases que não exageram o resultado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Amostra explicada",
+          "description": "Descreva de onde viria a amostra de uma pergunta da sua faculdade, quem ficaria de fora e como isso muda a conclusão.",
+          "steps": [
+            "Escreva em uma linha o que \"Amostra explicada\" precisa mostrar.",
+            "Descreva de onde viria a amostra de uma pergunta da sua faculdade, quem ficaria de fora e como isso muda a conclusão.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds2-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Teste e limite",
+          "description": "Aplique um teste simples a um conjunto pequeno e escreva o que ele não autoriza dizer, inclusive se a amostra for enviesada.",
+          "steps": [
+            "Escreva em uma linha o que \"Teste e limite\" precisa mostrar.",
+            "Aplique um teste simples a um conjunto pequeno e escreva o que ele não autoriza dizer, inclusive se a amostra for enviesada.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-2-q1",
+          "prompt": "Média sozinha esconde dispersão e valores extremos. Isso está certo?",
+          "reviewTopicId": "ds-desc",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-2-q2",
+          "prompt": "O que combina com \"Inferência com cuidado\"?",
+          "reviewTopicId": "ds-inference",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Um teste não autoriza conclusão se a amostra deixa gente de fora.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ds-fase-3",
+      "number": 3,
+      "badgeTitle": "Análise",
+      "title": "Análise de dados",
+      "topics": [
+        {
+          "id": "ds-numpy",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "ds-python"
+          ],
+          "tags": [
+            "NumPy",
+            "Arrays"
+          ],
+          "resources": [
+            {
+              "title": "NumPy para quem está começando",
+              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "NumPy",
+          "description": "Arrays, vetorização e por que um loop em milhão de linhas pede outra ferramenta. A base do que o pandas usa por baixo."
+        },
+        {
+          "id": "ds-pandas",
+          "level": "intermediario",
+          "hours": 12,
+          "prerequisites": [
+            "ds-python"
+          ],
+          "tags": [
+            "Pandas",
+            "DataFrame",
+            "GroupBy"
+          ],
+          "resources": [
+            {
+              "title": "Pandas em 10 minutos",
+              "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Indexação no Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/indexing.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Pandas",
+          "description": "Series, DataFrame, filtro, agrupamento e junção. A maior parte do trabalho de análise mora aqui, não no modelo."
+        },
+        {
+          "id": "ds-clean",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "ds-pandas"
+          ],
+          "tags": [
+            "Limpeza",
+            "Ausentes",
+            "Qualidade"
+          ],
+          "resources": [
+            {
+              "title": "Dados ausentes no Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/missing_data.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Limpeza e qualidade",
+          "description": "Ausente, duplicado, tipo errado e unidade misturada. Registre o que você alterou. Dado \"limpo\" sem histórico é dado opaco."
+        },
+        {
+          "id": "ds-sql",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "SQL",
+            "JOIN",
+            "GROUP BY"
+          ],
+          "resources": [
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Introdução a SQL (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-programming/sql",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ],
+          "title": "SQL para análise",
+          "description": "SELECT, WHERE, JOIN e GROUP BY para tirar a pergunta do banco antes de abrir o notebook. Nem tudo precisa caber na memória."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Pergunta e tabela",
+          "description": "Escolha um CSV público, faça três filtros e um agrupamento. Cada resultado responde uma pergunta escrita no topo da célula.",
+          "steps": [
+            "Escreva em uma linha o que \"Pergunta e tabela\" precisa mostrar.",
+            "Escolha um CSV público, faça três filtros e um agrupamento. Cada resultado responde uma pergunta escrita no topo da célula.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Diário de limpeza",
+          "description": "Documente nulos, duplicados e conversões de tipo. O notebook final e o diário contam a mesma história.",
+          "steps": [
+            "Escreva em uma linha o que \"Diário de limpeza\" precisa mostrar.",
+            "Documente nulos, duplicados e conversões de tipo. O notebook final e o diário contam a mesma história.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds3-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Parte no SQL",
+          "description": "Resolva uma agregação no SQL e a mesma conta no pandas. Compare o resultado e diga onde cada ferramenta foi mais clara.",
+          "steps": [
+            "Escreva em uma linha o que \"Parte no SQL\" precisa mostrar.",
+            "Resolva uma agregação no SQL e a mesma conta no pandas. Compare o resultado e diga onde cada ferramenta foi mais clara.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-3-q1",
+          "prompt": "Pandas filtra, agrupa e junta tabelas. Isso está certo?",
+          "reviewTopicId": "ds-pandas",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-3-q2",
+          "prompt": "O que combina com \"Limpeza e qualidade\"?",
+          "reviewTopicId": "ds-clean",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Limpeza sem anotar o que mudou deixa o dado opaco.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ds-fase-4",
+      "number": 4,
+      "badgeTitle": "Visualização",
+      "title": "Visualização",
+      "topics": [
+        {
+          "id": "ds-mpl",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "ds-pandas"
+          ],
+          "tags": [
+            "Matplotlib",
+            "Gráficos"
+          ],
+          "resources": [
+            {
+              "title": "Início rápido do Matplotlib",
+              "url": "https://matplotlib.org/stable/users/explain/quick_start.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Matplotlib",
+          "description": "O gráfico mínimo: eixo com nome, título que afirma algo e uma série só. Cor não pode ser a única informação."
+        },
+        {
+          "id": "ds-seaborn",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "ds-mpl"
+          ],
+          "tags": [
+            "Seaborn",
+            "Distribuição"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Seaborn",
+              "url": "https://seaborn.pydata.org/tutorial/introduction.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Visualização no Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/visualization.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Gráficos para comparar",
+          "description": "Distribuição, relação e categoria. Seaborn ajuda no padrão visual; a escolha do gráfico continua sendo sua."
+        },
+        {
+          "id": "ds-story",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "ds-seaborn"
+          ],
+          "tags": [
+            "Narrativa",
+            "Título",
+            "Clareza"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Seaborn",
+              "url": "https://seaborn.pydata.org/tutorial/introduction.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Uma frase por gráfico",
+          "description": "O título diz a conclusão, não o tipo do gráfico. Corte o que não muda a decisão de quem lê."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Três gráficos, três frases",
+          "description": "Histograma, barras e uma linha do tempo ou dispersão. Cada um tem título que afirma o achado.",
+          "steps": [
+            "Escreva em uma linha o que \"Três gráficos, três frases\" precisa mostrar.",
+            "Histograma, barras e uma linha do tempo ou dispersão. Cada um tem título que afirma o achado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Comparação justa",
+          "description": "Compare dois grupos com o mesmo eixo e uma nota sobre o tamanho da amostra. Não corte o eixo para dramatizar.",
+          "steps": [
+            "Escreva em uma linha o que \"Comparação justa\" precisa mostrar.",
+            "Compare dois grupos com o mesmo eixo e uma nota sobre o tamanho da amostra. Não corte o eixo para dramatizar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds4-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Gráfico que sai do notebook",
+          "description": "Exporte uma figura pronta para um slide: legenda, fonte do dado e a ressalva principal na própria imagem.",
+          "steps": [
+            "Escreva em uma linha o que \"Gráfico que sai do notebook\" precisa mostrar.",
+            "Exporte uma figura pronta para um slide: legenda, fonte do dado e a ressalva principal na própria imagem.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-4-q1",
+          "prompt": "O título do gráfico deve afirmar o achado, não só o tipo do desenho. Isso está certo?",
+          "reviewTopicId": "ds-story",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-4-q2",
+          "prompt": "O que combina com \"Matplotlib\"?",
+          "reviewTopicId": "ds-mpl",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Eixo sem nome e cor como única pista atrapalham a leitura.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ds-fase-5",
+      "number": 5,
+      "badgeTitle": "Modelos",
+      "title": "Machine learning introdutório",
+      "topics": [
+        {
+          "id": "ds-ml",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "ds-desc"
+          ],
+          "tags": [
+            "Treino",
+            "Teste",
+            "Modelo"
+          ],
+          "resources": [
+            {
+              "title": "Curso intensivo de machine learning (Google)",
+              "url": "https://developers.google.com/machine-learning/crash-course?hl=pt-br",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Começando com scikit-learn",
+              "url": "https://scikit-learn.org/stable/getting_started.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "O que é aprender com dados",
+          "description": "Supervisionado e não supervisionado, treino e teste, e a diferença entre prever e explicar. Um modelo não é um argumento moral."
+        },
+        {
+          "id": "ds-sklearn",
+          "level": "avancado",
+          "hours": 12,
+          "prerequisites": [
+            "ds-pandas",
+            "ds-ml"
+          ],
+          "tags": [
+            "scikit-learn",
+            "Regressão",
+            "Classificação"
+          ],
+          "resources": [
+            {
+              "title": "Modelos lineares no scikit-learn",
+              "url": "https://scikit-learn.org/stable/modules/linear_model.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Conjuntos de exemplo",
+              "url": "https://scikit-learn.org/stable/datasets/toy_dataset.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Regressão e classificação",
+          "description": "Um modelo linear e um classificador no scikit-learn, com conjunto de teste separado. Use um conjunto pequeno e conhecido antes de um dataset gigante."
+        },
+        {
+          "id": "ds-metric",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "ds-sklearn"
+          ],
+          "tags": [
+            "Métricas",
+            "Vazamento",
+            "Validação"
+          ],
+          "resources": [
+            {
+              "title": "Avaliação de modelo",
+              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Armadilhas comuns no scikit-learn",
+              "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Métrica e vazamento",
+          "description": "Acurácia mente quando a classe é rara. Precisão, recall e o vazamento de dado do futuro para o treino. Escolha a métrica pela decisão."
+        },
+        {
+          "id": "ds-ethics",
+          "level": "avancado",
+          "hours": 4,
+          "prerequisites": [
+            "ds-ml"
+          ],
+          "tags": [
+            "Viés",
+            "Ética",
+            "Limites"
+          ],
+          "resources": [
+            {
+              "title": "Guia People + AI",
+              "url": "https://pair.withgoogle.com/guidebook",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Justiça no curso de ML do Google",
+              "url": "https://developers.google.com/machine-learning/crash-course/fairness",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Viés, erro e limite",
+          "description": "Quem é prejudicado por um falso positivo, de onde veio o dado e o que você se recusa a automatizar. Escreva isso no mesmo lugar do resultado."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Baseline honesta",
+          "description": "Antes de qualquer modelo, estabeleça uma previsão ingênua (média ou classe mais comum) e meça o erro dela.",
+          "steps": [
+            "Escreva em uma linha o que \"Baseline honesta\" precisa mostrar.",
+            "Antes de qualquer modelo, estabeleça uma previsão ingênua (média ou classe mais comum) e meça o erro dela.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Um modelo, uma métrica",
+          "description": "Treine um modelo simples, separe teste e compare com a baseline. O README diz qual métrica importa e por quê.",
+          "steps": [
+            "Escreva em uma linha o que \"Um modelo, uma métrica\" precisa mostrar.",
+            "Treine um modelo simples, separe teste e compare com a baseline. O README diz qual métrica importa e por quê.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds5-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Onde o modelo erra",
+          "description": "Analise erros por grupo, procure vazamento e escreva um limite de uso: em que decisão esse modelo não deveria entrar.",
+          "steps": [
+            "Escreva em uma linha o que \"Onde o modelo erra\" precisa mostrar.",
+            "Analise erros por grupo, procure vazamento e escreva um limite de uso: em que decisão esse modelo não deveria entrar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-5-q1",
+          "prompt": "Treino e teste separados evitam avaliar o modelo com o dado que ele já viu. Isso está certo?",
+          "reviewTopicId": "ds-ml",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-5-q2",
+          "prompt": "O que combina com \"Métrica e vazamento\"?",
+          "reviewTopicId": "ds-metric",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Acurácia engana quando uma classe é muito mais comum.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ds-fase-6",
+      "number": 6,
+      "badgeTitle": "Projeto",
+      "title": "Projeto e comunicação",
+      "topics": [
+        {
+          "id": "ds-question",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "Pergunta",
+            "Recorte"
+          ],
+          "resources": [
+            {
+              "title": "Planejando estudos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability/designing-studies",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ],
+          "title": "Da pergunta ao recorte",
+          "description": "Uma pergunta que dá para responder com dado que você tem, um recorte e o que ficará de fora. Sem pergunta, o notebook vira passeio."
+        },
+        {
+          "id": "ds-present",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "ds-story"
+          ],
+          "tags": [
+            "Apresentação",
+            "Conclusão"
+          ],
+          "resources": [
+            {
+              "title": "Início rápido do Matplotlib",
+              "url": "https://matplotlib.org/stable/users/explain/quick_start.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Como apresentar",
+          "description": "Público, uma conclusão, a evidência e a ressalva. Slide não é dump de célula. Fale o que a pessoa deve fazer com o resultado."
+        },
+        {
+          "id": "ds-e2e",
+          "level": "avancado",
+          "hours": 20,
+          "prerequisites": [
+            "ds-pandas",
+            "ds-metric"
+          ],
+          "tags": [
+            "Projeto",
+            "Portfólio",
+            "Reprodutibilidade"
+          ],
+          "resources": [
+            {
+              "title": "Começando com scikit-learn",
+              "url": "https://scikit-learn.org/stable/getting_started.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Notebooks no VS Code",
+              "url": "https://code.visualstudio.com/docs/datascience/jupyter-notebooks",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Projeto de ponta a ponta",
+          "description": "Pergunta, limpeza, gráfico, baseline, modelo e um texto de uma página. O repositório roda e a conclusão cabe num parágrafo."
+        }
+      ],
+      "projects": [
+        {
+          "id": "ds6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Uma pergunta no README",
+          "description": "Escreva a pergunta, a fonte do dado e o que você não vai tentar responder. Ainda sem modelo.",
+          "steps": [
+            "Escreva em uma linha o que \"Uma pergunta no README\" precisa mostrar.",
+            "Escreva a pergunta, a fonte do dado e o que você não vai tentar responder. Ainda sem modelo.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Mini-relatório",
+          "description": "Quatro seções: pergunta, o que você fez, um gráfico e a ressalva. Cabe em duas páginas.",
+          "steps": [
+            "Escreva em uma linha o que \"Mini-relatório\" precisa mostrar.",
+            "Quatro seções: pergunta, o que você fez, um gráfico e a ressalva. Cabe em duas páginas.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "ds6-projeto-avancado",
+          "level": "avancado",
+          "hours": 20,
+          "title": "Estudo reproduzível",
+          "description": "Entregue o projeto de ponta a ponta com ambiente, narrativa e a decisão que o resultado sustenta — e a que ele não sustenta.",
+          "steps": [
+            "Escreva em uma linha o que \"Estudo reproduzível\" precisa mostrar.",
+            "Entregue o projeto de ponta a ponta com ambiente, narrativa e a decisão que o resultado sustenta — e a que ele não sustenta.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ds-fase-6-q1",
+          "prompt": "Sem uma pergunta respondível, o notebook vira passeio. Isso está certo?",
+          "reviewTopicId": "ds-question",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "ds-fase-6-q2",
+          "prompt": "O que combina com \"Como apresentar\"?",
+          "reviewTopicId": "ds-present",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Apresentar é dizer a conclusão, a evidência e a ressalva.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "dados",
+  "name": "Dados",
+  "tagline": "Pergunta, dado, gráfico e um modelo que você sabe explicar",
+  "description": "Data Science para quem está na faculdade e não sabe por onde entrar. Python, estatística, análise, visualização e um modelo simples com as limitações à vista."
+}

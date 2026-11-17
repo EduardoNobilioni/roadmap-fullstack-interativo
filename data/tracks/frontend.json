@@ -1,0 +1,1331 @@
+{
+  "phases": [
+    {
+      "id": "fe-fase-1",
+      "number": 1,
+      "badgeTitle": "Base da Web",
+      "title": "Base da Web e publicação",
+      "topics": [
+        {
+          "id": "fe-web",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "HTTP",
+            "DNS",
+            "Navegador"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Como a Web funciona (MDN)",
+              "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Como a interface chega no navegador",
+          "description": "O caminho de uma URL até o HTML na tela: HTTP, DNS, cliente-servidor e o que o navegador faz com a resposta.",
+          "quiz": [
+            {
+              "id": "fe-web-quiz-q1",
+              "prompt": "Depois de estudar \"Como a interface chega no navegador\", o que você deve conseguir?",
+              "reviewTopicId": "fe-web",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "fe-web-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "fe-web",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fe-html",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [
+            "fe-web"
+          ],
+          "tags": [
+            "HTML",
+            "Semântica",
+            "Formulários"
+          ],
+          "resources": [
+            {
+              "title": "Estruturando conteúdo (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Structuring_content",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Seu primeiro formulário (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Forms/Your_first_form",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "HTML semântico",
+          "description": "Estrutura de página, títulos, texto, mídia, formulários e o que cada elemento significa para o leitor e para o leitor de tela."
+        },
+        {
+          "id": "fe-a11y",
+          "level": "iniciante",
+          "hours": 6,
+          "prerequisites": [
+            "fe-html"
+          ],
+          "tags": [
+            "Acessibilidade",
+            "Teclado",
+            "ARIA"
+          ],
+          "resources": [
+            {
+              "title": "Acessibilidade no HTML (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Accessibility/HTML",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Aprenda acessibilidade (web.dev)",
+              "url": "https://web.dev/learn/accessibility",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Acessibilidade desde o HTML",
+          "description": "Teclado, contraste, texto alternativo, rótulos de formulário e a diferença entre enfeitar e impedir alguém de usar a página."
+        },
+        {
+          "id": "fe-css-base",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [
+            "fe-html"
+          ],
+          "tags": [
+            "CSS",
+            "Box Model",
+            "Especificidade"
+          ],
+          "resources": [
+            {
+              "title": "Estilização básica (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Styling_basics",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Introdução ao box model",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Box_model/Introduction",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "CSS que você consegue explicar",
+          "description": "Seletores, cascata, especificidade, box model e unidades relativas. O objetivo é mudar o layout sem brigar com o arquivo."
+        },
+        {
+          "id": "fe-devtools",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [
+            "fe-css-base"
+          ],
+          "tags": [
+            "DevTools",
+            "Console",
+            "Rede"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do Chrome DevTools",
+              "url": "https://developer.chrome.com/docs/devtools/overview",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "DevTools do navegador",
+          "description": "Inspecionar elemento, caixa, rede e console. Use isso para descobrir por que a página não está como você imaginou."
+        },
+        {
+          "id": "fe-git",
+          "level": "iniciante",
+          "hours": 6,
+          "prerequisites": [],
+          "tags": [
+            "Git",
+            "GitHub",
+            "GitHub Pages"
+          ],
+          "resources": [
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Criar um site com GitHub Pages",
+              "url": "https://docs.github.com/pt/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Git para publicar interface",
+          "description": "Commits pequenos, branch, push e GitHub Pages para colocar uma página no ar sem servidor próprio."
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Página de apresentação",
+          "description": "Publique uma página sua, sem framework, com cabeçalho, sobre, um formulário e um link. Dá para abrir no teclado e no celular.",
+          "steps": [
+            "Escreva em uma linha o que \"Página de apresentação\" precisa mostrar.",
+            "Publique uma página sua, sem framework, com cabeçalho, sobre, um formulário e um link. Dá para abrir no teclado e no celular.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Auditoria de uma página pronta",
+          "description": "Escolha um site que você usa na faculdade e liste cinco problemas de semântica, foco ou contraste. Corrija dois deles numa cópia sua.",
+          "steps": [
+            "Escreva em uma linha o que \"Auditoria de uma página pronta\" precisa mostrar.",
+            "Escolha um site que você usa na faculdade e liste cinco problemas de semântica, foco ou contraste. Corrija dois deles numa cópia sua.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Página que explica a própria rede",
+          "description": "Além da página, documente no README o que acontece entre o clique e o primeiro pixel, com uma captura da aba Rede do DevTools.",
+          "steps": [
+            "Escreva em uma linha o que \"Página que explica a própria rede\" precisa mostrar.",
+            "Além da página, documente no README o que acontece entre o clique e o primeiro pixel, com uma captura da aba Rede do DevTools.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-1-q1",
+          "prompt": "HTML semântico descreve o papel de cada região da página. Isso está certo?",
+          "reviewTopicId": "fe-html",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-1-q2",
+          "prompt": "O que combina com \"Acessibilidade desde o HTML\"?",
+          "reviewTopicId": "fe-a11y",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Um controle que só funciona com mouse falha para quem navega pelo teclado.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-2",
+      "number": 2,
+      "badgeTitle": "CSS de verdade",
+      "title": "Layout, responsivo e interface",
+      "topics": [
+        {
+          "id": "fe-flex-grid",
+          "level": "iniciante",
+          "hours": 10,
+          "prerequisites": [
+            "fe-css-base"
+          ],
+          "tags": [
+            "Flexbox",
+            "Grid"
+          ],
+          "resources": [
+            {
+              "title": "Guia de Flexbox (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Flexible_box_layout",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Guia de Grid (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Grid_layout",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Flexbox e Grid",
+          "description": "Alinhar, distribuir e montar grelhas sem posição absoluta. Saiba quando cada um resolve o layout."
+        },
+        {
+          "id": "fe-responsive",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "fe-flex-grid"
+          ],
+          "tags": [
+            "Mobile-first",
+            "Media Queries"
+          ],
+          "resources": [
+            {
+              "title": "Design responsivo (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Flexbox no web.dev",
+              "url": "https://web.dev/learn/css/flexbox",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Layout que cabe no celular",
+          "description": "Mobile-first, media queries e unidades que não estouram o texto. A página inteira precisa funcionar em 360px e em um notebook."
+        },
+        {
+          "id": "fe-css-moderno",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "fe-css-base"
+          ],
+          "tags": [
+            "Variáveis CSS",
+            "Transições",
+            "Tipografia"
+          ],
+          "resources": [
+            {
+              "title": "Variáveis CSS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Transições CSS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_transitions/Using_CSS_transitions",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Variáveis, transição e hierarquia visual",
+          "description": "Tokens simples de cor e espaço, transições curtas e uma escala de títulos que a pessoa entende em um olhar."
+        },
+        {
+          "id": "fe-tailwind",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "fe-css-base"
+          ],
+          "tags": [
+            "Tailwind"
+          ],
+          "resources": [
+            {
+              "title": "Estilizando com utilitários",
+              "url": "https://tailwindcss.com/docs/styling-with-utility-classes",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Design responsivo no Tailwind",
+              "url": "https://tailwindcss.com/docs/responsive-design",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Tailwind sem perder o CSS",
+          "description": "Utilitários aceleram, mas você ainda precisa saber o que eles geram. Configure o essencial e não copie classe que você não explica."
+        },
+        {
+          "id": "fe-forms-css",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "fe-html",
+            "fe-responsive"
+          ],
+          "tags": [
+            "Formulários",
+            "Foco",
+            "Erro"
+          ],
+          "resources": [
+            {
+              "title": "Seu primeiro formulário (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Forms/Your_first_form",
+              "lang": "pt",
+              "kind": "pratica"
+            },
+            {
+              "title": "Aprenda formulários (web.dev)",
+              "url": "https://web.dev/learn/forms",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Formulário que dá para usar",
+          "description": "Rótulos visíveis, erro perto do campo, alvo de toque confortável e foco que não some no tema escuro."
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Cartão e lista",
+          "description": "Reconstrua um cartão de perfil e uma lista de matérias usando só Flexbox ou Grid. Sem framework e sem medida fixa que quebre no celular.",
+          "steps": [
+            "Escreva em uma linha o que \"Cartão e lista\" precisa mostrar.",
+            "Reconstrua um cartão de perfil e uma lista de matérias usando só Flexbox ou Grid. Sem framework e sem medida fixa que quebre no celular.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Landing de um evento da faculdade",
+          "description": "Uma página de evento com grade, seção de programação e formulário de inscrição. Funciona em 360px e tem foco visível.",
+          "steps": [
+            "Escreva em uma linha o que \"Landing de um evento da faculdade\" precisa mostrar.",
+            "Uma página de evento com grade, seção de programação e formulário de inscrição. Funciona em 360px e tem foco visível.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe2-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Tema com tokens",
+          "description": "Extraia cor, espaço e raio para variáveis (ou para o tema do Tailwind) e troque o tema claro/escuro sem reescrever componente por componente.",
+          "steps": [
+            "Escreva em uma linha o que \"Tema com tokens\" precisa mostrar.",
+            "Extraia cor, espaço e raio para variáveis (ou para o tema do Tailwind) e troque o tema claro/escuro sem reescrever componente por componente.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-2-q1",
+          "prompt": "Flexbox e Grid organizam o layout na tela. Isso está certo?",
+          "reviewTopicId": "fe-flex-grid",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-2-q2",
+          "prompt": "O que combina com \"Layout que cabe no celular\"?",
+          "reviewTopicId": "fe-responsive",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Mobile-first começa o CSS pela tela estreita.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-3",
+      "number": 3,
+      "badgeTitle": "JavaScript na tela",
+      "title": "JavaScript no navegador",
+      "topics": [
+        {
+          "id": "fe-js",
+          "level": "iniciante",
+          "hours": 14,
+          "prerequisites": [],
+          "tags": [
+            "JavaScript",
+            "Arrays",
+            "Módulos"
+          ],
+          "resources": [
+            {
+              "title": "Guia JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Módulos JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "JavaScript para a interface",
+          "description": "Tipos, funções, arrays, objetos, escopo e módulos. O bastante para ler um componente sem se perder no arquivo."
+        },
+        {
+          "id": "fe-dom",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "fe-js"
+          ],
+          "tags": [
+            "DOM",
+            "Eventos"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao DOM (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model/Introduction",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "addEventListener (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/EventTarget/addEventListener",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "DOM e eventos",
+          "description": "Selecionar, criar, ouvir clique e teclado, e delegar evento em lista. A página muda sem recarregar."
+        },
+        {
+          "id": "fe-async",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "fe-dom"
+          ],
+          "tags": [
+            "Fetch",
+            "async/await",
+            "Promises"
+          ],
+          "resources": [
+            {
+              "title": "Usando Fetch (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Usando promises (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Using_promises",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Buscar dados sem travar a tela",
+          "description": "Promises, async/await e Fetch. Mostre carregando, vazio e erro. Não deixe a interface muda enquanto a rede falha."
+        },
+        {
+          "id": "fe-storage",
+          "level": "intermediario",
+          "hours": 3,
+          "prerequisites": [
+            "fe-dom"
+          ],
+          "tags": [
+            "localStorage",
+            "Web Storage"
+          ],
+          "resources": [
+            {
+              "title": "Web Storage (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Web_Storage_API",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "localStorage (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Lembrar escolhas no navegador",
+          "description": "localStorage para tema, rascunho ou filtro. Saiba o que não deve ir para lá, como senha e token de longa duração."
+        },
+        {
+          "id": "fe-a11y-js",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "fe-dom",
+            "fe-a11y"
+          ],
+          "tags": [
+            "ARIA",
+            "Foco",
+            "Teclado"
+          ],
+          "resources": [
+            {
+              "title": "Introdução à ARIA (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/Accessibility/ARIA",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Aprenda acessibilidade (web.dev)",
+              "url": "https://web.dev/learn/accessibility",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Componente que o teclado alcança",
+          "description": "Modal, menu e aba precisam de foco, Escape e nome acessível. ARIA não conserta um botão feito de div sem teclado."
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Lista filtrada sem framework",
+          "description": "Uma página com busca em uma lista local. Filtra enquanto a pessoa digita e avisa quando não há resultado.",
+          "steps": [
+            "Escreva em uma linha o que \"Lista filtrada sem framework\" precisa mostrar.",
+            "Uma página com busca em uma lista local. Filtra enquanto a pessoa digita e avisa quando não há resultado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Cliente de uma API pública",
+          "description": "Busque dados de uma API pública, com carregando, erro e uma segunda tentativa. Guarde o último filtro no localStorage.",
+          "steps": [
+            "Escreva em uma linha o que \"Cliente de uma API pública\" precisa mostrar.",
+            "Busque dados de uma API pública, com carregando, erro e uma segunda tentativa. Guarde o último filtro no localStorage.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe3-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Diálogo acessível",
+          "description": "Implemente um diálogo que prende o foco, fecha no Escape e devolve o foco para o botão que abriu. Teste só com teclado.",
+          "steps": [
+            "Escreva em uma linha o que \"Diálogo acessível\" precisa mostrar.",
+            "Implemente um diálogo que prende o foco, fecha no Escape e devolve o foco para o botão que abriu. Teste só com teclado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-3-q1",
+          "prompt": "Fetch devolve uma Promise e a tela precisa mostrar carregando e erro. Isso está certo?",
+          "reviewTopicId": "fe-async",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-3-q2",
+          "prompt": "O que combina com \"DOM e eventos\"?",
+          "reviewTopicId": "fe-dom",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O DOM é a árvore de elementos que o JavaScript lê e altera.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-4",
+      "number": 4,
+      "badgeTitle": "React",
+      "title": "React e ecossistema",
+      "topics": [
+        {
+          "id": "fe-vite",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "fe-js"
+          ],
+          "tags": [
+            "npm",
+            "Vite"
+          ],
+          "resources": [
+            {
+              "title": "Sobre o npm",
+              "url": "https://docs.npmjs.com/about-npm",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Guia do Vite",
+              "url": "https://vite.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "npm e Vite",
+          "description": "Criar o projeto, instalar dependência, scripts de desenvolvimento e build. Entenda o que o bundler está fazendo por você."
+        },
+        {
+          "id": "fe-ts",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "fe-js"
+          ],
+          "tags": [
+            "TypeScript",
+            "Props"
+          ],
+          "resources": [
+            {
+              "title": "TypeScript em 5 minutos",
+              "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Tipos do dia a dia",
+              "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "TypeScript na interface",
+          "description": "Tipos do dia a dia, props de componente, unions e o tsconfig mínimo para o erro aparecer antes do navegador."
+        },
+        {
+          "id": "fe-react",
+          "level": "intermediario",
+          "hours": 16,
+          "prerequisites": [
+            "fe-dom"
+          ],
+          "tags": [
+            "React",
+            "Hooks",
+            "Props"
+          ],
+          "resources": [
+            {
+              "title": "Aprenda React",
+              "url": "https://pt-br.react.dev/learn",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Tutorial do jogo da velha",
+              "url": "https://pt-br.react.dev/learn/tutorial-tic-tac-toe",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "React: componentes, props e hooks",
+          "description": "Pensar em componentes, estado local, efeitos e listas. Um fluxo pequeno, do dado até a tela, vale mais do que dez hooks decorados."
+        },
+        {
+          "id": "fe-state",
+          "level": "avancado",
+          "hours": 12,
+          "prerequisites": [
+            "fe-react"
+          ],
+          "tags": [
+            "Context",
+            "Rotas",
+            "Zod"
+          ],
+          "resources": [
+            {
+              "title": "Passando dados com Context",
+              "url": "https://pt-br.react.dev/learn/passing-data-deeply-with-context",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiros passos com Zod",
+              "url": "https://zod.dev/basics",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Estado, rotas e formulário",
+          "description": "Context ou Redux Toolkit para o que é compartilhado, React Router para as telas e formulário validado com React Hook Form e Zod."
+        },
+        {
+          "id": "fe-next",
+          "level": "avancado",
+          "hours": 10,
+          "prerequisites": [
+            "fe-react"
+          ],
+          "tags": [
+            "Next.js",
+            "Rotas",
+            "SSR"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Next.js",
+              "url": "https://nextjs.org/docs/app/getting-started",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Estrutura de projeto do App Router",
+              "url": "https://nextjs.org/docs/app/getting-started/project-structure",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Next.js: rotas e renderização",
+          "description": "Quando a página pode ser estática, quando precisa do servidor e como organizar rotas. Não comece pelo framework se o React ainda está confuso."
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Três componentes, uma tela",
+          "description": "Recrie uma tela que você já fez em HTML como componentes React, com props e uma lista. Sem biblioteca de estado.",
+          "steps": [
+            "Escreva em uma linha o que \"Três componentes, uma tela\" precisa mostrar.",
+            "Recrie uma tela que você já fez em HTML como componentes React, com props e uma lista. Sem biblioteca de estado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 16,
+          "title": "App de duas rotas",
+          "description": "Uma listagem e um detalhe, em TypeScript, com dados buscados de uma API e estado de carregamento em cada tela.",
+          "steps": [
+            "Escreva em uma linha o que \"App de duas rotas\" precisa mostrar.",
+            "Uma listagem e um detalhe, em TypeScript, com dados buscados de uma API e estado de carregamento em cada tela.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe4-projeto-avancado",
+          "level": "avancado",
+          "hours": 16,
+          "title": "Formulário que não mente",
+          "description": "Formulário com validação (Zod ou equivalente), erro por campo e um estado compartilhado entre duas rotas. O build do Vite ou do Next precisa passar.",
+          "steps": [
+            "Escreva em uma linha o que \"Formulário que não mente\" precisa mostrar.",
+            "Formulário com validação (Zod ou equivalente), erro por campo e um estado compartilhado entre duas rotas. O build do Vite ou do Next precisa passar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-4-q1",
+          "prompt": "Props são dados que o componente pai passa ao filho. Isso está certo?",
+          "reviewTopicId": "fe-react",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-4-q2",
+          "prompt": "O que combina com \"TypeScript na interface\"?",
+          "reviewTopicId": "fe-ts",
+          "choices": [
+            {
+              "id": "a",
+              "text": "TypeScript aponta erro de tipo antes de o código rodar no navegador.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-5",
+      "number": 5,
+      "badgeTitle": "Portfólio",
+      "title": "Qualidade, performance e portfólio",
+      "topics": [
+        {
+          "id": "fe-seo",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "fe-html"
+          ],
+          "tags": [
+            "SEO",
+            "Título",
+            "Conteúdo"
+          ],
+          "resources": [
+            {
+              "title": "O que é SEO (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Glossary/SEO",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Guia inicial de SEO do Google",
+              "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=pt-br",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "SEO técnico básico",
+          "description": "Título, descrição, cabeçalhos em ordem e conteúdo que um buscador e uma pessoa entendem. Sem truque, sem texto escondido."
+        },
+        {
+          "id": "fe-perf",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "fe-react"
+          ],
+          "tags": [
+            "Lighthouse",
+            "Web Vitals",
+            "Imagem"
+          ],
+          "resources": [
+            {
+              "title": "Core Web Vitals",
+              "url": "https://web.dev/articles/vitals",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Aprenda performance (web.dev)",
+              "url": "https://web.dev/learn/performance",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Performance percebida",
+          "description": "Peso de imagem, Core Web Vitals e o que fazer antes de micro-otimizar. Meça com o Lighthouse e mude uma coisa por vez."
+        },
+        {
+          "id": "fe-test",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "fe-react"
+          ],
+          "tags": [
+            "Testing Library",
+            "Teste"
+          ],
+          "resources": [
+            {
+              "title": "Introdução à React Testing Library",
+              "url": "https://testing-library.com/docs/react-testing-library/intro",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Exemplo introdutório",
+              "url": "https://testing-library.com/docs/react-testing-library/example-intro",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Teste de componente",
+          "description": "Testing Library para o que a pessoa vê e faz: clicar, digitar, ver o texto. Não teste detalhe interno de state."
+        },
+        {
+          "id": "fe-portfolio",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "fe-git"
+          ],
+          "tags": [
+            "Portfólio",
+            "Deploy",
+            "README"
+          ],
+          "resources": [
+            {
+              "title": "Criar um site com GitHub Pages",
+              "url": "https://docs.github.com/pt/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Começando na Vercel",
+              "url": "https://vercel.com/docs/getting-started-with-vercel",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Portfólio e deploy",
+          "description": "README com problema, decisão e como rodar. Deploy na Vercel ou no GitHub Pages e um link que abre sem instrução secreta."
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "README de uma página",
+          "description": "Escolha um exercício antigo e reescreva o README: o que é, como abrir e uma captura. Publique de novo.",
+          "steps": [
+            "Escreva em uma linha o que \"README de uma página\" precisa mostrar.",
+            "Escolha um exercício antigo e reescreva o README: o que é, como abrir e uma captura. Publique de novo.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Peça de portfólio no ar",
+          "description": "Escolha o melhor app da trilha, ajuste título e descrição, publique e coloque o link no topo do README.",
+          "steps": [
+            "Escreva em uma linha o que \"Peça de portfólio no ar\" precisa mostrar.",
+            "Escolha o melhor app da trilha, ajuste título e descrição, publique e coloque o link no topo do README.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "fe5-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Uma métrica e um teste",
+          "description": "Rode o Lighthouse, corrija um problema real de performance ou acessibilidade e cubra o fluxo principal com um teste de componente.",
+          "steps": [
+            "Escreva em uma linha o que \"Uma métrica e um teste\" precisa mostrar.",
+            "Rode o Lighthouse, corrija um problema real de performance ou acessibilidade e cubra o fluxo principal com um teste de componente.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-5-q1",
+          "prompt": "Performance percebida se mede, por exemplo com Lighthouse, antes de reescrever tudo. Isso está certo?",
+          "reviewTopicId": "fe-perf",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-5-q2",
+          "prompt": "O que combina com \"Teste de componente\"?",
+          "reviewTopicId": "fe-test",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Teste de componente confere o que a pessoa vê e faz.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "frontend",
+  "name": "Front-end",
+  "tagline": "Interfaces, acessibilidade e o que as pessoas usam",
+  "description": "Para quem quer construir telas claras, responsivas e acessíveis. A trilha vai do HTML ao React, com qualidade e um portfólio que dá para mostrar."
+}

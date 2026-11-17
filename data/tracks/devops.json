@@ -1,0 +1,1300 @@
+{
+  "phases": [
+    {
+      "id": "do-fase-1",
+      "number": 1,
+      "badgeTitle": "Linux",
+      "title": "Linux, rede e shell",
+      "topics": [
+        {
+          "id": "do-linux",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "Linux",
+            "Permissões",
+            "Processos"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Linux essencial",
+          "description": "Arquivos, permissões, processos e o hábito de ler a mensagem de erro inteira. Servidor sem isso vira cópia de comando.",
+          "quiz": [
+            {
+              "id": "do-linux-quiz-q1",
+              "prompt": "Depois de estudar \"Linux essencial\", o que você deve conseguir?",
+              "reviewTopicId": "do-linux",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "do-linux-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "do-linux",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "do-shell",
+          "level": "iniciante",
+          "hours": 6,
+          "prerequisites": [
+            "do-linux"
+          ],
+          "tags": [
+            "Shell",
+            "Script",
+            "Pipe"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Shell e scripts curtos",
+          "description": "Variável, pipe e um script de dez linhas que você explica. Automatize o que você já repetiu três vezes."
+        },
+        {
+          "id": "do-net",
+          "level": "iniciante",
+          "hours": 6,
+          "prerequisites": [],
+          "tags": [
+            "DNS",
+            "Portas",
+            "HTTP"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "O que é um servidor web (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Rede em tamanho de operação",
+          "description": "IP, DNS, porta e HTTP. O bastante para dizer se o problema é nome, porta fechada ou aplicação."
+        },
+        {
+          "id": "do-ssh",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "do-linux"
+          ],
+          "tags": [
+            "SSH",
+            "Chave"
+          ],
+          "resources": [
+            {
+              "title": "O comando SSH",
+              "url": "https://www.ssh.com/academy/ssh/command",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Conectar ao GitHub com SSH",
+              "url": "https://docs.github.com/pt/authentication/connecting-to-github-with-ssh",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "SSH e acesso",
+          "description": "Chave em vez de senha reaproveitada, e o mínimo de permissão na máquina remota. A chave privada não entra no Git."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Mapa da sua máquina",
+          "description": "Liste processos, portas em uso e a árvore de uma pasta de projeto. Explique três comandos com as suas palavras.",
+          "steps": [
+            "Escreva em uma linha o que \"Mapa da sua máquina\" precisa mostrar.",
+            "Liste processos, portas em uso e a árvore de uma pasta de projeto. Explique três comandos com as suas palavras.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Script de checkup",
+          "description": "Um script que confere se um diretório existe, se uma porta responde e imprime OK ou FALHA.",
+          "steps": [
+            "Escreva em uma linha o que \"Script de checkup\" precisa mostrar.",
+            "Um script que confere se um diretório existe, se uma porta responde e imprime OK ou FALHA.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Acesso com chave",
+          "description": "Configure SSH por chave para o GitHub ou para uma máquina de teste e descreva onde a chave privada fica e onde ela não fica.",
+          "steps": [
+            "Escreva em uma linha o que \"Acesso com chave\" precisa mostrar.",
+            "Configure SSH por chave para o GitHub ou para uma máquina de teste e descreva onde a chave privada fica e onde ela não fica.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-1-q1",
+          "prompt": "Permissão, processo e a mensagem de erro inteira são a base no Linux. Isso está certo?",
+          "reviewTopicId": "do-linux",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-1-q2",
+          "prompt": "O que combina com \"Rede em tamanho de operação\"?",
+          "reviewTopicId": "do-net",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porta fechada, DNS e aplicação são falhas diferentes.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "do-fase-2",
+      "number": 2,
+      "badgeTitle": "Entrega",
+      "title": "Git e fundamentos de entrega",
+      "topics": [
+        {
+          "id": "do-git",
+          "level": "iniciante",
+          "hours": 6,
+          "prerequisites": [],
+          "tags": [
+            "Git",
+            "Pull Request"
+          ],
+          "resources": [
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Sobre pull requests",
+              "url": "https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Git em time",
+          "description": "Branch, pull request e um histórico que outra pessoa lê. Deploy começa num commit que dá para apontar."
+        },
+        {
+          "id": "do-conv",
+          "level": "intermediario",
+          "hours": 3,
+          "prerequisites": [
+            "do-git"
+          ],
+          "tags": [
+            "Conventional Commits"
+          ],
+          "resources": [
+            {
+              "title": "Conventional Commits",
+              "url": "https://www.conventionalcommits.org/pt-br/v1.0.0/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Commits que viram changelog",
+          "description": "Conventional Commits deixa o histórico filtrável. Combine o padrão com o time antes de reescrever o passado."
+        },
+        {
+          "id": "do-twelve",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "12 fatores",
+            "Config",
+            "Build"
+          ],
+          "resources": [
+            {
+              "title": "Os doze fatores",
+              "url": "https://12factor.net/pt_br/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Configuração",
+              "url": "https://12factor.net/pt_br/config",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Configuração fora do código",
+          "description": "Os 12 fatores, em especial config e build-release-run. Senha em variável de ambiente, não em constante no fonte."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Repositório com proteção mínima",
+          "description": "Um repositório com README, .gitignore e um pull request seu, revisado por você no dia seguinte com um comentário real.",
+          "steps": [
+            "Escreva em uma linha o que \"Repositório com proteção mínima\" precisa mostrar.",
+            "Um repositório com README, .gitignore e um pull request seu, revisado por você no dia seguinte com um comentário real.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Config de exemplo",
+          "description": "Separe .env.example do segredo real. O app lê a configuração do ambiente e o README lista as variáveis sem os valores.",
+          "steps": [
+            "Escreva em uma linha o que \"Config de exemplo\" precisa mostrar.",
+            "Separe .env.example do segredo real. O app lê a configuração do ambiente e o README lista as variáveis sem os valores.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do2-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Dois ambientes",
+          "description": "Descreva dev e produção: o que muda, o que é igual e qual commit está em cada um. Pode ser no papel, desde que seja específico.",
+          "steps": [
+            "Escreva em uma linha o que \"Dois ambientes\" precisa mostrar.",
+            "Descreva dev e produção: o que muda, o que é igual e qual commit está em cada um. Pode ser no papel, desde que seja específico.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-2-q1",
+          "prompt": "Segredo fica em variável de ambiente, não no fonte. Isso está certo?",
+          "reviewTopicId": "do-twelve",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-2-q2",
+          "prompt": "O que combina com \"Git em time\"?",
+          "reviewTopicId": "do-git",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Deploy aponta para um commit que outra pessoa consegue achar.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "do-fase-3",
+      "number": 3,
+      "badgeTitle": "Contêineres",
+      "title": "Contêineres",
+      "topics": [
+        {
+          "id": "do-docker",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "do-linux"
+          ],
+          "tags": [
+            "Docker",
+            "Imagem",
+            "Volume"
+          ],
+          "resources": [
+            {
+              "title": "O que é Docker (Red Hat)",
+              "url": "https://www.redhat.com/pt-br/topics/containers/what-is-docker",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "O que é um contêiner",
+              "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Docker",
+          "description": "Imagem, contêiner, porta e volume. Saiba a diferença entre a sua máquina e o que vai junto na imagem."
+        },
+        {
+          "id": "do-image",
+          "level": "avancado",
+          "hours": 5,
+          "prerequisites": [
+            "do-docker"
+          ],
+          "tags": [
+            "Multi-stage",
+            "Dockerfile"
+          ],
+          "resources": [
+            {
+              "title": "Builds multi-stage",
+              "url": "https://docs.docker.com/build/building/multi-stage/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Boas práticas de build",
+              "url": "https://docs.docker.com/build/building/best-practices/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Imagem menor e mais previsível",
+          "description": "Multi-stage, ordem de camadas e o que não entra na imagem final. Imagem inchada é ataque e tempo de pull."
+        },
+        {
+          "id": "do-compose",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "do-docker"
+          ],
+          "tags": [
+            "Docker Compose"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Docker Compose",
+              "url": "https://docs.docker.com/compose/gettingstarted/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Referência do arquivo Compose",
+              "url": "https://docs.docker.com/reference/compose-file/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Compose",
+          "description": "API, banco e cache sobem juntos no notebook. O arquivo de compose é documentação executável."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Um serviço, um comando",
+          "description": "Empacote uma API ou uma página que você já tem. O README tem o comando de build e o de run.",
+          "steps": [
+            "Escreva em uma linha o que \"Um serviço, um comando\" precisa mostrar.",
+            "Empacote uma API ou uma página que você já tem. O README tem o comando de build e o de run.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Compose com banco",
+          "description": "Suba aplicação e banco. Os dados do banco sobrevivem a um restart por causa de um volume, e você explica isso.",
+          "steps": [
+            "Escreva em uma linha o que \"Compose com banco\" precisa mostrar.",
+            "Suba aplicação e banco. Os dados do banco sobrevivem a um restart por causa de um volume, e você explica isso.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do3-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Imagem em dois estágios",
+          "description": "Reescreva o Dockerfile em multi-stage e anote o tamanho antes e depois. Diga o que saiu da imagem final.",
+          "steps": [
+            "Escreva em uma linha o que \"Imagem em dois estágios\" precisa mostrar.",
+            "Reescreva o Dockerfile em multi-stage e anote o tamanho antes e depois. Diga o que saiu da imagem final.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-3-q1",
+          "prompt": "Imagem é o pacote; contêiner é esse pacote em execução. Isso está certo?",
+          "reviewTopicId": "do-docker",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-3-q2",
+          "prompt": "O que combina com \"Compose\"?",
+          "reviewTopicId": "do-compose",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Compose sobe juntos os serviços que o notebook precisa.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "do-fase-4",
+      "number": 4,
+      "badgeTitle": "CI/CD",
+      "title": "Integração e entrega contínua",
+      "topics": [
+        {
+          "id": "do-cicd",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "do-git"
+          ],
+          "tags": [
+            "CI",
+            "CD",
+            "Pipeline"
+          ],
+          "resources": [
+            {
+              "title": "Entenda o GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/get-started/understand-github-actions",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "O que a esteira faz",
+          "description": "Integração contínua roda teste. Entrega contínua prepara o artefato. Deploy contínuo publica sozinho — e nem sempre é o que você quer no começo."
+        },
+        {
+          "id": "do-gha",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "do-cicd"
+          ],
+          "tags": [
+            "GitHub Actions",
+            "Workflow"
+          ],
+          "resources": [
+            {
+              "title": "Início rápido do GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/get-started/quickstart",
+              "lang": "pt",
+              "kind": "pratica"
+            },
+            {
+              "title": "Build e teste de Node",
+              "url": "https://docs.github.com/pt/actions/tutorials/build-and-test-code/nodejs",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "GitHub Actions",
+          "description": "Workflow, gatilho e um job que instala dependências e testa. O log precisa dizer por que falhou."
+        },
+        {
+          "id": "do-strategy",
+          "level": "avancado",
+          "hours": 4,
+          "prerequisites": [
+            "do-cicd"
+          ],
+          "tags": [
+            "Deploy",
+            "Rollback"
+          ],
+          "resources": [
+            {
+              "title": "Blue-green deployment",
+              "url": "https://martinfowler.com/bliki/BlueGreenDeployment.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Build, release, run",
+              "url": "https://12factor.net/pt_br/build-release-run",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Como publicar sem sumir",
+          "description": "Blue-green ou um rollback simples: a versão anterior ainda existe e você sabe voltar. Deploy não é só \"dar push na main\"."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Pipeline que só testa",
+          "description": "Um workflow verde que roda o teste do projeto. Quebre um teste de propósito e cole o trecho do log que explica a falha.",
+          "steps": [
+            "Escreva em uma linha o que \"Pipeline que só testa\" precisa mostrar.",
+            "Um workflow verde que roda o teste do projeto. Quebre um teste de propósito e cole o trecho do log que explica a falha.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Teste e build",
+          "description": "A esteira testa e gera o artefato (ou a imagem) só se o teste passar. A ordem está escrita no README.",
+          "steps": [
+            "Escreva em uma linha o que \"Teste e build\" precisa mostrar.",
+            "A esteira testa e gera o artefato (ou a imagem) só se o teste passar. A ordem está escrita no README.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do4-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Plano de volta",
+          "description": "Descreva, para um serviço seu, como voltar à versão anterior em passos numerados. Se já der para automatizar um deles, faça.",
+          "steps": [
+            "Escreva em uma linha o que \"Plano de volta\" precisa mostrar.",
+            "Descreva, para um serviço seu, como voltar à versão anterior em passos numerados. Se já der para automatizar um deles, faça.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-4-q1",
+          "prompt": "Integração contínua roda o teste; publicar automático é outra decisão. Isso está certo?",
+          "reviewTopicId": "do-cicd",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-4-q2",
+          "prompt": "O que combina com \"GitHub Actions\"?",
+          "reviewTopicId": "do-gha",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O log do workflow precisa dizer por que falhou.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "do-fase-5",
+      "number": 5,
+      "badgeTitle": "Nuvem",
+      "title": "Nuvem",
+      "topics": [
+        {
+          "id": "do-cloud",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "IaaS",
+            "PaaS",
+            "Nuvem"
+          ],
+          "resources": [
+            {
+              "title": "O que é computação em nuvem",
+              "url": "https://aws.amazon.com/pt/what-is-cloud-computing/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Comece com a AWS",
+              "url": "https://aws.amazon.com/pt/getting-started/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ],
+          "title": "Modelo de nuvem",
+          "description": "IaaS, PaaS e o que você ainda opera em cada um. Escolher PaaS não é ignorância; é decidir onde gastar a semana."
+        },
+        {
+          "id": "do-paas",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "do-twelve"
+          ],
+          "tags": [
+            "Vercel",
+            "Render",
+            "Fly.io"
+          ],
+          "resources": [
+            {
+              "title": "Começando na Vercel",
+              "url": "https://vercel.com/docs/getting-started-with-vercel",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Web services no Render",
+              "url": "https://render.com/docs/web-services",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "PaaS na prática",
+          "description": "Vercel, Render ou Fly para um serviço real, com variável de ambiente e um endereço público."
+        },
+        {
+          "id": "do-aws",
+          "level": "avancado",
+          "hours": 12,
+          "prerequisites": [
+            "do-net"
+          ],
+          "tags": [
+            "AWS",
+            "EC2",
+            "S3",
+            "RDS"
+          ],
+          "resources": [
+            {
+              "title": "Conceitos do Amazon EC2",
+              "url": "https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/concepts.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Boas-vindas ao Amazon S3",
+              "url": "https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/Welcome.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "AWS no essencial",
+          "description": "EC2, S3 e RDS no nível de saber para que cada um existe e o que custa esquecer ligado. Não abra conta e saia criando recurso sem limite."
+        },
+        {
+          "id": "do-iam",
+          "level": "avancado",
+          "hours": 5,
+          "prerequisites": [
+            "do-aws"
+          ],
+          "tags": [
+            "IAM",
+            "Privilégio mínimo"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao IAM",
+              "url": "https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/introduction.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Boas práticas de IAM",
+              "url": "https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/best-practices.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Privilégio mínimo",
+          "description": "IAM: usuário, papel e o hábito de não usar a chave de administrador no notebook. Apague a chave que vazou em commit."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Tabela de opções",
+          "description": "Para um app seu, compare PaaS e uma VM: o que você operaria, o que a plataforma opera e o que te assusta em cada um.",
+          "steps": [
+            "Escreva em uma linha o que \"Tabela de opções\" precisa mostrar.",
+            "Para um app seu, compare PaaS e uma VM: o que você operaria, o que a plataforma opera e o que te assusta em cada um.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Serviço público",
+          "description": "Publique um serviço num PaaS com configuração por ambiente. O README tem a URL e o que não está nessa URL (segredo).",
+          "steps": [
+            "Escreva em uma linha o que \"Serviço público\" precisa mostrar.",
+            "Publique um serviço num PaaS com configuração por ambiente. O README tem a URL e o que não está nessa URL (segredo).",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do5-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Conta com freio",
+          "description": "Se usar a AWS, crie um recurso do tutorial oficial e depois apague. Anote qual permissão foi necessária e como você confirmaria a fatura.",
+          "steps": [
+            "Escreva em uma linha o que \"Conta com freio\" precisa mostrar.",
+            "Se usar a AWS, crie um recurso do tutorial oficial e depois apague. Anote qual permissão foi necessária e como você confirmaria a fatura.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-5-q1",
+          "prompt": "PaaS opera mais a plataforma; numa VM você opera mais o sistema. Isso está certo?",
+          "reviewTopicId": "do-cloud",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-5-q2",
+          "prompt": "O que combina com \"Privilégio mínimo\"?",
+          "reviewTopicId": "do-iam",
+          "choices": [
+            {
+              "id": "a",
+              "text": "A chave de administrador não mora no notebook.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "do-fase-6",
+      "number": 6,
+      "badgeTitle": "Operação",
+      "title": "Observabilidade e infraestrutura como código",
+      "topics": [
+        {
+          "id": "do-logs",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "do-linux"
+          ],
+          "tags": [
+            "Logs",
+            "Health check"
+          ],
+          "resources": [
+            {
+              "title": "Logs nos 12 fatores",
+              "url": "https://12factor.net/pt_br/logs",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Guia inicial do Nginx",
+              "url": "https://nginx.org/en/docs/beginners_guide.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Logs e health check",
+          "description": "Log que dá para buscar, sem senha no meio, e uma rota ou comando que diz se o processo está vivo."
+        },
+        {
+          "id": "do-metrics",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "do-logs"
+          ],
+          "tags": [
+            "Prometheus",
+            "Grafana"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do Prometheus",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiro painel no Grafana",
+              "url": "https://grafana.com/docs/grafana/latest/getting-started/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Métricas e painel",
+          "description": "Prometheus e Grafana no essencial: uma métrica, um gráfico, um motivo. Painel bonito sem pergunta não opera nada."
+        },
+        {
+          "id": "do-terraform",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "do-aws"
+          ],
+          "tags": [
+            "Terraform",
+            "IaC"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Terraform",
+              "url": "https://developer.hashicorp.com/terraform/intro",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Tutorial de início na AWS",
+              "url": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Terraform essencial",
+          "description": "Um recurso descrito em código, plan antes de apply, e o estado guardado com o mesmo cuidado de uma senha."
+        },
+        {
+          "id": "do-incident",
+          "level": "avancado",
+          "hours": 3,
+          "prerequisites": [
+            "do-logs"
+          ],
+          "tags": [
+            "Incidente",
+            "Pós-mortem"
+          ],
+          "resources": [
+            {
+              "title": "Cultura de pós-mortem (Google SRE)",
+              "url": "https://sre.google/sre-book/postmortem-culture/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Resposta a incidente",
+              "url": "https://sre.google/workbook/incident-response/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Incidente e pós-mortem",
+          "description": "Linha do tempo, impacto e o que muda no sistema. Sem caça ao culpado. Um incidente pequeno de laboratório já ensina o formato."
+        }
+      ],
+      "projects": [
+        {
+          "id": "do6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Health check visível",
+          "description": "Acrescente uma forma de saber se o serviço está no ar e um exemplo de log sem dado sensível.",
+          "steps": [
+            "Escreva em uma linha o que \"Health check visível\" precisa mostrar.",
+            "Acrescente uma forma de saber se o serviço está no ar e um exemplo de log sem dado sensível.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Um gráfico",
+          "description": "Suba Prometheus e Grafana com a documentação oficial, ou use o painel do PaaS, e salve uma captura do gráfico que importa.",
+          "steps": [
+            "Escreva em uma linha o que \"Um gráfico\" precisa mostrar.",
+            "Suba Prometheus e Grafana com a documentação oficial, ou use o painel do PaaS, e salve uma captura do gráfico que importa.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "do6-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Infra em código e uma falha",
+          "description": "Descreva um recurso com Terraform (ou explique o plan de um tutorial) e escreva um pós-mortem de uma falha que você provocou de propósito no laboratório.",
+          "steps": [
+            "Escreva em uma linha o que \"Infra em código e uma falha\" precisa mostrar.",
+            "Descreva um recurso com Terraform (ou explique o plan de um tutorial) e escreva um pós-mortem de uma falha que você provocou de propósito no laboratório.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-6-q1",
+          "prompt": "Log útil se busca e não contém senha. Isso está certo?",
+          "reviewTopicId": "do-logs",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-6-q2",
+          "prompt": "O que combina com \"Incidente e pós-mortem\"?",
+          "reviewTopicId": "do-incident",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Pós-mortem registra linha do tempo e o que muda no sistema.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "devops",
+  "name": "DevOps",
+  "tagline": "Do commit ao servidor, com um jeito de saber se caiu",
+  "description": "Para quem quer entender entrega: Linux, Git, contêiner, CI/CD, nuvem e o mínimo de observação. O foco é colocar um serviço no ar e saber se ele continua no ar."
+}

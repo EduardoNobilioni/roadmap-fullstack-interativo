@@ -1,0 +1,11 @@
+{
+  "app": "Roadmap Full-Stack Interativo",
+  "exportedAt": "2026-01-15T12:00:00.000Z",
+  "completed": {
+    "f1-internet": true,
+    "f1-terminal": true
+  },
+  "notes": {
+    "f1-internet": "Revisar DNS e a diferença entre HTTP e HTTPS."
+  }
+}

@@ -1,0 +1,1172 @@
+{
+  "phases": [
+    {
+      "id": "mob-fase-1",
+      "number": 1,
+      "badgeTitle": "Contexto",
+      "title": "Fundamentos e UX mobile",
+      "topics": [
+        {
+          "id": "mob-ux",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "UX",
+            "Mobile",
+            "Hierarquia"
+          ],
+          "resources": [
+            {
+              "title": "Interface do usuário no Android",
+              "url": "https://developer.android.com/guide/topics/ui?hl=pt-br",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Layout adaptativo no Flutter",
+              "url": "https://docs.flutter.dev/ui/adaptive-responsive",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Tela pequena é outro produto",
+          "description": "Polegar, hierarquia, uma ação primária e o que sai da tela de desktop. Não encolha um site e chame de app.",
+          "quiz": [
+            {
+              "id": "mob-ux-quiz-q1",
+              "prompt": "Depois de estudar \"Tela pequena é outro produto\", o que você deve conseguir?",
+              "reviewTopicId": "mob-ux",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "mob-ux-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "mob-ux",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mob-plat",
+          "level": "iniciante",
+          "hours": 3,
+          "prerequisites": [],
+          "tags": [
+            "Android",
+            "iOS",
+            "Loja"
+          ],
+          "resources": [
+            {
+              "title": "Cursos Android em português",
+              "url": "https://developer.android.com/courses?hl=pt-br",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Quem vem do React Native",
+              "url": "https://docs.flutter.dev/get-started/flutter-for/react-native-devs",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Android, iOS e lojas",
+          "description": "Diferença de navegação, permissão e o que a loja exige antes mesmo do código: ícone, política de privacidade e um motivo para o app existir."
+        },
+        {
+          "id": "mob-git",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "Git",
+            "README"
+          ],
+          "resources": [
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Sobre Git (GitHub Docs)",
+              "url": "https://docs.github.com/pt/get-started/using-git/about-git",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Git para um app",
+          "description": "Branch, commit e um README com o comando de rodar. O app mora num repositório, não só no emulador da sua máquina."
+        },
+        {
+          "id": "mob-setup",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "Flutter",
+            "SDK",
+            "Emulador"
+          ],
+          "resources": [
+            {
+              "title": "Instalar o Flutter",
+              "url": "https://docs.flutter.dev/install",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Flutter no VS Code",
+              "url": "https://docs.flutter.dev/tools/vs-code",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Ambiente Flutter",
+          "description": "SDK, editor e um emulador ou aparelho. O primeiro objetivo é ver o contador de exemplo rodando e saber onde o erro aparece."
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Fluxo em papel",
+          "description": "Desenhe três telas de um app útil na sua faculdade (cardápio, monitoria, carona). Marque a ação primária de cada uma.",
+          "steps": [
+            "Escreva em uma linha o que \"Fluxo em papel\" precisa mostrar.",
+            "Desenhe três telas de um app útil na sua faculdade (cardápio, monitoria, carona). Marque a ação primária de cada uma.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Comparar com um app real",
+          "description": "Escolha um app que você usa e anote navegação, permissão e um ponto em que a tela pequena atrapalha. Relacione com o seu desenho.",
+          "steps": [
+            "Escreva em uma linha o que \"Comparar com um app real\" precisa mostrar.",
+            "Escolha um app que você usa e anote navegação, permissão e um ponto em que a tela pequena atrapalha. Relacione com o seu desenho.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Critério de loja",
+          "description": "Liste o que a ficha da loja precisaria ter para o seu app: privacidade, permissões e o texto da primeira tela. Ainda sem publicar.",
+          "steps": [
+            "Escreva em uma linha o que \"Critério de loja\" precisa mostrar.",
+            "Liste o que a ficha da loja precisaria ter para o seu app: privacidade, permissões e o texto da primeira tela. Ainda sem publicar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-1-q1",
+          "prompt": "Tela pequena pede uma ação primária, não um site encolhido. Isso está certo?",
+          "reviewTopicId": "mob-ux",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-1-q2",
+          "prompt": "O que combina com \"Android, iOS e lojas\"?",
+          "reviewTopicId": "mob-plat",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Loja exige ícone, texto e clareza sobre permissão.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mob-fase-2",
+      "number": 2,
+      "badgeTitle": "Dart",
+      "title": "Dart",
+      "topics": [
+        {
+          "id": "mob-dart",
+          "level": "iniciante",
+          "hours": 10,
+          "prerequisites": [
+            "mob-setup"
+          ],
+          "tags": [
+            "Dart",
+            "Null safety",
+            "Tipos"
+          ],
+          "resources": [
+            {
+              "title": "A linguagem Dart",
+              "url": "https://dart.dev/language",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Entendendo null safety",
+              "url": "https://dart.dev/null-safety/understanding-null-safety",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Dart: tipos, funções e null safety",
+          "description": "Tipos, funções, coleções e null safety. O compilador está do seu lado quando o valor pode não existir."
+        },
+        {
+          "id": "mob-dart-async",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "mob-dart"
+          ],
+          "tags": [
+            "Future",
+            "async/await"
+          ],
+          "resources": [
+            {
+              "title": "Assincronismo em Dart",
+              "url": "https://dart.dev/language/async",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "async e await",
+              "url": "https://dart.dev/libraries/async/async-await",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Assincronismo em Dart",
+          "description": "Future, async/await e o que a interface faz enquanto a rede não voltou. Não bloqueie a tela para \"esperar um pouco\"."
+        },
+        {
+          "id": "mob-dart-model",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "mob-dart"
+          ],
+          "tags": [
+            "Classes",
+            "Modelo"
+          ],
+          "resources": [
+            {
+              "title": "Classes em Dart",
+              "url": "https://dart.dev/language/classes",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "JSON no Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/serialization/json",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Classes e modelo",
+          "description": "Uma classe para o dado da API, com campos obrigatórios claros. O widget não deveria adivinhar a forma do JSON."
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Modelo de uma entidade",
+          "description": "Represente uma entidade do seu app (disciplina, pedido, carona) em Dart, com null safety e um teste manual de campo ausente.",
+          "steps": [
+            "Escreva em uma linha o que \"Modelo de uma entidade\" precisa mostrar.",
+            "Represente uma entidade do seu app (disciplina, pedido, carona) em Dart, com null safety e um teste manual de campo ausente.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Future com erro",
+          "description": "Escreva uma função async que simula atraso e falha. Quem chama precisa distinguir sucesso, espera e erro.",
+          "steps": [
+            "Escreva em uma linha o que \"Future com erro\" precisa mostrar.",
+            "Escreva uma função async que simula atraso e falha. Quem chama precisa distinguir sucesso, espera e erro.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob2-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "JSON de verdade",
+          "description": "Decodifique um JSON de exemplo para a sua classe e cubra o caso em que um campo obrigatório não veio.",
+          "steps": [
+            "Escreva em uma linha o que \"JSON de verdade\" precisa mostrar.",
+            "Decodifique um JSON de exemplo para a sua classe e cubra o caso em que um campo obrigatório não veio.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-2-q1",
+          "prompt": "Null safety obriga a tratar valor que pode não existir. Isso está certo?",
+          "reviewTopicId": "mob-dart",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-2-q2",
+          "prompt": "O que combina com \"Assincronismo em Dart\"?",
+          "reviewTopicId": "mob-dart-async",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Future e async/await representam trabalho que ainda não terminou.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mob-fase-3",
+      "number": 3,
+      "badgeTitle": "Interface",
+      "title": "Interface com Flutter",
+      "topics": [
+        {
+          "id": "mob-widgets",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "mob-dart"
+          ],
+          "tags": [
+            "Widgets",
+            "Stateless",
+            "Stateful"
+          ],
+          "resources": [
+            {
+              "title": "Codelab de início",
+              "url": "https://docs.flutter.dev/get-started/codelab",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Catálogo de widgets",
+              "url": "https://docs.flutter.dev/ui/widgets",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Widgets e árvore",
+          "description": "Stateless e Stateful, composição e o fato de a interface ser uma árvore. Comece pelo codelab oficial antes de uma arquitetura grande."
+        },
+        {
+          "id": "mob-layout",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "Layout",
+            "Lista",
+            "Tema"
+          ],
+          "resources": [
+            {
+              "title": "Layout no Flutter",
+              "url": "https://docs.flutter.dev/ui/layout",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Lista básica",
+              "url": "https://docs.flutter.dev/cookbook/lists/basic-list",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Layout, lista e tema",
+          "description": "Row, Column, ListView e um tema só. Lista longa não pode ser dez widgets copiados."
+        },
+        {
+          "id": "mob-nav",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "Rotas",
+            "Navegação"
+          ],
+          "resources": [
+            {
+              "title": "Navegação básica",
+              "url": "https://docs.flutter.dev/cookbook/navigation/navigation-basics",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Rotas nomeadas",
+              "url": "https://docs.flutter.dev/cookbook/navigation/named-routes",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Navegação",
+          "description": "Rotas, voltar e passar argumento. O botão de voltar do sistema faz parte do app."
+        },
+        {
+          "id": "mob-a11y",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "mob-layout"
+          ],
+          "tags": [
+            "Acessibilidade",
+            "Contraste",
+            "Leitor de tela"
+          ],
+          "resources": [
+            {
+              "title": "Acessibilidade no Flutter",
+              "url": "https://docs.flutter.dev/ui/accessibility-and-internationalization/accessibility",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Acessibilidade no app",
+          "description": "Rótulo, contraste, alvo de toque e tamanho de texto do sistema. Teste com o leitor de tela pelo menos uma vez."
+        },
+        {
+          "id": "mob-forms",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "Formulário",
+            "Validação"
+          ],
+          "resources": [
+            {
+              "title": "Validação de formulário",
+              "url": "https://docs.flutter.dev/cookbook/forms/validation",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Formulário e validação",
+          "description": "Campo, erro e teclado que não cobre o botão. Validar no submit e mostrar a mensagem perto do campo."
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Três telas estáticas",
+          "description": "Implemente o fluxo em papel com dados fixos, tema e uma lista. Sem rede ainda.",
+          "steps": [
+            "Escreva em uma linha o que \"Três telas estáticas\" precisa mostrar.",
+            "Implemente o fluxo em papel com dados fixos, tema e uma lista. Sem rede ainda.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Navegação e formulário",
+          "description": "Inclua rota de detalhe e um formulário com validação. O voltar do sistema retorna para a lista.",
+          "steps": [
+            "Escreva em uma linha o que \"Navegação e formulário\" precisa mostrar.",
+            "Inclua rota de detalhe e um formulário com validação. O voltar do sistema retorna para a lista.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob3-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Texto grande e leitor de tela",
+          "description": "Aumente a fonte do sistema e percorra o fluxo com o leitor de tela. Corrija um rótulo ou um alvo que falhou.",
+          "steps": [
+            "Escreva em uma linha o que \"Texto grande e leitor de tela\" precisa mostrar.",
+            "Aumente a fonte do sistema e percorra o fluxo com o leitor de tela. Corrija um rótulo ou um alvo que falhou.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-3-q1",
+          "prompt": "A interface Flutter é uma árvore de widgets. Isso está certo?",
+          "reviewTopicId": "mob-widgets",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-3-q2",
+          "prompt": "O que combina com \"Navegação\"?",
+          "reviewTopicId": "mob-nav",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O botão de voltar do sistema faz parte da navegação.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mob-fase-4",
+      "number": 4,
+      "badgeTitle": "Dados no app",
+      "title": "Dados, API e estado",
+      "topics": [
+        {
+          "id": "mob-http",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "mob-dart-async",
+            "mob-widgets"
+          ],
+          "tags": [
+            "HTTP",
+            "API",
+            "Erro"
+          ],
+          "resources": [
+            {
+              "title": "Buscar dados",
+              "url": "https://docs.flutter.dev/cookbook/networking/fetch-data",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Rede no Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/networking",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Consumir uma API",
+          "description": "GET com tratamento de erro e um estado de carregamento no widget. A lista vazia e a falha de rede são telas, não exceções silenciosas."
+        },
+        {
+          "id": "mob-local",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "SQLite",
+            "Preferências"
+          ],
+          "resources": [
+            {
+              "title": "Chave e valor",
+              "url": "https://docs.flutter.dev/cookbook/persistence/key-value",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "SQLite no Flutter",
+              "url": "https://docs.flutter.dev/cookbook/persistence/sqlite",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Persistência local",
+          "description": "Preferência simples e, quando precisar de consulta, SQLite. O dado local tem dono e uma hora de ser apagado."
+        },
+        {
+          "id": "mob-state",
+          "level": "avancado",
+          "hours": 10,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "Estado",
+            "Provider"
+          ],
+          "resources": [
+            {
+              "title": "Introdução a estado no Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/intro",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Opções de gerenciamento de estado",
+              "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/options",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Estado compartilhado",
+          "description": "Quando o setState basta e quando um gerenciador (Provider ou outro da documentação) evita passar callback por quatro níveis."
+        },
+        {
+          "id": "mob-offline",
+          "level": "avancado",
+          "hours": 5,
+          "prerequisites": [
+            "mob-http",
+            "mob-local"
+          ],
+          "tags": [
+            "Offline",
+            "Retry",
+            "Rede"
+          ],
+          "resources": [
+            {
+              "title": "Rede no Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/networking",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Offline e rede ruim",
+          "description": "Mensagem clara, tentativa de novo e o que fica salvo se o pedido não saiu. Campus com sinal ruim é o teste real."
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Lista vinda de um arquivo",
+          "description": "Carregue um JSON local para a lista. O app abre mesmo sem internet.",
+          "steps": [
+            "Escreva em uma linha o que \"Lista vinda de um arquivo\" precisa mostrar.",
+            "Carregue um JSON local para a lista. O app abre mesmo sem internet.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "API com carregando e erro",
+          "description": "Busque uma API pública, mostre progresso e um botão de tentar de novo. Guarde a última resposta simples no aparelho.",
+          "steps": [
+            "Escreva em uma linha o que \"API com carregando e erro\" precisa mostrar.",
+            "Busque uma API pública, mostre progresso e um botão de tentar de novo. Guarde a última resposta simples no aparelho.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob4-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Estado fora do widget",
+          "description": "Tire o estado compartilhado do widget mais fundo e documente a opção que você escolheu, com o link da documentação oficial.",
+          "steps": [
+            "Escreva em uma linha o que \"Estado fora do widget\" precisa mostrar.",
+            "Tire o estado compartilhado do widget mais fundo e documente a opção que você escolheu, com o link da documentação oficial.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-4-q1",
+          "prompt": "Falha de rede precisa aparecer na tela, não só no console. Isso está certo?",
+          "reviewTopicId": "mob-http",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-4-q2",
+          "prompt": "O que combina com \"Estado compartilhado\"?",
+          "reviewTopicId": "mob-state",
+          "choices": [
+            {
+              "id": "a",
+              "text": "setState basta no estado local; estado compartilhado pede outra organização.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mob-fase-5",
+      "number": 5,
+      "badgeTitle": "Publicação",
+      "title": "Qualidade e publicação",
+      "topics": [
+        {
+          "id": "mob-test",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "mob-widgets"
+          ],
+          "tags": [
+            "Teste",
+            "Widget"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral de testes",
+              "url": "https://docs.flutter.dev/testing/overview",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Testes no Flutter",
+              "url": "https://docs.flutter.dev/testing",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Teste de widget",
+          "description": "Um teste que acha um texto, toca um botão e confere a tela seguinte. Não precisa cobrir o app inteiro para começar."
+        },
+        {
+          "id": "mob-perf",
+          "level": "avancado",
+          "hours": 4,
+          "prerequisites": [
+            "mob-layout"
+          ],
+          "tags": [
+            "Performance",
+            "Lista"
+          ],
+          "resources": [
+            {
+              "title": "Performance no Flutter",
+              "url": "https://docs.flutter.dev/perf",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Boas práticas de performance",
+              "url": "https://docs.flutter.dev/perf/best-practices",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Performance básica",
+          "description": "Lista preguiçosa, imagem grande demais e rebuild desnecessário. Meça antes de reescrever a arquitetura."
+        },
+        {
+          "id": "mob-release",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "mob-setup"
+          ],
+          "tags": [
+            "Release",
+            "Android",
+            "Build"
+          ],
+          "resources": [
+            {
+              "title": "Publicar no Android",
+              "url": "https://docs.flutter.dev/deployment/android",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Publicar no Android Studio",
+              "url": "https://developer.android.com/studio/publish?hl=pt-br",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Build de release",
+          "description": "Gerar o artefato Android, assinatura em linhas gerais e a diferença entre debug e release. O ícone de debug não vai para a loja."
+        },
+        {
+          "id": "mob-store",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "mob-plat"
+          ],
+          "tags": [
+            "Loja",
+            "Privacidade",
+            "Permissão"
+          ],
+          "resources": [
+            {
+              "title": "Publicar no Android Studio",
+              "url": "https://developer.android.com/studio/publish?hl=pt-br",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Diretrizes da App Store",
+              "url": "https://developer.apple.com/app-store/review/guidelines/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Ficha da loja e privacidade",
+          "description": "Texto curto, captura, classificação e a política do que o app coleta. Permissão pedida sem motivo é rejeição."
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Roteiro de teste manual",
+          "description": "Escreva dez passos do fluxo feliz e três de erro (sem rede, campo vazio, lista vazia). Outra pessoa consegue executar.",
+          "steps": [
+            "Escreva em uma linha o que \"Roteiro de teste manual\" precisa mostrar.",
+            "Escreva dez passos do fluxo feliz e três de erro (sem rede, campo vazio, lista vazia). Outra pessoa consegue executar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Artefato de release",
+          "description": "Gere um build de release do Android e anote, no README, o comando e o que falta para uma loja aceitar.",
+          "steps": [
+            "Escreva em uma linha o que \"Artefato de release\" precisa mostrar.",
+            "Gere um build de release do Android e anote, no README, o comando e o que falta para uma loja aceitar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "mob5-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Teste e uma melhoria medida",
+          "description": "Adicione um teste de widget do fluxo principal e corrija um problema de lista ou imagem com base na documentação de performance.",
+          "steps": [
+            "Escreva em uma linha o que \"Teste e uma melhoria medida\" precisa mostrar.",
+            "Adicione um teste de widget do fluxo principal e corrija um problema de lista ou imagem com base na documentação de performance.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-5-q1",
+          "prompt": "Teste de widget acha um texto e dispara um toque. Isso está certo?",
+          "reviewTopicId": "mob-test",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-5-q2",
+          "prompt": "O que combina com \"Build de release\"?",
+          "reviewTopicId": "mob-release",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Build de release não é o mesmo artefato de debug.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "mobile",
+  "name": "Mobile",
+  "tagline": "Apps de bolso com Flutter, do layout à loja",
+  "description": "Uma trilha coerente para app mobile usando Flutter e Dart, com UX de tela pequena, estado, rede e publicação. Se você já vive em JavaScript, o texto aponta onde React Native entra, mas o caminho praticado aqui é Flutter."
+}
