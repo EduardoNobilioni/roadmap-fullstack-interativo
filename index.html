@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trilha de Estudos</title>
   <meta name="description" content="Monte uma trilha de estudos personalizada para a faculdade de tecnologia. Sem cadastro, no seu navegador." />
-  <meta name="theme-color" content="#090d16" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310b981'/%3E%3Cpath d='M9 17l4 4 10-10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#2a201a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%237a3329'/%3E%3Cpath d='M8 16.5 13 21.5 24 10.5' fill='none' stroke='%23f3eee4' stroke-width='3'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,57 +18,72 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
+            sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
-          keyframes: {
-            checkPop: {
-              '0%': { transform: 'scale(0.8)' },
-              '50%': { transform: 'scale(1.18)' },
-              '100%': { transform: 'scale(1)' },
-            },
-            badgeGlow: {
-              '0%, 100%': { boxShadow: '0 0 12px rgba(16, 185, 129, 0.25)' },
-              '50%': { boxShadow: '0 0 22px rgba(16, 185, 129, 0.55)' },
-            }
+          borderRadius: {
+            none: '0',
+            sm: '2px',
+            DEFAULT: '2px',
+            md: '2px',
+            lg: '2px',
+            xl: '2px',
+            '2xl': '2px',
+            full: '2px',
           },
-          animation: {
-            'check-pop': 'checkPop 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-            'badge-glow': 'badgeGlow 2.5s infinite ease-in-out',
+          colors: {
+            paper: '#e3ded2',
+            soft: '#f3eee4',
+            blush: '#e9ddd5',
+            ink: '#2b211b',
+            muted: '#3a2d25',
+            night: '#2a201a',
+            card: '#3a2d25',
+            ochre: '#ddc08a',
+            sage: '#9aa8a4',
+            line: '#5e6b68',
+            terra: '#7a3329',
+            warn: '#f3ddd6',
           }
         }
       }
     };
     try {
       const raw = localStorage.getItem('trilha_estudos_ptbr_v2') || localStorage.getItem('roadmap_fullstack_ptbr_v1');
-      if (raw && JSON.parse(raw).theme === 'light') document.documentElement.classList.remove('dark');
+      const saved = raw ? JSON.parse(raw).theme : '';
+      const theme = saved === 'light' || saved === 'dark'
+        ? saved
+        : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.classList.toggle('dark', theme !== 'light');
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === 'light' ? '#e3ded2' : '#2a201a';
     } catch (error) {
-      /* o app segue no tema escuro */
+      /* o app segue no tema do sistema, ou escuro se a preferência não puder ser lida */
     }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-[#090d16] dark:text-slate-100 font-sans antialiased min-h-screen selection:bg-emerald-500/30">
+<body class="bg-paper text-ink dark:bg-night dark:text-blush font-sans antialiased min-h-screen selection:bg-ochre/40">
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
   <div id="loading" role="status" class="max-w-3xl mx-auto px-4 py-24 text-center">
-    <p class="text-sm font-medium text-slate-600 dark:text-slate-300">Carregando trilhas…</p>
+    <p class="text-sm font-medium text-muted dark:text-blush">Carregando trilhas…</p>
   </div>
 
   <div id="loadError" hidden class="max-w-xl mx-auto px-4 py-24">
-    <div class="rounded-2xl border border-rose-500/30 bg-white dark:bg-slate-900 p-6">
+    <div class="rounded-sm border border-terra bg-soft dark:bg-card p-6">
       <h1 class="text-xl font-bold">Não foi possível abrir as trilhas</h1>
-      <p id="loadErrorText" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+      <p id="loadErrorText" class="mt-2 text-sm text-muted dark:text-blush"></p>
     </div>
   </div>
 
-  <div id="onboarding" hidden class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+  <main id="onboarding" hidden aria-labelledby="onbHeading" class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     <div class="flex items-center justify-between gap-3 mb-8">
-      <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-400">Trilha de Estudos</p>
-      <button id="onbThemeBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Tema</button>
+      <p class="text-sm font-semibold text-terra dark:text-ochre">Trilha de Estudos</p>
+      <button id="onbThemeBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">Tema</button>
     </div>
-    <p id="onbStepLabel" class="text-xs font-mono uppercase tracking-wider text-slate-500">Passo 1 de 4</p>
+    <p id="onbStepLabel" class="text-xs font-mono uppercase tracking-wider text-muted">Passo 1 de 4</p>
     <h1 id="onbHeading" class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">Qual é a sua área?</h1>
-    <p id="onbLead" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+    <p id="onbLead" class="mt-2 text-sm text-muted dark:text-blush"></p>
 
     <div id="onbStep1">
       <div id="onbTrackGrid" class="mt-6 grid sm:grid-cols-2 gap-3"></div>
@@ -82,138 +97,138 @@
       <legend class="sr-only">Horas por semana</legend>
       <div id="hourChoices" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
       <label class="block text-sm" for="hoursCustom">Outra quantidade
-        <input id="hoursCustom" type="number" min="1" max="60" inputmode="numeric" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        <input id="hoursCustom" type="number" min="1" max="60" inputmode="numeric" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
       </label>
     </fieldset>
 
-    <div id="onbStep4" hidden class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5">
+    <div id="onbStep4" hidden class="mt-6 rounded-sm border border-line dark:border-sage/50 bg-soft dark:bg-card p-4 sm:p-5">
       <div id="planPreview"></div>
     </div>
 
     <div class="mt-6 flex items-center justify-between gap-3">
-      <button id="onbBack" type="button" class="px-4 py-2.5 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Voltar</button>
+      <button id="onbBack" type="button" class="px-4 py-2.5 rounded-sm text-sm font-medium border border-line dark:border-sage/60">Voltar</button>
       <div class="flex gap-2">
-        <button id="onbNext" type="button" class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Continuar</button>
-        <button id="onbStart" type="button" hidden class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Começar trilha</button>
+        <button id="onbNext" type="button" class="px-4 py-2.5 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Continuar</button>
+        <button id="onbStart" type="button" hidden class="px-4 py-2.5 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Começar trilha</button>
       </div>
     </div>
-  </div>
+  </main>
 
   <div id="app" hidden>
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <header class="flex flex-col gap-4 mb-8 lg:flex-row lg:items-start lg:justify-between">
         <div class="flex items-start gap-3.5">
-          <div id="trackIcon" class="p-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 shrink-0" aria-hidden="true"></div>
+          <div id="trackIcon" class="p-3 rounded-sm bg-terra text-paper dark:bg-ochre dark:text-night shrink-0" aria-hidden="true"></div>
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
               <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Trilha de Estudos</h1>
-              <span id="trackBadge" class="px-2.5 py-0.5 text-xs font-mono font-semibold rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30"></span>
+              <span id="trackBadge" class="px-2.5 py-0.5 text-xs font-mono font-semibold rounded-sm text-terra dark:text-ochre border border-terra dark:border-ochre"></span>
             </div>
-            <p id="trackTagline" class="text-sm text-slate-600 dark:text-slate-400 mt-1"></p>
+            <p id="trackTagline" class="text-sm text-muted dark:text-blush mt-1"></p>
           </div>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button id="shareBtn" type="button" class="px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Compartilhar</button>
-          <button id="retakeBtn" type="button" class="px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Refazer/Trocar trilha</button>
-          <button id="themeToggleBtn" type="button" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">
+          <button id="shareBtn" type="button" class="px-3 py-2 rounded-sm text-sm font-medium border border-line dark:border-sage/60">Compartilhar</button>
+          <button id="retakeBtn" type="button" class="px-3 py-2 rounded-sm text-sm font-medium border border-line dark:border-sage/60">Refazer/Trocar trilha</button>
+          <button id="themeToggleBtn" type="button" class="inline-flex items-center gap-2 px-3 py-2 rounded-sm text-sm font-medium border border-line dark:border-sage/60">
             <span id="themeIcon" aria-hidden="true"></span>
             <span id="themeLabel">Tema claro</span>
           </button>
         </div>
       </header>
 
-      <section aria-label="Painel geral de progresso" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 mb-6">
+      <section aria-label="Painel geral de progresso" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-5 sm:p-6 mb-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-7 space-y-3">
             <div class="flex items-baseline justify-between gap-2">
               <div>
-                <span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Progresso do seu plano</span>
+                <span class="text-xs font-mono uppercase tracking-wider text-muted font-semibold">Progresso do seu plano</span>
                 <div class="flex items-baseline gap-3 mt-1 flex-wrap">
-                  <span id="overallPercent" class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">0%</span>
-                  <span id="overallCounter" class="text-sm font-mono text-slate-600 dark:text-slate-400"></span>
+                  <span id="overallPercent" class="text-3xl sm:text-4xl font-extrabold font-mono text-terra dark:text-ochre">0%</span>
+                  <span id="overallCounter" class="text-sm font-mono text-muted dark:text-blush"></span>
                 </div>
               </div>
-              <span id="overallStatusTag" class="hidden sm:inline-flex px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20"></span>
+              <span id="overallStatusTag" class="hidden sm:inline-flex px-3 py-1 rounded-sm text-xs font-medium bg-sage/20 text-muted dark:text-blush border border-sage"></span>
             </div>
-            <div class="w-full h-3.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden p-0.5">
-              <div id="overallProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500" style="width:0%"></div>
+            <div class="w-full h-3.5 rounded-sm bg-line/40 dark:bg-card overflow-hidden p-0.5">
+              <div id="overallProgressBar" class="h-full rounded-sm bg-terra dark:bg-ochre" style="width:0%"></div>
             </div>
-            <p id="planEstimate" class="text-sm text-slate-600 dark:text-slate-300"></p>
-            <p id="projectCounter" class="text-xs font-mono text-slate-500"></p>
+            <p id="planEstimate" class="text-sm text-muted dark:text-blush"></p>
+            <p id="projectCounter" class="text-xs font-mono text-muted"></p>
           </div>
-          <div class="lg:col-span-5 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800 p-4">
-            <p class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">Foco atual</p>
+          <div class="lg:col-span-5 rounded-sm bg-paper dark:bg-night border border-line dark:border-sage/50 p-4">
+            <p class="text-xs font-mono uppercase tracking-wider text-terra dark:text-ochre font-semibold">Foco atual</p>
             <p id="currentPhaseName" class="mt-1 text-sm sm:text-base font-bold"></p>
-            <p id="currentPhaseSub" class="text-xs text-slate-500 mt-1 font-mono"></p>
+            <p id="currentPhaseSub" class="text-xs text-muted mt-1 font-mono"></p>
           </div>
         </div>
         <div class="mt-5 flex flex-col sm:flex-row sm:items-end gap-3">
           <label class="text-sm" for="weeklyHoursInput">Horas por semana
-            <input id="weeklyHoursInput" type="number" min="1" max="60" class="mt-1 block w-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+            <input id="weeklyHoursInput" type="number" min="1" max="60" class="mt-1 block w-28 rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
           </label>
-          <p id="levelLabel" class="text-sm text-slate-600 dark:text-slate-300 sm:mb-2"></p>
+          <p id="levelLabel" class="text-sm text-muted dark:text-blush sm:mb-2"></p>
         </div>
         <label class="mt-3 flex items-start gap-2 text-sm">
           <input id="includeBelowLevel" type="checkbox" class="mt-1" />
-          <span>Contar tópicos abaixo do meu nível no progresso. <span id="optionalHint" class="text-slate-500"></span></span>
+          <span>Contar tópicos abaixo do meu nível no progresso. <span id="optionalHint" class="text-muted"></span></span>
         </label>
-        <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+        <div class="mt-6 pt-5 border-t border-line dark:border-sage/50">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Conquistas por etapa</span>
-            <span id="badgesUnlockedCounter" class="text-xs font-mono text-slate-500"></span>
+            <span class="text-xs font-mono uppercase tracking-wider text-muted font-semibold">Conquistas por etapa</span>
+            <span id="badgesUnlockedCounter" class="text-xs font-mono text-muted"></span>
           </div>
           <div id="badgesContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5"></div>
         </div>
       </section>
 
-      <section aria-label="Busca, filtros e ações" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-4 mb-6 space-y-3">
+      <section aria-label="Busca, filtros e ações" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-4 mb-6 space-y-3">
         <div class="flex flex-col md:flex-row gap-3">
           <div class="relative flex-1">
             <label class="sr-only" for="searchInput">Buscar tópicos</label>
-            <input id="searchInput" type="search" placeholder="Buscar tópico, tecnologia, projeto ou observação" class="w-full px-3 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800" />
+            <input id="searchInput" type="search" placeholder="Buscar tópico, tecnologia, projeto ou observação" class="w-full px-3 py-2.5 rounded-sm text-sm bg-paper dark:bg-night border border-line dark:border-sage/50" />
           </div>
-          <div role="group" aria-label="Filtrar por status" class="inline-flex flex-wrap rounded-xl bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800">
-            <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Todos</button>
-            <button type="button" data-filter="pending" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Pendentes</button>
-            <button type="button" data-filter="completed" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Concluídos</button>
-            <button type="button" data-filter="optional" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Opcionais</button>
-            <button type="button" data-filter="hidden" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Ocultos</button>
+          <div role="group" aria-label="Filtrar por status" class="inline-flex flex-wrap rounded-sm bg-soft dark:bg-night p-1 border border-line dark:border-sage/50">
+            <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm">Todos</button>
+            <button type="button" data-filter="pending" class="filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm">Pendentes</button>
+            <button type="button" data-filter="completed" class="filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm">Concluídos</button>
+            <button type="button" data-filter="optional" class="filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm">Opcionais</button>
+            <button type="button" data-filter="hidden" class="filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm">Ocultos</button>
           </div>
         </div>
-        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-          <button id="toggleAllPhasesBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700"><span id="toggleAllPhasesLabel">Recolher todas</span></button>
-          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">
+        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-line dark:border-sage/50">
+          <button id="toggleAllPhasesBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60"><span id="toggleAllPhasesLabel">Recolher todas</span></button>
+          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">
             <input id="strikethroughToggle" type="checkbox" checked />
             <span>Tachar concluídos</span>
           </label>
-          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">
+          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">
             <input id="allProjectLevels" type="checkbox" />
             <span>Mostrar projetos de outros níveis</span>
           </label>
-          <button id="addTopicBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">Novo tópico</button>
-          <button id="openPlanBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-500/40 text-emerald-700 dark:text-emerald-300">Plano de estudo</button>
-          <button id="exportJsonBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Exportar JSON</button>
-          <button id="exportMdBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Markdown</button>
-          <button id="exportPngBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">PNG</button>
-          <button id="exportPdfBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">PDF</button>
-          <button id="importJsonBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Importar JSON</button>
+          <button id="addTopicBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-terra/60 dark:border-ochre/60 text-terra dark:text-ochre">Novo tópico</button>
+          <button id="openPlanBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-semibold border border-terra/70 dark:border-ochre/70 text-terra dark:text-ochre">Plano de estudo</button>
+          <button id="exportJsonBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">Exportar JSON</button>
+          <button id="exportMdBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">Markdown</button>
+          <button id="exportPngBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">PNG</button>
+          <button id="exportPdfBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">PDF</button>
+          <button id="importJsonBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">Importar JSON</button>
           <label class="sr-only" for="importFileInput">Arquivo JSON de backup</label>
           <input id="importFileInput" type="file" accept=".json,application/json" class="sr-only" />
-          <button id="resetProgressBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-rose-500/30 text-rose-600 dark:text-rose-400">Resetar</button>
+          <button id="resetProgressBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-terra text-terra dark:text-warn">Resetar</button>
         </div>
       </section>
 
-      <div id="emptyState" hidden class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-10 text-center mb-6">
+      <div id="emptyState" hidden class="rounded-sm border border-line dark:border-sage/50 bg-soft dark:bg-card p-10 text-center mb-6">
         <h2 class="text-base font-bold">Nenhum tópico encontrado</h2>
-        <p class="text-sm text-slate-500 mt-1">Limpe a busca ou mude o filtro.</p>
-        <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 text-white">Limpar filtros e busca</button>
+        <p class="text-sm text-muted mt-1">Limpe a busca ou mude o filtro.</p>
+        <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 rounded-sm text-xs font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Limpar filtros e busca</button>
       </div>
 
       <main id="conteudo" class="space-y-5" aria-label="Etapas da trilha"></main>
 
       <div id="orphans" hidden class="mt-5"></div>
 
-      <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row sm:justify-between gap-2">
+      <footer class="mt-12 pt-6 border-t border-line dark:border-sage/50 text-xs text-muted flex flex-col sm:flex-row sm:justify-between gap-2">
         <p>Progresso, anotações e observações ficam neste navegador, separados por trilha.</p>
         <p id="footerStats" class="font-mono"></p>
       </footer>
@@ -221,121 +236,122 @@
   </div>
 
   <dialog id="confirmDialog" aria-labelledby="confirmTitle">
-    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+    <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="confirmTitle" class="text-lg font-bold"></h2>
-      <p id="confirmBody" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+      <p id="confirmBody" class="mt-2 text-sm text-muted dark:text-blush"></p>
       <div class="mt-6 flex justify-end gap-2">
-        <button value="cancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
-        <button id="confirmAccept" value="confirm" class="px-4 py-2 rounded-xl text-sm font-semibold bg-rose-600 text-white">Confirmar</button>
+        <button value="cancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Cancelar</button>
+        <button id="confirmAccept" value="confirm" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra text-paper dark:text-night">Confirmar</button>
       </div>
     </form>
   </dialog>
 
   <dialog id="shareDialog" aria-labelledby="shareTitle">
-    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+    <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="shareTitle" class="text-lg font-bold">Compartilhar plano</h2>
-      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">O link leva a área, o nível, as horas, a ordem, os tópicos opcionais ou ocultos e as ideias que você criou. Progresso, anotações e observações ficam só no seu navegador.</p>
+      <p class="mt-2 text-sm text-muted dark:text-blush">O link leva a área, o nível, as horas, a ordem, os tópicos opcionais ou ocultos e as ideias que você criou. Progresso, anotações e observações ficam só no seu navegador.</p>
       <label class="sr-only" for="shareUrl">Link do plano</label>
-      <input id="shareUrl" readonly class="mt-4 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs" />
+      <input id="shareUrl" readonly class="mt-4 w-full rounded-sm border border-line dark:border-sage/60 bg-paper dark:bg-night px-3 py-2 text-xs" />
       <div class="mt-4 flex justify-end gap-2">
-        <button id="copyShareBtn" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Copiar link</button>
-        <button value="close" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Fechar</button>
+        <button id="copyShareBtn" type="button" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Copiar link</button>
+        <button value="close" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Fechar</button>
       </div>
     </form>
   </dialog>
 
   <dialog id="sharedDialog" aria-labelledby="sharedTitle">
-    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+    <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="sharedTitle" class="text-lg font-bold">Aplicar plano compartilhado?</h2>
-      <p id="sharedBody" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+      <p id="sharedBody" class="mt-2 text-sm text-muted dark:text-blush"></p>
       <div class="mt-6 flex justify-end gap-2">
-        <button value="cancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Agora não</button>
-        <button id="applyShareBtn" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Aplicar plano</button>
+        <button value="cancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Agora não</button>
+        <button id="applyShareBtn" type="button" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Aplicar plano</button>
       </div>
     </form>
   </dialog>
 
   <dialog id="topicDialog" aria-labelledby="topicDialogTitle">
-    <form id="topicForm" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[80vh] overflow-y-auto">
+    <form id="topicForm" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6 max-h-[80vh] overflow-y-auto">
       <h2 id="topicDialogTitle" class="text-lg font-bold">Novo tópico</h2>
       <div class="mt-4 space-y-3 text-sm">
         <label class="block">Etapa
-          <select id="topicPhase" required class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+          <select id="topicPhase" required class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></select>
         </label>
         <label class="block">Título
-          <input id="topicTitle" required maxlength="140" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          <input id="topicTitle" required maxlength="140" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
         </label>
         <label class="block">Descrição
-          <textarea id="topicDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></textarea>
+          <textarea id="topicDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></textarea>
         </label>
         <div class="grid grid-cols-2 gap-3">
           <label>Nível
-            <select id="topicLevel" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+            <select id="topicLevel" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></select>
           </label>
           <label>Horas
-            <input id="topicHours" type="number" min="1" max="60" value="4" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+            <input id="topicHours" type="number" min="1" max="60" value="4" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
           </label>
         </div>
         <label class="block">Tags, separadas por vírgula
-          <input id="topicTags" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          <input id="topicTags" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
         </label>
         <label class="block">Nome de um recurso gratuito
-          <input id="topicResourceTitle" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          <input id="topicResourceTitle" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
         </label>
         <label class="block">URL do recurso
-          <input id="topicResourceUrl" type="url" placeholder="https://" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          <input id="topicResourceUrl" type="url" placeholder="https://" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
         </label>
       </div>
       <div class="mt-5 flex justify-end gap-2">
-        <button type="button" id="topicCancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
-        <button type="submit" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Salvar</button>
+        <button type="button" id="topicCancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Cancelar</button>
+        <button type="submit" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Salvar</button>
       </div>
     </form>
   </dialog>
 
   <dialog id="projectDialog" aria-labelledby="projectDialogTitle">
-    <form id="projectForm" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+    <form id="projectForm" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="projectDialogTitle" class="text-lg font-bold">Nova ideia de projeto</h2>
       <div class="mt-4 space-y-3 text-sm">
         <label class="block">Etapa
-          <select id="projectPhase" required class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+          <select id="projectPhase" required class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></select>
         </label>
         <label class="block">Título
-          <input id="projectTitle" required maxlength="140" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          <input id="projectTitle" required maxlength="140" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
         </label>
         <label class="block">Descrição
-          <textarea id="projectDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></textarea>
+          <textarea id="projectDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></textarea>
         </label>
         <div class="grid grid-cols-2 gap-3">
           <label>Nível
-            <select id="projectLevel" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+            <select id="projectLevel" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2"></select>
           </label>
           <label>Horas
-            <input id="projectHours" type="number" min="1" max="60" value="6" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+            <input id="projectHours" type="number" min="1" max="60" value="6" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
           </label>
         </div>
       </div>
       <div class="mt-5 flex justify-end gap-2">
-        <button type="button" id="projectCancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
-        <button type="submit" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Salvar</button>
+        <button type="button" id="projectCancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Cancelar</button>
+        <button type="submit" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Salvar</button>
       </div>
     </form>
   </dialog>
 
-  <div id="planScreen" hidden class="min-h-screen bg-slate-50 dark:bg-[#090d16]"></div>
+  <main id="planScreen" hidden class="min-h-screen bg-paper dark:bg-night"></main>
 
   <dialog id="quizDialog" aria-labelledby="quizTitle">
-    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[85vh] overflow-y-auto">
+    <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6 max-h-[85vh] overflow-y-auto">
       <h2 id="quizTitle" class="text-lg font-bold">Autoavaliação</h2>
-      <p class="mt-1 text-sm text-slate-500">Isto não é nota nem certificado. Serve para ver se vale revisar antes de seguir.</p>
+      <p class="mt-1 text-sm text-muted">Isto não é nota nem certificado. Serve para ver se vale revisar antes de seguir.</p>
+      <div id="quizLive" class="sr-only" role="status" aria-live="polite"></div>
       <div id="quizBody" class="mt-4 space-y-4"></div>
       <div class="mt-5 flex justify-end">
-        <button value="close" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Fechar</button>
+        <button value="close" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Fechar</button>
       </div>
     </form>
   </dialog>
 
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0" aria-live="polite"></div>
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0" role="status" aria-live="polite"></div>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

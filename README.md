@@ -1,39 +1,112 @@
 # Trilha de Estudos
 
-Aplicação estática para quem está na faculdade de tecnologia e não sabe por onde estudar. Você responde três perguntas e recebe uma trilha com progresso, estimativa de tempo e ideias de projeto. Tudo fica no navegador, sem cadastro e sem servidor.
+Guia de estudo para quem está na faculdade de tecnologia e não sabe por onde começar. Você escolhe a área, o nível e quantas horas consegue estudar por semana. O app monta uma trilha, guarda o seu progresso neste navegador e ajuda a encaixar o estudo na grade da universidade.
 
-A trilha Full-Stack de 7 etapas e 46 tópicos continua aqui, junto com Front-end, Back-end, Dados, Mobile e DevOps.
+Não é um curso e não emite certificado. Não há cadastro, servidor nem login.
+
+A trilha Full-Stack original (7 etapas e 46 tópicos) continua aqui, junto com Front-end, Back-end, Dados, Mobile e DevOps.
 
 Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
-## O que dá para fazer
+![Escolha da área no primeiro acesso](docs/screenshots/onboarding.png)
 
-- Escolher área, nível (iniciante, intermediário ou avançado) e horas por semana
-- Ver tópicos abaixo do seu nível como opcionais, com a opção de contá-los de novo no progresso
-- Acompanhar o progresso geral e o de cada etapa
-- Estimar a duração de cada etapa no seu ritmo semanal
-- Buscar e filtrar por pendentes, concluídos, opcionais e ocultos
-- Anotar em cada tópico e escrever observações em cada etapa
-- Ver ideias de projeto do seu nível, ou de todos os níveis
-- Marcar projetos como feitos e acrescentar os seus
-- Criar tópicos, ocultar, reordenar e trocar de trilha sem perder o progresso das outras
-- Alternar tema claro e escuro
-- Exportar e importar um backup JSON, inclusive o formato antigo do roadmap Full-Stack
-- Enviar o plano por link. O link leva a configuração, não as anotações nem o progresso
-- Autoavaliação curta por etapa, com explicação e um atalho para revisar o tópico
-- Roteiro e definição de pronto nas ideias de projeto
-- Plano de estudo semanal, com grade da faculdade importada (ICS, CSV ou horário manual), intervalo antes e depois da aula e carga menor em semana de prova
-- Baixar o plano em `.ics` (só as sessões de estudo), PDF, PNG ou checklist Markdown
+## O que o app faz
 
-## Como usar no dia a dia
+- **Onboarding.** Na primeira visita, três perguntas: área, nível (iniciante, intermediário ou avançado) e horas por semana. O botão **Refazer/Trocar trilha** abre as mesmas perguntas. O progresso de cada trilha fica guardado.
+- **Trilhas.** Front-end, Back-end, Full-Stack, Dados, Mobile e DevOps. Cada uma tem etapas, tópicos, horas estimadas, pré-requisitos e materiais gratuitos, de preferência em português.
+- **Personalização.** Tópicos abaixo do seu nível começam como opcionais. Você pode torná-los obrigatórios, ocultá-los, criar os seus e reordenar tópicos e etapas. Trocar de trilha não apaga as outras.
+- **Anotações.** Cada tópico tem anotações. Cada etapa tem um campo **Observações**.
+- **Projetos.** Cada etapa traz ideias por nível. Dá para ver só o seu nível ou todos. Muitos projetos têm roteiro e definição de pronto, com caixas para ir marcando. Você também pode criar uma ideia sua e marcar projetos como feitos.
+- **Autoavaliação.** Perguntas de múltipla escolha por etapa e, em alguns tópicos, no próprio tópico. A resposta aparece na hora, com uma explicação. Se errar, o app aponta o tópico para revisar. Se o acerto ficar abaixo de 70%, a etapa ou o tópico mostra **Revisar**. Não é nota.
+- **Plano de estudo.** Você escolhe a data de início, os dias e o horário de cada dia. As horas da trilha já vêm preenchidas. O app distribui tópicos, projetos e uma revisão, na ordem e respeitando pré-requisitos. A prévia deixa mudar data, horário e nome, travar uma sessão, apagar, encurtar ou alongar 15 minutos e pular datas. **Recalcular a partir de hoje** remonta o que ainda não passou e preserva o que está travado.
+- **Grade da faculdade.** Dá para importar um `.ics` (Google Agenda, Outlook, Apple Calendar ou o sistema da universidade), cadastrar o horário semanal na mão ou colar um CSV (`seg,08:00,10:00,Cálculo` ou uma data). Aulas aparecem como **Ocupado** e o estudo não cai em cima delas. Você pode reservar minutos antes e depois da aula e reduzir a carga numa semana de prova.
+- **Exportar e compartilhar.** Backup JSON (o arquivo antigo do Full-Stack ainda importa), checklist Markdown, imagem PNG, PDF da trilha, PDF e impressão do plano, e um `.ics` só com as sessões de estudo. O link de compartilhar leva a configuração da trilha, não as anotações nem o progresso.
+- **Temas.** Claro e escuro. Sem preferência salva, o app segue o tema do sistema.
 
-Na primeira visita o app pergunta a área, o nível e as horas. O botão **Refazer/Trocar trilha** abre as mesmas perguntas de novo. O progresso, as anotações, as observações e as ideias criadas por você continuam na trilha.
+![Trilha com progresso, autoavaliação e o visto no tópico concluído](docs/screenshots/trilha.png)
 
-**Compartilhar** copia um link com a configuração. Quem abre o link vê o plano. Se a pessoa já tinha uma trilha, o app pede confirmação antes de substituir opcionais, ordem e ideias criadas.
+![Plano de estudo com a aula ocupando a segunda e a lista de sessões](docs/screenshots/plano.png)
+
+## Como usar
+
+1. Abra o site. Se for a primeira vez, escolha a área, o nível e as horas. Leia o resumo e toque em **Começar trilha**.
+2. Marque um tópico quando terminar. O visto no quadrado confirma, além da cor. A barra mostra só os tópicos obrigatórios do seu plano.
+3. Abra **Anotar** para links e lembretes. Em cada etapa, **Observações** guarda um texto da etapa inteira.
+4. Em **Ideias de projeto**, siga o roteiro e a definição de pronto, ou adicione uma ideia sua.
+5. Faça a **Autoavaliação** antes de avançar. Se aparecer **Revisar**, volte ao tópico indicado.
+6. Abra **Plano de estudo**. Confira dias e horários. Se quiser, importe a grade. Toque em **Gerar plano**.
+7. Ajuste as sessões. Use **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** se não quiser editar os campos. **Travar** impede que um recálculo mova aquela sessão.
+8. Baixe o `.ics` e abra no Google Agenda, Outlook ou Calendário da Apple. Esse arquivo não inclui as aulas.
+9. **Exportar JSON** guarda uma cópia. **Importar JSON** restaura, inclusive um backup antigo só com `completed` e `notes`.
+
+## Visual
+
+O visual é plano, de meados do século: cantos quase retos, borda de 1 px, sem gradiente e sem brilho. O texto usa Source Sans 3. Horas, filtros e rótulos usam JetBrains Mono.
+
+As cores partem de uma paleta midcentury (aproximações dos tons Benjamin Moore) e foram ajustadas para caber em WCAG 2.2 AA e no contraste APCA do rascunho WCAG 3 (Lc 75 ou mais no texto corrido, 60 na interface, 45 em borda e ícone).
+
+| Papel | Cor | Uso |
+| --- | --- | --- |
+| Ashwood | `#e3ded2` | Fundo claro |
+| Superfície | `#f3eee4` | Cartões no tema claro |
+| Opulence | `#e9ddd5` | Texto principal no tema escuro |
+| Tinta | `#2b211b` | Texto principal no tema claro |
+| Noite | `#2a201a` | Fundo escuro |
+| Cartão escuro | `#3a2d25` | Cartões no tema escuro |
+| Terra cotta | `#7a3329` | Botão e destaque no tema claro; avisos de revisar |
+| Tan | `#ddc08a` | Destaque no tema escuro. É o Woodstock Tan clareado para o contraste |
+| Wales Gray | `#9aa8a4` | Hachura dos horários ocupados e bordas no tema escuro |
+| Borda clara | `#5e6b68` | Wales Gray escurecido, para a borda aparecer no papel |
+
+O horário de aula é hachurado e traz a palavra **Ocupado**. A sessão de estudo tem borda na cor de destaque. Tópico concluído tem um visto desenhado, não só um quadrado pintado. Etapa pela metade mostra um traço.
+
+## Acessibilidade
+
+A meta prática é WCAG 2.2 nível AA. O contraste de texto e de interface também foi medido com APCA, o método de contraste do rascunho WCAG 3.
+
+- O idioma da página é `pt-BR`.
+- Dá para percorrer onboarding, trilha, autoavaliação e plano só com teclado. No plano, **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** mudam a sessão sem arrastar.
+- O foco tem contorno de 2 px, com contraste de pelo menos 3:1 com o fundo ao lado.
+- Botões e campos têm pelo menos 24 px de altura.
+- Há um link **Ir para o conteúdo**, títulos em ordem e a prévia do plano também em lista de texto.
+- Campos têm rótulo. Avisos de erro, exportação e o resultado da autoavaliação saem numa região `aria-live`.
+- **Revisar**, **Ocupado** e o visto não dependem só da cor.
+- `prefers-reduced-motion` desliga animação. Sem tema salvo, o app segue `prefers-color-scheme`.
+- O layout quebra em uma coluna por volta de 320 px e usa `rem`, para o texto a 200% não ficar preso.
+
+Como foi testado: `axe-core` 4.10 no Chrome, nas telas de onboarding, trilha e plano, e o Lighthouse na categoria acessibilidade (mobile e desktop). Os relatórios estão em `docs/auditoria/`. Na última rodada, o axe não apontou violação e o Lighthouse marcou 100 nas duas visões. Isso não substitui um teste com leitor de tela feito por uma pessoa.
+
+## Dados e privacidade
+
+Tudo fica no seu navegador, na chave `localStorage` `trilha_estudos_ptbr_v2`. Quem usava a versão antiga é migrado de `roadmap_fullstack_ptbr_v1`.
+
+O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação e o plano de estudo com a grade importada. O link de compartilhar não leva isso: só área, nível, horas, ordem e o que você marcou como opcional ou oculto.
+
+Não há analytics, conta nem envio dos seus dados para um servidor deste projeto. O `.ics` que você baixa é um arquivo no seu computador.
+
+## Estrutura
+
+- `index.html` — página
+- `css/app.css` — tema, foco, hachura da grade e impressão
+- `js/app.js` — interface da trilha e da autoavaliação
+- `js/plan-screen.js` — plano de estudo e importação da grade
+- `js/plan.js` — distribuição das sessões
+- `js/ics.js` — leitura de `.ics` e CSV
+- `js/model.js` — progresso, importação e validação
+- `js/share.js` — link com a configuração
+- `js/files.js` — Markdown, PNG e PDF
+- `data/tracks/` — conteúdo das trilhas
+- `examples/backup-legado.json` — exemplo do JSON antigo
+- `docs/screenshots/` — imagens deste README
+- `docs/auditoria/` — resultado do axe e do Lighthouse
+
+## Contribuir
+
+O formato de uma trilha nova, dos projetos, do roteiro e das perguntas está em [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Rodar localmente
 
-Os dados ficam em arquivos separados. Abra com um servidor estático, não dê dois cliques no `index.html`.
+Os dados são arquivos separados. Use um servidor estático. Abrir o `index.html` direto bloqueia essa leitura.
 
 ```bash
 python3 -m http.server 8080
@@ -41,41 +114,24 @@ python3 -m http.server 8080
 
 Depois acesse http://localhost:8080
 
-Para conferir os dados e as regras de progresso:
+## Testes
+
+Não há dependência para instalar. O `npm` só chama o Node.
 
 ```bash
 npm test
 npm run validate
 ```
 
-Não há dependências para instalar. O `npm` aqui só chama o Node.
+`npm test` cobre progresso, backup antigo, link, recorrência do `.ics` e o plano em volta da grade. `npm run validate` confere se cada trilha tem etapas, recursos e autoavaliação.
 
-## Estrutura
+## Publicar no GitHub Pages
 
-- `index.html` — página
-- `js/app.js` — interface
-- `js/model.js` — progresso, personalização, importação e observações
-- `js/share.js` — plano compactado no link
-- `data/tracks/index.json` — lista de trilhas
-- `data/tracks/*.json` — conteúdo de cada trilha
-- `examples/backup-legado.json` — exemplo do JSON antigo, só com `completed` e `notes`
+O site é estático. Não há build.
 
-## Backup
+1. No repositório, abra **Settings → Pages**.
+2. Em **Build and deployment**, escolha **Deploy from a branch**.
+3. Use o branch `main` e a pasta `/` (root).
+4. O arquivo `.nojekyll` na raiz impede o Jekyll de ignorar pastas.
 
-O arquivo exportado tem `version: 2` e um objeto `tracks`. Cada trilha guarda:
-
-- `completed` e `notes` — tópicos
-- `phaseNotes` — observações da etapa
-- `completedProjects` — projetos marcados como feitos
-- `customTopics` e `customProjects` — o que você criou
-- `studyPlan` — sessões de estudo, grade importada, semanas de prova e horários manuais
-- `quizAnswers` — respostas da autoavaliação
-- `overrides`, `phaseOrder` e `topicOrder` — personalização
-
-Um JSON antigo, no formato do roadmap Full-Stack, continua válido. Ele restaura `completed` e `notes` na trilha Full-Stack e não apaga observações que já estavam salvas.
-
-O progresso de cada trilha fica em `localStorage`, na chave `trilha_estudos_ptbr_v2`. Quem já usava a versão anterior é migrado a partir de `roadmap_fullstack_ptbr_v1`.
-
-## Contribuir
-
-O formato de uma trilha nova, incluindo ideias de projeto por nível, está em [CONTRIBUTING.md](CONTRIBUTING.md).
+O endereço deste repositório é https://eduardonobilioni.github.io/roadmap-fullstack-interativo/

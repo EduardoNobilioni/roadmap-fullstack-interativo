@@ -99,9 +99,9 @@ function icon(name) {
 function toast(message, type = 'success') {
   const el = document.createElement('div');
   const tone = type === 'error'
-    ? 'bg-rose-950 text-rose-100 border-rose-500/50'
-    : 'bg-slate-900 text-white border-emerald-500/40';
-  el.className = `pointer-events-auto px-4 py-3 rounded-xl border shadow-xl text-sm ${tone}`;
+    ? 'bg-card text-blush border-terra'
+    : 'bg-card text-blush border-line';
+  el.className = `pointer-events-auto px-4 py-3 rounded-sm border  text-sm ${tone}`;
   el.textContent = message;
   $('toastContainer').appendChild(el);
   setTimeout(() => el.remove(), 3600);
@@ -130,7 +130,9 @@ function loadState() {
     if (legacy) {
       state = stateFromLegacyStorage(JSON.parse(legacy));
       persist();
+      return;
     }
+    state.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   } catch (error) {
     console.warn(error);
     state = emptyState();
@@ -161,7 +163,7 @@ function showScreen(name) {
 function applyTheme() {
   document.documentElement.classList.toggle('dark', state.theme !== 'light');
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.content = state.theme === 'light' ? '#f8fafc' : '#090d16';
+  if (meta) meta.content = state.theme === 'light' ? '#e3ded2' : '#2a201a';
   $('themeLabel').textContent = state.theme === 'light' ? 'Tema escuro' : 'Tema claro';
   $('themeIcon').textContent = state.theme === 'light' ? '☾' : '☀';
   $('onbThemeBtn').textContent = state.theme === 'light' ? 'Tema escuro' : 'Tema claro';
@@ -225,26 +227,29 @@ function projectMatches(project, query) {
   return `${project.title} ${project.description}`.toLowerCase().includes(query);
 }
 
+const CHECK_SVG = '<svg viewBox="0 0 16 16" class="w-4 h-4" aria-hidden="true"><path d="M3 8.2 6.2 11.4 13 4.6" fill="none" stroke="currentColor" stroke-width="2"></path></svg>';
+const DASH_SVG = '<svg viewBox="0 0 16 16" class="w-4 h-4" aria-hidden="true"><path d="M3 8h10" fill="none" stroke="currentColor" stroke-width="2"></path></svg>';
+
 function checkbox(checked, attrs, label) {
-  return `<button type="button" role="checkbox" aria-checked="${checked}" aria-label="${escapeHtml(label)}" ${attrs} class="mt-0.5 w-6 h-6 rounded-lg flex items-center justify-center shrink-0 border-2 ${checked ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-950'}">${checked ? '✓' : ''}</button>`;
+  return `<button type="button" role="checkbox" aria-checked="${checked}" aria-label="${escapeHtml(label)}" ${attrs} class="mark-box ${checked ? 'is-on' : ''}">${checked ? CHECK_SVG : ''}</button>`;
 }
 
 function miniButton(label, attrs, extra = '') {
-  return `<button type="button" ${attrs} class="px-2 py-1 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 ${extra}">${label}</button>`;
+  return `<button type="button" ${attrs} class="px-2 py-1 rounded-sm text-[11px] font-medium border border-line dark:border-sage/60 text-muted dark:text-blush ${extra}">${label}</button>`;
 }
 
 function renderTopic(topic, phase, index, total, titleById, doneIds) {
-  const strike = topic.done && state.strikethrough ? 'line-through opacity-70' : '';
+  const strike = topic.done && state.strikethrough ? 'line-through' : '';
   const optional = topic.status === 'optional';
   const hidden = topic.status === 'hidden';
   const noteOpen = !!session.openNotes[topic.id];
-  const tags = (topic.tags || []).map((tag) => `<span class="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">${escapeHtml(tag)}</span>`).join('');
+  const tags = (topic.tags || []).map((tag) => `<span class="px-2 py-0.5 text-[11px] font-mono rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/60">${escapeHtml(tag)}</span>`).join('');
   const resources = (topic.resources || []).map((resource) => {
     const href = safeUrl(resource.url);
     if (!href) return '';
     const kind = KIND_LABEL[resource.kind] || 'Leitura';
     const lang = resource.lang === 'en' ? 'EN' : 'PT';
-    return `<li><a class="underline decoration-emerald-500/50 underline-offset-2" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.title)}</a> <span class="font-mono text-[10px] text-slate-500">${lang} · ${kind}</span></li>`;
+    return `<li><a class="underline decoration-terra underline-offset-2" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.title)}</a> <span class="font-mono text-[10px] text-muted">${lang} · ${kind}</span></li>`;
   }).join('');
   const prereq = (topic.prerequisites || []).map((id) => {
     const name = titleById.get(id);
@@ -264,33 +269,33 @@ function renderTopic(topic, phase, index, total, titleById, doneIds) {
       miniButton('Subir', `data-action="move-topic" data-item-id="${topic.id}" data-phase-id="${phase.id}" data-dir="-1" ${index === 0 ? 'disabled' : ''}`),
       miniButton('Descer', `data-action="move-topic" data-item-id="${topic.id}" data-phase-id="${phase.id}" data-dir="1" ${index === total - 1 ? 'disabled' : ''}`),
       topic.custom ? miniButton('Editar', `data-action="edit-topic" data-item-id="${topic.id}"`) : '',
-      topic.custom ? miniButton('Excluir', `data-action="delete-topic" data-item-id="${topic.id}"`, 'text-rose-600') : '',
+      topic.custom ? miniButton('Excluir', `data-action="delete-topic" data-item-id="${topic.id}"`, 'text-terra') : '',
       (topic.quiz || []).length ? miniButton(quizScore(topic.quiz, activeTrackState().quizAnswers).needsReview ? 'Revisar' : 'Quiz', `data-action="open-quiz" data-quiz-scope="topic" data-item-id="${topic.id}"`) : '',
     ].join('');
 
   return `
-    <article class="p-4 sm:px-5 sm:py-4 ${topic.done ? 'bg-emerald-500/[0.04]' : ''} ${optional ? 'border-l-4 border-l-amber-400' : ''}">
+    <article class="p-4 sm:px-5 sm:py-4 ${optional ? 'border-l-4 border-l-ochre' : ''}">
       <div class="flex items-start gap-3">
         ${checkbox(topic.done, `data-action="toggle-item" data-item-id="${topic.id}"`, `${topic.done ? 'Desmarcar' : 'Concluir'} ${topic.title}`)}
         <div class="min-w-0 flex-1">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
             <h3 class="text-sm sm:text-[15px] font-semibold ${strike}">${escapeHtml(topic.title)}</h3>
-            <button type="button" data-action="toggle-note" data-item-id="${topic.id}" class="self-start px-2.5 py-1 rounded-lg text-xs border ${topic.note || noteOpen ? 'border-amber-500/40 text-amber-700 dark:text-amber-300' : 'border-transparent bg-slate-100 dark:bg-slate-800'}">${topic.note ? 'Anotações' : 'Anotar'}</button>
+            <button type="button" data-action="toggle-note" data-item-id="${topic.id}" class="self-start px-2.5 py-1 rounded-sm text-xs border ${topic.note || noteOpen ? 'border-ochre text-ink dark:text-ochre' : 'border-transparent bg-soft dark:bg-card'}">${topic.note ? 'Anotações' : 'Anotar'}</button>
           </div>
-          <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed ${topic.done && state.strikethrough ? 'opacity-70' : ''}">${escapeHtml(topic.description)}</p>
+          <p class="mt-1 text-xs sm:text-sm text-muted dark:text-blush leading-relaxed">${escapeHtml(topic.description)}</p>
           <div class="mt-2 flex flex-wrap gap-1.5 text-[11px]">
-            <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 font-mono">${LEVEL_LABELS[topic.level] || topic.level}</span>
-            <span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 font-mono">${Number(topic.hours) || 0} h</span>
-            ${optionalLabel ? `<span class="px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-800 dark:text-amber-200">${optionalLabel}</span>` : ''}
-            ${topic.custom ? '<span class="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-700 dark:text-cyan-300">Seu tópico</span>' : ''}
+            <span class="px-2 py-0.5 rounded-sm bg-soft dark:bg-card font-mono">${LEVEL_LABELS[topic.level] || topic.level}</span>
+            <span class="px-2 py-0.5 rounded-sm bg-soft dark:bg-card font-mono">${Number(topic.hours) || 0} h</span>
+            ${optionalLabel ? `<span class="px-2 py-0.5 rounded-sm bg-ochre/25 text-ink dark:text-ochre">${optionalLabel}</span>` : ''}
+            ${topic.custom ? '<span class="px-2 py-0.5 rounded-sm bg-sage/20 text-muted dark:text-blush">Seu tópico</span>' : ''}
             ${tags}
           </div>
-          ${prereq ? `<p class="mt-2 text-xs text-slate-500">Antes: ${prereq}</p>` : ''}
+          ${prereq ? `<p class="mt-2 text-xs text-muted">Antes: ${prereq}</p>` : ''}
           ${resources ? `<ul class="mt-2 space-y-1 text-xs">${resources}</ul>` : ''}
           <div class="mt-2 flex flex-wrap gap-1.5">${statusButtons}</div>
           ${noteOpen ? `
-            <label class="block mt-3 text-[11px] font-mono uppercase tracking-wider text-slate-500" for="note-${topic.id}">Anotações pessoais</label>
-            <textarea id="note-${topic.id}" data-action="edit-note" data-item-id="${topic.id}" rows="3" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-2 text-sm">${escapeHtml(topic.note || '')}</textarea>
+            <label class="block mt-3 text-[11px] font-mono uppercase tracking-wider text-muted" for="note-${topic.id}">Anotações pessoais</label>
+            <textarea id="note-${topic.id}" data-action="edit-note" data-item-id="${topic.id}" rows="3" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-paper dark:bg-night p-2 text-sm">${escapeHtml(topic.note || '')}</textarea>
           ` : ''}
         </div>
       </div>
@@ -303,7 +308,7 @@ function renderGuide(project) {
   if (!steps.length && !criteria.length) return '';
   const checks = (activeTrackState().guideChecks || {})[project.id] || { steps: {}, criteria: {} };
   const line = (group, text, index) => `
-    <label class="flex gap-2 text-xs text-slate-600 dark:text-slate-300">
+    <label class="flex gap-2 text-xs text-muted dark:text-blush">
       <input type="checkbox" data-action="guide-check" data-project-id="${project.id}" data-guide-group="${group}" data-index="${index}" ${checks[group]?.[index] ? 'checked' : ''} />
       <span>${escapeHtml(text)}</span>
     </label>`;
@@ -311,22 +316,22 @@ function renderGuide(project) {
     <details class="mt-2">
       <summary class="text-xs font-semibold">Roteiro e definição de pronto</summary>
       ${steps.length ? `<ol class="mt-2 space-y-1 list-decimal pl-4">${steps.map((step, index) => `<li>${line('steps', step, index)}</li>`).join('')}</ol>` : ''}
-      ${criteria.length ? `<p class="mt-2 text-[11px] font-mono uppercase text-slate-500">Definição de pronto</p><div class="space-y-1">${criteria.map((item, index) => line('criteria', item, index)).join('')}</div>` : ''}
+      ${criteria.length ? `<p class="mt-2 text-[11px] font-mono uppercase text-muted">Definição de pronto</p><div class="space-y-1">${criteria.map((item, index) => line('criteria', item, index)).join('')}</div>` : ''}
     </details>`;
 }
 
 function renderProject(project) {
-  const strike = project.done && state.strikethrough ? 'line-through opacity-70' : '';
+  const strike = project.done && state.strikethrough ? 'line-through' : '';
   const actions = project.custom
-    ? `${miniButton('Editar', `data-action="edit-project" data-project-id="${project.id}"`)}${miniButton('Excluir', `data-action="delete-project" data-project-id="${project.id}"`, 'text-rose-600')}`
+    ? `${miniButton('Editar', `data-action="edit-project" data-project-id="${project.id}"`)}${miniButton('Excluir', `data-action="delete-project" data-project-id="${project.id}"`, 'text-terra')}`
     : '';
   return `
     <li class="flex items-start gap-3 py-3">
       ${checkbox(project.done, `data-action="toggle-project" data-project-id="${project.id}"`, `${project.done ? 'Desmarcar projeto' : 'Concluir projeto'} ${project.title}`)}
       <div class="min-w-0">
         <p class="text-sm font-semibold ${strike}">${escapeHtml(project.title)}</p>
-        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">${escapeHtml(project.description)}</p>
-        <p class="mt-1 text-[11px] font-mono text-slate-500">${LEVEL_LABELS[project.level]} · ${Number(project.hours) || 0} h${project.custom ? ' · sua ideia' : ''}</p>
+        <p class="text-xs text-muted dark:text-blush mt-1">${escapeHtml(project.description)}</p>
+        <p class="mt-1 text-[11px] font-mono text-muted">${LEVEL_LABELS[project.level]} · ${Number(project.hours) || 0} h${project.custom ? ' · sua ideia' : ''}</p>
         ${renderGuide(project)}
         <div class="mt-1 flex gap-1.5">${actions}</div>
       </div>
@@ -387,22 +392,22 @@ function renderPhase(phase, query, phaseHit) {
     ? 'Mostrando todos os níveis.'
     : `Mostrando ideias de nível ${LEVEL_LABELS[trackState.level]}.`;
   const emptyProjects = !projects.length
-    ? `<p class="text-xs text-slate-500">${session.filter === 'pending' ? 'Nenhum projeto pendente nesta etapa.' : `Nenhuma ideia de nível ${LEVEL_LABELS[trackState.level]} nesta etapa.`}</p>${otherLevels && !trackState.showAllProjectLevels ? '<button type="button" data-action="show-all-projects" class="mt-2 text-xs underline">Ver outros níveis</button>' : ''}`
-    : `<ul class="divide-y divide-slate-200 dark:divide-slate-800">${projects.map(renderProject).join('')}</ul>`;
+    ? `<p class="text-xs text-muted">${session.filter === 'pending' ? 'Nenhum projeto pendente nesta etapa.' : `Nenhuma ideia de nível ${LEVEL_LABELS[trackState.level]} nesta etapa.`}</p>${otherLevels && !trackState.showAllProjectLevels ? '<button type="button" data-action="show-all-projects" class="mt-2 text-xs underline">Ver outros níveis</button>' : ''}`
+    : `<ul class="divide-y divide-line dark:divide-sage/40">${projects.map(renderProject).join('')}</ul>`;
 
   return `
-    <section class="rounded-2xl bg-white dark:bg-slate-900/90 border ${progress.complete ? 'border-emerald-500/40' : 'border-slate-200 dark:border-slate-800'} overflow-hidden">
-      <div class="p-4 sm:p-5 border-b border-slate-200/80 dark:border-slate-800">
+    <section class="rounded-sm bg-soft dark:bg-card border ${progress.complete ? 'border-terra/70 dark:border-ochre/70' : 'border-line dark:border-sage/50'} overflow-hidden">
+      <div class="p-4 sm:p-5 border-b border-line dark:border-sage/50">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <button type="button" data-action="toggle-phase" data-phase-id="${phase.id}" aria-expanded="${!collapsed}" class="flex items-center gap-3 text-left">
-            <span class="w-8 h-8 rounded-xl flex items-center justify-center font-mono text-xs font-bold ${progress.complete ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-800'}">${String(phase.number).padStart(2, '0')}</span>
+            <span class="phase-index ${progress.complete ? 'is-on' : ''} ${progress.done > 0 && !progress.complete ? 'is-partial' : ''}">${progress.complete ? CHECK_SVG : progress.done > 0 ? DASH_SVG : String(phase.number).padStart(2, '0')}</span>
             <span>
-              <span class="block text-base sm:text-lg font-bold">Etapa ${phase.number}: ${escapeHtml(phase.title)}</span>
-              <span class="block text-xs text-slate-500 font-mono">${escapeHtml(duration)}${phase.note.trim() ? ' · com observações' : ''}</span>
+              <h2 class="text-base sm:text-lg font-bold">Etapa ${phase.number}: ${escapeHtml(phase.title)}</h2>
+              <span class="block text-xs text-muted font-mono">${escapeHtml(duration)}${phase.note.trim() ? ' · com observações' : ''}</span>
             </span>
           </button>
           <div class="flex flex-wrap items-center gap-2 pl-11 sm:pl-0">
-            <span class="px-2.5 py-1 rounded-lg text-xs font-mono ${progress.complete ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : 'bg-slate-100 dark:bg-slate-800'}">${progress.done}/${progress.total}</span>
+            <span class="px-2.5 py-1 rounded-sm text-xs font-mono border ${progress.complete ? 'border-terra text-terra dark:border-ochre dark:text-ochre' : 'border-line dark:border-sage/60'}">${progress.done}/${progress.total}</span>
             ${(phase.quiz || []).length ? miniButton(quizScore(phase.quiz, trackState.quizAnswers).needsReview ? 'Revisar' : 'Autoavaliação', `data-action="open-quiz" data-quiz-scope="phase" data-phase-id="${phase.id}"`) : ''}
             ${miniButton(progress.complete ? 'Desmarcar etapa' : 'Concluir etapa', `data-action="toggle-phase-done" data-phase-id="${phase.id}"`)}
             ${miniButton('Subir etapa', `data-action="move-phase" data-phase-id="${phase.id}" data-dir="-1"`)}
@@ -410,23 +415,23 @@ function renderPhase(phase, query, phaseHit) {
             <button type="button" data-action="toggle-phase" data-phase-id="${phase.id}" aria-label="${collapsed ? 'Expandir etapa' : 'Recolher etapa'}" class="px-2 py-1">${collapsed ? '▸' : '▾'}</button>
           </div>
         </div>
-        <div class="mt-3 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-          <div class="h-full bg-emerald-500" style="width:${progress.percent}%"></div>
+        <div class="mt-3 h-1.5 rounded-sm bg-line/40 dark:bg-card overflow-hidden">
+          <div class="progress-fill" style="width:${progress.percent}%"></div>
         </div>
       </div>
       ${collapsed ? '' : `
-        <div class="divide-y divide-slate-200 dark:divide-slate-800">${items}</div>
-        <div class="p-4 sm:px-5 border-t border-slate-200 dark:border-slate-800">
+        <div class="divide-y divide-line dark:divide-sage/40">${items}</div>
+        <div class="p-4 sm:px-5 border-t border-line dark:border-sage/50">
           <div class="flex items-center justify-between gap-2">
             <h3 class="text-sm font-bold">Ideias de projeto</h3>
-            <button type="button" data-action="add-project" data-phase-id="${phase.id}" class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Adicionar ideia</button>
+            <button type="button" data-action="add-project" data-phase-id="${phase.id}" class="text-xs font-semibold text-terra dark:text-ochre">Adicionar ideia</button>
           </div>
-          <p class="mt-1 text-xs text-slate-500">${projectHint}</p>
-          ${session.filter === 'optional' || session.filter === 'hidden' ? '<p class="mt-2 text-xs text-slate-500">As ideias de projeto ficam de fora deste filtro.</p>' : `<div class="mt-2">${emptyProjects}</div>`}
+          <p class="mt-1 text-xs text-muted">${projectHint}</p>
+          ${session.filter === 'optional' || session.filter === 'hidden' ? '<p class="mt-2 text-xs text-muted">As ideias de projeto ficam de fora deste filtro.</p>' : `<div class="mt-2">${emptyProjects}</div>`}
           <details class="mt-4" data-phase-notes data-phase-id="${phase.id}" ${notesOpen ? 'open' : ''}>
             <summary class="text-sm font-semibold">Observações${phase.note.trim() ? ' · texto salvo' : ''}</summary>
             <label class="sr-only" for="obs-${phase.id}">Observações desta etapa</label>
-            <textarea id="obs-${phase.id}" data-action="edit-phase-note" data-phase-id="${phase.id}" rows="3" class="mt-2 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-2 text-sm" placeholder="O que você quer lembrar desta etapa">${escapeHtml(phase.note)}</textarea>
+            <textarea id="obs-${phase.id}" data-action="edit-phase-note" data-phase-id="${phase.id}" rows="3" class="mt-2 w-full rounded-sm border border-line dark:border-sage/60 bg-paper dark:bg-night p-2 text-sm" placeholder="O que você quer lembrar desta etapa">${escapeHtml(phase.note)}</textarea>
           </details>
         </div>
       `}
@@ -451,7 +456,7 @@ function renderRoadmap() {
   if (view.orphans.length) {
     orphans.hidden = false;
     orphans.innerHTML = `
-      <section class="rounded-2xl border border-amber-500/30 p-4">
+      <section class="rounded-sm border border-ochre p-4">
         <h2 class="font-bold">Ideias sem etapa</h2>
         <ul>${view.orphans.map(renderProject).join('')}</ul>
       </section>`;
@@ -495,8 +500,8 @@ function updateDashboard() {
   $('strikethroughToggle').checked = state.strikethrough;
   $('badgesUnlockedCounter').textContent = `${stats.badges}/${view.phases.length} desbloqueadas`;
   $('badgesContainer').innerHTML = view.phases.map((phase) => `
-    <div class="flex items-center gap-2 p-2.5 rounded-xl border ${phase.progress.complete ? 'border-emerald-500/40 bg-emerald-500/10 animate-badge-glow' : 'border-slate-200 dark:border-slate-800 opacity-80'}" title="${escapeHtml(phase.badgeTitle)}">
-      <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${phase.progress.complete ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-800'}">${phase.progress.complete ? '✓' : phase.number}</span>
+    <div class="flex items-center gap-2 p-2.5 rounded-sm border ${phase.progress.complete ? 'border-terra dark:border-ochre' : 'border-line dark:border-sage/50'}" title="${escapeHtml(phase.badgeTitle)}">
+      <span class="phase-index ${phase.progress.complete ? 'is-on' : ''} ${phase.progress.done > 0 && !phase.progress.complete ? 'is-partial' : ''}">${phase.progress.complete ? CHECK_SVG : phase.progress.done > 0 ? DASH_SVG : phase.number}</span>
       <span class="min-w-0"><span class="block text-[11px] font-bold truncate">${escapeHtml(phase.badgeTitle)}</span><span class="text-[10px] font-mono">${phase.progress.done}/${phase.progress.total}</span></span>
     </div>`).join('');
   $('footerStats').textContent = `${view.phases.length} etapas · ${stats.required} tópicos no plano · ${projects.total} projetos deste nível`;
@@ -504,7 +509,7 @@ function updateDashboard() {
   $('toggleAllPhasesLabel').textContent = allCollapsed ? 'Expandir todas' : 'Recolher todas';
   document.querySelectorAll('.filter-btn').forEach((button) => {
     const active = button.dataset.filter === session.filter;
-    button.className = `filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm ${active ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-slate-600 dark:text-slate-400'}`;
+    button.className = `filter-btn px-3 py-1.5 rounded-sm text-xs sm:text-sm ${active ? 'bg-soft dark:bg-card text-terra dark:text-ochre font-semibold' : 'text-muted dark:text-blush'}`;
     button.setAttribute('aria-pressed', String(active));
   });
 }
@@ -533,7 +538,7 @@ function choiceCard(name, value, title, text, selected) {
   return `<label class="choice-card ${selected ? 'is-selected' : ''}" data-choice="${escapeHtml(name)}" data-value="${escapeHtml(value)}">
     <input class="sr-only" type="radio" name="${escapeHtml(name)}" value="${escapeHtml(value)}" ${selected ? 'checked' : ''} />
     <span class="block font-semibold">${escapeHtml(title)}</span>
-    <span class="block mt-1 text-xs text-slate-500">${escapeHtml(text)}</span>
+    <span class="block mt-1 text-xs text-muted">${escapeHtml(text)}</span>
   </label>`;
 }
 
@@ -627,11 +632,11 @@ function renderPreview() {
     const phaseHours = phase.topics
       .filter((topic) => topic.status === 'required')
       .reduce((sum, topic) => sum + (Number(topic.hours) || 0), 0);
-    return `<li class="flex justify-between gap-3 py-2 border-t border-slate-200 dark:border-slate-800"><span>Etapa ${phase.number}: ${escapeHtml(phase.title)}</span><span class="font-mono text-xs shrink-0">${escapeHtml(phaseHours ? formatDuration(phaseHours, hours) : 'opcional')}</span></li>`;
+    return `<li class="flex justify-between gap-3 py-2 border-t border-line dark:border-sage/50"><span>Etapa ${phase.number}: ${escapeHtml(phase.title)}</span><span class="font-mono text-xs shrink-0">${escapeHtml(phaseHours ? formatDuration(phaseHours, hours) : 'opcional')}</span></li>`;
   }).join('');
   $('planPreview').innerHTML = `
     <p class="font-semibold">${escapeHtml(track.name)} · ${LEVEL_LABELS[level]} · ${hours} h/semana</p>
-    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${stats.required} tópicos obrigatórios, ${stats.optional} opcionais e ${projects.total} ideias de projeto neste nível. ${escapeHtml(formatDuration(stats.hours, hours))} no ritmo escolhido.</p>
+    <p class="mt-2 text-sm text-muted dark:text-blush">${stats.required} tópicos obrigatórios, ${stats.optional} opcionais e ${projects.total} ideias de projeto neste nível. ${escapeHtml(formatDuration(stats.hours, hours))} no ritmo escolhido.</p>
     <ol class="mt-3 text-sm">${phases}</ol>`;
 }
 
@@ -697,7 +702,9 @@ async function askConfirm({ title, body, confirmLabel, danger = true }) {
   $('confirmTitle').textContent = title;
   $('confirmBody').textContent = body;
   $('confirmAccept').textContent = confirmLabel;
-  $('confirmAccept').className = `px-4 py-2 rounded-xl text-sm font-semibold text-white ${danger ? 'bg-rose-600' : 'bg-emerald-600'}`;
+  $('confirmAccept').className = danger
+    ? 'px-4 py-2 rounded-sm text-sm font-semibold bg-terra text-paper'
+    : 'px-4 py-2 rounded-sm text-sm font-semibold bg-terra text-paper dark:bg-ochre dark:text-night';
   const dialog = $('confirmDialog');
   const result = await new Promise((resolve) => {
     const onClose = () => {
@@ -1262,18 +1269,23 @@ function openQuiz(scope, id) {
   $('quizTitle').textContent = title;
   $('quizBody').innerHTML = questions.map((question) => {
     const picked = trackState.quizAnswers[question.id];
+    const pickedChoice = question.choices.find((choice) => choice.id === picked);
+    const verdict = !pickedChoice ? '' : pickedChoice.correct ? 'Certa. ' : 'Errada. ';
     const choices = question.choices.map((choice) => {
       const selected = picked === choice.id;
-      const tone = !selected ? '' : choice.correct ? 'border-emerald-500' : 'border-rose-500';
-      return `<label class="flex gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-2 ${tone}">
+      const tone = !selected ? '' : choice.correct ? 'border-terra dark:border-ochre' : 'border-terra';
+      return `<label class="flex gap-2 rounded-sm border border-line dark:border-sage/60 px-3 py-2 ${tone}">
         <input type="radio" name="quiz-${question.id}" data-question="${question.id}" value="${choice.id}" ${selected ? 'checked' : ''} />
-        <span><span>${escapeHtml(choice.text)}</span>${selected ? `<span class="block mt-1 text-xs text-slate-500">${escapeHtml(choice.explanation)}</span>` : ''}</span>
+        <span><span>${escapeHtml(choice.text)}</span>${selected ? `<span class="block mt-1 text-xs text-muted">${verdict}${escapeHtml(choice.explanation)}</span>` : ''}</span>
       </label>`;
     }).join('');
-    const pickedChoice = question.choices.find((choice) => choice.id === picked);
     const review = pickedChoice && !pickedChoice.correct
       ? `<button type="button" class="mt-2 text-xs underline" data-review-topic="${question.reviewTopicId}">Rever este tópico</button>`
       : '';
+    if (pickedChoice) {
+      const live = $('quizLive');
+      if (live) live.textContent = `${verdict}${pickedChoice.explanation}`;
+    }
     return `<fieldset><legend class="font-semibold text-sm">${escapeHtml(question.prompt)}</legend><div class="mt-2 space-y-2">${choices}</div>${review}</fieldset>`;
   }).join('');
   if (!$('quizDialog').open) $('quizDialog').showModal();

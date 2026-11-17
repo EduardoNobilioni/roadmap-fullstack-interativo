@@ -34,7 +34,12 @@ export function textPdf(lines) {
   const objects = [];
   const kids = [];
   pages.forEach((page, pageIndex) => {
-    const content = ['BT', '/F1 11 Tf', '48 800 Td', '14 TL'];
+    const content = [
+      '0.890 0.871 0.824 rg',
+      '0 0 595 842 re f',
+      '0.169 0.129 0.106 rg',
+      'BT', '/F1 11 Tf', '48 800 Td', '14 TL',
+    ];
     page.forEach((line, lineIndex) => {
       const text = encodeWin(line.slice(0, 95));
       const literal = `(${String.fromCharCode(...text)})`;
@@ -114,24 +119,24 @@ export function drawRoadmap(canvas, track, view) {
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#f8fafc';
+  ctx.fillStyle = '#e3ded2';
   ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = '#0f172a';
+  ctx.fillStyle = '#2b211b';
   ctx.font = '700 36px sans-serif';
   ctx.fillText('Trilha de Estudos', 48, 64);
   ctx.font = '20px sans-serif';
-  ctx.fillStyle = '#047857';
+  ctx.fillStyle = '#7a3329';
   ctx.fillText(track.name, 48, 100);
   let y = 150;
   for (const phase of view.phases) {
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#2b211b';
     ctx.font = '700 18px sans-serif';
     ctx.fillText(`Etapa ${phase.number}: ${phase.title}`, 48, y);
     y += 28;
     ctx.font = '16px sans-serif';
     for (const topic of phase.topics) {
       if (topic.status === 'hidden') continue;
-      ctx.fillStyle = topic.done ? '#047857' : '#334155';
+      ctx.fillStyle = topic.done ? '#7a3329' : '#2b211b';
       const prefix = topic.done ? '✓' : '○';
       const optional = topic.status === 'optional' ? ' · opcional' : '';
       ctx.fillText(`${prefix}  ${topic.title}${optional}`, 72, y);

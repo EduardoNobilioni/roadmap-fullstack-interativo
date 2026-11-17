@@ -1,19 +1,20 @@
-import { quizScore } from './model.js';
 import { parseCsvSchedule, parseIcs } from './ics.js';
+import { addUtcDays, formatISODate, newId, parseISODate } from './model.js';
 import {
   WEEKDAY_LABELS,
   WEEKDAY_SHORT,
   buildWorkItems,
   defaultStudyPlan,
+  fromMinutes,
   generateSessions,
   localISODate,
   previewRows,
   sessionsToIcs,
   suggestSlot,
+  toMinutes,
 } from './plan.js';
-import { newId } from './model.js';
 
-const field = 'mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2';
+const field = 'mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2';
 
 export function initPlanScreen(api) {
   const root = document.getElementById('planScreen');
@@ -66,11 +67,11 @@ export function initPlanScreen(api) {
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4 no-print">
           <div>
             <h1 class="text-2xl font-extrabold">Plano de estudo</h1>
-            <p class="text-sm text-slate-500">As aulas ocupam a grade. O estudo entra nos vãos. O arquivo .ics leva só as sessões de estudo.</p>
+            <p class="text-sm text-muted">As aulas ocupam a grade. O estudo entra nos vãos. O arquivo .ics leva só as sessões de estudo.</p>
           </div>
-          <button type="button" data-plan="close" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Voltar à trilha</button>
+          <button type="button" data-plan="close" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60">Voltar à trilha</button>
         </div>
-        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 mb-4 no-print">
+        <section class="rounded-sm border border-line dark:border-sage/50 bg-soft dark:bg-card p-4 mb-4 no-print">
           <h2 class="font-bold">Quando você estuda</h2>
           <div class="grid sm:grid-cols-3 gap-3 mt-3 text-sm">
             <label>Data de início
@@ -80,12 +81,12 @@ export function initPlanScreen(api) {
               <input data-plan="weekly" type="number" min="1" max="60" value="${current.weeklyHours}" class="${field}" />
             </label>
             <div class="flex items-end">
-              <button type="button" data-plan="apply-hours" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Aplicar horas nas janelas</button>
+              <button type="button" data-plan="apply-hours" class="px-3 py-2 rounded-sm bg-soft dark:bg-card">Aplicar horas nas janelas</button>
             </div>
           </div>
           <div class="mt-3 flex flex-wrap gap-2 text-sm">
             ${WEEKDAY_LABELS.map((label, day) => `
-              <label class="inline-flex items-center gap-2 px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700">
+              <label class="inline-flex items-center gap-2 px-2 py-1 rounded-sm border border-line dark:border-sage/60">
                 <input type="checkbox" data-plan="weekday" value="${day}" ${current.weekdays.includes(day) ? 'checked' : ''} />
                 ${label}
               </label>`).join('')}
@@ -105,21 +106,21 @@ export function initPlanScreen(api) {
             <label class="inline-flex gap-2"><input data-plan="reviews" type="checkbox" ${current.includeReviews ? 'checked' : ''} /> Incluir sessões de revisão</label>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">
-            <button type="button" data-plan="generate" class="px-3 py-2 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Gerar plano</button>
-            <button type="button" data-plan="reschedule" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm">Recalcular a partir de hoje</button>
-            <button type="button" data-plan="ics" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm">Baixar .ics</button>
-            <button type="button" data-plan="pdf" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm">PDF do plano</button>
-            <button type="button" data-plan="print" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm">Imprimir</button>
+            <button type="button" data-plan="generate" class="px-3 py-2 rounded-sm bg-terra dark:bg-ochre text-paper dark:text-night text-sm font-semibold">Gerar plano</button>
+            <button type="button" data-plan="reschedule" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 text-sm">Recalcular a partir de hoje</button>
+            <button type="button" data-plan="ics" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 text-sm">Baixar .ics</button>
+            <button type="button" data-plan="pdf" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 text-sm">PDF do plano</button>
+            <button type="button" data-plan="print" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 text-sm">Imprimir</button>
           </div>
         </section>
-        <section class="rounded-2xl border border-amber-500/40 bg-amber-500/5 p-4 mb-4 no-print">
+        <section class="rounded-sm border border-ochre bg-soft p-4 mb-4 no-print">
           <h2 class="font-bold">Grade da faculdade</h2>
-          <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Importe o .ics do Google Agenda, Outlook, Apple Calendar ou do sistema da universidade. Esses eventos aparecem como ocupados e não vão no .ics do plano.</p>
+          <p class="text-sm text-muted dark:text-blush mt-1">Importe o .ics do Google Agenda, Outlook, Apple Calendar ou do sistema da universidade. Esses eventos aparecem como ocupados e não vão no .ics do plano.</p>
           <div class="mt-3 flex flex-wrap gap-2 text-sm">
-            <label class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 cursor-pointer">Importar .ics
+            <label class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 cursor-pointer">Importar .ics
               <input data-plan="ics-file" type="file" accept=".ics,text/calendar" class="sr-only" />
             </label>
-            <button type="button" data-plan="clear-ics" class="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Limpar eventos importados</button>
+            <button type="button" data-plan="clear-ics" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60">Limpar eventos importados</button>
           </div>
           <div class="grid sm:grid-cols-3 gap-3 mt-3 text-sm">
             <label>Intervalo antes (min)
@@ -134,30 +135,37 @@ export function initPlanScreen(api) {
           </div>
           <h3 class="mt-4 font-semibold text-sm">Horário manual semanal</h3>
           <div class="mt-2 grid sm:grid-cols-5 gap-2 text-sm">
-            <select data-plan="manual-day" class="${field}">${WEEKDAY_LABELS.map((label, day) => `<option value="${day}">${label}</option>`).join('')}</select>
-            <input data-plan="manual-start" type="time" value="08:00" class="${field}" />
-            <input data-plan="manual-end" type="time" value="10:00" class="${field}" />
-            <input data-plan="manual-title" placeholder="Disciplina" class="${field}" />
-            <button type="button" data-plan="add-manual" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Adicionar</button>
+            <label class="sr-only" for="manualDay">Dia da aula</label>
+            <select id="manualDay" data-plan="manual-day" class="${field}">${WEEKDAY_LABELS.map((label, day) => `<option value="${day}">${label}</option>`).join('')}</select>
+            <label class="sr-only" for="manualStart">Início da aula</label>
+            <input id="manualStart" data-plan="manual-start" type="time" value="08:00" class="${field}" />
+            <label class="sr-only" for="manualEnd">Fim da aula</label>
+            <input id="manualEnd" data-plan="manual-end" type="time" value="10:00" class="${field}" />
+            <label class="sr-only" for="manualTitle">Nome da disciplina</label>
+            <input id="manualTitle" data-plan="manual-title" placeholder="Disciplina" class="${field}" />
+            <button type="button" data-plan="add-manual" class="px-3 py-2 rounded-sm bg-soft dark:bg-card">Adicionar</button>
           </div>
           <ul class="mt-2 text-sm">
-            ${university.manual.map((row) => `<li class="flex justify-between gap-2 py-1"><span>${WEEKDAY_SHORT[row.weekday]} ${row.start}–${row.end} ${api.escapeHtml(row.title)}</span><button type="button" data-plan="del-manual" data-id="${row.id}" class="text-rose-600">Remover</button></li>`).join('')}
+            ${university.manual.map((row) => `<li class="flex justify-between gap-2 py-1"><span>${WEEKDAY_SHORT[row.weekday]} ${row.start}–${row.end} ${api.escapeHtml(row.title)}</span><button type="button" data-plan="del-manual" data-id="${row.id}" class="text-terra">Remover</button></li>`).join('')}
           </ul>
           <h3 class="mt-4 font-semibold text-sm">Colar CSV</h3>
-          <p class="text-xs text-slate-500">Use <code>seg,08:00,10:00,Cálculo</code> ou <code>2026-11-20,14:00,16:00,Monitoria</code>.</p>
+          <p class="text-xs text-muted">Use <code>seg,08:00,10:00,Cálculo</code> ou <code>2026-11-20,14:00,16:00,Monitoria</code>.</p>
           <textarea data-plan="csv" rows="3" class="${field}" placeholder="seg,08:00,10:00,Cálculo"></textarea>
-          <button type="button" data-plan="import-csv" class="mt-2 px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-sm">Importar CSV</button>
+          <button type="button" data-plan="import-csv" class="mt-2 px-3 py-2 rounded-sm border border-line dark:border-sage/60 text-sm">Importar CSV</button>
           <h3 class="mt-4 font-semibold text-sm">Semana de prova</h3>
           <div class="mt-2 flex flex-wrap gap-2 text-sm">
-            <input data-plan="exam-start" type="date" class="${field}" />
-            <input data-plan="exam-end" type="date" class="${field}" />
-            <input data-plan="exam-label" placeholder="P1, finais..." class="${field}" />
-            <button type="button" data-plan="add-exam" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">Marcar</button>
+            <label class="sr-only" for="examStart">Início da semana de prova</label>
+            <input id="examStart" data-plan="exam-start" type="date" class="${field}" />
+            <label class="sr-only" for="examEnd">Fim da semana de prova</label>
+            <input id="examEnd" data-plan="exam-end" type="date" class="${field}" />
+            <label class="sr-only" for="examLabel">Nome da semana de prova</label>
+            <input id="examLabel" data-plan="exam-label" placeholder="P1, finais..." class="${field}" />
+            <button type="button" data-plan="add-exam" class="px-3 py-2 rounded-sm bg-soft dark:bg-card">Marcar</button>
           </div>
           <ul class="mt-2 text-sm">
-            ${university.examRanges.map((range) => `<li class="flex justify-between gap-2 py-1"><span>${range.start} a ${range.end} · ${api.escapeHtml(range.label)} · ${range.percent}%</span><button type="button" data-plan="del-exam" data-id="${range.id}" class="text-rose-600">Remover</button></li>`).join('')}
+            ${university.examRanges.map((range) => `<li class="flex justify-between gap-2 py-1"><span>${range.start} a ${range.end} · ${api.escapeHtml(range.label)} · ${range.percent}%</span><button type="button" data-plan="del-exam" data-id="${range.id}" class="text-terra">Remover</button></li>`).join('')}
           </ul>
-          <p class="mt-3 text-xs text-slate-500">${busyCount} blocos de grade guardados neste navegador. ${university.busy.length} vieram de arquivo.</p>
+          <p class="mt-3 text-xs text-muted">${busyCount} blocos de grade guardados neste navegador. ${university.busy.length} vieram de arquivo.</p>
           <label class="block mt-3 text-sm">Pular datas (feriado ou prova, uma por linha)
             <textarea data-plan="skipped" rows="2" class="${field}">${current.skippedDates.join('\n')}</textarea>
           </label>
@@ -165,30 +173,40 @@ export function initPlanScreen(api) {
         <p class="text-sm mb-3">${sessionCount} sessões de estudo neste plano.</p>
         <div id="planWeeks" class="space-y-4">
           ${rows.map((row) => `
-            <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+            <section class="rounded-sm border border-line dark:border-sage/50 bg-soft dark:bg-card p-4">
               <h2 class="font-bold">${WEEKDAY_LABELS[row.weekday]} ${api.escapeHtml(row.date)}${row.exam ? ' · semana de prova' : ''}</h2>
               <ul class="mt-2 space-y-2">
                 ${row.busy.map((block) => `
-                  <li class="rounded-xl border border-dashed border-amber-500/60 bg-amber-500/10 px-3 py-2 text-sm">
+                  <li class="busy-block rounded-sm px-3 py-2 text-sm">
                     <span class="font-mono">${block.allDay ? 'Dia inteiro' : `${block.startLabel}–${block.endLabel}`}</span>
                     <span class="ml-2">Ocupado · ${api.escapeHtml(block.title)}</span>
                   </li>`).join('')}
                 ${row.sessions.map((session) => `
-                  <li class="rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-2 text-sm">
+                  <li class="study-block rounded-sm px-3 py-2 text-sm">
                     <div class="flex flex-wrap gap-2 items-center">
-                      <input data-plan="edit-date" data-id="${session.id}" type="date" value="${session.date}" class="rounded-lg border border-slate-200 dark:border-slate-700 bg-transparent px-2 py-1" />
-                      <input data-plan="edit-start" data-id="${session.id}" type="time" value="${session.start}" class="rounded-lg border border-slate-200 dark:border-slate-700 bg-transparent px-2 py-1" />
-                      <input data-plan="edit-end" data-id="${session.id}" type="time" value="${session.end}" class="rounded-lg border border-slate-200 dark:border-slate-700 bg-transparent px-2 py-1" />
-                      <input data-plan="edit-title" data-id="${session.id}" value="${api.escapeHtml(session.title)}" class="flex-1 min-w-40 rounded-lg border border-slate-200 dark:border-slate-700 bg-transparent px-2 py-1" />
-                      <button type="button" data-plan="lock" data-id="${session.id}" aria-pressed="${session.locked}" class="px-2 py-1 rounded-lg border ${session.locked ? 'border-emerald-500 text-emerald-700' : 'border-slate-300'}">${session.locked ? 'Travada' : 'Travar'}</button>
-                      <button type="button" data-plan="delete" data-id="${session.id}" class="px-2 py-1 rounded-lg text-rose-600">Apagar</button>
+                      <input aria-label="Data de ${api.escapeHtml(session.title)}" data-plan="edit-date" data-id="${session.id}" type="date" value="${session.date}" class="rounded-sm border border-line dark:border-sage/60 bg-transparent px-2 py-1" />
+                      <input aria-label="Início de ${api.escapeHtml(session.title)}" data-plan="edit-start" data-id="${session.id}" type="time" value="${session.start}" class="rounded-sm border border-line dark:border-sage/60 bg-transparent px-2 py-1" />
+                      <input aria-label="Fim de ${api.escapeHtml(session.title)}" data-plan="edit-end" data-id="${session.id}" type="time" value="${session.end}" class="rounded-sm border border-line dark:border-sage/60 bg-transparent px-2 py-1" />
+                      <input aria-label="Nome da sessão" data-plan="edit-title" data-id="${session.id}" value="${api.escapeHtml(session.title)}" class="w-full sm:flex-1 sm:min-w-0 rounded-sm border border-line dark:border-sage/60 bg-transparent px-2 py-1" />
+                      <button type="button" data-plan="shift-day" data-dir="-1" data-id="${session.id}" class="px-2 py-1 rounded-sm border border-line">Dia anterior</button>
+                      <button type="button" data-plan="shift-day" data-dir="1" data-id="${session.id}" class="px-2 py-1 rounded-sm border border-line">Dia seguinte</button>
+                      <button type="button" data-plan="resize" data-dir="-15" data-id="${session.id}" class="px-2 py-1 rounded-sm border border-line">−15 min</button>
+                      <button type="button" data-plan="resize" data-dir="15" data-id="${session.id}" class="px-2 py-1 rounded-sm border border-line">+15 min</button>
+                      <button type="button" data-plan="lock" data-id="${session.id}" aria-pressed="${session.locked}" class="px-2 py-1 rounded-sm border ${session.locked ? 'border-terra dark:border-ochre text-terra dark:text-ochre' : 'border-line'}">${session.locked ? 'Travada' : 'Travar'}</button>
+                      <button type="button" data-plan="delete" data-id="${session.id}" class="px-2 py-1 rounded-sm text-terra dark:text-warn">Apagar</button>
                     </div>
-                    <p class="mt-1 text-xs text-slate-500">${labelKind(session.kind)}${session.summary ? ` · ${api.escapeHtml(session.summary)}` : ''}</p>
+                    <p class="mt-1 text-xs text-muted">${labelKind(session.kind)}${session.summary ? ` · ${api.escapeHtml(session.summary)}` : ''}</p>
                   </li>`).join('')}
               </ul>
-            </section>`).join('') || '<p class="text-sm text-slate-500">Gere o plano para ver as semanas.</p>'}
+            </section>`).join('') || '<p class="text-sm text-muted">Gere o plano para ver as semanas.</p>'}
         </div>
-        <button type="button" data-plan="add" class="mt-4 px-3 py-2 rounded-xl border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 text-sm no-print">Adicionar sessão</button>
+        <section class="mt-6" aria-label="Lista de todas as sessões">
+          <h2 class="font-bold">Lista de sessões</h2>
+          <ol class="mt-2 space-y-1 text-sm">
+            ${current.sessions.map((session) => `<li>${api.escapeHtml(session.date)} ${session.start}–${session.end} · ${api.escapeHtml(session.title)} · ${labelKind(session.kind)}</li>`).join('') || '<li>Nenhuma sessão gerada.</li>'}
+          </ol>
+        </section>
+        <button type="button" data-plan="add" class="mt-4 px-3 py-2 rounded-sm border border-terra/70 dark:border-ochre/70 text-terra dark:text-ochre text-sm no-print">Adicionar sessão</button>
       </div>`;
   }
 
@@ -271,6 +289,23 @@ export function initPlanScreen(api) {
     if (action === 'del-exam') {
       current.university.examRanges = current.university.examRanges.filter((range) => range.id !== target.dataset.id);
       save();
+    }
+    if (action === 'shift-day') {
+      const session = sessionById(target.dataset.id);
+      const next = addUtcDays(parseISODate(session.date), Number(target.dataset.dir));
+      session.date = formatISODate(next);
+      save();
+      return;
+    }
+    if (action === 'resize') {
+      const session = sessionById(target.dataset.id);
+      const start = toMinutes(session.start);
+      let end = toMinutes(session.end) + Number(target.dataset.dir);
+      if (end - start < 20) end = start + 20;
+      if (end > 23 * 60 + 45) end = 23 * 60 + 45;
+      session.end = fromMinutes(end);
+      save();
+      return;
     }
     if (action === 'lock') {
       const session = sessionById(target.dataset.id);
@@ -379,5 +414,3 @@ function labelKind(kind) {
   if (kind === 'custom') return 'Sessão sua';
   return 'Estudo do tópico';
 }
-
-export { quizScore };
