@@ -27,7 +27,7 @@ function encodeWin(text) {
 }
 
 export function textPdf(lines) {
-  const pageSize = 46;
+  const pageSize = 40;
   const pages = [];
   for (let index = 0; index < lines.length; index += pageSize) pages.push(lines.slice(index, index + pageSize));
   if (!pages.length) pages.push(['(vazio)']);
@@ -37,11 +37,12 @@ export function textPdf(lines) {
     const content = [
       '0.890 0.871 0.824 rg',
       '0 0 595 842 re f',
-      '0.169 0.129 0.106 rg',
-      'BT', '/F1 11 Tf', '48 800 Td', '14 TL',
     ];
+    const textTop = pageIndex === 0 ? '48 772 Td' : '48 790 Td';
+    if (pageIndex === 0) content.push(brandMarkPdf());
+    content.push('0.169 0.129 0.106 rg', 'BT', '/F1 10 Tf', textTop, '16 TL');
     page.forEach((line, lineIndex) => {
-      const text = encodeWin(line.slice(0, 95));
+      const text = encodeWin(line.slice(0, 70));
       const literal = `(${String.fromCharCode(...text)})`;
       content.push(lineIndex === 0 ? `${literal} Tj` : `T* ${literal} Tj`);
     });
@@ -58,7 +59,7 @@ export function textPdf(lines) {
     '1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n',
     `2 0 obj\n<< /Type /Pages /Count ${pages.length} /Kids [${kids.join(' ')}] >>\nendobj\n`,
     ...objects,
-    `${fontId} 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>\nendobj\n`,
+    `${fontId} 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>\nendobj\n`,
   ].join('');
   let offset = '%PDF-1.4\n'.length;
   const xref = ['0000000000 65535 f \n'];
@@ -76,7 +77,7 @@ export function textPdf(lines) {
 }
 
 export function roadmapLines(track, view) {
-  const lines = [`Trilha de Estudos - ${track.name}`, track.description, ''];
+  const lines = [`Rumo — ${track.name}`, track.description, ''];
   for (const phase of view.phases) {
     lines.push(`Etapa ${phase.number}: ${phase.title}`);
     for (const topic of phase.topics) {
@@ -94,7 +95,7 @@ export function roadmapLines(track, view) {
 }
 
 export function roadmapMarkdown(track, view) {
-  const lines = [`# ${track.name}`, '', track.description, ''];
+  const lines = [`# Rumo — ${track.name}`, '', track.description, ''];
   for (const phase of view.phases) {
     lines.push(`## Etapa ${phase.number}: ${phase.title}`, '');
     for (const topic of phase.topics) {
@@ -112,35 +113,77 @@ export function roadmapMarkdown(track, view) {
   return lines.join('\n');
 }
 
+const FONT_BODY = '"Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace';
+const FONT_UI = '"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace';
+const MARK_NORTH = [[25.19, 6.81], [20.60, 17.34], [14.66, 11.40]];
+const MARK_TAIL = [[6.81, 25.19], [11.40, 14.66], [17.34, 20.60]];
+const MARK_NORTH_LIGHT = '#7a3329';
+const MARK_TAIL_LIGHT = '#887655';
+
+function brandMarkPdf() {
+  const paint = (points, rgb) => {
+    const ops = points.map(([x, y], index) => {
+      const px = (48 + x * 0.5).toFixed(2);
+      const py = (802 - y * 0.5).toFixed(2);
+      return `${px} ${py} ${index === 0 ? 'm' : 'l'}`;
+    });
+    return `${rgb} rg\n${ops.join(' ')} h f`;
+  };
+  return [
+    paint(MARK_NORTH, '0.478 0.200 0.161'),
+    paint(MARK_TAIL, '0.533 0.463 0.333'),
+  ].join('\n');
+}
+
+function drawBrandMark(ctx, x, y, size) {
+  const scale = size / 32;
+  const paint = (points, color) => {
+    ctx.beginPath();
+    points.forEach(([px, py], index) => {
+      const X = x + px * scale;
+      const Y = y + py * scale;
+      if (index === 0) ctx.moveTo(X, Y);
+      else ctx.lineTo(X, Y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
+  paint(MARK_NORTH, MARK_NORTH_LIGHT);
+  paint(MARK_TAIL, MARK_TAIL_LIGHT);
+}
+
 export function drawRoadmap(canvas, track, view) {
   const width = 1100;
+  const line = 28;
   const rows = view.phases.reduce((sum, phase) => sum + 1 + phase.topics.filter((topic) => topic.status !== 'hidden').length, view.phases.length);
-  const height = 180 + rows * 28;
+  const height = 200 + rows * line;
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#e3ded2';
   ctx.fillRect(0, 0, width, height);
+  drawBrandMark(ctx, 48, 22, 40);
   ctx.fillStyle = '#2b211b';
-  ctx.font = '700 36px sans-serif';
-  ctx.fillText('Trilha de Estudos', 48, 64);
-  ctx.font = '20px sans-serif';
+  ctx.font = `600 32px ${FONT_UI}`;
+  ctx.fillText('rumo', 100, 52);
+  ctx.font = `500 20px ${FONT_UI}`;
   ctx.fillStyle = '#7a3329';
-  ctx.fillText(track.name, 48, 100);
-  let y = 150;
+  ctx.fillText(track.name, 48, 108);
+  let y = 168;
   for (const phase of view.phases) {
     ctx.fillStyle = '#2b211b';
-    ctx.font = '700 18px sans-serif';
+    ctx.font = `600 18px ${FONT_UI}`;
     ctx.fillText(`Etapa ${phase.number}: ${phase.title}`, 48, y);
-    y += 28;
-    ctx.font = '16px sans-serif';
+    y += line;
+    ctx.font = `400 17px ${FONT_BODY}`;
     for (const topic of phase.topics) {
       if (topic.status === 'hidden') continue;
       ctx.fillStyle = topic.done ? '#7a3329' : '#2b211b';
       const prefix = topic.done ? '✓' : '○';
       const optional = topic.status === 'optional' ? ' · opcional' : '';
       ctx.fillText(`${prefix}  ${topic.title}${optional}`, 72, y);
-      y += 26;
+      y += line;
     }
     y += 12;
   }

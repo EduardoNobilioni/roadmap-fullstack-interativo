@@ -23,6 +23,7 @@ import {
   normalizeState,
   projectPlanStats,
   quizScore,
+  readStoredJson,
   roadmapStats,
   setTopicStatus,
   sharePlanFromTrack,
@@ -137,18 +138,15 @@ function persist() {
 
 function loadState() {
   try {
-    const current = localStorage.getItem(STORAGE_KEY);
-    if (current) {
-      state = normalizeState(JSON.parse(current));
+    const stored = readStoredJson((key) => localStorage.getItem(key));
+    if (!stored) {
+      state.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       return;
     }
-    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
-    if (legacy) {
-      state = stateFromLegacyStorage(JSON.parse(legacy));
-      persist();
-      return;
-    }
-    state.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    state = stored.key === LEGACY_STORAGE_KEY
+      ? stateFromLegacyStorage(stored.parsed)
+      : normalizeState(stored.parsed);
+    if (stored.key !== STORAGE_KEY) persist();
   } catch (error) {
     console.warn(error);
     state = emptyState();
@@ -295,22 +293,22 @@ function renderTopic(topic, phase, index, total, titleById, doneIds) {
         ${checkbox(topic.done, `data-action="toggle-item" data-item-id="${topic.id}"`, `${topic.done ? 'Desmarcar' : 'Concluir'} ${topic.title}`)}
         <div class="min-w-0 flex-1">
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-            <h3 class="text-sm sm:text-[15px] font-semibold ${strike}">${escapeHtml(topic.title)}</h3>
+            <h3 class="font-semibold ${strike}">${escapeHtml(topic.title)}</h3>
             <button type="button" data-action="toggle-note" data-item-id="${topic.id}" class="self-start px-2.5 py-1 rounded-sm text-xs border ${topic.note || noteOpen ? 'border-ochre text-ink dark:text-ochre' : 'border-transparent bg-soft dark:bg-card'}">${topic.note ? 'Anotações' : 'Anotar'}</button>
           </div>
-          <p class="mt-1 text-xs sm:text-sm text-muted dark:text-blush leading-relaxed">${escapeHtml(topic.description)}</p>
+          <p class="read mt-3 text-muted dark:text-blush">${escapeHtml(topic.description)}</p>
           <div class="mt-2 flex flex-wrap gap-1.5 text-[11px]">
             <span class="px-2 py-0.5 rounded-sm bg-soft dark:bg-card font-mono">${LEVEL_LABELS[topic.level] || topic.level}</span>
             <span class="px-2 py-0.5 rounded-sm bg-soft dark:bg-card font-mono">${Number(topic.hours) || 0} h</span>
-            ${optionalLabel ? `<span class="px-2 py-0.5 rounded-sm bg-ochre/25 text-ink dark:text-ochre">${optionalLabel}</span>` : ''}
+            ${optionalLabel ? `<span class="px-2 py-0.5 rounded-sm bg-ochre text-night">${optionalLabel}</span>` : ''}
             ${topic.custom ? '<span class="px-2 py-0.5 rounded-sm bg-sage/20 text-muted dark:text-blush">Seu tópico</span>' : ''}
             ${tags}
           </div>
           ${prereq ? `<p class="mt-2 text-xs text-muted">Antes: ${prereq}</p>` : ''}
-          ${resources ? `<ul class="mt-2 space-y-1 text-xs">${resources}</ul>` : ''}
+          ${resources ? `<ul class="read mt-3 space-y-2">${resources}</ul>` : ''}
           <div class="mt-2 flex flex-wrap gap-1.5">${statusButtons}</div>
           ${noteOpen ? `
-            <label class="block mt-3 text-[11px] font-mono uppercase tracking-wider text-muted" for="note-${topic.id}">Anotações pessoais</label>
+            <label class="block mt-3 text-xs font-mono text-muted" for="note-${topic.id}">Anotações pessoais</label>
             <textarea id="note-${topic.id}" data-action="edit-note" data-item-id="${topic.id}" rows="3" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-paper dark:bg-night p-2 text-sm">${escapeHtml(topic.note || '')}</textarea>
           ` : ''}
         </div>
@@ -324,7 +322,7 @@ function renderGuide(project) {
   if (!steps.length && !criteria.length) return '';
   const checks = (activeTrackState().guideChecks || {})[project.id] || { steps: {}, criteria: {} };
   const line = (group, text, index) => `
-    <label class="flex gap-2 text-xs text-muted dark:text-blush">
+    <label class="read flex gap-2 text-muted dark:text-blush">
       <input type="checkbox" data-action="guide-check" data-project-id="${project.id}" data-guide-group="${group}" data-index="${index}" ${checks[group]?.[index] ? 'checked' : ''} />
       <span>${escapeHtml(text)}</span>
     </label>`;
@@ -332,7 +330,7 @@ function renderGuide(project) {
     <details class="mt-2">
       <summary class="text-xs font-semibold">Roteiro e definição de pronto</summary>
       ${steps.length ? `<ol class="mt-2 space-y-1 list-decimal pl-4">${steps.map((step, index) => `<li>${line('steps', step, index)}</li>`).join('')}</ol>` : ''}
-      ${criteria.length ? `<p class="mt-2 text-[11px] font-mono uppercase text-muted">Definição de pronto</p><div class="space-y-1">${criteria.map((item, index) => line('criteria', item, index)).join('')}</div>` : ''}
+      ${criteria.length ? `<p class="mt-3 text-xs font-mono text-muted">Definição de pronto</p><div class="space-y-2">${criteria.map((item, index) => line('criteria', item, index)).join('')}</div>` : ''}
     </details>`;
 }
 
@@ -346,7 +344,7 @@ function renderProject(project) {
       ${checkbox(project.done, `data-action="toggle-project" data-project-id="${project.id}"`, `${project.done ? 'Desmarcar projeto' : 'Concluir projeto'} ${project.title}`)}
       <div class="min-w-0">
         <p class="text-sm font-semibold ${strike}">${escapeHtml(project.title)}</p>
-        <p class="text-xs text-muted dark:text-blush mt-1">${escapeHtml(project.description)}</p>
+        <p class="read text-muted dark:text-blush mt-3">${escapeHtml(project.description)}</p>
         <p class="mt-1 text-[11px] font-mono text-muted">${LEVEL_LABELS[project.level]} · ${Number(project.hours) || 0} h${project.custom ? ' · sua ideia' : ''}</p>
         ${renderGuide(project)}
         <div class="mt-1 flex gap-1.5">${actions}</div>
@@ -583,7 +581,7 @@ function updateHeader() {
   $('trackBadge').textContent = track.name;
   $('trackTagline').textContent = track.description;
   $('trackIcon').innerHTML = icon(track.id);
-  document.title = `Trilha de Estudos — ${track.name}`;
+  document.title = `Rumo — ${track.name}`;
   renderTrackSwitcher();
   renderRenameNotice();
 }
@@ -767,7 +765,7 @@ function renderPreview() {
   $('planPreview').innerHTML = `
     <p class="font-semibold">${escapeHtml(track.name)} · ${LEVEL_LABELS[level]} · ${hours} h/semana</p>
     ${together}
-    <p class="mt-2 text-sm text-muted dark:text-blush">${stats.required} tópicos obrigatórios, ${stats.optional} opcionais e ${projects.total} ideias de projeto neste nível. ${escapeHtml(formatDuration(stats.hours, hours))} no ritmo escolhido.</p>
+    <p class="read mt-3 text-muted dark:text-blush">${stats.required} tópicos obrigatórios, ${stats.optional} opcionais e ${projects.total} ideias de projeto neste nível. ${escapeHtml(formatDuration(stats.hours, hours))} no ritmo escolhido.</p>
     <ol class="mt-3 text-sm">${phases}</ol>`;
 }
 
@@ -948,7 +946,7 @@ function exportJson() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `trilha-estudos-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  link.download = `rumo-backup-${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
   URL.revokeObjectURL(url);
   toast('Backup JSON exportado.');
@@ -1358,11 +1356,11 @@ function bind() {
   $('onbStart').addEventListener('click', confirmOnboarding);
   $('exportMdBtn').addEventListener('click', () => {
     const view = buildRoadmap(activeTrack(), activeTrackState());
-    downloadFile(`trilha-${activeTrack().id}.md`, roadmapMarkdown(activeTrack(), view), 'text/markdown');
+    downloadFile(`rumo-${activeTrack().id}.md`, roadmapMarkdown(activeTrack(), view), 'text/markdown');
   });
   $('exportPdfBtn').addEventListener('click', () => {
     const view = buildRoadmap(activeTrack(), activeTrackState());
-    downloadFile(`trilha-${activeTrack().id}.pdf`, textPdf(roadmapLines(activeTrack(), view)), 'application/pdf');
+    downloadFile(`rumo-${activeTrack().id}.pdf`, textPdf(roadmapLines(activeTrack(), view)), 'application/pdf');
   });
   $('exportPngBtn').addEventListener('click', async () => {
     await document.fonts.ready;
@@ -1372,7 +1370,7 @@ function bind() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `trilha-${activeTrack().id}.png`;
+    link.download = `rumo-${activeTrack().id}.png`;
     link.click();
     URL.revokeObjectURL(url);
   });
@@ -1386,7 +1384,7 @@ function bind() {
     showApp: () => { $('app').hidden = false; },
     hideApp: () => { $('app').hidden = true; },
     download: downloadFile,
-    downloadPdf: (sessions) => downloadFile(`plano-de-estudo-${activeTrack().id}.pdf`, textPdf(planMarkdown(activeTrack().name, sessions).split('\n')), 'application/pdf'),
+    downloadPdf: (sessions) => downloadFile(`rumo-plano-${activeTrack().id}.pdf`, textPdf(planMarkdown(activeTrack().name, sessions).split('\n')), 'application/pdf'),
   });
   $('quizDialog').addEventListener('close', () => {
     if (!$('app').hidden) refresh();
@@ -1447,7 +1445,7 @@ function openQuiz(scope, id) {
       const tone = !selected ? '' : choice.correct ? 'border-terra dark:border-ochre' : 'border-terra';
       return `<label class="flex gap-2 rounded-sm border border-line dark:border-sage/60 px-3 py-2 ${tone}">
         <input type="radio" name="quiz-${question.id}" data-question="${question.id}" value="${choice.id}" ${selected ? 'checked' : ''} />
-        <span><span>${escapeHtml(choice.text)}</span>${selected ? `<span class="block mt-1 text-xs text-muted">${verdict}${escapeHtml(choice.explanation)}</span>` : ''}</span>
+        <span><span class="read">${escapeHtml(choice.text)}</span>${selected ? `<span class="read mt-2 block text-muted">${verdict}${escapeHtml(choice.explanation)}</span>` : ''}</span>
       </label>`;
     }).join('');
     const review = pickedChoice && !pickedChoice.correct
@@ -1457,7 +1455,7 @@ function openQuiz(scope, id) {
       const live = $('quizLive');
       if (live) live.textContent = `${verdict}${pickedChoice.explanation}`;
     }
-    return `<fieldset><legend class="font-semibold text-sm">${escapeHtml(question.prompt)}</legend><div class="mt-2 space-y-2">${choices}</div>${review}</fieldset>`;
+    return `<fieldset class="mt-4"><legend class="font-semibold">${escapeHtml(question.prompt)}</legend><div class="mt-3 space-y-3">${choices}</div>${review}</fieldset>`;
   }).join('');
   if (!$('quizDialog').open) $('quizDialog').showModal();
 }

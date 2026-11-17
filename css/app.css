@@ -1,5 +1,7 @@
 :root {
   color-scheme: light;
+  --font-body: "Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-ui: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   --paper: #e3ded2;
   --soft: #f3eee4;
   --blush: #e9ddd5;
@@ -25,9 +27,58 @@ html.dark .text-muted {
   color: var(--muted);
 }
 
+html body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
 body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
   background-blend-mode: multiply;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+label,
+legend,
+summary,
+input,
+select,
+.font-mono,
+.phase-index,
+.track-switch {
+  font-family: var(--font-ui);
+}
+
+html body :is(h1, h2, h3, h4) {
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+textarea,
+.read {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.read {
+  max-width: 70ch;
+}
+
+span.read {
+  display: block;
+}
+
+.read + .read {
+  margin-top: 0.9em;
 }
 
 html.dark body {
@@ -54,6 +105,36 @@ html.dark .skip-link {
 .skip-link:focus {
   top: 1rem;
 }
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: inherit;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.brand-word {
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.brand-mark {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+}
+
+.logo-north { fill: #7a3329; }
+.logo-tail { fill: #887655; }
+
+html.dark .logo-north { fill: #9b655d; }
+html.dark .logo-tail { fill: #ddc08a; }
 
 :focus-visible {
   outline: 2px solid var(--focus);
@@ -112,7 +193,7 @@ html.dark .mark-box.is-on {
   justify-content: center;
   flex-shrink: 0;
   border: 1px solid var(--line);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-ui);
   font-size: 0.75rem;
   font-weight: 700;
 }
@@ -263,6 +344,25 @@ summary::-webkit-details-marker {
 }
 
 @media print {
+  html body,
+  html body.printing-plan #planScreen {
+    font-family: "Atkinson Hyperlegible Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  label,
+  legend,
+  summary {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+
   body.printing-plan * { visibility: hidden; }
   body.printing-plan #planScreen,
   body.printing-plan #planScreen * { visibility: visible; }

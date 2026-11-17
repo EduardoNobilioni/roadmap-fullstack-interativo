@@ -1,11 +1,30 @@
 /**
- * Regras puras da Trilha de Estudos.
+ * Regras puras do Rumo.
  * Sem DOM: dá para testar no Node e reutilizar no navegador.
  */
 
-export const STORAGE_KEY = 'trilha_estudos_ptbr_v2';
+export const STORAGE_KEY = 'rumo_guia_ptbr_v1';
+export const PREVIOUS_STORAGE_KEY = 'trilha_estudos_ptbr_v2';
 export const LEGACY_STORAGE_KEY = 'roadmap_fullstack_ptbr_v1';
-export const APP_NAME = 'Trilha de Estudos';
+export const APP_NAME = 'Rumo';
+export const APP_TAGLINE = 'Rumo: roadmap, guia e plano de estudos em tecnologia';
+
+const STORAGE_KEYS = [STORAGE_KEY, PREVIOUS_STORAGE_KEY, LEGACY_STORAGE_KEY];
+
+export function readStoredJson(getItem) {
+  if (typeof getItem !== 'function') return null;
+  for (const key of STORAGE_KEYS) {
+    const raw = getItem(key);
+    if (typeof raw !== 'string' || !raw.trim()) continue;
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') return { key, parsed };
+    } catch {
+      /* chave corrompida: tenta a anterior */
+    }
+  }
+  return null;
+}
 
 export const LEVELS = ['iniciante', 'intermediario', 'avancado'];
 

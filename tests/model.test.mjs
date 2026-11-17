@@ -19,7 +19,10 @@ import {
   projectPlanStats,
   groupTracks,
   normalizeState,
+  PREVIOUS_STORAGE_KEY,
+  readStoredJson,
   roadmapStats,
+  STORAGE_KEY,
   setTopicStatus,
   tracksMatching,
   sharePlanFromTrack,
@@ -281,6 +284,24 @@ test('a trilha Dados continua no id dados ao se chamar Ciência de Dados', () =>
   const restored = normalizeState(exported);
   assert.equal(restored.tracks.dados.completed['ds-python'], true);
   assert.deepEqual(restored.profile.companionIds, ['python']);
+});
+
+test('a chave nova do Rumo lê o progresso salvo nas chaves antigas', () => {
+  const previous = {
+    version: 2,
+    theme: 'light',
+    activeTrackId: 'frontend',
+    profile: { onboarded: true },
+    tracks: { frontend: { level: 'iniciante', weeklyHours: 4, completed: { 'fe-html': true } } },
+  };
+  const bag = { [PREVIOUS_STORAGE_KEY]: JSON.stringify(previous) };
+  const found = readStoredJson((key) => bag[key] || null);
+  assert.equal(found.key, PREVIOUS_STORAGE_KEY);
+  const state = normalizeState(found.parsed);
+  assert.equal(state.tracks.frontend.completed['fe-html'], true);
+  assert.equal(STORAGE_KEY, 'rumo_guia_ptbr_v1');
+  bag[STORAGE_KEY] = JSON.stringify({ ...previous, theme: 'dark' });
+  assert.equal(readStoredJson((key) => bag[key] || null).key, STORAGE_KEY);
 });
 
 test('busca de trilha ignora acento e agrupa por carreira, fundamentos e tecnologia', () => {

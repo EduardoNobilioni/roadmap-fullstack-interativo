@@ -1,12 +1,16 @@
-# Trilha de Estudos
+# <img src="assets/brand/logo-light.svg" alt="" width="32" height="32"> Rumo
 
-Guia de estudo para quem está na faculdade de tecnologia e não sabe por onde começar. Você escolhe a área, o nível e quantas horas consegue estudar por semana. O app monta uma trilha, guarda o seu progresso neste navegador e ajuda a encaixar o estudo na grade da universidade.
+Rumo: roadmap, guia e plano de estudos em tecnologia. A marca é uma agulha geométrica, desenhada para este projeto: a ponta terracota aponta para nordeste e a cauda é bege. No fundo claro a cauda escurece para `#887655`, porque o bege `#ddc08a` não chega a 3:1 sobre `#e3ded2`. No fundo escuro a ponta clareia para `#9b655d`, porque o terracota `#7a3329` não chega a 3:1 sobre `#2a201a`.
+
+Guia para quem está na faculdade de tecnologia e não sabe por onde começar. Você escolhe a área, o nível e quantas horas consegue estudar por semana. O app monta uma trilha, guarda o seu progresso neste navegador e ajuda a encaixar o estudo na grade da universidade.
 
 Não é um curso e não emite certificado. Não há cadastro, servidor nem login.
 
 A trilha Full-Stack original continua aqui (os 46 tópicos de antes, mais cache HTTP). Em volta dela há carreiras, fundamentos e tecnologias.
 
-Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
+Publicação: https://eduardonobilioni.github.io/rumo-guia-de-estudos/
+
+Repositório: https://github.com/EduardoNobilioni/rumo-guia-de-estudos
 
 ![Escolha da área no primeiro acesso](docs/screenshots/onboarding.png)
 
@@ -51,7 +55,9 @@ Ciência de Dados é a trilha que se chamava Dados. O identificador no arquivo e
 
 ## Visual
 
-O visual é plano, de meados do século: cantos quase retos, borda de 1 px, sem gradiente e sem brilho. O texto usa Source Sans 3. Horas, filtros e rótulos usam JetBrains Mono.
+O visual é plano, de meados do século: cantos quase retos, borda de 1 px, sem gradiente e sem brilho. Não há serifada. O texto corrido usa Atkinson Hyperlegible Mono, desenhada para leitura longa e para distinguir l, 1 e I, e 0 e O. Títulos, rótulos, botões e metadados usam IBM Plex Mono: uma mono de manual técnico, mais próxima dessa paleta do que uma fonte de editor de código. O corpo fica em 17 px, peso 400, entrelinha 1,65 e no máximo cerca de 70 caracteres por linha. Frases longas não vão em caixa alta. A página pede as fontes com `font-display: swap` e, se elas não carregarem, cai em ui-monospace, Menlo, Consolas e monospace.
+
+O PNG da trilha e a impressão do plano usam as mesmas duas famílias. O PDF gerado no navegador usa Courier, a mono que o formato já traz, em 10 pt com entrelinha 1,6 e linhas de até 70 caracteres. Esse gerador não embute arquivo de fonte.
 
 As cores partem de uma paleta midcentury (aproximações dos tons Benjamin Moore) e foram ajustadas para caber em WCAG 2.2 AA e no contraste APCA do rascunho WCAG 3 (Lc 75 ou mais no texto corrido, 60 na interface, 45 em borda e ícone).
 
@@ -82,13 +88,13 @@ A meta prática é WCAG 2.2 nível AA. O contraste de texto e de interface tamb�
 - Campos têm rótulo. Avisos de erro, exportação e o resultado da autoavaliação saem numa região `aria-live`.
 - **Revisar**, **Ocupado** e o visto não dependem só da cor.
 - `prefers-reduced-motion` desliga animação. Sem tema salvo, o app segue `prefers-color-scheme`.
-- O layout quebra em uma coluna por volta de 320 px e usa `rem`, para o texto a 200% não ficar preso.
+- O layout quebra em uma coluna por volta de 320 px e usa `rem` e `ch`, para o texto a 200% refluir em vez de ficar preso.
 
 Como foi testado: `axe-core` 4.14 no Chrome, no onboarding (também a 390 px), na trilha e no plano. Os relatórios estão em `docs/auditoria/`. Nesta rodada o axe não apontou violação. O Lighthouse da rodada anterior marcou 100 nas duas visões e não foi reexecutado agora. Isso não substitui um teste com leitor de tela feito por uma pessoa.
 
 ## Dados e privacidade
 
-Tudo fica no seu navegador, na chave `localStorage` `trilha_estudos_ptbr_v2`. Quem usava a versão antiga é migrado de `roadmap_fullstack_ptbr_v1`.
+Tudo fica no seu navegador, na chave `localStorage` `rumo_guia_ptbr_v1`. Quem já tinha dados em `trilha_estudos_ptbr_v2` ou no formato antigo `roadmap_fullstack_ptbr_v1` é migrado na primeira abertura. O progresso não é apagado.
 
 O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação, o plano de estudo com a grade importada e as tecnologias marcadas para estudar junto. O link de compartilhar não leva isso: só a trilha aberta, nível, horas, ordem e o que você marcou como opcional ou oculto.
 
@@ -144,7 +150,11 @@ O site é estático. Não há build.
 3. Use o branch `main` e a pasta `/` (root).
 4. O arquivo `.nojekyll` na raiz impede o Jekyll de ignorar pastas.
 
-O endereço deste repositório é https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
+O site fica em https://eduardonobilioni.github.io/rumo-guia-de-estudos/
+
+O repositório fica em https://github.com/EduardoNobilioni/rumo-guia-de-estudos
+
+Quando o repositório for renomeado para `rumo-guia-de-estudos`, o Pages passa a usar esse endereço. O caminho antigo deixa de publicar.
 
 ## Como este projeto foi feito
 
