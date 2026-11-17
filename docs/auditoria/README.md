@@ -15,4 +15,4 @@ Chrome headless, três telas. Nenhuma violação.
 - Mobile (padrão): 100
 - Desktop: 100
 
-O HTML completo do Lighthouse mobile está em `lighthouse-acessibilidade.html`.
+O HTML completo do Lighthouse não fica neste repositório. Ele embute JavaScript de terceiros e o SonarCloud trata esse código como se fosse do projeto.
