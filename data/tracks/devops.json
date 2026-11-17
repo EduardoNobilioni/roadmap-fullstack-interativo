@@ -1291,6 +1291,247 @@
           ]
         }
       ]
+    },
+    {
+      "id": "do-fase-7",
+      "number": 7,
+      "badgeTitle": "Plataforma",
+      "title": "Kubernetes, borda TLS e um pouco de serverless",
+      "topics": [
+        {
+          "id": "do-k8s",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Kubernetes no tamanho de um tutorial",
+          "description": "Kubernetes agenda contêineres, reinicia quando caem e expõe um serviço. Pod, Deployment e Service bastam para o primeiro contato. Cluster grande, malha e operador ficam para depois que esse trio estiver claro.",
+          "tags": [
+            "Kubernetes",
+            "Pod"
+          ],
+          "prerequisites": [
+            "do-docker"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial básico (em português)",
+              "url": "https://kubernetes.io/pt-br/docs/tutorials/kubernetes-basics/",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Visão geral dos conceitos",
+              "url": "https://kubernetes.io/pt-br/docs/concepts/overview/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "do-borda",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Proxy, TLS e balanceamento",
+          "description": "Na borda, um proxy termina o TLS, distribui pedidos entre instâncias e esconde a porta interna. Nginx faz esse papel. Let's Encrypt emite o certificado. Sem TLS, a senha atravessa a rede às claras.",
+          "tags": [
+            "Nginx",
+            "TLS",
+            "Balanceamento"
+          ],
+          "prerequisites": [
+            "do-net"
+          ],
+          "resources": [
+            {
+              "title": "Guia inicial do Nginx",
+              "url": "https://nginx.org/en/docs/beginners_guide.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Balanceamento no Nginx",
+              "url": "https://nginx.org/en/docs/http/load_balancing.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Começando com Let's Encrypt",
+              "url": "https://letsencrypt.org/pt-br/getting-started/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "do-segredos",
+          "level": "avancado",
+          "hours": 4,
+          "title": "Segredo fora do git",
+          "description": "Senha, token e chave de nuvem não entram no commit nem na imagem. No GitHub Actions, o segredo é variável do repositório. No Kubernetes, um Secret existe, mas não é cofre mágico: quem administra o cluster lê. Vault é o nome do problema quando o time cresce.",
+          "tags": [
+            "Segredos",
+            "Vault"
+          ],
+          "prerequisites": [
+            "do-iam"
+          ],
+          "resources": [
+            {
+              "title": "Segredos no GitHub Actions",
+              "url": "https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Secrets no Kubernetes",
+              "url": "https://kubernetes.io/docs/concepts/configuration/secret/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "O que é o Vault",
+              "url": "https://developer.hashicorp.com/vault/docs/what-is-vault",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "do-serverless",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Serverless, em poucas linhas",
+          "description": "Serverless aqui quer dizer: você entrega uma função, a plataforma sobe o processo quando chega um evento e cobra esse tempo. Cabe em tarefa curta e irregular. Não cabe em conexão longa, disco local ou um sistema que você ainda não sabe explicar.",
+          "tags": [
+            "Lambda",
+            "Função"
+          ],
+          "prerequisites": [
+            "do-cloud"
+          ],
+          "resources": [
+            {
+              "title": "Serverless na AWS",
+              "url": "https://aws.amazon.com/pt/serverless/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "O que é o AWS Lambda",
+              "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Visão geral do Azure Functions",
+              "url": "https://learn.microsoft.com/pt-br/azure/azure-functions/functions-overview",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "do7-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Onde o segredo mora",
+          "description": "Liste os segredos de um projeto seu (banco, token, chave) e o lugar certo de cada um. Aponte qualquer um que esteja no git e tire.",
+          "steps": [
+            "Procure senha em arquivo, histórico e README.",
+            "Mova o que achar para variável de ambiente local, fora do commit.",
+            "Escreva o nome das variáveis, não os valores."
+          ],
+          "definitionOfDone": [
+            "O repositório fica sem segredo.",
+            "A lista distingue segredo de configuração pública."
+          ]
+        },
+        {
+          "id": "do7-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Uma função e um certificado",
+          "description": "Descreva uma tarefa curta que caberia numa função serverless e outra que não caberia. À parte, anote os passos para colocar TLS na frente de um serviço com Let's Encrypt ou o certificado do laboratório.",
+          "steps": [
+            "Escreva a entrada e a saída da função em cinco linhas.",
+            "Diga o que quebra se a função não tiver disco nem conexão presa.",
+            "Liste o caminho do certificado até o proxy."
+          ],
+          "definitionOfDone": [
+            "Os dois casos, o que cabe e o que não cabe, estão nomeados.",
+            "O TLS não está \"ligado no código da aplicação\" como única opção."
+          ]
+        },
+        {
+          "id": "do7-projeto-avancado",
+          "level": "avancado",
+          "hours": 14,
+          "title": "Pod, Service e um proxy",
+          "description": "Suba o tutorial de Kubernetes até um Deployment com mais de uma réplica e um Service. Na frente, descreva ou configure o Nginx repartindo pedido e terminando TLS.",
+          "steps": [
+            "Mostre o Pod reiniciando quando você mata o processo.",
+            "Explique Deployment e Service com as suas palavras.",
+            "Desenhe o pedido: cliente, proxy, Service, Pod."
+          ],
+          "definitionOfDone": [
+            "Os manifestos estão no repositório, sem senha.",
+            "O desenho tem a borda TLS separada do contêiner da aplicação."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "do-fase-7-q1",
+          "prompt": "O que um Service do Kubernetes faz neste primeiro contato?",
+          "reviewTopicId": "do-k8s",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Expõe um conjunto de Pods com um endereço estável.",
+              "correct": true,
+              "explanation": "O Pod some e volta; o Service é a porta da frente."
+            },
+            {
+              "id": "b",
+              "text": "Compila a imagem Docker.",
+              "correct": false,
+              "explanation": "Imagem é outra etapa."
+            },
+            {
+              "id": "c",
+              "text": "Substitui o banco de dados.",
+              "correct": false,
+              "explanation": "Service não guarda os seus registros."
+            }
+          ]
+        },
+        {
+          "id": "do-fase-7-q2",
+          "prompt": "Qual tarefa combina com uma função serverless?",
+          "reviewTopicId": "do-serverless",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Um trabalho curto, disparado por evento, que pode começar do zero.",
+              "correct": true,
+              "explanation": "A plataforma cria e some com o processo."
+            },
+            {
+              "id": "b",
+              "text": "Um websocket que fica aberto o dia inteiro.",
+              "correct": false,
+              "explanation": "Conexão presa não é o modelo."
+            },
+            {
+              "id": "c",
+              "text": "O banco principal da universidade, com disco próprio.",
+              "correct": false,
+              "explanation": "Estado durável e disco local pedem outro tipo de compute."
+            }
+          ]
+        }
+      ]
     }
   ],
   "id": "devops",

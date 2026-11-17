@@ -1260,6 +1260,445 @@
           ]
         }
       ]
+    },
+    {
+      "id": "be-fase-6",
+      "number": 6,
+      "badgeTitle": "Operação",
+      "title": "Cache, proxy, fila e observação",
+      "topics": [
+        {
+          "id": "be-redis",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Redis para cache",
+          "description": "Redis guarda dado quente na memória, com uma chave e um prazo. Serve para uma consulta cara ou uma sessão, não para o registro que precisa sobreviver sozinho. Anote o que invalida a chave quando o dado muda.",
+          "tags": [
+            "Redis",
+            "Cache"
+          ],
+          "prerequisites": [
+            "be-sql"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Redis",
+              "url": "https://redis.io/docs/latest/develop/get-started/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Casos de uso do Redis",
+              "url": "https://redis.io/docs/latest/develop/use-cases/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "be-http-cache",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Cache HTTP",
+          "description": "Cache-Control e ETag deixam o cliente ou um proxy reutilizar uma resposta. Resposta pública e resposta de um usuário não usam a mesma regra. Sem cabeçalho, cada GET repete o trabalho.",
+          "tags": [
+            "Cache-Control",
+            "ETag"
+          ],
+          "prerequisites": [
+            "be-http"
+          ],
+          "resources": [
+            {
+              "title": "Cache HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Caching",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Cabeçalho Cache-Control (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Cache-Control",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "be-nginx",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Nginx na frente da API",
+          "description": "O Nginx recebe o HTTPS, encaminha para o processo da API e pode servir o arquivo estático. A aplicação não precisa estar na porta 80. Log de acesso e um health check simples dizem se o processo atrás respondeu.",
+          "tags": [
+            "Nginx",
+            "Proxy"
+          ],
+          "prerequisites": [
+            "be-deploy"
+          ],
+          "resources": [
+            {
+              "title": "Guia inicial do Nginx",
+              "url": "https://nginx.org/en/docs/beginners_guide.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Balanceamento no Nginx",
+              "url": "https://nginx.org/en/docs/http/load_balancing.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "be-obs",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Log, métrica e health check",
+          "description": "Log em texto estruturado conta o que a requisição fez, sem senha e sem token. Uma rota /health responde se o processo está de pé. Métrica conta taxa de erro e tempo. Painel sem pergunta vira decoração.",
+          "tags": [
+            "Logs",
+            "Métricas",
+            "Health"
+          ],
+          "prerequisites": [
+            "be-express"
+          ],
+          "resources": [
+            {
+              "title": "Logs no 12-factor",
+              "url": "https://12factor.net/pt_br/logs",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Visão geral do Prometheus",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "be-fila",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Fila, em uma frase",
+          "description": "Uma fila tira da requisição HTTP o trabalho que pode esperar: e-mail, miniatura, importação. Quem publica não espera o fim. Quem consome precisa tolerar repetição, porque a mensagem pode chegar duas vezes.",
+          "tags": [
+            "Fila",
+            "RabbitMQ"
+          ],
+          "prerequisites": [
+            "be-express"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial de RabbitMQ em JavaScript",
+              "url": "https://www.rabbitmq.com/tutorials/tutorial-one-javascript",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "be6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Cabeçalho de cache numa rota",
+          "description": "Faça um GET que devolve um JSON estável e documente o Cache-Control. Outro GET, de um usuário, não pode ser cache público.",
+          "steps": [
+            "Escolha uma resposta que muda pouco e escreva o cabeçalho.",
+            "Escolha uma resposta privada e explique por que ela não leva public.",
+            "Mostre os dois cabeçalhos num print ou num teste."
+          ],
+          "definitionOfDone": [
+            "As duas rotas estão nomeadas.",
+            "Dá para ver a diferença entre resposta pública e privada."
+          ]
+        },
+        {
+          "id": "be6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Consulta com Redis e um health",
+          "description": "Guarde o resultado de uma consulta por alguns segundos no Redis. A rota /health responde 200 quando o processo está no ar e diz o que ela não verifica.",
+          "steps": [
+            "Meça a consulta uma vez sem cache e anote o que você guardou.",
+            "Defina a chave e o prazo. Escreva quando a chave precisa sair.",
+            "Implemente /health sem checar o mundo inteiro."
+          ],
+          "definitionOfDone": [
+            "O README diz a chave, o prazo e o momento de invalidar.",
+            "A rota de health não devolve segredo."
+          ]
+        },
+        {
+          "id": "be6-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Proxy e um trabalho na fila",
+          "description": "Coloque o Nginx na frente da API e tire um trabalho lento da requisição, publicando numa fila. O cliente recebe 202 ou o recurso criado, não espera o e-mail sair.",
+          "steps": [
+            "Configure o proxy para uma porta interna.",
+            "Publique uma mensagem e consuma em outro processo.",
+            "Mostre o que acontece se o consumidor processar a mesma mensagem de novo."
+          ],
+          "definitionOfDone": [
+            "A API não escuta na porta pública direto.",
+            "Há uma frase sobre mensagem repetida."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-6-q1",
+          "prompt": "Para que o Redis entra numa API de estudo, neste recorte?",
+          "reviewTopicId": "be-redis",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Guardar por um tempo uma resposta cara, com uma regra de quando apagar.",
+              "correct": true,
+              "explanation": "Cache sem prazo vira dado mentiroso."
+            },
+            {
+              "id": "b",
+              "text": "Substituir o banco que guarda a matrícula do aluno.",
+              "correct": false,
+              "explanation": "O registro durável continua no banco."
+            },
+            {
+              "id": "c",
+              "text": "Esconder a senha do banco dentro da chave.",
+              "correct": false,
+              "explanation": "Chave de cache não é cofre de segredo."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-6-q2",
+          "prompt": "Por que o consumidor de uma fila precisa aceitar a mesma mensagem duas vezes?",
+          "reviewTopicId": "be-fila",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque a entrega pode repetir quando há falha no meio.",
+              "correct": true,
+              "explanation": "Pelo menos uma vez não é exatamente uma vez."
+            },
+            {
+              "id": "b",
+              "text": "Porque o HTTP exige POST duplicado.",
+              "correct": false,
+              "explanation": "A fila não é o método HTTP."
+            },
+            {
+              "id": "c",
+              "text": "Porque o Nginx reenvia todo GET.",
+              "correct": false,
+              "explanation": "Repetição aqui é da mensagem, não do proxy."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-fase-7",
+      "number": 7,
+      "badgeTitle": "Arquitetura",
+      "title": "Monólito, doze fatores e ajuda de modelo",
+      "topics": [
+        {
+          "id": "be-arquitetura",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Monólito e serviços",
+          "description": "Comece num processo só, com módulos separados, enquanto o time cabe numa cabeça. Quebrar em serviços cedo paga rede, deploy e falha parcial. A divisão faz sentido quando um pedaço precisa escalar ou sair no seu ritmo, e você sabe o contrato.",
+          "tags": [
+            "Monólito",
+            "Serviços"
+          ],
+          "prerequisites": [
+            "be-express"
+          ],
+          "resources": [
+            {
+              "title": "Monólito (microservices.io)",
+              "url": "https://microservices.io/patterns/monolithic.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Microservices (Martin Fowler)",
+              "url": "https://martinfowler.com/articles/microservices.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "be-doze",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Doze fatores, o núcleo",
+          "description": "Configuração fica no ambiente, não no código. Dependência é declarada. Log vai para a saída padrão. O processo não guarda arquivo que precise sobreviver dentro do contêiner. O texto dos doze fatores é curto: leia os que mudam o seu deploy.",
+          "tags": [
+            "12-factor",
+            "Config"
+          ],
+          "prerequisites": [
+            "be-deploy"
+          ],
+          "resources": [
+            {
+              "title": "Os doze fatores",
+              "url": "https://12factor.net/pt_br/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Configuração",
+              "url": "https://12factor.net/pt_br/config",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "be-ia",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Modelo de linguagem no back-end",
+          "description": "O modelo rascunha um teste, explica um stack trace ou sugere um nome. Você confere o SQL, a autorização e o que entra no repositório. Não cole segredo, dado de aluno nem token no prompt. Se a resposta cita uma API que você não acha na documentação, ela não existe até você abrir a página.",
+          "tags": [
+            "LLM",
+            "Revisão"
+          ],
+          "prerequisites": [
+            "be-js"
+          ],
+          "resources": [
+            {
+              "title": "Modelos de linguagem grandes (IBM)",
+              "url": "https://www.ibm.com/br-pt/topics/large-language-models",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Fundamentos de IA (Microsoft Learn)",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-started-ai-fundamentals/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "be7-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Configuração fora do código",
+          "description": "Tire uma URL e uma porta do código e leia de variável de ambiente. O README mostra o nome da variável, não o valor secreto.",
+          "steps": [
+            "Liste o que muda entre o seu notebook e um servidor.",
+            "Leia essas chaves do ambiente, com um padrão só para desenvolvimento.",
+            "Confira que o repositório não ganhou um arquivo de senha."
+          ],
+          "definitionOfDone": [
+            "O programa sobe com a variável documentada.",
+            "Não há segredo commitado."
+          ]
+        },
+        {
+          "id": "be7-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Um módulo, dois processos ainda não",
+          "description": "Desenhe a API em módulos (rota, regra, banco) dentro de um processo. Escreva o que precisaria ser verdade para você separar um módulo em outro serviço, e por que ainda não separou.",
+          "steps": [
+            "Mostre a pasta ou os arquivos dos módulos.",
+            "Aponte uma chamada que hoje é função e viraria rede.",
+            "Liste dois custos dessa rede: falha e contrato."
+          ],
+          "definitionOfDone": [
+            "O desenho cabe numa página.",
+            "A decisão de continuar no monólito está escrita."
+          ]
+        },
+        {
+          "id": "be7-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Revisar um rascunho de teste",
+          "description": "Peça a um modelo um teste de uma regra pequena. Reescreva até você explicar cada expect. Inclua o caso que o modelo esqueceu.",
+          "steps": [
+            "Escolha uma função pura: desconto, conflito de horário ou permissão.",
+            "Compare o teste sugerido com a documentação da função.",
+            "Acrescente um caso de erro que não veio no rascunho."
+          ],
+          "definitionOfDone": [
+            "O teste roda sem a rede.",
+            "O README diz qual caso foi seu, não do modelo."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-7-q1",
+          "prompt": "Quando um monólito modular ainda é a escolha honesta?",
+          "reviewTopicId": "be-arquitetura",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Enquanto a rede entre serviços custaria mais do que o problema que você tem.",
+              "correct": true,
+              "explanation": "Serviço separado não é sinal de maturidade por si."
+            },
+            {
+              "id": "b",
+              "text": "Quando o README precisa de mais badges.",
+              "correct": false,
+              "explanation": "Badge não é requisito."
+            },
+            {
+              "id": "c",
+              "text": "Quando cada função vira um repositório.",
+              "correct": false,
+              "explanation": "Repositório por função espalha o que você ainda não domina."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-7-q2",
+          "prompt": "Onde a configuração do doze fatores deve viver?",
+          "reviewTopicId": "be-doze",
+          "choices": [
+            {
+              "id": "a",
+              "text": "No ambiente de execução, fora do código versionado.",
+              "correct": true,
+              "explanation": "Senha e URL mudam sem um commit."
+            },
+            {
+              "id": "b",
+              "text": "Num comentário no topo do arquivo principal.",
+              "correct": false,
+              "explanation": "Comentário não muda entre máquinas."
+            },
+            {
+              "id": "c",
+              "text": "Dentro da imagem, gravado no build.",
+              "correct": false,
+              "explanation": "Imagem com segredo vaza quando a imagem vaza."
+            }
+          ]
+        }
+      ]
     }
   ],
   "id": "backend",

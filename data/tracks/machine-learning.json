@@ -1,0 +1,410 @@
+{
+  "id": "machine-learning",
+  "name": "Machine Learning e IA",
+  "tagline": "Um modelo pequeno, com métrica e limite à vista",
+  "description": "Introdução sóbria: o que é aprender com dado, como não vazar a resposta para o treino e por que a métrica precisa existir antes do gráfico.",
+  "phases": [
+    {
+      "id": "ml-fase-1",
+      "number": 1,
+      "badgeTitle": "Ideia",
+      "title": "Dado, tarefa e limite",
+      "topics": [
+        {
+          "id": "ml-tarefa",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Que tarefa é essa",
+          "description": "Classificar, prever número ou agrupar são tarefas diferentes. Sem rótulo, não há supervisão. \"Usar IA\" não é tarefa. Escreva a decisão que o número vai informar.",
+          "tags": [
+            "ML"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Começando com scikit-learn",
+              "url": "https://scikit-learn.org/stable/getting_started.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Fundamentos de IA (Microsoft Learn)",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-started-ai-fundamentals/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ml-dado",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Tabela de treino",
+          "description": "Linha é exemplo, coluna é característica. O alvo é o que você quer prever e não pode estar escondido nas outras colunas. Dado faltante precisa de uma regra, não de otimismo.",
+          "tags": [
+            "Features"
+          ],
+          "prerequisites": [
+            "ml-tarefa"
+          ],
+          "resources": [
+            {
+              "title": "NumPy para quem está começando",
+              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "10 minutos de Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "ml-vazamento",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Vazamento",
+          "description": "Vazar é usar, no treino, informação que você não teria na hora de prever. Separar o conjunto de teste antes de normalizar com a estatística do arquivo inteiro já é um vazamento clássico. O número fica lindo e mente.",
+          "tags": [
+            "Vazamento"
+          ],
+          "prerequisites": [
+            "ml-dado"
+          ],
+          "resources": [
+            {
+              "title": "Validação cruzada (scikit-learn)",
+              "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Começando com scikit-learn",
+              "url": "https://scikit-learn.org/stable/getting_started.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "ml1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "A decisão em uma frase",
+          "description": "Escolha um problema da faculdade e escreva a tarefa, o alvo e o que você não vai prever.",
+          "steps": [
+            "Diga se há rótulo.",
+            "Diga a unidade do alvo.",
+            "Escreva um uso indevido."
+          ],
+          "definitionOfDone": [
+            "A frase cabe em cinco linhas.",
+            "O uso indevido está explícito."
+          ]
+        },
+        {
+          "id": "ml1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Tabela sem coluna proibida",
+          "description": "Monte uma tabela de exemplo e risque a coluna que entrega a resposta. Documente dado faltante.",
+          "steps": [
+            "Mostre o esquema.",
+            "Aponte a coluna vazada, se você a incluiu de propósito para ver.",
+            "Descreva a regra do nulo."
+          ],
+          "definitionOfDone": [
+            "A coluna alvo está nomeada.",
+            "A regra de nulo não é \"a gente vê depois\"."
+          ]
+        },
+        {
+          "id": "ml1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Onde o vazamento entrou",
+          "description": "Escreva dois roteiros: um que normaliza antes de separar o teste e outro que separa antes. Diga qual número você não acreditaria.",
+          "steps": [
+            "Desenhe a ordem dos passos.",
+            "Aponte o passo ilegal.",
+            "Relacione com a página de validação do scikit-learn."
+          ],
+          "definitionOfDone": [
+            "A ordem correta está desenhada.",
+            "Você não precisa ainda de um modelo complicado."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ml-fase-1-q1",
+          "prompt": "Qual ordem evita um vazamento clássico?",
+          "reviewTopicId": "ml-vazamento",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Separar o teste antes de calcular estatística no treino.",
+              "correct": true,
+              "explanation": "O teste não pode influenciar o preparo."
+            },
+            {
+              "id": "b",
+              "text": "Normalizar o arquivo inteiro e só então separar.",
+              "correct": false,
+              "explanation": "Aí o teste já vazou."
+            },
+            {
+              "id": "c",
+              "text": "Escolher o teste olhando qual deixa o modelo mais bonito.",
+              "correct": false,
+              "explanation": "Escolha depois de ver o resultado também vaza."
+            }
+          ]
+        },
+        {
+          "id": "ml-fase-1-q2",
+          "prompt": "Sem rótulo, o que você não tem?",
+          "reviewTopicId": "ml-tarefa",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Uma tarefa supervisionada.",
+              "correct": true,
+              "explanation": "Classificar e regredir pedem exemplo com resposta."
+            },
+            {
+              "id": "b",
+              "text": "Uma planilha.",
+              "correct": false,
+              "explanation": "Planilha pode existir sem alvo."
+            },
+            {
+              "id": "c",
+              "text": "Um gráfico.",
+              "correct": false,
+              "explanation": "Gráfico não cria rótulo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-fase-2",
+      "number": 2,
+      "badgeTitle": "Modelo",
+      "title": "Treinar, medir e parar",
+      "topics": [
+        {
+          "id": "ml-modelo",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Um modelo linear ou uma árvore rasa",
+          "description": "Comece pelo modelo que você explica. Regressão linear ou uma árvore pequena. Se você não descreve a entrada, um modelo maior só esconde o buraco.",
+          "tags": [
+            "scikit-learn"
+          ],
+          "prerequisites": [
+            "ml-dado"
+          ],
+          "resources": [
+            {
+              "title": "Começando com scikit-learn",
+              "url": "https://scikit-learn.org/stable/getting_started.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "ml-metrica",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Métrica antes do treino",
+          "description": "Acurácia mente quando uma classe domina. Erro absoluto médio tem unidade. Escolha a métrica com a decisão, e olhe o teste uma vez, não vinte.",
+          "tags": [
+            "Métrica"
+          ],
+          "prerequisites": [
+            "ml-modelo"
+          ],
+          "resources": [
+            {
+              "title": "Validação cruzada (scikit-learn)",
+              "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Estatística (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ml-limite",
+          "level": "avancado",
+          "hours": 4,
+          "title": "O que o modelo não faz",
+          "description": "Ele não explica causa. Não conserta dado enviesado. Não autoriza decisão sobre pessoa sem você saber o erro e quem paga por ele. Escreva o limite no mesmo lugar do resultado.",
+          "tags": [
+            "Limite",
+            "Viés"
+          ],
+          "prerequisites": [
+            "ml-metrica"
+          ],
+          "resources": [
+            {
+              "title": "People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Modelos de linguagem grandes (IBM)",
+              "url": "https://www.ibm.com/br-pt/topics/large-language-models",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "ml-llm",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Modelo de linguagem, à parte",
+          "description": "Um LLM gera texto provável. Não é o mesmo capítulo da regressão da sua tabela. Pode ajudar a explicar um erro ou rascunhar texto. Não invente citação, não cole dado pessoal no prompt e não entregue código que você não roda.",
+          "tags": [
+            "LLM"
+          ],
+          "prerequisites": [
+            "ml-tarefa"
+          ],
+          "resources": [
+            {
+              "title": "Modelos de linguagem grandes (IBM)",
+              "url": "https://www.ibm.com/br-pt/topics/large-language-models",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Fundamentos de IA (Microsoft Learn)",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-started-ai-fundamentals/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "ml2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Linha de base",
+          "description": "Antes do modelo, preveja com uma regra burra (média, classe mais comum) e anote o erro. O modelo depois precisa ganhar disso.",
+          "steps": [
+            "Calcule a linha de base no conjunto de teste, separado antes.",
+            "Escreva a unidade do erro.",
+            "Não use dado de pessoa real sensível."
+          ],
+          "definitionOfDone": [
+            "O número da linha de base está no README.",
+            "A separação do teste está descrita."
+          ]
+        },
+        {
+          "id": "ml2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Um modelo que ganha da média",
+          "description": "Treine um modelo simples do scikit-learn. Compare com a linha de base na métrica escolhida antes. Mostre um erro concreto.",
+          "steps": [
+            "Fixe a métrica no começo.",
+            "Treine só com o treino.",
+            "Escreva um exemplo que o modelo errou."
+          ],
+          "definitionOfDone": [
+            "A comparação está em número.",
+            "Há uma frase do que você não conclui."
+          ]
+        },
+        {
+          "id": "ml2-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Ficha do limite",
+          "description": "Junto do resultado, escreva viés possível, quem é prejudicado se o erro for alto e por que isso não é um sistema de decisão automática.",
+          "steps": [
+            "Nomeie a população do dado.",
+            "Nomeie um grupo que pode sumir na média.",
+            "Diga o que ficaria a cargo de uma pessoa."
+          ],
+          "definitionOfDone": [
+            "A ficha está no mesmo README do número.",
+            "Não há promessa de \"IA resolve\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ml-fase-2-q1",
+          "prompt": "Por que acurácia engana quando uma classe é quase todos os exemplos?",
+          "reviewTopicId": "ml-metrica",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque prever sempre a classe grande já acerta muito, sem aprender o raro.",
+              "correct": true,
+              "explanation": "A métrica precisa ver o que importa na decisão."
+            },
+            {
+              "id": "b",
+              "text": "Porque acurácia só existe em regressão.",
+              "correct": false,
+              "explanation": "Acurácia é de classificação."
+            },
+            {
+              "id": "c",
+              "text": "Porque o scikit-learn não calcula acurácia.",
+              "correct": false,
+              "explanation": "Calcula. O problema é interpretá-la."
+            }
+          ]
+        },
+        {
+          "id": "ml-fase-2-q2",
+          "prompt": "O que diferencia este tópico de LLM do modelo treinado na sua tabela?",
+          "reviewTopicId": "ml-llm",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O LLM completa texto; o outro aprende um alvo na tabela que você separou.",
+              "correct": true,
+              "explanation": "Os dois podem usar a palavra modelo e ainda assim ser tarefas diferentes."
+            },
+            {
+              "id": "b",
+              "text": "Nada: os dois são a mesma técnica.",
+              "correct": false,
+              "explanation": "A tarefa e o dado mudam."
+            },
+            {
+              "id": "c",
+              "text": "O LLM substitui a métrica.",
+              "correct": false,
+              "explanation": "Texto provável não é erro medido na sua tabela."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "id": "git",
+  "name": "Git e GitHub",
+  "tagline": "Histórico local, branch e um pull request",
+  "description": "Commit que se entende, branch curta e revisão no GitHub. Não é a trilha de CI.",
+  "phases": [
+    {
+      "id": "gt-fase-1",
+      "number": 1,
+      "badgeTitle": "Local",
+      "title": "Commit e branch",
+      "topics": [
+        {
+          "id": "gt-commit",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Commit",
+          "description": "Commit é um instantâneo com mensagem. A mensagem diz por quê. Stage escolhe o que entra. Não junte correção e formatação se você pode separar.",
+          "tags": [
+            "Git"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Livro do Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Sobre o Git (GitHub Docs)",
+              "url": "https://docs.github.com/pt/get-started/using-git/about-git",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "gt-branch",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Branch",
+          "description": "Branch é uma linha de trabalho. A principal fica estável. Branch curta, com um objetivo, cabe na revisão.",
+          "tags": [
+            "Branch"
+          ],
+          "prerequisites": [
+            "gt-commit"
+          ],
+          "resources": [
+            {
+              "title": "Livro do Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "gt-conflito",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Conflito",
+          "description": "Conflito é as duas linhas editarem o mesmo trecho. Você escolhe o resultado e commita a resolução. Apagar o arquivo para \"resolver\" perde os dois lados.",
+          "tags": [
+            "Conflito"
+          ],
+          "prerequisites": [
+            "gt-branch"
+          ],
+          "resources": [
+            {
+              "title": "Livro do Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Hello World no GitHub",
+              "url": "https://docs.github.com/pt/get-started/start-your-journey/hello-world",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "gt1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Três commits",
+          "description": "Num repositório novo, faça três commits pequenos com mensagens que dizem a mudança.",
+          "steps": [
+            "Não commite pasta de dependência.",
+            "Leia o log.",
+            "Uma mensagem explica o porquê."
+          ],
+          "definitionOfDone": [
+            "O log tem três entradas legíveis.",
+            "Não há arquivo gerado."
+          ]
+        },
+        {
+          "id": "gt1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Uma branch",
+          "description": "Faça a mudança numa branch e junte na principal quando o exemplo funcionar.",
+          "steps": [
+            "A principal não recebe o experimento quebrado.",
+            "A branch tem um nome do objetivo.",
+            "O merge está no log."
+          ],
+          "definitionOfDone": [
+            "Dá para ver a branch no histórico.",
+            "O objetivo cabe no nome."
+          ]
+        },
+        {
+          "id": "gt1-projeto-avancado",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Resolver de propósito",
+          "description": "Provoque um conflito em duas branches e resolva deixando os dois pedaços que importam.",
+          "steps": [
+            "Edite a mesma região.",
+            "Abra os marcadores.",
+            "Escreva o que você manteve."
+          ],
+          "definitionOfDone": [
+            "O arquivo final não tem marcador.",
+            "Os dois intents estão representados ou você explica o descarte."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "gt-fase-1-q1",
+          "prompt": "A mensagem de commit deve ajudar quem lê a saber...",
+          "reviewTopicId": "gt-commit",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Por que a mudança existe.",
+              "correct": true,
+              "explanation": "O diff já mostra o quê."
+            },
+            {
+              "id": "b",
+              "text": "A hora exata do seu fuso.",
+              "correct": false,
+              "explanation": "A data já fica no commit."
+            },
+            {
+              "id": "c",
+              "text": "O nome de todas as variáveis.",
+              "correct": false,
+              "explanation": "Isso é o diff."
+            }
+          ]
+        },
+        {
+          "id": "gt-fase-1-q2",
+          "prompt": "Marcador de conflito deixado no arquivo significa...",
+          "reviewTopicId": "gt-conflito",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Que a resolução ainda não terminou.",
+              "correct": true,
+              "explanation": "O arquivo não compila como código seu."
+            },
+            {
+              "id": "b",
+              "text": "Que o Git escolheu o lado certo.",
+              "correct": false,
+              "explanation": "Git não escolhe o sentido."
+            },
+            {
+              "id": "c",
+              "text": "Que a branch foi apagada.",
+              "correct": false,
+              "explanation": "Branch e marcador são coisas diferentes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gt-fase-2",
+      "number": 2,
+      "badgeTitle": "Remoto",
+      "title": "GitHub e pull request",
+      "topics": [
+        {
+          "id": "gt-remoto",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Remoto",
+          "description": "O remoto é outra cópia. push envia, pull traz. O histórico que você não puxou explica o \"rejeitado\".",
+          "tags": [
+            "GitHub"
+          ],
+          "prerequisites": [
+            "gt-commit"
+          ],
+          "resources": [
+            {
+              "title": "Hello World no GitHub",
+              "url": "https://docs.github.com/pt/get-started/start-your-journey/hello-world",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "gt-pr",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Pull request",
+          "description": "O PR descreve o que mudou, como ver e o que ficou de fora. Revisão é conversa sobre o diff, não sobre a pessoa.",
+          "tags": [
+            "Pull request"
+          ],
+          "prerequisites": [
+            "gt-branch",
+            "gt-remoto"
+          ],
+          "resources": [
+            {
+              "title": "Sobre pull requests",
+              "url": "https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "gt-segredo",
+          "level": "intermediario",
+          "hours": 2,
+          "title": "O que não entra no git",
+          "description": "Senha, token e arquivo de ambiente local ficam de fora. Se entrou, trocar a senha importa mais do que apagar o arquivo no commit seguinte: o histórico guarda.",
+          "tags": [
+            "Segredo"
+          ],
+          "prerequisites": [
+            "gt-commit"
+          ],
+          "resources": [
+            {
+              "title": "Sobre o Git (GitHub Docs)",
+              "url": "https://docs.github.com/pt/get-started/using-git/about-git",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "gt2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Repositório no GitHub",
+          "description": "Publique um exercício com README de cinco linhas: o que é e como rodar.",
+          "steps": [
+            "Crie o remoto.",
+            "Não suba dependência.",
+            "O README abre sozinho."
+          ],
+          "definitionOfDone": [
+            "O link abre.",
+            "Não há segredo."
+          ]
+        },
+        {
+          "id": "gt2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Um PR para você mesmo",
+          "description": "Abra um pull request com descrição, mesmo que você seja quem aprova. A descrição diz como testar.",
+          "steps": [
+            "Branch separada.",
+            "Texto de teste.",
+            "Um item que ficou de fora."
+          ],
+          "definitionOfDone": [
+            "O PR tem descrição.",
+            "O diff é pequeno o bastante para ler."
+          ]
+        },
+        {
+          "id": "gt2-projeto-avancado",
+          "level": "avancado",
+          "hours": 4,
+          "title": "Vazou a chave",
+          "description": "Simule com uma chave falsa: commite, ache no histórico e escreva o que faria com uma chave verdadeira (revogar), além de tirar do arquivo.",
+          "steps": [
+            "Use um valor claramente falso.",
+            "Mostre que o commit antigo ainda tem.",
+            "Escreva o passo de revogar."
+          ],
+          "definitionOfDone": [
+            "O valor falso está identificado.",
+            "A conclusão não é só \"apaguei o arquivo\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "gt-fase-2-q1",
+          "prompt": "Apagar o arquivo no commit seguinte remove o segredo?",
+          "reviewTopicId": "gt-segredo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Não. O commit antigo continua com ele. Chave verdadeira se revoga.",
+              "correct": true,
+              "explanation": "Histórico é cópia."
+            },
+            {
+              "id": "b",
+              "text": "Sim, o Git esquece sozinho.",
+              "correct": false,
+              "explanation": "Não esquece."
+            },
+            {
+              "id": "c",
+              "text": "Sim, se a mensagem pedir desculpas.",
+              "correct": false,
+              "explanation": "Mensagem não reescreve o passado."
+            }
+          ]
+        },
+        {
+          "id": "gt-fase-2-q2",
+          "prompt": "A descrição do pull request existe para...",
+          "reviewTopicId": "gt-pr",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Quem revisa saber o que olhar e como testar.",
+              "correct": true,
+              "explanation": "O diff não traz o contexto todo."
+            },
+            {
+              "id": "b",
+              "text": "Substituir o código.",
+              "correct": false,
+              "explanation": "O código continua no diff."
+            },
+            {
+              "id": "c",
+              "text": "Listar a sua biografia.",
+              "correct": false,
+              "explanation": "Biografia não testa."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,608 @@
+{
+  "id": "algoritmos",
+  "name": "Estruturas de Dados e Algoritmos",
+  "tagline": "Lista, árvore, ordenação e grafo, com o custo ao lado",
+  "description": "A disciplina que a faculdade cobra e a entrevista repete. A prática é implementar o pequeno e dizer o custo, não decorar figura.",
+  "phases": [
+    {
+      "id": "ed-fase-1",
+      "number": 1,
+      "badgeTitle": "Base",
+      "title": "Custo, vetor e busca",
+      "topics": [
+        {
+          "id": "ed-custo",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Contar o pior caso",
+          "description": "Conte operações em função do tamanho da entrada. Constante, linear e quadrática já separam a maior parte dos exercícios iniciais. Meça um exemplo só para não se enganar, mas a resposta do exercício é a curva.",
+          "tags": [
+            "Complexidade"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Projeto de algoritmos (IME-USP)",
+              "url": "https://www.ime.usp.br/~pf/algoritmos/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Big-O Cheat Sheet",
+              "url": "https://www.bigocheatsheet.com/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "ed-vetor",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Vetor e acesso direto",
+          "description": "No vetor, chegar no índice i é direto. Inserir no meio empurra o resto. Essa diferença explica por que \"lista\" no dia a dia e vetor na disciplina não são a mesma promessa.",
+          "tags": [
+            "Vetor",
+            "Array"
+          ],
+          "prerequisites": [
+            "ed-custo"
+          ],
+          "resources": [
+            {
+              "title": "Listas no Visualgo",
+              "url": "https://visualgo.net/en/list",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Algoritmos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science/algorithms",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ed-busca",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Busca linear e binária",
+          "description": "A linear olha um por um. A binária corta ao meio e só vale em sequência ordenada. Usar binária em dado bagunçado não fica \"mais ou menos certo\": fica errado.",
+          "tags": [
+            "Busca"
+          ],
+          "prerequisites": [
+            "ed-vetor"
+          ],
+          "resources": [
+            {
+              "title": "Algoritmos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science/algorithms",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Introduction to Algorithms (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "ed1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Busca linear contada",
+          "description": "Implemente a busca linear e imprima quantas comparações cada procura fez.",
+          "steps": [
+            "Escreva a função com um contador.",
+            "Procure um item no começo, no meio e um que não existe.",
+            "Relacione o pior caso com o tamanho."
+          ],
+          "definitionOfDone": [
+            "Os três casos estão no README.",
+            "O item ausente também foi contado."
+          ]
+        },
+        {
+          "id": "ed1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Binária só se estiver ordenado",
+          "description": "Implemente a busca binária. Mostre um teste em lista ordenada e escreva o que falha se alguém passar a lista bagunçada.",
+          "steps": [
+            "Cubra item presente, ausente e lista vazia.",
+            "Documente a pré-condição.",
+            "Compare o número de passos com a busca linear num tamanho grande, no papel."
+          ],
+          "definitionOfDone": [
+            "Os testes rodam.",
+            "A pré-condição está visível para quem chama."
+          ]
+        },
+        {
+          "id": "ed1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Inserir no meio",
+          "description": "Compare inserir no fim de um vetor e inserir no começo, contando movimentos. Diga quando isso já dói.",
+          "steps": [
+            "Meça no código os deslocamentos.",
+            "Faça para dois tamanhos.",
+            "Escreva a curva."
+          ],
+          "definitionOfDone": [
+            "A tabela de tamanhos está no texto.",
+            "A conclusão não é \"vetor é ruim\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ed-fase-1-q1",
+          "prompt": "A busca binária exige o quê da coleção?",
+          "reviewTopicId": "ed-busca",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Que esteja ordenada pela mesma chave que você compara.",
+              "correct": true,
+              "explanation": "Sem ordem, cortar ao meio não descarta metade."
+            },
+            {
+              "id": "b",
+              "text": "Que caiba num arquivo.",
+              "correct": false,
+              "explanation": "Arquivo não ordena a lógica."
+            },
+            {
+              "id": "c",
+              "text": "Que a linguagem seja Python.",
+              "correct": false,
+              "explanation": "O algoritmo não pertence à linguagem."
+            }
+          ]
+        },
+        {
+          "id": "ed-fase-1-q2",
+          "prompt": "Por que inserir no início de um vetor custa mais do que ler uma posição?",
+          "reviewTopicId": "ed-vetor",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque os elementos seguintes precisam mudar de lugar.",
+              "correct": true,
+              "explanation": "Acesso por índice é barato; deslocar não é."
+            },
+            {
+              "id": "b",
+              "text": "Porque o índice zero não existe.",
+              "correct": false,
+              "explanation": "Existe, e é o primeiro."
+            },
+            {
+              "id": "c",
+              "text": "Porque leitura também percorre a lista inteira.",
+              "correct": false,
+              "explanation": "Leitura por índice não percorre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ed-fase-2",
+      "number": 2,
+      "badgeTitle": "Lineares",
+      "title": "Lista, pilha e fila",
+      "topics": [
+        {
+          "id": "ed-lista",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Lista encadeada",
+          "description": "Cada nó aponta o próximo. Inserir no meio, tendo o nó, não empurra o vetor. Chegar no enésimo custa caminhar. Escolha a estrutura pelo movimento que você mais faz.",
+          "tags": [
+            "Lista"
+          ],
+          "prerequisites": [
+            "ed-vetor"
+          ],
+          "resources": [
+            {
+              "title": "Listas no Visualgo",
+              "url": "https://visualgo.net/en/list",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Projeto de algoritmos (IME-USP)",
+              "url": "https://www.ime.usp.br/~pf/algoritmos/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "ed-pilha",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Pilha",
+          "description": "Entra e sai pelo mesmo lado. Serve para desfazer, para chamadas de função e para conferir parênteses. Se você precisa tirar o mais antigo, não é pilha.",
+          "tags": [
+            "Pilha"
+          ],
+          "prerequisites": [
+            "ed-lista"
+          ],
+          "resources": [
+            {
+              "title": "Algoritmos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science/algorithms",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Estruturas de dados no freeCodeCamp",
+              "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ed-fila",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Fila",
+          "description": "Entra de um lado e sai do outro. Modela espera: impressão, requisição, tarefa. Fila com prioridade já é outra estrutura: alguém fura a ordem.",
+          "tags": [
+            "Fila"
+          ],
+          "prerequisites": [
+            "ed-pilha"
+          ],
+          "resources": [
+            {
+              "title": "Listas no Visualgo",
+              "url": "https://visualgo.net/en/list",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Introduction to Algorithms (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "ed2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Parênteses com pilha",
+          "description": "Use uma pilha para dizer se uma expressão tem parênteses, colchetes e chaves balanceados.",
+          "steps": [
+            "Empilhe a abertura.",
+            "Na fechadura, compare com o topo.",
+            "Teste vazio, correto, sobrando e tipo trocado."
+          ],
+          "definitionOfDone": [
+            "Os quatro testes estão escritos.",
+            "A pilha não é uma lista que você percorre à mão no teste."
+          ]
+        },
+        {
+          "id": "ed2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Fila de atendimento",
+          "description": "Simule uma fila: chegar, chamar o próximo e desistir. Conte quantos ainda esperam.",
+          "steps": [
+            "Implemente com as operações certas, não com acesso no meio.",
+            "Mostre a ordem de saída.",
+            "Escreva o custo de cada operação."
+          ],
+          "definitionOfDone": [
+            "A ordem de saída está num exemplo.",
+            "Não há função de \"tirar o do meio\" escondida."
+          ]
+        },
+        {
+          "id": "ed2-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Lista contra vetor",
+          "description": "Implemente inserir no início nas duas estruturas e compare os passos quando o tamanho cresce.",
+          "steps": [
+            "Use o mesmo roteiro de operações.",
+            "Conte movimentos ou nós visitados.",
+            "Diga qual você escolheria para uma fila de desfazer."
+          ],
+          "definitionOfDone": [
+            "A tabela tem pelo menos dois tamanhos.",
+            "A escolha final cita o movimento mais comum."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ed-fase-2-q1",
+          "prompt": "Qual frase descreve uma pilha?",
+          "reviewTopicId": "ed-pilha",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O último que entrou é o primeiro que sai.",
+              "correct": true,
+              "explanation": "Um lado só."
+            },
+            {
+              "id": "b",
+              "text": "O mais antigo sai primeiro.",
+              "correct": false,
+              "explanation": "Isso é fila."
+            },
+            {
+              "id": "c",
+              "text": "Dá para tirar qualquer item em tempo constante.",
+              "correct": false,
+              "explanation": "O meio não é a porta da pilha."
+            }
+          ]
+        },
+        {
+          "id": "ed-fase-2-q2",
+          "prompt": "Qual vantagem a lista encadeada tem sobre o vetor neste recorte?",
+          "reviewTopicId": "ed-lista",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Inserir no meio sem empurrar todos os seguintes, se você já está no nó.",
+              "correct": true,
+              "explanation": "O custo muda de lugar, não some."
+            },
+            {
+              "id": "b",
+              "text": "Acesso ao índice i mais rápido que o vetor.",
+              "correct": false,
+              "explanation": "Caminhar até i é que custa."
+            },
+            {
+              "id": "c",
+              "text": "Ordenação de graça.",
+              "correct": false,
+              "explanation": "Ninguém ordenou a lista por existir ponteiro."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ed-fase-3",
+      "number": 3,
+      "badgeTitle": "Além da linha",
+      "title": "Árvore, hash, ordenação e grafo",
+      "topics": [
+        {
+          "id": "ed-arvore",
+          "level": "intermediario",
+          "hours": 7,
+          "title": "Árvore de busca",
+          "description": "Árvore binária de busca guarda ordem: esquerda menor, direita maior. Equilibrada, a altura acompanha o logaritmo. Degenerada, vira uma lista cara com outro nome.",
+          "tags": [
+            "Árvore"
+          ],
+          "prerequisites": [
+            "ed-lista"
+          ],
+          "resources": [
+            {
+              "title": "Visualgo",
+              "url": "https://visualgo.net/en/list",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Introduction to Algorithms (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ed-hash",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Tabela de dispersão",
+          "description": "A função de hash manda a chave para uma gaveta. No caso médio, buscar é rápido. Colisão acontece e precisa de uma regra. Hash não mantém ordem de chegada.",
+          "tags": [
+            "Hash"
+          ],
+          "prerequisites": [
+            "ed-vetor"
+          ],
+          "resources": [
+            {
+              "title": "Big-O Cheat Sheet",
+              "url": "https://www.bigocheatsheet.com/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Projeto de algoritmos (IME-USP)",
+              "url": "https://www.ime.usp.br/~pf/algoritmos/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "ed-ordena",
+          "level": "intermediario",
+          "hours": 7,
+          "title": "Ordenar",
+          "description": "Seleção e inserção são claras e quadráticas. Merge e quick descem o custo e sobem a complexidade do código. Escolha pelo tamanho e pelo que você consegue provar. Ordenar para depois buscar binária é uma decisão, não um reflexo.",
+          "tags": [
+            "Ordenação"
+          ],
+          "prerequisites": [
+            "ed-custo"
+          ],
+          "resources": [
+            {
+              "title": "Quicksort (IME-USP)",
+              "url": "https://www.ime.usp.br/~pf/analise_de_algoritmos/aulas/quick.html",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Introduction to Algorithms (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "ed-grafo",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Grafo e caminho",
+          "description": "Grafo é vértice e aresta. Largura acha menos saltos. Profundidade esgota um ramo. Muitos problemas da faculdade são \"isso é um grafo?\" disfarçado de mapa, pré-requisito ou amizade.",
+          "tags": [
+            "Grafo",
+            "BFS"
+          ],
+          "prerequisites": [
+            "ed-fila"
+          ],
+          "resources": [
+            {
+              "title": "Introduction to Algorithms (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Algoritmos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science/algorithms",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "ed3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Contar frequência",
+          "description": "Conte quantas vezes cada palavra aparece num texto curto usando uma tabela de dispersão da linguagem, e explique o que você não implementou à mão.",
+          "steps": [
+            "Normalize maiúscula se fizer diferença.",
+            "Mostre as cinco mais comuns.",
+            "Escreva o que a estrutura promete no caso médio."
+          ],
+          "definitionOfDone": [
+            "A contagem confere com um exemplo pequeno feito à mão.",
+            "O texto distingue usar a estrutura pronta de implementar o hash."
+          ]
+        },
+        {
+          "id": "ed3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Duas ordenações",
+          "description": "Implemente uma ordenação quadrática e o mergesort. Compare contagens num vetor pequeno e descreva o vetor grande sem rodar até sofrer.",
+          "steps": [
+            "Teste vetor vazio, já ordenado e invertido.",
+            "Conte comparações.",
+            "Escreva a curva de cada uma."
+          ],
+          "definitionOfDone": [
+            "Os testes passam.",
+            "A comparação de curvas está no README."
+          ]
+        },
+        {
+          "id": "ed3-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Menor caminho num mapa pequeno",
+          "description": "Modele 8 a 12 lugares da sua campus ou da sua cidade como grafo e ache o caminho com menos saltos a partir de um ponto.",
+          "steps": [
+            "Desenhe vértices e arestas.",
+            "Rode a busca em largura.",
+            "Mostre um caminho e um lugar inalcançável, se houver."
+          ],
+          "definitionOfDone": [
+            "O desenho e a saída do programa concordam.",
+            "Está escrito por que largura, e não profundidade, responde \"menos saltos\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "ed-fase-3-q1",
+          "prompt": "O que uma tabela de dispersão não promete?",
+          "reviewTopicId": "ed-hash",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Devolver as chaves na ordem em que chegaram.",
+              "correct": true,
+              "explanation": "Hash espalha; não é fila."
+            },
+            {
+              "id": "b",
+              "text": "Achar uma chave no caso médio sem percorrer tudo.",
+              "correct": false,
+              "explanation": "Essa é a promessa usual."
+            },
+            {
+              "id": "c",
+              "text": "Tratar colisão de algum jeito.",
+              "correct": false,
+              "explanation": "Sem regra de colisão, chave se perde."
+            }
+          ]
+        },
+        {
+          "id": "ed-fase-3-q2",
+          "prompt": "Busca em largura num grafo sem peso responde o quê?",
+          "reviewTopicId": "ed-grafo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O caminho com menos arestas.",
+              "correct": true,
+              "explanation": "Ela abre em camadas."
+            },
+            {
+              "id": "b",
+              "text": "O caminho com menor soma de quilômetros.",
+              "correct": false,
+              "explanation": "Quilômetro é peso; aí entra outro algoritmo."
+            },
+            {
+              "id": "c",
+              "text": "A ordem alfabética dos vértices.",
+              "correct": false,
+              "explanation": "Nome não é distância."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

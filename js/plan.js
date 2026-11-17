@@ -352,7 +352,7 @@ export function sessionsToIcs(sessions, calendarName) {
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Trilha de Estudos//PT',
+    'PRODID:-//Rumo//Guia de estudos//PT',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     `X-WR-CALNAME:${icsEscape(calendarName || 'Plano de estudo')}`,
@@ -368,7 +368,7 @@ export function sessionsToIcs(sessions, calendarName) {
     const start = `${session.date.replace(/-/g, '')}T${session.start.replace(':', '')}00`;
     const end = `${session.date.replace(/-/g, '')}T${session.end.replace(':', '')}00`;
     lines.push('BEGIN:VEVENT');
-    lines.push(fold(`UID:${session.id}@trilha-estudos`));
+    lines.push(fold(`UID:${session.id}@rumo-guia-de-estudos`));
     lines.push(`DTSTAMP:${stamp}`);
     lines.push(`DTSTART:${start}`);
     lines.push(`DTEND:${end}`);
@@ -386,7 +386,7 @@ export function planMarkdown(trackName, sessions) {
     if (!groups.has(session.date)) groups.set(session.date, []);
     groups.get(session.date).push(session);
   }
-  const lines = [`# Plano de estudo — ${trackName}`, ''];
+  const lines = [`# Rumo — Plano de estudo — ${trackName}`, ''];
   for (const [date, list] of groups) {
     lines.push(`## ${date}`);
     for (const session of list) {

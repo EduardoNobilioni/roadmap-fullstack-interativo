@@ -1233,6 +1233,35 @@
           "description": "MongoDB (documentos, coleções, agregações) e critérios de escolha entre SQL e NoSQL."
         },
         {
+          "id": "f4-http-cache",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Cache HTTP",
+          "description": "Antes do Redis, o HTTP já cacheia. Cache-Control e ETag dizem se a resposta pode ser reutilizada e por quem. Resposta de um usuário não é cache público. Este tópico deixa o cache visível mesmo para quem ainda não subiu um Redis.",
+          "tags": [
+            "HTTP",
+            "Cache-Control",
+            "ETag"
+          ],
+          "prerequisites": [
+            "f4-sql"
+          ],
+          "resources": [
+            {
+              "title": "Cache HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Caching",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Cabeçalho Cache-Control (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Cache-Control",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
           "id": "f4-cache",
           "level": "avancado",
           "hours": 8,
@@ -1260,8 +1289,8 @@
               "kind": "pratica"
             }
           ],
-          "title": "Cache e Mensageria",
-          "description": "Redis para cache em memória, sessões e filas simples; processamento assíncrono e message brokers (RabbitMQ, BullMQ ou Kafka)."
+          "title": "Redis: cache, sessão e fila",
+          "description": "Redis em primeiro plano: cache em memória com prazo, sessão e uma fila simples. Mensageria (RabbitMQ, BullMQ ou Kafka) entra quando o trabalho precisa sair da requisição. O tópico ao lado cobre o cache HTTP, que não precisa de Redis."
         }
       ],
       "projects": [
@@ -2177,6 +2206,6 @@
   ],
   "id": "fullstack",
   "name": "Full-Stack",
-  "tagline": "Da Web ao deploy, com interface, API, dados e nuvem",
-  "description": "A trilha completa que este app já oferecia: fundamentos, frontend, backend, bancos, qualidade, DevOps e projetos de portfólio. Serve para quem quer ver o caminho inteiro antes de escolher um recorte."
+  "tagline": "Da Web ao deploy, com interface, API, Redis e nuvem",
+  "description": "A trilha completa que este app já oferecia: fundamentos, frontend, backend, bancos, Redis e cache, qualidade, DevOps e projetos de portfólio. Serve para quem quer ver o caminho inteiro antes de escolher um recorte."
 }

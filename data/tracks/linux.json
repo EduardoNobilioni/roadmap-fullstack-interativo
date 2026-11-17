@@ -1,0 +1,376 @@
+{
+  "id": "linux",
+  "name": "Linux",
+  "tagline": "Terminal, arquivo, processo e um script curto",
+  "description": "O mínimo para estudar e operar: navegar, permissão, processo, texto e um script que você explica.",
+  "phases": [
+    {
+      "id": "lx-fase-1",
+      "number": 1,
+      "badgeTitle": "Shell",
+      "title": "Arquivo e permissão",
+      "topics": [
+        {
+          "id": "lx-navegar",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Caminho e comando",
+          "description": "Diretório atual, caminho relativo e absoluto. Comando, argumento e a ajuda do próprio comando. O histórico do shell não é documentação.",
+          "tags": [
+            "Shell"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "The Missing Semester",
+              "url": "https://missing.csail.mit.edu/",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Comandos de shell (Debian)",
+              "url": "https://wiki.debian.org/pt_BR/ShellCommands",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "lx-arquivo",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Arquivo e permissão",
+          "description": "Dono, grupo e os outros. Ler, escrever e executar são bits diferentes. Script sem permissão de execução não \"está quebrado\": falta o bit, ou você chama o interpretador.",
+          "tags": [
+            "Permissão"
+          ],
+          "prerequisites": [
+            "lx-navegar"
+          ],
+          "resources": [
+            {
+              "title": "ls (manual Debian)",
+              "url": "https://manpages.debian.org/bookworm/coreutils/ls.1.pt.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Coreutils",
+              "url": "https://www.gnu.org/software/coreutils/manual/coreutils.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "lx-texto",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Texto no terminal",
+          "description": "Procurar, cortar e contar linha resolve muita tarefa sem abrir planilha. Redirecionar saída para arquivo é parte do comando, não um editor.",
+          "tags": [
+            "Texto"
+          ],
+          "prerequisites": [
+            "lx-arquivo"
+          ],
+          "resources": [
+            {
+              "title": "Manual do Bash",
+              "url": "https://www.gnu.org/software/bash/manual/bash.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Bash (Debian)",
+              "url": "https://manpages.debian.org/bookworm/bash/bash.1.pt.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "lx1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Mapa da pasta",
+          "description": "Liste uma pasta de projeto e explique três caminhos: um arquivo, um diretório e um caminho absoluto.",
+          "steps": [
+            "Use comandos, não o gerenciador gráfico.",
+            "Anote o diretório atual.",
+            "Mostre um caminho relativo."
+          ],
+          "definitionOfDone": [
+            "Os três caminhos estão no texto.",
+            "Dá para repetir os comandos."
+          ]
+        },
+        {
+          "id": "lx1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Permissão mínima",
+          "description": "Crie um arquivo que só você lê e um script que você executa chamando o interpretador. Explique os bits.",
+          "steps": [
+            "Mostre a listagem.",
+            "Tente com outro usuário só se for seguro; senão descreva.",
+            "Não abra permissão para o mundo por pressa."
+          ],
+          "definitionOfDone": [
+            "A listagem está no README.",
+            "A explicação dos bits está correta."
+          ]
+        },
+        {
+          "id": "lx1-projeto-avancado",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Contar com pipe",
+          "description": "Conte ocorrências de uma palavra num arquivo de log fictício usando ferramentas de texto, e grave o resumo noutro arquivo.",
+          "steps": [
+            "Use pipe.",
+            "Confira um número na mão.",
+            "Não use planilha."
+          ],
+          "definitionOfDone": [
+            "O comando está copiável.",
+            "O número confere."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "lx-fase-1-q1",
+          "prompt": "Permissão de execução num script significa...",
+          "reviewTopicId": "lx-arquivo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Que o sistema pode tratar o arquivo como programa, se o formato permitir.",
+              "correct": true,
+              "explanation": "Não é o mesmo que ler."
+            },
+            {
+              "id": "b",
+              "text": "Que qualquer pessoa da internet edita.",
+              "correct": false,
+              "explanation": "Rede é outro assunto."
+            },
+            {
+              "id": "c",
+              "text": "Que o arquivo é um diretório.",
+              "correct": false,
+              "explanation": "Diretório é outro tipo."
+            }
+          ]
+        },
+        {
+          "id": "lx-fase-1-q2",
+          "prompt": "Caminho absoluto começa...",
+          "reviewTopicId": "lx-navegar",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Na raiz do sistema.",
+              "correct": true,
+              "explanation": "Não depende de onde você está."
+            },
+            {
+              "id": "b",
+              "text": "Sempre com o seu nome de usuário.",
+              "correct": false,
+              "explanation": "Isso é home, não absoluto em geral."
+            },
+            {
+              "id": "c",
+              "text": "Com um ponto.",
+              "correct": false,
+              "explanation": "Ponto é relativo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lx-fase-2",
+      "number": 2,
+      "badgeTitle": "Processo",
+      "title": "Processo, rede local e script",
+      "topics": [
+        {
+          "id": "lx-processo",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Processo",
+          "description": "Processo tem identificador. Você pode ver o que está rodando e encerrar o que você iniciou. Encerrar processo de outra pessoa ou do sistema sem saber o que é derruba sessão.",
+          "tags": [
+            "Processo"
+          ],
+          "prerequisites": [
+            "lx-navegar"
+          ],
+          "resources": [
+            {
+              "title": "The Missing Semester",
+              "url": "https://missing.csail.mit.edu/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "lx-rede",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Porta e conexão local",
+          "description": "Serviço escuta numa porta. 127.0.0.1 é a sua máquina. \"Não abre\" pode ser porta, firewall ou processo parado. Olhe os três antes de reinstalar.",
+          "tags": [
+            "Porta"
+          ],
+          "prerequisites": [
+            "lx-processo"
+          ],
+          "resources": [
+            {
+              "title": "The Missing Semester",
+              "url": "https://missing.csail.mit.edu/",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "lx-script",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Script curto",
+          "description": "Script de dez linhas com nome e comentário do que ele não faz. Variável no topo. Se crescer demais, vira programa numa linguagem, não um script eterno.",
+          "tags": [
+            "Bash"
+          ],
+          "prerequisites": [
+            "lx-texto"
+          ],
+          "resources": [
+            {
+              "title": "Manual do Bash",
+              "url": "https://www.gnu.org/software/bash/manual/bash.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "lx2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Quem está no ar",
+          "description": "Liste processos de um programa seu e encerre só esse.",
+          "steps": [
+            "Ache o identificador.",
+            "Encerre.",
+            "Confira que sumiu."
+          ],
+          "definitionOfDone": [
+            "O identificador está anotado.",
+            "Você não encerrou o sistema."
+          ]
+        },
+        {
+          "id": "lx2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Quem escuta",
+          "description": "Suba um servidor de estudo e mostre a porta. Desligue e mostre que a porta fechou.",
+          "steps": [
+            "Anote o endereço local.",
+            "Anote a porta.",
+            "Relacione com o processo."
+          ],
+          "definitionOfDone": [
+            "As duas situações estão no texto.",
+            "O endereço local está identificado."
+          ]
+        },
+        {
+          "id": "lx2-projeto-avancado",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Script de backup de uma pasta",
+          "description": "O script copia uma pasta de trabalho para um destino com a data no nome e recusa sobrescrever sem você pedir.",
+          "steps": [
+            "Parâmetros no topo.",
+            "Um caso de destino já existente.",
+            "Comentário do que não faz (não apaga a origem)."
+          ],
+          "definitionOfDone": [
+            "Dá para ler o script inteiro.",
+            "A origem continua no lugar."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "lx-fase-2-q1",
+          "prompt": "127.0.0.1 aponta para...",
+          "reviewTopicId": "lx-rede",
+          "choices": [
+            {
+              "id": "a",
+              "text": "A própria máquina.",
+              "correct": true,
+              "explanation": "Por isso o colega de fora não abre esse endereço."
+            },
+            {
+              "id": "b",
+              "text": "O roteador da universidade.",
+              "correct": false,
+              "explanation": "Não é o roteador da universidade; é a própria máquina."
+            },
+            {
+              "id": "c",
+              "text": "Qualquer servidor na internet.",
+              "correct": false,
+              "explanation": "É local."
+            }
+          ]
+        },
+        {
+          "id": "lx-fase-2-q2",
+          "prompt": "Um script de estudo deve dizer...",
+          "reviewTopicId": "lx-script",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O que faz e o que ele não mexe.",
+              "correct": true,
+              "explanation": "Limite escrito evita acidente."
+            },
+            {
+              "id": "b",
+              "text": "Só o nome do autor.",
+              "correct": false,
+              "explanation": "Autor não opera."
+            },
+            {
+              "id": "c",
+              "text": "A senha do sudo dentro do arquivo.",
+              "correct": false,
+              "explanation": "Senha no arquivo vaza."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

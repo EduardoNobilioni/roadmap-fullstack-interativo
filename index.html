@@ -3,13 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trilha de Estudos</title>
-  <meta name="description" content="Monte uma trilha de estudos personalizada para a faculdade de tecnologia. Sem cadastro, no seu navegador." />
+  <title>Rumo</title>
+  <meta name="description" content="Rumo: roadmap, guia e plano de estudos em tecnologia. Sem cadastro, no seu navegador." />
+  <meta property="og:title" content="Rumo" />
+  <meta property="og:description" content="Rumo: roadmap, guia e plano de estudos em tecnologia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://eduardonobilioni.github.io/rumo-guia-de-estudos/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rumo" />
+  <meta name="twitter:description" content="Rumo: roadmap, guia e plano de estudos em tecnologia." />
+  <meta property="og:image" content="https://eduardonobilioni.github.io/rumo-guia-de-estudos/assets/brand/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Rumo: roadmap, guia e plano de estudos em tecnologia." />
+  <meta name="twitter:image" content="https://eduardonobilioni.github.io/rumo-guia-de-estudos/assets/brand/og.png" />
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <meta name="theme-color" content="#2a201a" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%237a3329'/%3E%3Cpath d='M8 16.5 13 21.5 24 10.5' fill='none' stroke='%23f3eee4' stroke-width='3'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,8 +33,8 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Atkinson Hyperlegible Mono', 'ui-monospace', 'Menlo', 'Consolas', 'monospace'],
+            mono: ['IBM Plex Mono', 'ui-monospace', 'Menlo', 'Consolas', 'monospace'],
           },
           borderRadius: {
             none: '0',
@@ -49,7 +64,9 @@
       }
     };
     try {
-      const raw = localStorage.getItem('trilha_estudos_ptbr_v2') || localStorage.getItem('roadmap_fullstack_ptbr_v1');
+      const raw = localStorage.getItem('rumo_guia_ptbr_v1')
+        || localStorage.getItem('trilha_estudos_ptbr_v2')
+        || localStorage.getItem('roadmap_fullstack_ptbr_v1');
       const saved = raw ? JSON.parse(raw).theme : '';
       const theme = saved === 'light' || saved === 'dark'
         ? saved
@@ -72,21 +89,36 @@
   <div id="loadError" hidden class="max-w-xl mx-auto px-4 py-24">
     <div class="rounded-sm border border-terra bg-soft dark:bg-card p-6">
       <h1 class="text-xl font-bold">Não foi possível abrir as trilhas</h1>
-      <p id="loadErrorText" class="mt-2 text-sm text-muted dark:text-blush"></p>
+      <p id="loadErrorText" class="read mt-3 text-muted dark:text-blush"></p>
     </div>
   </div>
 
-  <main id="onboarding" hidden aria-labelledby="onbHeading" class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-    <div class="flex items-center justify-between gap-3 mb-8">
-      <p class="text-sm font-semibold text-terra dark:text-ochre">Trilha de Estudos</p>
+  <main id="onboarding" hidden aria-labelledby="onbHeading" class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="flex items-start justify-between gap-3 mb-8">
+      <a href="./" class="brand-lockup text-2xl" aria-label="Rumo">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <polygon class="logo-north" points="25.19,6.81 20.60,17.34 14.66,11.40"/>
+          <polygon class="logo-tail" points="6.81,25.19 11.40,14.66 17.34,20.60"/>
+        </svg>
+        <span class="brand-word">rumo</span>
+      </a>
       <button id="onbThemeBtn" type="button" class="px-3 py-2 rounded-sm text-xs font-medium border border-line dark:border-sage/60">Tema</button>
     </div>
-    <p id="onbStepLabel" class="text-xs font-mono uppercase tracking-wider text-muted">Passo 1 de 4</p>
-    <h1 id="onbHeading" class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">Qual é a sua área?</h1>
-    <p id="onbLead" class="mt-2 text-sm text-muted dark:text-blush"></p>
+    <p class="read text-muted dark:text-blush mb-6">Roadmap, guia e plano de estudos em tecnologia</p>
+    <p id="onbStepLabel" class="text-xs font-mono text-muted">Passo 1 de 4</p>
+    <h1 id="onbHeading" class="mt-2 text-2xl sm:text-3xl font-semibold">Qual é a sua área?</h1>
+    <p id="onbLead" class="read mt-3 text-muted dark:text-blush"></p>
 
     <div id="onbStep1">
-      <div id="onbTrackGrid" class="mt-6 grid sm:grid-cols-2 gap-3"></div>
+      <label class="block text-sm font-medium" for="onbSearch">Buscar trilha</label>
+      <input id="onbSearch" type="search" autocomplete="off" placeholder="Ex.: Python, Excel, testes" class="mt-1 w-full rounded-sm border border-line dark:border-sage/60 bg-soft dark:bg-night px-3 py-2" />
+      <p id="onbSearchStatus" class="mt-2 text-xs font-mono text-muted" aria-live="polite"></p>
+      <div id="onbTrackGroups" class="mt-4 space-y-6"></div>
+      <fieldset id="onbCompanions" class="onb-group mt-6">
+        <legend class="text-sm font-bold">Estudar uma tecnologia junto</legend>
+        <p id="onbCompanionLead" class="mt-1 text-xs text-muted dark:text-blush">Opcional. Marque uma ou mais trilhas de tecnologia. O progresso de cada uma fica separado, e você troca no topo da página.</p>
+        <div id="onbCompanionList" class="mt-3 grid sm:grid-cols-2 gap-3"></div>
+      </fieldset>
     </div>
 
     <fieldset id="onbStep2" hidden class="mt-6 space-y-3">
@@ -121,10 +153,19 @@
           <div id="trackIcon" class="p-3 rounded-sm bg-terra text-paper dark:bg-ochre dark:text-night shrink-0" aria-hidden="true"></div>
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
-              <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Trilha de Estudos</h1>
+              <h1 class="text-2xl sm:text-3xl">
+                <a href="./" class="brand-lockup" aria-label="Rumo">
+                  <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <polygon class="logo-north" points="25.19,6.81 20.60,17.34 14.66,11.40"/>
+                    <polygon class="logo-tail" points="6.81,25.19 11.40,14.66 17.34,20.60"/>
+                  </svg>
+                  <span class="brand-word">rumo</span>
+                </a>
+              </h1>
               <span id="trackBadge" class="px-2.5 py-0.5 text-xs font-mono font-semibold rounded-sm text-terra dark:text-ochre border border-terra dark:border-ochre"></span>
             </div>
-            <p id="trackTagline" class="text-sm text-muted dark:text-blush mt-1"></p>
+            <p id="trackTagline" class="read text-muted dark:text-blush mt-3"></p>
+            <nav id="trackSwitcher" class="mt-3 flex flex-wrap gap-2" aria-label="Trilhas do seu plano" hidden></nav>
           </div>
         </div>
         <div class="flex flex-wrap gap-2">
@@ -137,14 +178,19 @@
         </div>
       </header>
 
+      <div id="renameNotice" hidden class="mb-4 rounded-sm border border-terra dark:border-ochre bg-soft dark:bg-card p-4">
+        <p id="renameNoticeText" class="read"></p>
+        <button id="renameNoticeDismiss" type="button" class="mt-3 px-3 py-2 rounded-sm text-sm font-medium border border-line dark:border-sage/60">Entendi</button>
+      </div>
+
       <section aria-label="Painel geral de progresso" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-5 sm:p-6 mb-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-7 space-y-3">
             <div class="flex items-baseline justify-between gap-2">
               <div>
-                <span class="text-xs font-mono uppercase tracking-wider text-muted font-semibold">Progresso do seu plano</span>
+                <span class="text-xs font-mono text-muted font-medium">Progresso do seu plano</span>
                 <div class="flex items-baseline gap-3 mt-1 flex-wrap">
-                  <span id="overallPercent" class="text-3xl sm:text-4xl font-extrabold font-mono text-terra dark:text-ochre">0%</span>
+                  <span id="overallPercent" class="text-3xl sm:text-4xl font-semibold font-mono text-terra dark:text-ochre">0%</span>
                   <span id="overallCounter" class="text-sm font-mono text-muted dark:text-blush"></span>
                 </div>
               </div>
@@ -153,11 +199,11 @@
             <div class="w-full h-3.5 rounded-sm bg-line/40 dark:bg-card overflow-hidden p-0.5">
               <div id="overallProgressBar" class="h-full rounded-sm bg-terra dark:bg-ochre" style="width:0%"></div>
             </div>
-            <p id="planEstimate" class="text-sm text-muted dark:text-blush"></p>
+            <p id="planEstimate" class="read text-muted dark:text-blush"></p>
             <p id="projectCounter" class="text-xs font-mono text-muted"></p>
           </div>
           <div class="lg:col-span-5 rounded-sm bg-paper dark:bg-night border border-line dark:border-sage/50 p-4">
-            <p class="text-xs font-mono uppercase tracking-wider text-terra dark:text-ochre font-semibold">Foco atual</p>
+            <p class="text-xs font-mono text-terra dark:text-ochre font-medium">Foco atual</p>
             <p id="currentPhaseName" class="mt-1 text-sm sm:text-base font-bold"></p>
             <p id="currentPhaseSub" class="text-xs text-muted mt-1 font-mono"></p>
           </div>
@@ -174,7 +220,7 @@
         </label>
         <div class="mt-6 pt-5 border-t border-line dark:border-sage/50">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono uppercase tracking-wider text-muted font-semibold">Conquistas por etapa</span>
+            <span class="text-xs font-mono text-muted font-medium">Conquistas por etapa</span>
             <span id="badgesUnlockedCounter" class="text-xs font-mono text-muted"></span>
           </div>
           <div id="badgesContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5"></div>
@@ -220,7 +266,7 @@
 
       <div id="emptyState" hidden class="rounded-sm border border-line dark:border-sage/50 bg-soft dark:bg-card p-10 text-center mb-6">
         <h2 class="text-base font-bold">Nenhum tópico encontrado</h2>
-        <p class="text-sm text-muted mt-1">Limpe a busca ou mude o filtro.</p>
+        <p class="read text-muted mt-3">Limpe a busca ou mude o filtro.</p>
         <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 rounded-sm text-xs font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Limpar filtros e busca</button>
       </div>
 
@@ -229,7 +275,7 @@
       <div id="orphans" hidden class="mt-5"></div>
 
       <footer class="mt-12 pt-6 border-t border-line dark:border-sage/50 text-xs text-muted flex flex-col sm:flex-row sm:justify-between gap-2">
-        <p>Progresso, anotações e observações ficam neste navegador, separados por trilha.</p>
+        <p>Rumo guarda o progresso, as anotações e as observações neste navegador, separados por trilha.</p>
         <p id="footerStats" class="font-mono"></p>
       </footer>
     </div>
@@ -238,7 +284,7 @@
   <dialog id="confirmDialog" aria-labelledby="confirmTitle">
     <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="confirmTitle" class="text-lg font-bold"></h2>
-      <p id="confirmBody" class="mt-2 text-sm text-muted dark:text-blush"></p>
+      <p id="confirmBody" class="read mt-3 text-muted dark:text-blush"></p>
       <div class="mt-6 flex justify-end gap-2">
         <button value="cancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Cancelar</button>
         <button id="confirmAccept" value="confirm" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra text-paper dark:text-night">Confirmar</button>
@@ -249,7 +295,7 @@
   <dialog id="shareDialog" aria-labelledby="shareTitle">
     <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="shareTitle" class="text-lg font-bold">Compartilhar plano</h2>
-      <p class="mt-2 text-sm text-muted dark:text-blush">O link leva a área, o nível, as horas, a ordem, os tópicos opcionais ou ocultos e as ideias que você criou. Progresso, anotações e observações ficam só no seu navegador.</p>
+      <p class="read mt-3 text-muted dark:text-blush">O link leva a área, o nível, as horas, a ordem, os tópicos opcionais ou ocultos e as ideias que você criou. Progresso, anotações e observações ficam só no seu navegador.</p>
       <label class="sr-only" for="shareUrl">Link do plano</label>
       <input id="shareUrl" readonly class="mt-4 w-full rounded-sm border border-line dark:border-sage/60 bg-paper dark:bg-night px-3 py-2 text-xs" />
       <div class="mt-4 flex justify-end gap-2">
@@ -262,7 +308,7 @@
   <dialog id="sharedDialog" aria-labelledby="sharedTitle">
     <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6">
       <h2 id="sharedTitle" class="text-lg font-bold">Aplicar plano compartilhado?</h2>
-      <p id="sharedBody" class="mt-2 text-sm text-muted dark:text-blush"></p>
+      <p id="sharedBody" class="read mt-3 text-muted dark:text-blush"></p>
       <div class="mt-6 flex justify-end gap-2">
         <button value="cancel" class="px-4 py-2 rounded-sm text-sm border border-line dark:border-sage/60">Agora não</button>
         <button id="applyShareBtn" type="button" class="px-4 py-2 rounded-sm text-sm font-semibold bg-terra dark:bg-ochre text-paper dark:text-night">Aplicar plano</button>
@@ -342,7 +388,7 @@
   <dialog id="quizDialog" aria-labelledby="quizTitle">
     <form method="dialog" class="rounded-sm bg-soft dark:bg-card border border-line dark:border-sage/50 p-6 max-h-[85vh] overflow-y-auto">
       <h2 id="quizTitle" class="text-lg font-bold">Autoavaliação</h2>
-      <p class="mt-1 text-sm text-muted">Isto não é nota nem certificado. Serve para ver se vale revisar antes de seguir.</p>
+      <p class="read mt-3 text-muted">Isto não é nota nem certificado. Serve para ver se vale revisar antes de seguir.</p>
       <div id="quizLive" class="sr-only" role="status" aria-live="polite"></div>
       <div id="quizBody" class="mt-4 space-y-4"></div>
       <div class="mt-5 flex justify-end">

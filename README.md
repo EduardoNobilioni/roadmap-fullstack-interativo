@@ -1,19 +1,23 @@
-# Trilha de Estudos
+# <img src="assets/brand/logo-light.svg" alt="" width="32" height="32"> Rumo
 
-Guia de estudo para quem está na faculdade de tecnologia e não sabe por onde começar. Você escolhe a área, o nível e quantas horas consegue estudar por semana. O app monta uma trilha, guarda o seu progresso neste navegador e ajuda a encaixar o estudo na grade da universidade.
+Rumo: roadmap, guia e plano de estudos em tecnologia. A marca é uma agulha geométrica, desenhada para este projeto: a ponta terracota aponta para nordeste e a cauda é bege. No fundo claro a cauda escurece para `#887655`, porque o bege `#ddc08a` não chega a 3:1 sobre `#e3ded2`. No fundo escuro a ponta clareia para `#9b655d`, porque o terracota `#7a3329` não chega a 3:1 sobre `#2a201a`.
+
+Guia para quem está na faculdade de tecnologia e não sabe por onde começar. Você escolhe a área, o nível e quantas horas consegue estudar por semana. O app monta uma trilha, guarda o seu progresso neste navegador e ajuda a encaixar o estudo na grade da universidade.
 
 Não é um curso e não emite certificado. Não há cadastro, servidor nem login.
 
-A trilha Full-Stack original (7 etapas e 46 tópicos) continua aqui, junto com Front-end, Back-end, Dados, Mobile e DevOps.
+A trilha Full-Stack original continua aqui (os 46 tópicos de antes, mais cache HTTP). Em volta dela há carreiras, fundamentos e tecnologias.
 
-Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
+Publicação: https://eduardonobilioni.github.io/rumo-guia-de-estudos/
+
+Repositório: https://github.com/EduardoNobilioni/rumo-guia-de-estudos
 
 ![Escolha da área no primeiro acesso](docs/screenshots/onboarding.png)
 
 ## O que o app faz
 
-- **Onboarding.** Na primeira visita, três perguntas: área, nível (iniciante, intermediário ou avançado) e horas por semana. O botão **Refazer/Trocar trilha** abre as mesmas perguntas. O progresso de cada trilha fica guardado.
-- **Trilhas.** Front-end, Back-end, Full-Stack, Dados, Mobile e DevOps. Cada uma tem etapas, tópicos, horas estimadas, pré-requisitos e materiais gratuitos, de preferência em português.
+- **Onboarding.** Na primeira visita: trilha, nível (iniciante, intermediário ou avançado) e horas por semana. A escolha é em três grupos — Carreiras, Fundamentos e Tecnologias — com busca. O botão **Refazer/Trocar trilha** abre as mesmas perguntas. O progresso de cada trilha fica guardado.
+- **Tecnologia junto.** Na escolha da trilha dá para marcar uma ou mais trilhas de tecnologia (Python, JavaScript, SQL, Git e GitHub, Linux, Docker) para estudar ao lado da principal. O progresso não se mistura. No topo da página, os botões trocam de trilha.
 - **Personalização.** Tópicos abaixo do seu nível começam como opcionais. Você pode torná-los obrigatórios, ocultá-los, criar os seus e reordenar tópicos e etapas. Trocar de trilha não apaga as outras.
 - **Anotações.** Cada tópico tem anotações. Cada etapa tem um campo **Observações**.
 - **Projetos.** Cada etapa traz ideias por nível. Dá para ver só o seu nível ou todos. Muitos projetos têm roteiro e definição de pronto, com caixas para ir marcando. Você também pode criar uma ideia sua e marcar projetos como feitos.
@@ -27,9 +31,19 @@ Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
 ![Plano de estudo com a aula ocupando a segunda e a lista de sessões](docs/screenshots/plano.png)
 
+## Trilhas
+
+**Carreiras.** Front-end, Back-end, Full-Stack, Ciência de Dados, Analista de Dados, Engenharia de Dados, Machine Learning e IA, Java e Spring Boot, Mobile, QA e Testes de Software, DevOps.
+
+**Fundamentos.** Fundamentos da Computação, Estruturas de Dados e Algoritmos.
+
+**Tecnologias.** Python, JavaScript, SQL, Git e GitHub, Linux, Docker.
+
+Ciência de Dados é a trilha que se chamava Dados. O identificador no arquivo e no progresso salvo continua `dados`, então tópico marcado, anotação e autoavaliação antiga permanecem. Os tópicos novos (planilha, Power BI, teste A/B, coleta) entram sem apagar os antigos. Analista, Engenharia de Dados e Machine Learning são trilhas novas, com o próprio progresso. Quem abre a Ciência de Dados vê um aviso disso, uma vez.
+
 ## Como usar
 
-1. Abra o site. Se for a primeira vez, escolha a área, o nível e as horas. Leia o resumo e toque em **Começar trilha**.
+1. Abra o site. Se for a primeira vez, busque ou escolha a trilha, o nível e as horas. Se quiser, marque uma tecnologia para estudar junto. Leia o resumo e toque em **Começar trilha**.
 2. Marque um tópico quando terminar. O visto no quadrado confirma, além da cor. A barra mostra só os tópicos obrigatórios do seu plano.
 3. Abra **Anotar** para links e lembretes. Em cada etapa, **Observações** guarda um texto da etapa inteira.
 4. Em **Ideias de projeto**, siga o roteiro e a definição de pronto, ou adicione uma ideia sua.
@@ -41,7 +55,9 @@ Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
 ## Visual
 
-O visual é plano, de meados do século: cantos quase retos, borda de 1 px, sem gradiente e sem brilho. O texto usa Source Sans 3. Horas, filtros e rótulos usam JetBrains Mono.
+O visual é plano, de meados do século: cantos quase retos, borda de 1 px, sem gradiente e sem brilho. Não há serifada. O texto corrido usa Atkinson Hyperlegible Mono, desenhada para leitura longa e para distinguir l, 1 e I, e 0 e O. Títulos, rótulos, botões e metadados usam IBM Plex Mono: uma mono de manual técnico, mais próxima dessa paleta do que uma fonte de editor de código. O corpo fica em 17 px, peso 400, entrelinha 1,65 e no máximo cerca de 70 caracteres por linha. Frases longas não vão em caixa alta. A página pede as fontes com `font-display: swap` e, se elas não carregarem, cai em ui-monospace, Menlo, Consolas e monospace.
+
+O PNG da trilha e a impressão do plano usam as mesmas duas famílias. O PDF gerado no navegador usa Courier, a mono que o formato já traz, em 10 pt com entrelinha 1,6 e linhas de até 70 caracteres. Esse gerador não embute arquivo de fonte.
 
 As cores partem de uma paleta midcentury (aproximações dos tons Benjamin Moore) e foram ajustadas para caber em WCAG 2.2 AA e no contraste APCA do rascunho WCAG 3 (Lc 75 ou mais no texto corrido, 60 na interface, 45 em borda e ícone).
 
@@ -65,22 +81,22 @@ O horário de aula é hachurado e traz a palavra **Ocupado**. A sessão de estud
 A meta prática é WCAG 2.2 nível AA. O contraste de texto e de interface também foi medido com APCA, o método de contraste do rascunho WCAG 3.
 
 - O idioma da página é `pt-BR`.
-- Dá para percorrer onboarding, trilha, autoavaliação e plano só com teclado. No plano, **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** mudam a sessão sem arrastar.
+- Dá para percorrer onboarding, trilha, autoavaliação e plano só com teclado. A busca da trilha é um campo com rótulo; Enter leva à primeira trilha visível. Os grupos são grupos de opção, e a tecnologia junto é caixa de seleção. No plano, **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** mudam a sessão sem arrastar.
 - O foco tem contorno de 2 px, com contraste de pelo menos 3:1 com o fundo ao lado.
 - Botões e campos têm pelo menos 24 px de altura.
 - Há um link **Ir para o conteúdo**, títulos em ordem e a prévia do plano também em lista de texto.
 - Campos têm rótulo. Avisos de erro, exportação e o resultado da autoavaliação saem numa região `aria-live`.
 - **Revisar**, **Ocupado** e o visto não dependem só da cor.
 - `prefers-reduced-motion` desliga animação. Sem tema salvo, o app segue `prefers-color-scheme`.
-- O layout quebra em uma coluna por volta de 320 px e usa `rem`, para o texto a 200% não ficar preso.
+- O layout quebra em uma coluna por volta de 320 px e usa `rem` e `ch`, para o texto a 200% refluir em vez de ficar preso.
 
-Como foi testado: `axe-core` 4.10 no Chrome, nas telas de onboarding, trilha e plano, e o Lighthouse na categoria acessibilidade (mobile e desktop). Os relatórios estão em `docs/auditoria/`. Na última rodada, o axe não apontou violação e o Lighthouse marcou 100 nas duas visões. Isso não substitui um teste com leitor de tela feito por uma pessoa.
+Como foi testado: `axe-core` 4.14 no Chrome, no onboarding (também a 390 px), na trilha e no plano. Os relatórios estão em `docs/auditoria/`. Nesta rodada o axe não apontou violação. O Lighthouse da rodada anterior marcou 100 nas duas visões e não foi reexecutado agora. Isso não substitui um teste com leitor de tela feito por uma pessoa.
 
 ## Dados e privacidade
 
-Tudo fica no seu navegador, na chave `localStorage` `trilha_estudos_ptbr_v2`. Quem usava a versão antiga é migrado de `roadmap_fullstack_ptbr_v1`.
+Tudo fica no seu navegador, na chave `localStorage` `rumo_guia_ptbr_v1`. Quem já tinha dados em `trilha_estudos_ptbr_v2` ou no formato antigo `roadmap_fullstack_ptbr_v1` é migrado na primeira abertura. O progresso não é apagado.
 
-O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação e o plano de estudo com a grade importada. O link de compartilhar não leva isso: só área, nível, horas, ordem e o que você marcou como opcional ou oculto.
+O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação, o plano de estudo com a grade importada e as tecnologias marcadas para estudar junto. O link de compartilhar não leva isso: só a trilha aberta, nível, horas, ordem e o que você marcou como opcional ou oculto.
 
 Não há analytics, conta nem envio dos seus dados para um servidor deste projeto. O `.ics` que você baixa é um arquivo no seu computador.
 
@@ -134,7 +150,11 @@ O site é estático. Não há build.
 3. Use o branch `main` e a pasta `/` (root).
 4. O arquivo `.nojekyll` na raiz impede o Jekyll de ignorar pastas.
 
-O endereço deste repositório é https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
+O site fica em https://eduardonobilioni.github.io/rumo-guia-de-estudos/
+
+O repositório fica em https://github.com/EduardoNobilioni/rumo-guia-de-estudos
+
+Quando o repositório for renomeado para `rumo-guia-de-estudos`, o Pages passa a usar esse endereço. O caminho antigo deixa de publicar.
 
 ## Como este projeto foi feito
 

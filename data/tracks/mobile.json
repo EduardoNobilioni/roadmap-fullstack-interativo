@@ -535,6 +535,34 @@
           "description": "Row, Column, ListView e um tema só. Lista longa não pode ser dez widgets copiados."
         },
         {
+          "id": "mob-anim",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Animação com motivo",
+          "description": "Animação explica uma mudança: o painel que entra, o item que sai da lista. Curta, com curva simples, e desligada quando a pessoa pede menos movimento. Animar tudo compete com o conteúdo.",
+          "tags": [
+            "Animação",
+            "Flutter"
+          ],
+          "prerequisites": [
+            "mob-layout"
+          ],
+          "resources": [
+            {
+              "title": "Animações no Flutter",
+              "url": "https://docs.flutter.dev/ui/animations",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Animar opacidade",
+              "url": "https://docs.flutter.dev/cookbook/animation/opacity-animation",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
           "id": "mob-nav",
           "level": "intermediario",
           "hours": 6,
@@ -805,6 +833,40 @@
           ],
           "title": "Estado compartilhado",
           "description": "Quando o setState basta e quando um gerenciador (Provider ou outro da documentação) evita passar callback por quatro níveis."
+        },
+        {
+          "id": "mob-riverpod",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Riverpod depois do Provider",
+          "description": "O Provider apresenta estado fora do widget. O Riverpod é o passo seguinte na documentação atual: o estado deixa de depender da árvore de widgets e fica mais fácil de testar. Não troque no meio de um app sem motivo. Leia os dois e escolha um por projeto.",
+          "tags": [
+            "Riverpod",
+            "Provider"
+          ],
+          "prerequisites": [
+            "mob-state"
+          ],
+          "resources": [
+            {
+              "title": "Opções de estado no Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/options",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Começando com Riverpod",
+              "url": "https://riverpod.dev/docs/introduction/getting_started",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Pacote flutter_riverpod",
+              "url": "https://pub.dev/packages/flutter_riverpod",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
         },
         {
           "id": "mob-offline",
@@ -1159,6 +1221,214 @@
               "text": "O próximo tópico apaga a necessidade deste.",
               "correct": false,
               "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mob-fase-6",
+      "number": 6,
+      "badgeTitle": "Loja e aviso",
+      "title": "CI, iOS, animação aplicada e aviso no aparelho",
+      "topics": [
+        {
+          "id": "mob-cicd",
+          "level": "avancado",
+          "hours": 6,
+          "title": "CI do app e Fastlane",
+          "description": "O GitHub Actions roda o teste a cada push. O Fastlane organiza o build de loja, o número da versão e o envio para teste. Segredo de assinatura fica no cofre do CI, não no repositório.",
+          "tags": [
+            "GitHub Actions",
+            "Fastlane"
+          ],
+          "prerequisites": [
+            "mob-test",
+            "mob-release"
+          ],
+          "resources": [
+            {
+              "title": "GitHub Actions",
+              "url": "https://docs.github.com/pt/actions",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Entrega contínua no Flutter",
+              "url": "https://docs.flutter.dev/deployment/cd",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Fastlane no iOS",
+              "url": "https://docs.fastlane.tools/getting-started/ios/setup/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "mob-ios",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Publicar no iOS",
+          "description": "Conta de desenvolvedor, certificado, identificador do app, perfil de provisionamento e a ficha da App Store. O build de release no Flutter gera o artefato; a Apple ainda exige ícone, política de privacidade e uma revisão. TestFlight é o ensaio antes da loja.",
+          "tags": [
+            "iOS",
+            "App Store",
+            "TestFlight"
+          ],
+          "prerequisites": [
+            "mob-release"
+          ],
+          "resources": [
+            {
+              "title": "Publicar no iOS (Flutter)",
+              "url": "https://docs.flutter.dev/deployment/ios",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Distribuir pelo Xcode",
+              "url": "https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Fastlane",
+              "url": "https://docs.fastlane.tools/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "mob-push",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Aviso push com Firebase",
+          "description": "Push avisa uma coisa que a pessoa aceitou receber. Firebase Cloud Messaging entrega no Android e no iOS. Peça a permissão, explique o motivo na tela e tenha um jeito de desligar. Notificação sem conteúdo útil vira desinstalação.",
+          "tags": [
+            "Firebase",
+            "Push"
+          ],
+          "prerequisites": [
+            "mob-http"
+          ],
+          "resources": [
+            {
+              "title": "FCM no Flutter",
+              "url": "https://firebase.google.com/docs/cloud-messaging/flutter/client",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Configurar Firebase no Flutter",
+              "url": "https://firebase.google.com/docs/flutter/setup",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "mob6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Uma transição que explica",
+          "description": "Anime a entrada de uma tela ou de um painel. Se o sistema pede menos movimento, a troca acontece sem a animação.",
+          "steps": [
+            "Escolha uma mudança de tela que hoje é um corte seco.",
+            "Anime duração curta e deixe o conteúdo legível no fim.",
+            "Respeite a preferência de reduzir movimento."
+          ],
+          "definitionOfDone": [
+            "Dá para dizer em uma frase o que a animação comunica.",
+            "A tela continua usável sem a animação."
+          ]
+        },
+        {
+          "id": "mob6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Ficha de publicação iOS",
+          "description": "Escreva o checklist real para colocar o app no TestFlight: conta, bundle id, ícone, privacidade e o comando de build. Não precisa ter a conta paga para escrever o roteiro com honestidade.",
+          "steps": [
+            "Siga a página de deployment iOS do Flutter e liste os passos no seu caso.",
+            "Aponte o que é conta Apple, o que é Flutter e o que é ficha da loja.",
+            "Inclua a política de privacidade como item, mesmo que o texto seja curto."
+          ],
+          "definitionOfDone": [
+            "O checklist separa o que você já fez do que depende da conta.",
+            "Há o comando de build de release."
+          ]
+        },
+        {
+          "id": "mob6-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Teste no CI e um push de mentira",
+          "description": "O GitHub Actions roda flutter test. Um fluxo de notificação pede permissão e mostra o aviso em primeiro plano, ou documenta o token sem publicá-lo.",
+          "steps": [
+            "Crie o workflow que falha se o teste falhar.",
+            "Guarde assinatura fora do git, se o workflow for de build.",
+            "No app, a permissão de aviso tem uma frase de motivo e um botão de recusar."
+          ],
+          "definitionOfDone": [
+            "O badge ou o log do Actions está no README, sem segredo.",
+            "O token do Firebase não aparece no repositório."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "mob-fase-6-q1",
+          "prompt": "O que ainda é da Apple mesmo depois do Flutter gerar o build?",
+          "reviewTopicId": "mob-ios",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Certificado, ficha da loja, privacidade e a revisão.",
+              "correct": true,
+              "explanation": "O framework não substitui a conta nem a política da loja."
+            },
+            {
+              "id": "b",
+              "text": "Só o ícone em PNG.",
+              "correct": false,
+              "explanation": "Ícone é um item, não o processo."
+            },
+            {
+              "id": "c",
+              "text": "Nada: a loja aceita qualquer APK.",
+              "correct": false,
+              "explanation": "iOS não publica APK."
+            }
+          ]
+        },
+        {
+          "id": "mob-fase-6-q2",
+          "prompt": "Por que o Riverpod aparece depois do Provider nesta trilha?",
+          "reviewTopicId": "mob-riverpod",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque o Provider ensina o problema, e o Riverpod é o passo documentado para tirar o estado da árvore de widgets.",
+              "correct": true,
+              "explanation": "A ordem é pedagógica, não um ranking de moda."
+            },
+            {
+              "id": "b",
+              "text": "Porque o Provider deixou de compilar.",
+              "correct": false,
+              "explanation": "O Provider continua na documentação de opções."
+            },
+            {
+              "id": "c",
+              "text": "Porque todo app precisa dos dois ao mesmo tempo.",
+              "correct": false,
+              "explanation": "Um gerenciador por projeto chega."
             }
           ]
         }

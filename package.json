@@ -1,9 +1,9 @@
 {
-  "name": "trilha-estudos",
+  "name": "rumo-guia-de-estudos",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test tests/model.test.mjs",
+    "test": "node --test tests/*.mjs",
     "validate": "node scripts/validate-tracks.mjs"
   }
 }

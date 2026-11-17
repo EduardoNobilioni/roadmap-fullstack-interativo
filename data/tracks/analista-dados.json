@@ -1,0 +1,561 @@
+{
+  "id": "analista-dados",
+  "name": "Analista de Dados",
+  "tagline": "Planilha, SQL e um painel que responde uma pergunta",
+  "description": "Para quem analisa mais do que modela: Excel, consulta SQL e Power BI. O recorte é achar o número e explicar, não treinar um modelo.",
+  "phases": [
+    {
+      "id": "an-fase-1",
+      "number": 1,
+      "badgeTitle": "Planilha",
+      "title": "Excel e tabela dinâmica",
+      "topics": [
+        {
+          "id": "an-planilha",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Célula, tipo e filtro",
+          "description": "Texto guardado como texto, número como número, data como data. Filtro e ordenação respondem a pergunta pequena. Misturar tipo na coluna quebra a soma em silêncio.",
+          "tags": [
+            "Excel"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Excel",
+              "url": "https://support.microsoft.com/pt-br/excel",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Fórmulas no Excel",
+              "url": "https://support.microsoft.com/pt-br/office/vis%C3%A3o-geral-de-f%C3%B3rmulas-no-excel-ecfdc708-9162-49e8-b993-c311f47ca173",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Google Planilhas",
+              "url": "https://support.google.com/docs/answer/6000292",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "an-dinamica",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Tabela dinâmica",
+          "description": "A dinâmica resume sem você copiar soma para outro canto. Linha, coluna e valor têm papel. Se você não sabe a pergunta, a tabela dinâmica só embaralha.",
+          "tags": [
+            "Tabela dinâmica"
+          ],
+          "prerequisites": [
+            "an-planilha"
+          ],
+          "resources": [
+            {
+              "title": "Criar uma tabela dinâmica",
+              "url": "https://support.microsoft.com/pt-br/office/criar-uma-tabela-din%C3%A2mica-para-analisar-dados-de-planilha-a9a84538-bfe9-40a9-a8e9-f99134456576",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "an-grafico",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Gráfico com uma frase",
+          "description": "O título diz a conclusão, não o tipo do gráfico. Eixo com zero mentiroso e pizza com doze fatias atrapalham. Um gráfico por pergunta.",
+          "tags": [
+            "Gráfico"
+          ],
+          "prerequisites": [
+            "an-dinamica"
+          ],
+          "resources": [
+            {
+              "title": "Excel",
+              "url": "https://support.microsoft.com/pt-br/excel",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "an1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Gasto do mês",
+          "description": "Monte uma planilha de gastos fictícios, filtre uma categoria e some.",
+          "steps": [
+            "Separe data, categoria e valor em colunas.",
+            "Filtre uma categoria.",
+            "Confira a soma na mão com cinco linhas."
+          ],
+          "definitionOfDone": [
+            "A soma conferida está anotada.",
+            "Não há coluna com número e texto misturados."
+          ]
+        },
+        {
+          "id": "an1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Dinâmica de uma turma",
+          "description": "Com notas fictícias, monte a média por disciplina e um gráfico cujo título é a frase, não \"Gráfico 1\".",
+          "steps": [
+            "Use tabela dinâmica.",
+            "Escreva a pergunta antes do gráfico.",
+            "Tire um visual que não responde essa pergunta."
+          ],
+          "definitionOfDone": [
+            "A pergunta está no título.",
+            "Dá para ver a disciplina, não só a média geral."
+          ]
+        },
+        {
+          "id": "an1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "O que a planilha não aguenta",
+          "description": "Descreva o mesmo recorte e diga em que tamanho ou com que atualização você sairia da planilha para um banco.",
+          "steps": [
+            "Aponte atualização manual.",
+            "Aponte uma conta que já ficou frágil.",
+            "Escreva o critério de saída."
+          ],
+          "definitionOfDone": [
+            "O critério está em uma frase.",
+            "A planilha de exemplo continua correta."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "an-fase-1-q1",
+          "prompt": "A tabela dinâmica serve para quê, neste recorte?",
+          "reviewTopicId": "an-dinamica",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Resumir uma tabela que já está limpa, segundo uma pergunta.",
+              "correct": true,
+              "explanation": "Ela não inventa o dado que falta."
+            },
+            {
+              "id": "b",
+              "text": "Corrigir o tipo da coluna sozinha.",
+              "correct": false,
+              "explanation": "Tipo errado continua errado."
+            },
+            {
+              "id": "c",
+              "text": "Substituir o entendimento da média.",
+              "correct": false,
+              "explanation": "Quem lê ainda precisa saber o que a média esconde."
+            }
+          ]
+        },
+        {
+          "id": "an-fase-1-q2",
+          "prompt": "O que um título de gráfico deve dizer?",
+          "reviewTopicId": "an-grafico",
+          "choices": [
+            {
+              "id": "a",
+              "text": "A conclusão, não o nome da ferramenta.",
+              "correct": true,
+              "explanation": "Quem só lê o título já leva a frase."
+            },
+            {
+              "id": "b",
+              "text": "\"Gráfico de barras\".",
+              "correct": false,
+              "explanation": "Isso descreve a forma."
+            },
+            {
+              "id": "c",
+              "text": "\"Dados\".",
+              "correct": false,
+              "explanation": "Não diz nada."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "an-fase-2",
+      "number": 2,
+      "badgeTitle": "Consulta",
+      "title": "SQL para a pergunta",
+      "topics": [
+        {
+          "id": "an-select",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "SELECT que responde uma coisa",
+          "description": "Escolha colunas, filtre linhas, ordene. Select estrela é exploração. A consulta que você entrega nomeia as colunas.",
+          "tags": [
+            "SQL"
+          ],
+          "prerequisites": [
+            "an-planilha"
+          ],
+          "resources": [
+            {
+              "title": "Introdução no SQLBolt",
+              "url": "https://sqlbolt.com/lesson/select_queries_introduction",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Tutorial SQL do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "an-join",
+          "level": "intermediario",
+          "hours": 7,
+          "title": "Juntar tabelas",
+          "description": "JOIN combina linha de tabelas diferentes pela chave. Produto cartesiano acidental multiplica total. Antes de somar, conte as linhas e veja se o número faz sentido.",
+          "tags": [
+            "JOIN"
+          ],
+          "prerequisites": [
+            "an-select"
+          ],
+          "resources": [
+            {
+              "title": "JOINs no SQLBolt",
+              "url": "https://sqlbolt.com/lesson/select_queries_with_joins",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Joins no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "an-grupo",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Agregar",
+          "description": "GROUP BY muda a unidade da resposta: de aluno para turma, de venda para mês. Filtro de linha e filtro de grupo não são o mesmo passo.",
+          "tags": [
+            "GROUP BY"
+          ],
+          "prerequisites": [
+            "an-join"
+          ],
+          "resources": [
+            {
+              "title": "Agregação no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "an2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Três perguntas, três consultas",
+          "description": "Numa tabela de exemplo, escreva três SELECT que um colega entende sem você do lado.",
+          "steps": [
+            "Inclua filtro e ordenação.",
+            "Evite estrela na versão final.",
+            "Escreva a pergunta em português acima de cada consulta."
+          ],
+          "definitionOfDone": [
+            "As três respostas batem com uma conta manual pequena.",
+            "Cada consulta tem a pergunta."
+          ]
+        },
+        {
+          "id": "an2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Quem cursa o quê",
+          "description": "Modele aluno e disciplina, faça o JOIN e a média por disciplina. Mostre uma linha que sumiria com o tipo errado de JOIN.",
+          "steps": [
+            "Desenhe as chaves.",
+            "Escreva o JOIN.",
+            "Documente o caso da disciplina sem aluno, ou do aluno sem disciplina."
+          ],
+          "definitionOfDone": [
+            "O caso que o JOIN esconde está escrito.",
+            "A média tem a unidade certa."
+          ]
+        },
+        {
+          "id": "an2-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "A soma que dobrou",
+          "description": "Provoque uma soma inflada por JOIN e conserte. Explique a contagem de linhas antes e depois.",
+          "steps": [
+            "Mostre o número errado.",
+            "Mostre o número certo.",
+            "Escreva a causa em uma frase."
+          ],
+          "definitionOfDone": [
+            "Os dois números estão no README.",
+            "A correção não é \"apagar linha até bater\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "an-fase-2-q1",
+          "prompt": "Por que a soma pode dobrar depois de um JOIN?",
+          "reviewTopicId": "an-join",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque uma linha da esquerda casou com várias da direita.",
+              "correct": true,
+              "explanation": "A conta passa a ver pares, não o fato original."
+            },
+            {
+              "id": "b",
+              "text": "Porque o SQL soma em centavos.",
+              "correct": false,
+              "explanation": "Unidade não multiplica sozinha."
+            },
+            {
+              "id": "c",
+              "text": "Porque SELECT estrela é obrigatório.",
+              "correct": false,
+              "explanation": "Estrela não é a causa."
+            }
+          ]
+        },
+        {
+          "id": "an-fase-2-q2",
+          "prompt": "GROUP BY muda o quê?",
+          "reviewTopicId": "an-grupo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "A unidade de cada linha do resultado.",
+              "correct": true,
+              "explanation": "Você passa a falar do grupo."
+            },
+            {
+              "id": "b",
+              "text": "A cor do cliente de banco.",
+              "correct": false,
+              "explanation": "Cliente não agrega."
+            },
+            {
+              "id": "c",
+              "text": "O tipo da coluna no arquivo CSV.",
+              "correct": false,
+              "explanation": "Tipo é outro problema."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "an-fase-3",
+      "number": 3,
+      "badgeTitle": "Painel",
+      "title": "Power BI e a frase",
+      "topics": [
+        {
+          "id": "an-bi",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Power BI Desktop",
+          "description": "Importe a tabela, escolha o tipo de cada coluna e monte poucos visuais. O painel responde uma decisão. Filtro que ninguém usa é ruído.",
+          "tags": [
+            "Power BI"
+          ],
+          "prerequisites": [
+            "an-grupo"
+          ],
+          "resources": [
+            {
+              "title": "O que é o Power BI Desktop",
+              "url": "https://learn.microsoft.com/pt-br/power-bi/fundamentals/desktop-what-is-desktop",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Obter dados no Power BI",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-data-power-bi/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "an-modelo",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Modelo do painel",
+          "description": "Relacione tabelas pela chave, não por colar coluna repetida em todo visual. Medida tem nome de negócio. \"Soma de SomaDeValor\" não é nome.",
+          "tags": [
+            "Modelo"
+          ],
+          "prerequisites": [
+            "an-bi"
+          ],
+          "resources": [
+            {
+              "title": "Começar no serviço do Power BI",
+              "url": "https://learn.microsoft.com/pt-br/power-bi/fundamentals/service-get-started",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "an-contar",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Contar o que o painel diz",
+          "description": "Escreva três frases que a pessoa leva embora. Se o painel não sustenta a frase, tire o visual ou mude a frase. Não esconda recorte: diga o período e o que ficou de fora.",
+          "tags": [
+            "Narrativa"
+          ],
+          "prerequisites": [
+            "an-modelo"
+          ],
+          "resources": [
+            {
+              "title": "O que é o Power BI Desktop",
+              "url": "https://learn.microsoft.com/pt-br/power-bi/fundamentals/desktop-what-is-desktop",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "an3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Importar e tipar",
+          "description": "Traga um CSV para o Power BI ou para a planilha, ajuste tipos e descreva uma coluna que veio errada.",
+          "steps": [
+            "Mostre o tipo antes e depois.",
+            "Conte as linhas.",
+            "Anote o que você não limpou."
+          ],
+          "definitionOfDone": [
+            "A contagem de linhas está no texto.",
+            "O tipo da data ou do número foi conferido."
+          ]
+        },
+        {
+          "id": "an3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Um painel, uma decisão",
+          "description": "Monte um painel com no máximo quatro visuais para uma pergunta de negócio fictícia, com período no título.",
+          "steps": [
+            "Escreva a decisão antes.",
+            "Relacione as tabelas se houver mais de uma.",
+            "Peça para alguém dizer o que entendeu sem a sua explicação."
+          ],
+          "definitionOfDone": [
+            "A frase da pessoa bate com a sua intenção, ou você ajustou o painel.",
+            "O período está visível."
+          ]
+        },
+        {
+          "id": "an3-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "O que ficou de fora",
+          "description": "Documente o recorte, a fonte e uma limitação. Inclua uma frase que o painel não autoriza concluir.",
+          "steps": [
+            "Nomeie a fonte e a data da extração.",
+            "Escreva a conclusão proibida.",
+            "Diga o que precisaria de outro dado."
+          ],
+          "definitionOfDone": [
+            "A limitação está no próprio painel ou num texto colado.",
+            "Não há dado de pessoa real identificável."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "an-fase-3-q1",
+          "prompt": "Quantos visuais um painel de estudo deve ter?",
+          "reviewTopicId": "an-bi",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Os que sustentam uma decisão, poucos.",
+              "correct": true,
+              "explanation": "Volume não é análise."
+            },
+            {
+              "id": "b",
+              "text": "Todos os gráficos que a ferramenta oferece.",
+              "correct": false,
+              "explanation": "Catálogo não é resposta."
+            },
+            {
+              "id": "c",
+              "text": "Nenhum: só a tabela crua.",
+              "correct": false,
+              "explanation": "A tabela crua ainda não é o painel."
+            }
+          ]
+        },
+        {
+          "id": "an-fase-3-q2",
+          "prompt": "O que precisa estar escrito junto do número?",
+          "reviewTopicId": "an-contar",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O recorte: período, população e o que ficou de fora.",
+              "correct": true,
+              "explanation": "Número sem recorte mente por omissão."
+            },
+            {
+              "id": "b",
+              "text": "A versão do Power BI.",
+              "correct": false,
+              "explanation": "Versão não interpreta o dado."
+            },
+            {
+              "id": "c",
+              "text": "O nome do arquivo .pbix.",
+              "correct": false,
+              "explanation": "Arquivo não é a pergunta."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -9,7 +9,17 @@ const manifest = JSON.parse(readFileSync(join(dir, 'index.json'), 'utf8'));
 let failed = false;
 
 const files = new Set(readdirSync(dir).filter((name) => name.endsWith('.json') && name !== 'index.json'));
+const groups = new Set(['carreira', 'fundamentos', 'tecnologia']);
+
 for (const entry of manifest.tracks) {
+  if (!groups.has(entry.group)) {
+    console.error(`${entry.id || entry.file}: group deve ser carreira, fundamentos ou tecnologia.`);
+    failed = true;
+  }
+  if (entry.keywords != null && (!Array.isArray(entry.keywords) || entry.keywords.some((item) => typeof item !== 'string'))) {
+    console.error(`${entry.id || entry.file}: keywords deve ser uma lista de textos.`);
+    failed = true;
+  }
   if (!files.has(entry.file)) {
     console.error(`index.json aponta para ${entry.file}, que não existe.`);
     failed = true;

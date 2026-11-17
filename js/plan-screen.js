@@ -66,8 +66,8 @@ export function initPlanScreen(api) {
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4 no-print">
           <div>
-            <h1 class="text-2xl font-extrabold">Plano de estudo</h1>
-            <p class="text-sm text-muted">As aulas ocupam a grade. O estudo entra nos vãos. O arquivo .ics leva só as sessões de estudo.</p>
+            <h1 class="text-2xl font-semibold">Plano de estudo</h1>
+            <p class="read mt-3 text-muted">As aulas ocupam a grade. O estudo entra nos vãos. O arquivo .ics leva só as sessões de estudo.</p>
           </div>
           <button type="button" data-plan="close" class="px-3 py-2 rounded-sm border border-line dark:border-sage/60">Voltar à trilha</button>
         </div>
@@ -115,7 +115,7 @@ export function initPlanScreen(api) {
         </section>
         <section class="rounded-sm border border-ochre bg-soft p-4 mb-4 no-print">
           <h2 class="font-bold">Grade da faculdade</h2>
-          <p class="text-sm text-muted dark:text-blush mt-1">Importe o .ics do Google Agenda, Outlook, Apple Calendar ou do sistema da universidade. Esses eventos aparecem como ocupados e não vão no .ics do plano.</p>
+          <p class="read text-muted dark:text-blush mt-3">Importe o .ics do Google Agenda, Outlook, Apple Calendar ou do sistema da universidade. Esses eventos aparecem como ocupados e não vão no .ics do plano.</p>
           <div class="mt-3 flex flex-wrap gap-2 text-sm">
             <label class="px-3 py-2 rounded-sm border border-line dark:border-sage/60 cursor-pointer">Importar .ics
               <input data-plan="ics-file" type="file" accept=".ics,text/calendar" class="sr-only" />
@@ -198,7 +198,7 @@ export function initPlanScreen(api) {
                     <p class="mt-1 text-xs text-muted">${labelKind(session.kind)}${session.summary ? ` · ${api.escapeHtml(session.summary)}` : ''}</p>
                   </li>`).join('')}
               </ul>
-            </section>`).join('') || '<p class="text-sm text-muted">Gere o plano para ver as semanas.</p>'}
+            </section>`).join('') || '<p class="read text-muted">Gere o plano para ver as semanas.</p>'}
         </div>
         <section class="mt-6" aria-label="Lista de todas as sessões">
           <h2 class="font-bold">Lista de sessões</h2>
@@ -230,7 +230,7 @@ export function initPlanScreen(api) {
     }
     if (action === 'generate') generate();
     if (action === 'reschedule') generate(localISODate());
-    if (action === 'ics') api.download(`plano-de-estudo-${api.track().id}.ics`, sessionsToIcs(current.sessions, `Plano de estudo — ${api.track().name}`), 'text/calendar');
+    if (action === 'ics') api.download(`rumo-plano-${api.track().id}.ics`, sessionsToIcs(current.sessions, `Rumo — ${api.track().name}`), 'text/calendar');
     if (action === 'pdf') api.downloadPdf(current.sessions);
     if (action === 'print') {
       document.body.classList.add('printing-plan');

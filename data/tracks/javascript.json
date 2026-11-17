@@ -1,0 +1,384 @@
+{
+  "id": "javascript",
+  "name": "JavaScript",
+  "tagline": "A linguagem no essencial, antes do framework",
+  "description": "Valores, função, array, objeto, módulo e assíncrono. Serve de apoio à trilha de front-end ou de back-end. Não ensina React.",
+  "phases": [
+    {
+      "id": "js-fase-1",
+      "number": 1,
+      "badgeTitle": "Núcleo",
+      "title": "Valor, função e coleção",
+      "topics": [
+        {
+          "id": "js-valor",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Tipo e comparação",
+          "description": "Número, texto, booleano, null e undefined não são detalhes. == e === divergem. Objeto e array são comparados pela referência, não pelo conteúdo, até você decidir o contrário.",
+          "tags": [
+            "JavaScript"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Guia JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Tipos (javascript.info)",
+              "url": "https://javascript.info/types",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiros passos (javascript.info)",
+              "url": "https://javascript.info/first-steps",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "js-funcao",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Função e escopo",
+          "description": "Função recebe argumento e pode devolver valor. Variável declarada com let fica no bloco. Vazar variável para fora complica o próximo bug.",
+          "tags": [
+            "Função"
+          ],
+          "prerequisites": [
+            "js-valor"
+          ],
+          "resources": [
+            {
+              "title": "Funções (javascript.info)",
+              "url": "https://javascript.info/function-basics",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Guia JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "js-colecao",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Array e objeto",
+          "description": "Array é lista ordenada. Objeto é mapa de nomes. Percorrer, filtrar e transformar sem mudar o original deixa o dado mais fácil de testar.",
+          "tags": [
+            "Array",
+            "Objeto"
+          ],
+          "prerequisites": [
+            "js-funcao"
+          ],
+          "resources": [
+            {
+              "title": "Guia JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Estruturas no freeCodeCamp",
+              "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "js1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Lista de tarefas no console",
+          "description": "Guarde tarefas num array e filtre as feitas. Sem DOM.",
+          "steps": [
+            "Implemente adicionar e filtrar.",
+            "Não altere o array original no filtro.",
+            "Mostre um exemplo."
+          ],
+          "definitionOfDone": [
+            "O exemplo está no README.",
+            "O filtro devolve uma lista nova."
+          ]
+        },
+        {
+          "id": "js1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Comparar do jeito certo",
+          "description": "Escreva três comparações que mudam entre == e === ou entre objeto e conteúdo, e diga qual você quer.",
+          "steps": [
+            "Mostre o resultado de cada uma.",
+            "Escolha a comparação explícita.",
+            "Comente a armadilha."
+          ],
+          "definitionOfDone": [
+            "As três saídas estão anotadas.",
+            "A escolha final usa === ou comparação de campo."
+          ]
+        },
+        {
+          "id": "js1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Transformar sem surpresa",
+          "description": "Dada uma lista de objetos, produza um resumo (contagem por campo) sem mutar a entrada.",
+          "steps": [
+            "Congele ou copie a entrada num teste simples.",
+            "Escreva a função pura.",
+            "Cubra lista vazia."
+          ],
+          "definitionOfDone": [
+            "A entrada permanece igual.",
+            "O resumo confere com a conta manual."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "js-fase-1-q1",
+          "prompt": "Por que === aparece tanto no código de estudo?",
+          "reviewTopicId": "js-valor",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque compara valor e tipo, sem conversão escondida.",
+              "correct": true,
+              "explanation": "Menos surpresa."
+            },
+            {
+              "id": "b",
+              "text": "Porque == foi removido da linguagem.",
+              "correct": false,
+              "explanation": "Ainda existe."
+            },
+            {
+              "id": "c",
+              "text": "Porque só funciona com objeto.",
+              "correct": false,
+              "explanation": "Objeto continua sendo referência."
+            }
+          ]
+        },
+        {
+          "id": "js-fase-1-q2",
+          "prompt": "Filtrar um array, no estilo desta trilha, deve...",
+          "reviewTopicId": "js-colecao",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Devolver uma lista nova e deixar a original quieta.",
+              "correct": true,
+              "explanation": "Efeito colateral fica explícito quando existe."
+            },
+            {
+              "id": "b",
+              "text": "Apagar os itens que não servem no original sempre.",
+              "correct": false,
+              "explanation": "Isso surpreende quem ainda usa a lista."
+            },
+            {
+              "id": "c",
+              "text": "Ordenar a memória do computador.",
+              "correct": false,
+              "explanation": "Não é o que filter faz."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-fase-2",
+      "number": 2,
+      "badgeTitle": "Tempo",
+      "title": "Módulo e assíncrono",
+      "topics": [
+        {
+          "id": "js-modulo",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Módulo",
+          "description": "Um arquivo exporta o que os outros podem usar. O resto fica interno. Isso substitui variável global quando o programa passa de um arquivo.",
+          "tags": [
+            "Módulo"
+          ],
+          "prerequisites": [
+            "js-colecao"
+          ],
+          "resources": [
+            {
+              "title": "Módulos (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "js-async",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Promessa e async",
+          "description": "Operação que espera (rede, arquivo) não trava o raciocínio se você trata a espera. async/await é a promessa com cara de sequência. Erro precisa de catch, senão vira rejeição silenciosa.",
+          "tags": [
+            "Async"
+          ],
+          "prerequisites": [
+            "js-funcao"
+          ],
+          "resources": [
+            {
+              "title": "Async (javascript.info)",
+              "url": "https://javascript.info/async",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Fetch (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "js-erro",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Erro e teste mínimo",
+          "description": "Lance erro quando o contrato quebra. Um teste de função pura pode rodar com node --test, sem framework.",
+          "tags": [
+            "Erro",
+            "Teste"
+          ],
+          "prerequisites": [
+            "js-async"
+          ],
+          "resources": [
+            {
+              "title": "Node.js, introdução",
+              "url": "https://nodejs.org/pt/learn/getting-started/introduction-to-nodejs",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "js2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Dois arquivos",
+          "description": "Passe uma função para outro arquivo via módulo e chame de um terceiro ponto.",
+          "steps": [
+            "Exporte só o necessário.",
+            "Não use variável global.",
+            "Mostre o comando que roda."
+          ],
+          "definitionOfDone": [
+            "O comando está no README.",
+            "O interno não foi exportado."
+          ]
+        },
+        {
+          "id": "js2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Fetch com erro",
+          "description": "Busque um JSON público e trate rede ruim e JSON inesperado sem derrubar o processo em silêncio.",
+          "steps": [
+            "Mostre o caminho feliz.",
+            "Mostre um erro tratado.",
+            "Não guarde token no arquivo."
+          ],
+          "definitionOfDone": [
+            "Os dois resultados estão descritos.",
+            "Há catch ou equivalente."
+          ]
+        },
+        {
+          "id": "js2-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Teste de uma função pura",
+          "description": "Cubra uma função com node --test: feliz, borda e erro.",
+          "steps": [
+            "Nomeie os casos.",
+            "Não use rede no teste.",
+            "Quebre a função e veja o teste falhar."
+          ],
+          "definitionOfDone": [
+            "O comando de teste está no README.",
+            "O caso de erro espera a exceção."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "js-fase-2-q1",
+          "prompt": "O que acontece com uma promessa rejeitada sem catch?",
+          "reviewTopicId": "js-async",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O erro deixa de estar no seu fluxo e pode sumir no log.",
+              "correct": true,
+              "explanation": "Espera não é sucesso."
+            },
+            {
+              "id": "b",
+              "text": "Ela vira um array.",
+              "correct": false,
+              "explanation": "Rejeição não é lista."
+            },
+            {
+              "id": "c",
+              "text": "O programa ignora de propósito, por especificação feliz.",
+              "correct": false,
+              "explanation": "Ignorar não é tratar."
+            }
+          ]
+        },
+        {
+          "id": "js-fase-2-q2",
+          "prompt": "Módulo resolve qual problema?",
+          "reviewTopicId": "js-modulo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Compartilhar código sem variável global.",
+              "correct": true,
+              "explanation": "A fronteira fica no export."
+            },
+            {
+              "id": "b",
+              "text": "Deixar o CSS mais rápido.",
+              "correct": false,
+              "explanation": "Não é folha de estilo."
+            },
+            {
+              "id": "c",
+              "text": "Substituir o HTML.",
+              "correct": false,
+              "explanation": "Não é marcação."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

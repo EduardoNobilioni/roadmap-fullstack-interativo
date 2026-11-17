@@ -1,0 +1,418 @@
+{
+  "id": "java",
+  "name": "Java e Spring Boot",
+  "tagline": "Back-end em Java, da linguagem ao serviço REST",
+  "description": "Para quem a faculdade ensina Java e o estágio pede Spring. A trilha fica no serviço: objeto, coleção, API, banco, teste e um deploy repetível.",
+  "phases": [
+    {
+      "id": "jv-fase-1",
+      "number": 1,
+      "badgeTitle": "Linguagem",
+      "title": "Java que compila e se lê",
+      "topics": [
+        {
+          "id": "jv-sintaxe",
+          "level": "iniciante",
+          "hours": 10,
+          "title": "Tipos, método e pacote",
+          "description": "Java é explícito: tipo, método e pacote. O programa começa num main. Erro de compilação aparece antes de rodar. Leia o javac até o fim; a primeira linha útil nem sempre é a última.",
+          "tags": [
+            "Java",
+            "JDK"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Linguagem Java (tutorial Oracle)",
+              "url": "https://docs.oracle.com/javase/tutorial/java/nutsandbolts/index.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Orientação a objetos (dev.java)",
+              "url": "https://dev.java/learn/oop/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "jv-oo",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Objeto, classe e herança curta",
+          "description": "Classe descreve. Objeto é o caso. Composição (um objeto tem outro) resolve mais exercício do que uma árvore de herança. Herança cabe quando o tipo realmente é um caso do outro.",
+          "tags": [
+            "OOP"
+          ],
+          "prerequisites": [
+            "jv-sintaxe"
+          ],
+          "resources": [
+            {
+              "title": "Herança (Oracle)",
+              "url": "https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Orientação a objetos (dev.java)",
+              "url": "https://dev.java/learn/oop/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "jv-colecoes",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "List, Set e Map",
+          "description": "List guarda ordem e repetição. Set não repete. Map busca por chave. Escolher List para tudo funciona até a busca ficar ingênua. A coleção pronta já foi testada: implemente a sua só para aprender.",
+          "tags": [
+            "Coleções"
+          ],
+          "prerequisites": [
+            "jv-oo"
+          ],
+          "resources": [
+            {
+              "title": "Coleções (Oracle)",
+              "url": "https://docs.oracle.com/javase/tutorial/collections/index.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "List (API Java)",
+              "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "jv1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Turma no terminal",
+          "description": "Um programa lê nome e nota, guarda em List e imprime a média e quem ficou abaixo.",
+          "steps": [
+            "Modele aluno como objeto.",
+            "Recuse nota fora de 0 a 10 com mensagem clara.",
+            "Mostre um exemplo de entrada e a saída."
+          ],
+          "definitionOfDone": [
+            "O código compila com o JDK.",
+            "Há o caso de lista vazia."
+          ]
+        },
+        {
+          "id": "jv1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Matrícula sem duplicar",
+          "description": "Use Set ou Map para impedir a mesma matrícula duas vezes e explique por que List sozinha não avisa.",
+          "steps": [
+            "Defina o que torna dois alunos o mesmo.",
+            "Teste inclusão repetida.",
+            "Escreva o custo de buscar, em uma frase."
+          ],
+          "definitionOfDone": [
+            "A repetição é recusada.",
+            "A igualdade está documentada."
+          ]
+        },
+        {
+          "id": "jv1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Composição em vez de hierarquia",
+          "description": "Modele um pedido com itens, sem criar uma família de classes \"PedidoComDesconto\", \"PedidoComFrete\". O desconto é um campo ou uma estratégia pequena.",
+          "steps": [
+            "Desenhe os objetos.",
+            "Implemente um desconto.",
+            "Escreva a herança que você evitou e por quê."
+          ],
+          "definitionOfDone": [
+            "Dá para calcular o total com um exemplo.",
+            "A decisão de modelagem está no README."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "jv-fase-1-q1",
+          "prompt": "Qual coleção recusa elemento repetido pela igualdade que você definiu?",
+          "reviewTopicId": "jv-colecoes",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Set.",
+              "correct": true,
+              "explanation": "Map guarda par; Set guarda presença."
+            },
+            {
+              "id": "b",
+              "text": "List.",
+              "correct": false,
+              "explanation": "List aceita o mesmo valor duas vezes."
+            },
+            {
+              "id": "c",
+              "text": "Array de tamanho fixo, sempre.",
+              "correct": false,
+              "explanation": "Array não aplica essa regra sozinho."
+            }
+          ]
+        },
+        {
+          "id": "jv-fase-1-q2",
+          "prompt": "Quando composição é a primeira escolha?",
+          "reviewTopicId": "jv-oo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Quando um objeto usa outro, e não \"é\" o outro.",
+              "correct": true,
+              "explanation": "Ter um endereço não faz a pessoa ser um endereço."
+            },
+            {
+              "id": "b",
+              "text": "Sempre que houver mais de uma classe.",
+              "correct": false,
+              "explanation": "Quantidade não decide."
+            },
+            {
+              "id": "c",
+              "text": "Nunca: Java exige herança de tudo.",
+              "correct": false,
+              "explanation": "A linguagem não obriga essa árvore."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jv-fase-2",
+      "number": 2,
+      "badgeTitle": "Serviço",
+      "title": "Spring Boot e REST",
+      "topics": [
+        {
+          "id": "jv-spring",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Spring Boot sobe a aplicação",
+          "description": "O Spring Boot junta servidor, configuração e injeção de dependência. Você escreve o controlador e a regra. Anotação demais sem você saber o que ela faz vira magia. Suba o guia oficial e leia o que foi gerado.",
+          "tags": [
+            "Spring Boot"
+          ],
+          "prerequisites": [
+            "jv-colecoes"
+          ],
+          "resources": [
+            {
+              "title": "Spring Boot",
+              "url": "https://spring.io/projects/spring-boot",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Começar um serviço (Baeldung)",
+              "url": "https://www.baeldung.com/spring-boot-start",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "jv-rest",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Recurso REST",
+          "description": "Substantivo no plural, verbo HTTP no método, status que combina com o resultado. 201 cria, 400 recusa corpo, 404 não acha. A regra de negócio não mora no controlador inteira: ele traduz HTTP.",
+          "tags": [
+            "REST",
+            "HTTP"
+          ],
+          "prerequisites": [
+            "jv-spring"
+          ],
+          "resources": [
+            {
+              "title": "Serviço REST com Spring",
+              "url": "https://spring.io/guides/gs/rest-service",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Request mapping (Baeldung)",
+              "url": "https://www.baeldung.com/spring-requestmapping",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "jv-dados",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Banco e migração",
+          "description": "A tabela sobrevive ao processo. A migração versiona o esquema. Não edite tabela de produção na mão sem deixar o arquivo que repete a mudança. Transação cobre o que tem que valer junto.",
+          "tags": [
+            "JPA",
+            "SQL"
+          ],
+          "prerequisites": [
+            "jv-rest"
+          ],
+          "resources": [
+            {
+              "title": "SQL introdutório (PostgreSQL)",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Testes no Spring Boot",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/index.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "jv-teste",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "JUnit no serviço",
+          "description": "Teste a regra sem subir a web. Teste uma rota com o apoio do Spring quando o HTTP faz parte do contrato. Nome do teste diz o caso, não \"test1\".",
+          "tags": [
+            "JUnit"
+          ],
+          "prerequisites": [
+            "jv-rest"
+          ],
+          "resources": [
+            {
+              "title": "Guia do JUnit 5",
+              "url": "https://junit.org/junit5/docs/current/user-guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Testes no Spring Boot",
+              "url": "https://docs.spring.io/spring-boot/reference/testing/index.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "jv2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "JSON no terminal, ainda",
+          "description": "Antes do Spring, serialize uma lista de objetos para uma saída previsível e leia de volta. O objetivo é separar dado de impressão.",
+          "steps": [
+            "Defina o formato dos campos.",
+            "Mostre um objeto e uma lista vazia.",
+            "Não use banco ainda."
+          ],
+          "definitionOfDone": [
+            "A saída de exemplo está no README.",
+            "O programa não depende de rede."
+          ]
+        },
+        {
+          "id": "jv2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "API de reservas",
+          "description": "Crie, liste e cancele uma reserva simples. Status corretos. Um teste de JUnit cobre a regra de conflito de horário.",
+          "steps": [
+            "Modele o recurso.",
+            "Recuse sobreposição.",
+            "Documente três chamadas com curl ou similar."
+          ],
+          "definitionOfDone": [
+            "O conflito não vira 200.",
+            "O teste da regra não precisa do servidor no ar."
+          ]
+        },
+        {
+          "id": "jv2-projeto-avancado",
+          "level": "avancado",
+          "hours": 14,
+          "title": "Migração e um teste da rota",
+          "description": "Aplique uma mudança de esquema por arquivo versionado e cubra a rota de criação com teste do Spring.",
+          "steps": [
+            "A primeira migração cria a tabela.",
+            "A segunda acrescenta um campo sem apagar dado no exemplo.",
+            "O teste da rota sobe o contexto, não a sua máquina inteira."
+          ],
+          "definitionOfDone": [
+            "Dá para recriar o banco do zero com as migrações.",
+            "O README tem o comando de teste."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "jv-fase-2-q1",
+          "prompt": "Qual status combina com \"criei o recurso\"?",
+          "reviewTopicId": "jv-rest",
+          "choices": [
+            {
+              "id": "a",
+              "text": "201.",
+              "correct": true,
+              "explanation": "200 também responde, mas 201 diz que houve criação."
+            },
+            {
+              "id": "b",
+              "text": "404.",
+              "correct": false,
+              "explanation": "404 é ausência."
+            },
+            {
+              "id": "c",
+              "text": "500.",
+              "correct": false,
+              "explanation": "500 é falha sua, não sucesso."
+            }
+          ]
+        },
+        {
+          "id": "jv-fase-2-q2",
+          "prompt": "O que um teste de unidade da regra não precisa?",
+          "reviewTopicId": "jv-teste",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Subir a porta HTTP e o banco real.",
+              "correct": true,
+              "explanation": "Unidade fica na função ou no objeto."
+            },
+            {
+              "id": "b",
+              "text": "Um caso de erro.",
+              "correct": false,
+              "explanation": "Erro faz parte da regra."
+            },
+            {
+              "id": "c",
+              "text": "Um nome que explica o caso.",
+              "correct": false,
+              "explanation": "Nome opaco atrapalha o colega."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

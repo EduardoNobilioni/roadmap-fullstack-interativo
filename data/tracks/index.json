@@ -1,10 +1,207 @@
 {
   "tracks": [
-    { "id": "frontend", "file": "frontend.json" },
-    { "id": "backend", "file": "backend.json" },
-    { "id": "fullstack", "file": "fullstack.json" },
-    { "id": "dados", "file": "dados.json" },
-    { "id": "mobile", "file": "mobile.json" },
-    { "id": "devops", "file": "devops.json" }
+    {
+      "id": "frontend",
+      "file": "frontend.json",
+      "group": "carreira",
+      "keywords": [
+        "html",
+        "css",
+        "react",
+        "acessibilidade",
+        "playwright"
+      ]
+    },
+    {
+      "id": "backend",
+      "file": "backend.json",
+      "group": "carreira",
+      "keywords": [
+        "api",
+        "node",
+        "redis",
+        "fila"
+      ]
+    },
+    {
+      "id": "fullstack",
+      "file": "fullstack.json",
+      "group": "carreira",
+      "keywords": [
+        "redis",
+        "cache",
+        "web"
+      ]
+    },
+    {
+      "id": "dados",
+      "file": "dados.json",
+      "group": "carreira",
+      "keywords": [
+        "ciencia de dados",
+        "data science",
+        "python",
+        "excel",
+        "power bi",
+        "experimento"
+      ]
+    },
+    {
+      "id": "analista-dados",
+      "file": "analista-dados.json",
+      "group": "carreira",
+      "keywords": [
+        "excel",
+        "power bi",
+        "sql",
+        "planilha",
+        "bi"
+      ]
+    },
+    {
+      "id": "engenharia-dados",
+      "file": "engenharia-dados.json",
+      "group": "carreira",
+      "keywords": [
+        "pipeline",
+        "etl",
+        "airflow",
+        "coleta"
+      ]
+    },
+    {
+      "id": "machine-learning",
+      "file": "machine-learning.json",
+      "group": "carreira",
+      "keywords": [
+        "ia",
+        "ml",
+        "modelo",
+        "sklearn",
+        "inteligencia artificial"
+      ]
+    },
+    {
+      "id": "java",
+      "file": "java.json",
+      "group": "carreira",
+      "keywords": [
+        "spring",
+        "spring boot",
+        "jvm"
+      ]
+    },
+    {
+      "id": "mobile",
+      "file": "mobile.json",
+      "group": "carreira",
+      "keywords": [
+        "flutter",
+        "android",
+        "ios",
+        "riverpod"
+      ]
+    },
+    {
+      "id": "qa",
+      "file": "qa.json",
+      "group": "carreira",
+      "keywords": [
+        "teste",
+        "qualidade",
+        "qa"
+      ]
+    },
+    {
+      "id": "devops",
+      "file": "devops.json",
+      "group": "carreira",
+      "keywords": [
+        "kubernetes",
+        "nuvem",
+        "linux",
+        "tls"
+      ]
+    },
+    {
+      "id": "computacao",
+      "file": "computacao.json",
+      "group": "fundamentos",
+      "keywords": [
+        "cs",
+        "computacao",
+        "rede",
+        "sistema operacional"
+      ]
+    },
+    {
+      "id": "algoritmos",
+      "file": "algoritmos.json",
+      "group": "fundamentos",
+      "keywords": [
+        "eda",
+        "estrutura de dados",
+        "grafo",
+        "big o"
+      ]
+    },
+    {
+      "id": "python",
+      "file": "python.json",
+      "group": "tecnologia",
+      "keywords": [
+        "python",
+        "venv"
+      ]
+    },
+    {
+      "id": "javascript",
+      "file": "javascript.json",
+      "group": "tecnologia",
+      "keywords": [
+        "js",
+        "javascript"
+      ]
+    },
+    {
+      "id": "sql",
+      "file": "sql.json",
+      "group": "tecnologia",
+      "keywords": [
+        "banco",
+        "join",
+        "select"
+      ]
+    },
+    {
+      "id": "git",
+      "file": "git.json",
+      "group": "tecnologia",
+      "keywords": [
+        "github",
+        "commit",
+        "pull request"
+      ]
+    },
+    {
+      "id": "linux",
+      "file": "linux.json",
+      "group": "tecnologia",
+      "keywords": [
+        "terminal",
+        "shell",
+        "bash"
+      ]
+    },
+    {
+      "id": "docker",
+      "file": "docker.json",
+      "group": "tecnologia",
+      "keywords": [
+        "container",
+        "compose",
+        "conteiner"
+      ]
+    }
   ]
 }

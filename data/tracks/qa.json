@@ -1,0 +1,418 @@
+{
+  "id": "qa",
+  "name": "QA e Testes de Software",
+  "tagline": "Encontrar falha cedo, descrever com clareza e automatizar o que se repete",
+  "description": "Para quem quer testar de propósito: caso, defeito, regressão, API, interface, acessibilidade e um teste que roda sozinho.",
+  "phases": [
+    {
+      "id": "qa-fase-1",
+      "number": 1,
+      "badgeTitle": "Ofício",
+      "title": "O que é testar",
+      "topics": [
+        {
+          "id": "qa-ideia",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Testar é comparar com uma expectativa",
+          "description": "Teste não é \"usar até cansar\". Você diz o que deveria acontecer, faz, e registra a diferença. Sem expectativa escrita, qualquer resultado parece aceitável.",
+          "tags": [
+            "Teste"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Pirâmide de testes na prática",
+              "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Testes na MDN",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Testing",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "qa-caso",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Caso de teste",
+          "description": "Um caso tem pré-condição, passos e resultado esperado. Caminho feliz, borda e erro. \"Testar o login\" não é um caso; \"senha vazia mostra a mensagem X\" é.",
+          "tags": [
+            "Caso de teste"
+          ],
+          "prerequisites": [
+            "qa-ideia"
+          ],
+          "resources": [
+            {
+              "title": "Testes na MDN",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Extensions/Testing",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "HTTPBin para experimentar pedido",
+              "url": "https://httpbin.org/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "qa-defeito",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Relato que alguém reproduz",
+          "description": "Defeito bom tem ambiente, passos, o que aconteceu e o que você esperava. Print ajuda. \"Não funciona\" não cabe no relatório. Severidade é o estrago, não o seu humor.",
+          "tags": [
+            "Bug"
+          ],
+          "prerequisites": [
+            "qa-caso"
+          ],
+          "resources": [
+            {
+              "title": "Guia de testes da OWASP",
+              "url": "https://owasp.org/www-project-web-security-testing-guide/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Pirâmide de testes na prática",
+              "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "qa1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Dez casos de uma tela",
+          "description": "Escolha uma tela pública (busca, login de um sistema seu, formulário) e escreva dez casos curtos, com esperado.",
+          "steps": [
+            "Inclua feliz, vazio, texto longo e caractere estranho.",
+            "Não automatize ainda.",
+            "Marque quais você executou."
+          ],
+          "definitionOfDone": [
+            "Cada caso tem resultado esperado.",
+            "Há pelo menos um caso de erro."
+          ]
+        },
+        {
+          "id": "qa1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Um defeito reproduzível",
+          "description": "Ache ou provoque um defeito num programa seu e escreva o relatório. Outra pessoa, ou você no dia seguinte, segue sem te perguntar.",
+          "steps": [
+            "Anote ambiente.",
+            "Numere os passos.",
+            "Separe atual de esperado."
+          ],
+          "definitionOfDone": [
+            "O relatório cabe numa página.",
+            "Não depende de \"você vai ver\"."
+          ]
+        },
+        {
+          "id": "qa1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Risco, não cobertura de vaidade",
+          "description": "Para um fluxo, liste o que dói se quebrar e o que é cosmético. Distribua os casos conforme o risco.",
+          "steps": [
+            "Nomeie três falhas caras.",
+            "Nomeie uma falha barata.",
+            "Diga o que você não vai testar nesta rodada e por quê."
+          ],
+          "definitionOfDone": [
+            "A lista de fora está explícita.",
+            "O critério não é \"testar tudo\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "qa-fase-1-q1",
+          "prompt": "O que falta num caso que só diz \"testar o cadastro\"?",
+          "reviewTopicId": "qa-caso",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O resultado esperado e os passos.",
+              "correct": true,
+              "explanation": "Sem isso não há comparação."
+            },
+            {
+              "id": "b",
+              "text": "O nome do testador.",
+              "correct": false,
+              "explanation": "Nome não é oráculo."
+            },
+            {
+              "id": "c",
+              "text": "A cor da ferramenta.",
+              "correct": false,
+              "explanation": "Ferramenta não define o caso."
+            }
+          ]
+        },
+        {
+          "id": "qa-fase-1-q2",
+          "prompt": "Severidade descreve o quê?",
+          "reviewTopicId": "qa-defeito",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O estrago se o defeito chegar em quem usa.",
+              "correct": true,
+              "explanation": "Impacto, não o volume da discussão."
+            },
+            {
+              "id": "b",
+              "text": "Há quanto tempo você está cansado.",
+              "correct": false,
+              "explanation": "Cansaço não é métrica."
+            },
+            {
+              "id": "c",
+              "text": "Quantas linhas o patch vai ter.",
+              "correct": false,
+              "explanation": "Tamanho do patch é outro assunto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qa-fase-2",
+      "number": 2,
+      "badgeTitle": "Além da tela",
+      "title": "API, interface, regressão e CI",
+      "topics": [
+        {
+          "id": "qa-api",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Testar a API",
+          "description": "Confira status, corpo e o que não deveria vazar. Caso sem autenticação, corpo inválido e o caminho feliz. A coleção de pedidos (ou o teste automatizado) fica no repositório.",
+          "tags": [
+            "API",
+            "HTTP"
+          ],
+          "prerequisites": [
+            "qa-caso"
+          ],
+          "resources": [
+            {
+              "title": "HTTPBin",
+              "url": "https://httpbin.org/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "qa-ui",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Interface e regressão",
+          "description": "Regressão é a falha que volta. Automatize o fluxo que quebrou duas vezes. Deixe exploração manual para o que você ainda não sabe descrever. Selenium e Playwright são ferramentas; o caso continua sendo seu.",
+          "tags": [
+            "Regressão",
+            "UI"
+          ],
+          "prerequisites": [
+            "qa-defeito"
+          ],
+          "resources": [
+            {
+              "title": "Playwright",
+              "url": "https://playwright.dev/docs/intro",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Selenium WebDriver",
+              "url": "https://www.selenium.dev/documentation/webdriver/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "qa-a11y",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Acessibilidade como teste",
+          "description": "Teclado, nome acessível, contraste e erro anunciado. Um teste automático pega uma parte. O resto é percorrer a tela sem mouse. \"Passou no axe\" não encerra.",
+          "tags": [
+            "Acessibilidade",
+            "axe"
+          ],
+          "prerequisites": [
+            "qa-ui"
+          ],
+          "resources": [
+            {
+              "title": "Avaliar acessibilidade (W3C)",
+              "url": "https://www.w3.org/WAI/test-evaluate/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Introdução à acessibilidade (W3C)",
+              "url": "https://www.w3.org/WAI/fundamentals/accessibility-intro/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "qa-ci",
+          "level": "avancado",
+          "hours": 4,
+          "title": "Teste na esteira",
+          "description": "O teste que só roda na sua máquina não protege o time. A esteira roda a suíte em cada mudança e falha o build. Teste instável (passa e falha sem mudança) é defeito da suíte: conserte ou tire.",
+          "tags": [
+            "CI"
+          ],
+          "prerequisites": [
+            "qa-api"
+          ],
+          "resources": [
+            {
+              "title": "GitHub Actions",
+              "url": "https://docs.github.com/pt/actions",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Pirâmide de testes na prática",
+              "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "qa2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Pedidos anotados",
+          "description": "Contra o HTTPBin ou uma API sua, registre cinco pedidos com o status esperado: um feliz e quatro que devem falhar ou divergir.",
+          "steps": [
+            "Escreva método e URL.",
+            "Escreva o status esperado antes de enviar.",
+            "Guarde o que voltou."
+          ],
+          "definitionOfDone": [
+            "Expectativa e resultado estão lado a lado.",
+            "Há pelo menos um caso que não é 200."
+          ]
+        },
+        {
+          "id": "qa2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Um fluxo automatizado",
+          "description": "Automatize um fluxo curto com Playwright ou Selenium e deixe um caso de propósito de fora, com o motivo.",
+          "steps": [
+            "O teste usa texto visível.",
+            "Rode duas vezes.",
+            "Escreva o que continua manual."
+          ],
+          "definitionOfDone": [
+            "O comando está no README.",
+            "A suíte não oscila nessas duas rodadas."
+          ]
+        },
+        {
+          "id": "qa2-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Esteira e um teste instável",
+          "description": "Coloque a suíte no GitHub Actions. Se algum teste oscilar, conserte a espera ou apague e explique.",
+          "steps": [
+            "O workflow falha quando o teste falha.",
+            "Não há segredo no arquivo.",
+            "Uma frase diz o que a esteira não cobre."
+          ],
+          "definitionOfDone": [
+            "O log de uma execução está referenciado, sem token.",
+            "A limitação da suíte está escrita."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "qa-fase-2-q1",
+          "prompt": "O que fazer com um teste que passa e falha sem ninguém mudar o código?",
+          "reviewTopicId": "qa-ci",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Tratar como defeito da suíte: estabilizar ou remover.",
+              "correct": true,
+              "explanation": "Sinal instável ensina o time a ignorar o vermelho."
+            },
+            {
+              "id": "b",
+              "text": "Rodar de novo até passar e seguir.",
+              "correct": false,
+              "explanation": "Isso esconde a falha."
+            },
+            {
+              "id": "c",
+              "text": "Aumentar o tempo de espera para 30 segundos e esquecer.",
+              "correct": false,
+              "explanation": "Espera cega deixa o teste lento e ainda frágil."
+            }
+          ]
+        },
+        {
+          "id": "qa-fase-2-q2",
+          "prompt": "Por que uma ferramenta automática não encerra o teste de acessibilidade?",
+          "reviewTopicId": "qa-a11y",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque ela não usa a tela como uma pessoa, nem pega todo o significado.",
+              "correct": true,
+              "explanation": "Ela aponta uma parte objetiva."
+            },
+            {
+              "id": "b",
+              "text": "Porque acessibilidade é só contraste.",
+              "correct": false,
+              "explanation": "Contraste é um critério, não o único."
+            },
+            {
+              "id": "c",
+              "text": "Porque o teclado não faz parte do teste.",
+              "correct": false,
+              "explanation": "Percorrer sem mouse é teste."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

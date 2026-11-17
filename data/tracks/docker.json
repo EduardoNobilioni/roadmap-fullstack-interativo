@@ -1,0 +1,370 @@
+{
+  "id": "docker",
+  "name": "Docker",
+  "tagline": "Empacotar um programa para ele subir igual",
+  "description": "Imagem, contêiner, Dockerfile e Compose. O suficiente para a API e o banco subirem juntos no notebook.",
+  "phases": [
+    {
+      "id": "dk-fase-1",
+      "number": 1,
+      "badgeTitle": "Contêiner",
+      "title": "Imagem e processo",
+      "topics": [
+        {
+          "id": "dk-ideia",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Imagem e contêiner",
+          "description": "Imagem é o pacote. Contêiner é o processo que roda a partir dela. Apagar o contêiner não apaga o dado que você guardou num volume de propósito, nem o que você esqueceu só dentro do contêiner.",
+          "tags": [
+            "Docker"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Começando com Docker",
+              "url": "https://docs.docker.com/get-started/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "O que é um contêiner",
+              "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "dk-file",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Dockerfile",
+          "description": "A receita começa de uma imagem base, copia o necessário e diz o comando. Contexto enorme deixa o build lento e pode copiar segredo. .dockerignore existe por isso.",
+          "tags": [
+            "Dockerfile"
+          ],
+          "prerequisites": [
+            "dk-ideia"
+          ],
+          "resources": [
+            {
+              "title": "Referência do Dockerfile",
+              "url": "https://docs.docker.com/reference/dockerfile/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Dockerfile",
+              "url": "https://docs.docker.com/engine/reference/builder/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "dk-compose",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Compose",
+          "description": "Compose sobe vários serviços e a rede entre eles. A API chama o banco pelo nome do serviço, não por um IP que muda. Volume guarda o dado do banco.",
+          "tags": [
+            "Compose"
+          ],
+          "prerequisites": [
+            "dk-file"
+          ],
+          "resources": [
+            {
+              "title": "Compose",
+              "url": "https://docs.docker.com/compose/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Para que serve o Compose",
+              "url": "https://docs.docker.com/compose/intro/features-uses/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "dk1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Rodar uma imagem pronta",
+          "description": "Suba uma imagem oficial de um servidor simples ou de banco, abra a porta documentada e desligue.",
+          "steps": [
+            "Não use senha fraca publicada.",
+            "Anote o comando.",
+            "Mostre que parou."
+          ],
+          "definitionOfDone": [
+            "Os comandos estão no README.",
+            "Nada ficou exposto sem você saber a porta."
+          ]
+        },
+        {
+          "id": "dk1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Dockerfile do seu script",
+          "description": "Empacote um programa pequeno. A imagem não contém a pasta do sistema inteiro nem um arquivo de segredo.",
+          "steps": [
+            "Escreva o Dockerfile.",
+            "Use dockerignore se precisar.",
+            "Rode e mostre a saída."
+          ],
+          "definitionOfDone": [
+            "O build é repetível.",
+            "Não há segredo na imagem, até onde você inspecionou."
+          ]
+        },
+        {
+          "id": "dk1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "API e banco no Compose",
+          "description": "Dois serviços. O dado do banco fica num volume. A API alcança o banco pelo nome.",
+          "steps": [
+            "Escreva o compose.",
+            "Reinicie e mostre que o dado continua.",
+            "Documente a porta publicada."
+          ],
+          "definitionOfDone": [
+            "O volume está nomeado.",
+            "O README diz como apagar de propósito, separado do uso normal."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "dk-fase-1-q1",
+          "prompt": "Apagar o contêiner apaga o quê, por padrão?",
+          "reviewTopicId": "dk-ideia",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O processo e o sistema de arquivos dele, não um volume que você criou à parte.",
+              "correct": true,
+              "explanation": "Dado só dentro do contêiner some."
+            },
+            {
+              "id": "b",
+              "text": "A imagem base oficial na internet.",
+              "correct": false,
+              "explanation": "A imagem local pode continuar."
+            },
+            {
+              "id": "c",
+              "text": "O seu repositório git.",
+              "correct": false,
+              "explanation": "Git é outro disco."
+            }
+          ]
+        },
+        {
+          "id": "dk-fase-1-q2",
+          "prompt": "No Compose, a API encontra o banco pelo...",
+          "reviewTopicId": "dk-compose",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Nome do serviço na rede do Compose.",
+              "correct": true,
+              "explanation": "O nome é estável."
+            },
+            {
+              "id": "b",
+              "text": "IP que você memorizou ontem.",
+              "correct": false,
+              "explanation": "IP muda."
+            },
+            {
+              "id": "c",
+              "text": "localhost dentro do contêiner da API, apontando para o banco.",
+              "correct": false,
+              "explanation": "localhost ali é o próprio contêiner da API."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dk-fase-2",
+      "number": 2,
+      "badgeTitle": "Cuidado",
+      "title": "Dado, segredo e tamanho",
+      "topics": [
+        {
+          "id": "dk-volume",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Volume",
+          "description": "Dado que precisa sobreviver mora no volume ou fora do contêiner. Banco sem volume perde tudo quando você recria. Isso é útil para teste e desastroso para a única cópia.",
+          "tags": [
+            "Volume"
+          ],
+          "prerequisites": [
+            "dk-compose"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Docker",
+              "url": "https://docs.docker.com/get-started/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "dk-segredo",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Segredo na imagem",
+          "description": "Argumento de build e arquivo copiado entram na imagem e podem ser lidos. Senha vai por variável na hora de rodar, não assada na camada.",
+          "tags": [
+            "Segredo"
+          ],
+          "prerequisites": [
+            "dk-file"
+          ],
+          "resources": [
+            {
+              "title": "Referência do Dockerfile",
+              "url": "https://docs.docker.com/reference/dockerfile/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "dk-tamanho",
+          "level": "avancado",
+          "hours": 3,
+          "title": "Imagem menor",
+          "description": "Base menor e menos camada inútil aceleram e reduzem superfície. Não é o primeiro problema. É o passo quando a imagem já sobe e você viu o que ela carrega.",
+          "tags": [
+            "Imagem"
+          ],
+          "prerequisites": [
+            "dk-file"
+          ],
+          "resources": [
+            {
+              "title": "Workshop do Docker",
+              "url": "https://docs.docker.com/get-started/workshop/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "dk2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Sumiu de propósito",
+          "description": "Suba um banco sem volume, grave uma linha, destrua o contêiner e mostre que a linha foi embora. Depois repita com volume.",
+          "steps": [
+            "As duas rodadas.",
+            "A frase do que você escolheria para um teste.",
+            "A frase do que você escolheria para dado que importa."
+          ],
+          "definitionOfDone": [
+            "As duas conclusões estão escritas.",
+            "Você não usou dado real."
+          ]
+        },
+        {
+          "id": "dk2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Senha fora da imagem",
+          "description": "Passe a senha na execução, não no Dockerfile. Tente achar a senha no histórico de build e descreva.",
+          "steps": [
+            "Use um valor falso.",
+            "Mostre a variável na execução.",
+            "Diga onde ela não deve aparecer."
+          ],
+          "definitionOfDone": [
+            "O Dockerfile não tem a senha.",
+            "O valor é claramente falso."
+          ]
+        },
+        {
+          "id": "dk2-projeto-avancado",
+          "level": "avancado",
+          "hours": 5,
+          "title": "O que a imagem carrega",
+          "description": "Liste o que a sua imagem contém de desnecessário (cache de pacote, teste, segredo) e tire uma coisa.",
+          "steps": [
+            "Antes e depois do tamanho, se conseguir medir.",
+            "Uma exclusão no dockerignore ou na receita.",
+            "O programa continua subindo."
+          ],
+          "definitionOfDone": [
+            "A exclusão está explicada.",
+            "O programa sobe."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "dk-fase-2-q1",
+          "prompt": "Banco de teste sem volume é...",
+          "reviewTopicId": "dk-volume",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Um jeito de começar limpo toda vez, consciente de que o dado morre.",
+              "correct": true,
+              "explanation": "Desde que você saiba."
+            },
+            {
+              "id": "b",
+              "text": "O modo de guardar a única cópia.",
+              "correct": false,
+              "explanation": "Única cópia pede volume ou backup."
+            },
+            {
+              "id": "c",
+              "text": "Mais seguro que volume.",
+              "correct": false,
+              "explanation": "Segurança de durabilidade não aumenta."
+            }
+          ]
+        },
+        {
+          "id": "dk-fase-2-q2",
+          "prompt": "Senha escrita no Dockerfile...",
+          "reviewTopicId": "dk-segredo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Pode ficar na camada da imagem, para quem puxar a imagem ler.",
+              "correct": true,
+              "explanation": "Build não é cofre."
+            },
+            {
+              "id": "b",
+              "text": "Some quando o contêiner para.",
+              "correct": false,
+              "explanation": "A camada continua."
+            },
+            {
+              "id": "c",
+              "text": "É o método recomendado.",
+              "correct": false,
+              "explanation": "Não é o método recomendado: a camada guarda o texto."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
