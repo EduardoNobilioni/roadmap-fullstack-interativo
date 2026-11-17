@@ -12,8 +12,10 @@ import {
   effectiveStatus,
   emptyState,
   emptyTrackState,
+  CIENCIA_DE_DADOS_ID,
   ensureTrack,
   formatDuration,
+  groupTracks,
   isReady,
   moveId,
   naturalStatus,
@@ -25,6 +27,7 @@ import {
   setTopicStatus,
   sharePlanFromTrack,
   stateFromLegacyStorage,
+  tracksMatching,
   validateTrack,
   visibleProjects,
 } from './model.js';
@@ -62,7 +65,7 @@ const session = {
   filter: 'all',
   openNotes: {},
   openPhaseNotes: {},
-  onboarding: { step: 1, trackId: null, level: null, hours: null, mode: 'create' },
+  onboarding: { step: 1, trackId: null, level: null, hours: null, mode: 'create', companionIds: [], query: '' },
 };
 
 function escapeHtml(value) {
@@ -92,6 +95,19 @@ function icon(name) {
     dados: '<path d="M5 16V8M10 18V6M15 14V10M19 17V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
     mobile: '<rect x="8" y="3" width="8" height="18" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M11 18h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
     devops: '<path d="M12 3v4M12 17v4M4.9 6.5l2.8 2.8M16.3 14.7l2.8 2.8M3 12h4M17 12h4M4.9 17.5l2.8-2.8M16.3 9.3l2.8-2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    computacao: '<rect x="5" y="4" width="14" height="10" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 20h8M12 14v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    algoritmos: '<path d="M6 18V6M12 18V10M18 18V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    java: '<path d="M8 16c2 2 6 2 8 0M7 12c2-3 8-3 10 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>',
+    qa: '<path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+    'analista-dados': '<path d="M5 17V7h14v10H5zM5 11h14" stroke="currentColor" stroke-width="1.8" fill="none"/>',
+    'engenharia-dados': '<path d="M4 12h5l2-4 3 8 2-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+    'machine-learning': '<path d="M6 16l4-8 4 6 4-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+    python: '<path d="M8 8h5a3 3 0 0 1 0 6H8V8zM16 16H11a3 3 0 0 1 0-6h5v6z" stroke="currentColor" stroke-width="1.6" fill="none"/>',
+    javascript: '<path d="M8 5h8v14H8zM11 17c.4.6 1 .8 1.7.8 1 0 1.6-.5 1.6-1.3 0-2-3.3-.9-3.3-3.1 0-.8.7-1.4 1.6-1.4.7 0 1.2.3 1.5.8" stroke="currentColor" stroke-width="1.6" fill="none"/>',
+    sql: '<ellipse cx="12" cy="7" rx="6" ry="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M6 7v10c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V7" stroke="currentColor" stroke-width="1.6" fill="none"/>',
+    git: '<circle cx="7" cy="7" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="2" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="17" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 8.5l2.5 6.5M15.5 8.5 13 15" stroke="currentColor" stroke-width="1.6"/>',
+    linux: '<path d="M6 16c0-4 2-8 6-8s6 4 6 8" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+    docker: '<path d="M4 14h14a3 3 0 0 0 0-6h-1M4 14v2h12M7 11V8M10 11V8M13 11V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
   };
   return `<svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">${paths[name] || paths.fullstack}</svg>`;
 }
@@ -514,12 +530,62 @@ function updateDashboard() {
   });
 }
 
+function renderRenameNotice() {
+  const notice = $('renameNotice');
+  if (!notice) return;
+  const show = state.activeTrackId === CIENCIA_DE_DADOS_ID
+    && !(state.profile.dismissedNotices || []).includes('dados-ciencia');
+  notice.hidden = !show;
+  if (show) {
+    $('renameNoticeText').textContent = 'Esta trilha se chamava Dados. O nome agora é Ciência de Dados, e o progresso dos tópicos que você já marcou continua aqui. Analista de Dados, Engenharia de Dados e Machine Learning são trilhas separadas.';
+  }
+}
+
+function renderTrackSwitcher() {
+  const nav = $('trackSwitcher');
+  if (!nav) return;
+  const ids = [];
+  if (state.profile.primaryTrackId && trackById(state.profile.primaryTrackId)) {
+    ids.push(state.profile.primaryTrackId);
+  }
+  for (const id of state.profile.companionIds || []) {
+    if (trackById(id) && !ids.includes(id)) ids.push(id);
+  }
+  if (state.activeTrackId && trackById(state.activeTrackId) && !ids.includes(state.activeTrackId)) {
+    ids.unshift(state.activeTrackId);
+  }
+  if (ids.length < 2) {
+    nav.hidden = true;
+    nav.innerHTML = '';
+    return;
+  }
+  nav.hidden = false;
+  nav.innerHTML = ids.map((id) => {
+    const track = trackById(id);
+    const current = id === state.activeTrackId ? ' aria-current="page"' : '';
+    return `<button type="button" class="track-switch" data-switch-track="${escapeHtml(id)}"${current}>${escapeHtml(track.name)}</button>`;
+  }).join('');
+}
+
+function switchToTrack(id) {
+  if (!trackById(id) || id === state.activeTrackId) return;
+  const current = activeTrackState();
+  const next = ensureTrack(state, id);
+  if (!next.level) next.level = current?.level || 'iniciante';
+  if (!next.weeklyHours) next.weeklyHours = current?.weeklyHours || 6;
+  state.activeTrackId = id;
+  persist();
+  refresh();
+}
+
 function updateHeader() {
   const track = activeTrack();
   $('trackBadge').textContent = track.name;
   $('trackTagline').textContent = track.description;
   $('trackIcon').innerHTML = icon(track.id);
   document.title = `Trilha de Estudos — ${track.name}`;
+  renderTrackSwitcher();
+  renderRenameNotice();
 }
 
 function refresh() {
@@ -534,9 +600,10 @@ function refresh() {
   renderRoadmap();
 }
 
-function choiceCard(name, value, title, text, selected) {
-  return `<label class="choice-card ${selected ? 'is-selected' : ''}" data-choice="${escapeHtml(name)}" data-value="${escapeHtml(value)}">
-    <input class="sr-only" type="radio" name="${escapeHtml(name)}" value="${escapeHtml(value)}" ${selected ? 'checked' : ''} />
+function choiceCard(name, value, title, text, selected, type = 'radio') {
+  const checked = selected ? 'checked' : '';
+  return `<label class="choice-card ${selected ? 'is-selected' : ''}" data-choice="${escapeHtml(name)}" data-value="${escapeHtml(value)}" data-track-card data-search="">
+    <input class="sr-only" type="${type}" name="${escapeHtml(name)}" value="${escapeHtml(value)}" ${checked} />
     <span class="block font-semibold">${escapeHtml(title)}</span>
     <span class="block mt-1 text-xs text-muted">${escapeHtml(text)}</span>
   </label>`;
@@ -549,15 +616,32 @@ function paintChoices() {
   });
 }
 
+function trackSearchBlob(track) {
+  return [track.name, track.tagline, track.description, ...(track.keywords || [])].join(' ');
+}
+
 function renderOnboardingChoices() {
   const draft = session.onboarding;
-  $('onbTrackGrid').innerHTML = tracks.map((track) => choiceCard(
-    'track',
-    track.id,
-    track.name,
-    track.tagline,
-    draft.trackId === track.id,
-  )).join('');
+  const groups = groupTracks(tracks);
+  $('onbTrackGroups').innerHTML = groups.map((group) => {
+    const cards = group.tracks.map((track) => {
+      const card = choiceCard('track', track.id, track.name, track.tagline, draft.trackId === track.id);
+      return card.replace('data-search=""', `data-search="${escapeHtml(trackSearchBlob(track))}"`);
+    }).join('');
+    return `<fieldset class="onb-group" data-track-group="${escapeHtml(group.id)}">
+      <legend class="text-sm font-bold">${escapeHtml(group.title)}</legend>
+      <p class="mt-1 text-xs text-muted dark:text-blush">${escapeHtml(group.lead)}</p>
+      <div class="mt-3 grid sm:grid-cols-2 gap-3">${cards}</div>
+    </fieldset>`;
+  }).join('');
+  const skills = tracks.filter((track) => track.group === 'tecnologia');
+  $('onbCompanionList').innerHTML = skills.map((track) => {
+    const card = choiceCard('companion', track.id, track.name, track.tagline, draft.companionIds.includes(track.id), 'checkbox');
+    return card.replace('data-search=""', `data-search="${escapeHtml(trackSearchBlob(track))}" data-companion`);
+  }).join('');
+  $('onbSearch').value = draft.query || '';
+  filterOnboarding(draft.query || '');
+  syncCompanionLocks();
   $('onbStep2').innerHTML = `<legend class="sr-only">Nível atual</legend>${LEVELS.map((level) => choiceCard(
     'level',
     level,
@@ -575,8 +659,46 @@ function renderOnboardingChoices() {
   if (draft.hours && !HOUR_PRESETS.includes(draft.hours)) $('hoursCustom').value = draft.hours;
 }
 
+function filterOnboarding(query) {
+  const needle = query.trim();
+  const visible = new Set(tracksMatching(tracks, needle).map((track) => track.id));
+  let count = 0;
+  document.querySelectorAll('#onbTrackGroups [data-track-card]').forEach((card) => {
+    const show = visible.has(card.dataset.value);
+    card.hidden = !show;
+    if (show) count += 1;
+  });
+  document.querySelectorAll('#onbTrackGroups [data-track-group]').forEach((group) => {
+    group.hidden = ![...group.querySelectorAll('[data-track-card]')].some((card) => !card.hidden);
+  });
+  document.querySelectorAll('#onbCompanionList [data-companion]').forEach((card) => {
+    card.hidden = needle !== '' && !visible.has(card.dataset.value);
+  });
+  const companionVisible = [...document.querySelectorAll('#onbCompanionList [data-companion]')].some((card) => !card.hidden);
+  $('onbCompanions').hidden = !companionVisible;
+  $('onbSearchStatus').textContent = !needle
+    ? ''
+    : count === 0
+      ? 'Nenhuma trilha com esse termo.'
+      : `${count} ${count === 1 ? 'trilha' : 'trilhas'}`;
+}
+
+function syncCompanionLocks() {
+  const primary = selectedRadio('track') || session.onboarding.trackId;
+  document.querySelectorAll('input[name="companion"]').forEach((input) => {
+    const same = input.value === primary;
+    input.disabled = same;
+    if (same) input.checked = false;
+  });
+  paintChoices();
+}
+
+function selectedCompanionIds() {
+  return [...document.querySelectorAll('input[name="companion"]:checked')].map((input) => input.value);
+}
+
 const STEP_COPY = [
-  ['Qual é a sua área?', 'Escolha a trilha. Dá para trocar depois sem perder o que você já marcou em cada uma.'],
+  ['Qual trilha você quer estudar?', 'Carreiras, fundamentos e tecnologias. Dá para buscar. Uma tecnologia pode entrar junto com a trilha principal, e trocar depois não apaga o que você já marcou.'],
   ['Qual é o seu nível hoje?', 'Tópicos abaixo desse nível entram como opcionais. Eles continuam visíveis.'],
   ['Quantas horas por semana você consegue estudar?', 'A estimativa de cada etapa usa esse ritmo. Dá para ajustar depois.'],
   ['Seu plano', 'Confira as etapas antes de começar. O progresso fica salvo neste navegador.'],
@@ -634,8 +756,17 @@ function renderPreview() {
       .reduce((sum, topic) => sum + (Number(topic.hours) || 0), 0);
     return `<li class="flex justify-between gap-3 py-2 border-t border-line dark:border-sage/50"><span>Etapa ${phase.number}: ${escapeHtml(phase.title)}</span><span class="font-mono text-xs shrink-0">${escapeHtml(phaseHours ? formatDuration(phaseHours, hours) : 'opcional')}</span></li>`;
   }).join('');
+  const companionIds = document.querySelector('input[name="companion"]')
+    ? selectedCompanionIds().filter((id) => id !== track.id)
+    : session.onboarding.companionIds.filter((id) => id !== track.id);
+  session.onboarding.companionIds = companionIds;
+  const companionNames = companionIds.map((id) => trackById(id)?.name).filter(Boolean);
+  const together = companionNames.length
+    ? `<p class="mt-2 text-sm">Junto: ${escapeHtml(companionNames.join(', '))}. Cada tecnologia guarda o próprio progresso.</p>`
+    : '';
   $('planPreview').innerHTML = `
     <p class="font-semibold">${escapeHtml(track.name)} · ${LEVEL_LABELS[level]} · ${hours} h/semana</p>
+    ${together}
     <p class="mt-2 text-sm text-muted dark:text-blush">${stats.required} tópicos obrigatórios, ${stats.optional} opcionais e ${projects.total} ideias de projeto neste nível. ${escapeHtml(formatDuration(stats.hours, hours))} no ritmo escolhido.</p>
     <ol class="mt-3 text-sm">${phases}</ol>`;
 }
@@ -646,6 +777,10 @@ function openOnboarding(mode) {
   session.onboarding.trackId = mode === 'retake' ? state.activeTrackId : session.onboarding.trackId;
   session.onboarding.level = mode === 'retake' ? current?.level : session.onboarding.level;
   session.onboarding.hours = mode === 'retake' ? current?.weeklyHours : session.onboarding.hours;
+  session.onboarding.companionIds = mode === 'retake'
+    ? [...(state.profile.companionIds || [])]
+    : session.onboarding.companionIds;
+  session.onboarding.query = '';
   renderOnboardingChoices();
   showScreen('onboarding');
   goToStep(1);
@@ -677,6 +812,14 @@ function confirmOnboarding() {
   track.weeklyHours = hours;
   track.includeBelowLevel = false;
   track.overrides = {};
+  const companionIds = selectedCompanionIds().filter((id) => id !== trackId);
+  state.profile.primaryTrackId = trackId;
+  state.profile.companionIds = companionIds;
+  for (const id of companionIds) {
+    const companion = ensureTrack(state, id);
+    if (!companion.level) companion.level = level;
+    if (!companion.weeklyHours) companion.weeklyHours = hours;
+  }
   state.activeTrackId = trackId;
   state.profile.onboarded = true;
   persist();
@@ -1160,7 +1303,34 @@ function bind() {
     }
   }, true);
   document.addEventListener('change', (event) => {
-    if (event.target instanceof HTMLInputElement && event.target.type === 'radio') paintChoices();
+    if (!(event.target instanceof HTMLInputElement)) return;
+    if (event.target.type === 'radio' || event.target.type === 'checkbox') paintChoices();
+    if (event.target.name === 'track') {
+      session.onboarding.trackId = event.target.value;
+      syncCompanionLocks();
+    }
+    if (event.target.name === 'companion') session.onboarding.companionIds = selectedCompanionIds();
+  });
+  $('onbSearch').addEventListener('input', () => {
+    session.onboarding.query = $('onbSearch').value;
+    filterOnboarding(session.onboarding.query);
+  });
+  $('onbSearch').addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    document.querySelector('#onbTrackGroups [data-track-card]:not([hidden]) input')?.focus();
+  });
+  $('trackSwitcher').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-switch-track]');
+    if (!button) return;
+    switchToTrack(button.dataset.switchTrack);
+  });
+  $('renameNoticeDismiss').addEventListener('click', () => {
+    if (!state.profile.dismissedNotices.includes('dados-ciencia')) {
+      state.profile.dismissedNotices.push('dados-ciencia');
+    }
+    persist();
+    renderRenameNotice();
   });
   $('hoursCustom').addEventListener('input', () => {
     const custom = document.querySelector('input[name="hours"][value="custom"]');
@@ -1172,7 +1342,8 @@ function bind() {
     const step = session.onboarding.step;
     if (step === 1) {
       session.onboarding.trackId = selectedRadio('track');
-      if (!session.onboarding.trackId) return toast('Escolha uma área.', 'error');
+      session.onboarding.companionIds = selectedCompanionIds().filter((id) => id !== session.onboarding.trackId);
+      if (!session.onboarding.trackId) return toast('Escolha uma trilha.', 'error');
     }
     if (step === 2) {
       session.onboarding.level = selectedRadio('level');
@@ -1334,7 +1505,11 @@ async function loadTracks() {
     const data = await response.json();
     const errors = validateTrack(data);
     if (errors.length) throw new Error(`${entry.file}: ${errors[0]}`);
-    loaded.push(data);
+    loaded.push({
+      ...data,
+      group: entry.group,
+      keywords: Array.isArray(entry.keywords) ? entry.keywords : [],
+    });
   }
   tracks = loaded;
 }

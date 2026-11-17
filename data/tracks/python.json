@@ -1,0 +1,403 @@
+{
+  "id": "python",
+  "name": "Python",
+  "tagline": "A linguagem, do script ao ambiente isolado",
+  "description": "Trilha curta de Python para usar nas outras. Sintaxe, função, arquivo, erro, módulo e teste. Não é a trilha de dados nem a de web.",
+  "phases": [
+    {
+      "id": "py-fase-1",
+      "number": 1,
+      "badgeTitle": "Base",
+      "title": "Valores e decisões",
+      "topics": [
+        {
+          "id": "py-tipo",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Tipo, nome e expressão",
+          "description": "Número, texto, lista e o valor None. Nome aponta para um valor. Expressão produz um resultado; comando faz alguma coisa. Confundir os dois é a primeira semana de bug.",
+          "tags": [
+            "Python"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Tutorial do Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/index.html",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Python 3 — mundo 1 (Curso em Vídeo)",
+              "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dm6wYOIW20Nyg12TAjmMGT-",
+              "lang": "pt",
+              "kind": "video"
+            }
+          ]
+        },
+        {
+          "id": "py-fluxo",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Condição e laço",
+          "description": "If escolhe. For percorre. While precisa de um passo que termina. Laço infinito é hipótese para testar, não estilo.",
+          "tags": [
+            "Controle"
+          ],
+          "prerequisites": [
+            "py-tipo"
+          ],
+          "resources": [
+            {
+              "title": "Controle de fluxo",
+              "url": "https://docs.python.org/pt-br/3/tutorial/controlflow.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Python 3 — mundo 1 (Curso em Vídeo)",
+              "url": "https://www.youtube.com/playlist?list=PLHz_AreHm4dm6wYOIW20Nyg12TAjmMGT-",
+              "lang": "pt",
+              "kind": "video"
+            }
+          ]
+        },
+        {
+          "id": "py-funcao",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Função",
+          "description": "Função nomeia um pedaço, recebe argumento e devolve valor. Efeito colateral escondido dificulta o teste. Prefira devolver o resultado.",
+          "tags": [
+            "Função"
+          ],
+          "prerequisites": [
+            "py-fluxo"
+          ],
+          "resources": [
+            {
+              "title": "Controle de fluxo",
+              "url": "https://docs.python.org/pt-br/3/tutorial/controlflow.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "CS50 Python",
+              "url": "https://cs50.harvard.edu/python/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "py1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Calculadora de média",
+          "description": "Leia números até uma condição de parada e devolva a média numa função.",
+          "steps": [
+            "Trate lista vazia.",
+            "Não use dado global.",
+            "Mostre duas chamadas."
+          ],
+          "definitionOfDone": [
+            "A função devolve número ou um aviso.",
+            "O exemplo está no README."
+          ]
+        },
+        {
+          "id": "py1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Filtro legível",
+          "description": "Separe uma função que decide e outra que imprime. Teste a que decide sem olhar a tela.",
+          "steps": [
+            "Escreva três casos.",
+            "A impressão só acontece numa função.",
+            "Nomeie as funções pelo que fazem."
+          ],
+          "definitionOfDone": [
+            "Dá para testar sem print.",
+            "Os casos cobrem sim, não e borda."
+          ]
+        },
+        {
+          "id": "py1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Laço que termina",
+          "description": "Reescreva um while frágil com uma condição clara e um limite de segurança. Explique o limite.",
+          "steps": [
+            "Mostre o bug original em comentário curto ou no README.",
+            "Mostre a versão que para.",
+            "Diga o que o limite protege."
+          ],
+          "definitionOfDone": [
+            "A versão nova para nos casos escritos.",
+            "O limite tem motivo."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "py-fase-1-q1",
+          "prompt": "O que uma função que só devolve valor facilita?",
+          "reviewTopicId": "py-funcao",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Testar sem depender da ordem de prints.",
+              "correct": true,
+              "explanation": "O resultado é um valor."
+            },
+            {
+              "id": "b",
+              "text": "Esconder a entrada.",
+              "correct": false,
+              "explanation": "Argumento continua visível."
+            },
+            {
+              "id": "c",
+              "text": "Evitar todo erro de tipo.",
+              "correct": false,
+              "explanation": "Tipo errado ainda quebra."
+            }
+          ]
+        },
+        {
+          "id": "py-fase-1-q2",
+          "prompt": "Um while sem passo que muda a condição tende a quê?",
+          "reviewTopicId": "py-fluxo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Repetir para sempre.",
+              "correct": true,
+              "explanation": "A condição continua verdadeira."
+            },
+            {
+              "id": "b",
+              "text": "Virar um for sozinho.",
+              "correct": false,
+              "explanation": "For tem coleção ou intervalo."
+            },
+            {
+              "id": "c",
+              "text": "Apagar a variável.",
+              "correct": false,
+              "explanation": "O laço não apaga nome."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "py-fase-2",
+      "number": 2,
+      "badgeTitle": "Prática",
+      "title": "Arquivo, erro e ambiente",
+      "topics": [
+        {
+          "id": "py-arquivo",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Arquivo",
+          "description": "Abra, leia e feche. O gerenciador de contexto fecha mesmo quando dá erro. Codificação explícita evita surpresa com acento.",
+          "tags": [
+            "Arquivo"
+          ],
+          "prerequisites": [
+            "py-funcao"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial do Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/index.html",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Erros e exceções",
+              "url": "https://docs.python.org/pt-br/3/tutorial/errors.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "py-erro",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Exceção",
+          "description": "Capture o erro que você sabe tratar. Deixe subir o que você não entende. Mensagem genérica \"deu erro\" apaga o diagnóstico.",
+          "tags": [
+            "Exceção"
+          ],
+          "prerequisites": [
+            "py-arquivo"
+          ],
+          "resources": [
+            {
+              "title": "Erros e exceções",
+              "url": "https://docs.python.org/pt-br/3/tutorial/errors.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "py-ambiente",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "venv e módulo",
+          "description": "Ambiente virtual isola a dependência do projeto. Módulo é arquivo com nome. Instalar pacote no sistema inteiro mistura trabalho de disciplinas diferentes.",
+          "tags": [
+            "venv"
+          ],
+          "prerequisites": [
+            "py-erro"
+          ],
+          "resources": [
+            {
+              "title": "venv",
+              "url": "https://docs.python.org/pt-br/3/library/venv.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Módulos",
+              "url": "https://docs.python.org/pt-br/3/tutorial/modules.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "py-teste",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "unittest",
+          "description": "Um teste chama a função e compara. Nome do teste é o caso. Não precisa de framework grande para começar.",
+          "tags": [
+            "Teste"
+          ],
+          "prerequisites": [
+            "py-funcao"
+          ],
+          "resources": [
+            {
+              "title": "unittest",
+              "url": "https://docs.python.org/pt-br/3/library/unittest.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "py2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Ler um texto",
+          "description": "Leia um arquivo UTF-8 e conte linhas. Se o arquivo não existe, a mensagem diz isso.",
+          "steps": [
+            "Use o gerenciador de contexto.",
+            "Teste arquivo presente e ausente.",
+            "Não engula qualquer exceção."
+          ],
+          "definitionOfDone": [
+            "Os dois casos estão mostrados.",
+            "A codificação está no código."
+          ]
+        },
+        {
+          "id": "py2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Projeto com venv",
+          "description": "Crie um ambiente, instale uma biblioteca pequena ou use só a padrão, e escreva como outra pessoa repete.",
+          "steps": [
+            "O README tem os comandos.",
+            "O ambiente não vai para o git.",
+            "Um teste unittest cobre uma função."
+          ],
+          "definitionOfDone": [
+            "Dá para repetir do zero.",
+            "O teste falha se você quebrar a função."
+          ]
+        },
+        {
+          "id": "py2-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Erro específico",
+          "description": "Troque um except nu por exceções que você trata, e deixe uma outra aparecer.",
+          "steps": [
+            "Mostre a exceção tratada.",
+            "Mostre a que sobe.",
+            "Escreva por que você não captura tudo."
+          ],
+          "definitionOfDone": [
+            "O except nu sumiu.",
+            "A justificativa está no README."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "py-fase-2-q1",
+          "prompt": "Para que serve o venv?",
+          "reviewTopicId": "py-ambiente",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Isolar dependência deste projeto.",
+              "correct": true,
+              "explanation": "Outra pasta, outro conjunto de pacotes."
+            },
+            {
+              "id": "b",
+              "text": "Deixar o Python mais rápido.",
+              "correct": false,
+              "explanation": "Não é otimizador."
+            },
+            {
+              "id": "c",
+              "text": "Compilar para exe.",
+              "correct": false,
+              "explanation": "Não é empacotador."
+            }
+          ]
+        },
+        {
+          "id": "py-fase-2-q2",
+          "prompt": "Por que evitar except sem tipo?",
+          "reviewTopicId": "py-erro",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque você esconde erro que não sabe tratar, inclusive o de programação.",
+              "correct": true,
+              "explanation": "Diagnóstico some."
+            },
+            {
+              "id": "b",
+              "text": "Porque o Python proíbe try.",
+              "correct": false,
+              "explanation": "Try existe."
+            },
+            {
+              "id": "c",
+              "text": "Porque arquivo não gera erro.",
+              "correct": false,
+              "explanation": "Gera, e o tipo importa."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "id": "engenharia-dados",
+  "name": "Engenharia de Dados",
+  "tagline": "Levar o dado de um lugar a outro, com qualidade e repetição",
+  "description": "Para quem prepara o dado que outras pessoas analisam: arquivo, API, modelo, verificação e um fluxo que roda de novo amanhã.",
+  "phases": [
+    {
+      "id": "en-fase-1",
+      "number": 1,
+      "badgeTitle": "Base",
+      "title": "SQL e arquivo",
+      "topics": [
+        {
+          "id": "en-sql",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Tabela que aguenta consulta",
+          "description": "Tipo, chave e uma tabela por fato. O analista agradece nome estável. Coluna \"obs\" com três significados diferentes vira dívida na primeira semana.",
+          "tags": [
+            "SQL"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Tutorial SQL do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "DDL no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/ddl-basics.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "en-arquivo",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "CSV, tipo e codificação",
+          "description": "CSV mente: separador, aspas, acento e data. Abra uma amostra, declare a codificação e registre quantas linhas você recusou.",
+          "tags": [
+            "CSV"
+          ],
+          "prerequisites": [
+            "en-sql"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial do Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/index.html",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "10 minutos de Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
+          "id": "en-qualidade",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Qualidade mínima",
+          "description": "Nulo, duplicata e intervalo impossível. Uma verificação que falha o fluxo vale mais do que um painel que absorve lixo. Escreva a regra ao lado do código.",
+          "tags": [
+            "Qualidade"
+          ],
+          "prerequisites": [
+            "en-arquivo"
+          ],
+          "resources": [
+            {
+              "title": "10 minutos de Pandas",
+              "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Tutorial SQL do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "en1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Carregar e recusar",
+          "description": "Leia um CSV, grave numa tabela e recuse linha sem chave ou com data impossível. Conte as recusas.",
+          "steps": [
+            "Defina a chave.",
+            "Registre o motivo da recusa.",
+            "Mostre a contagem que entrou e a que ficou de fora."
+          ],
+          "definitionOfDone": [
+            "As duas contagens somam o arquivo, ou você explica o que não soma.",
+            "A regra está no README."
+          ]
+        },
+        {
+          "id": "en1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Chave e duplicata",
+          "description": "Detecte duplicata pela chave de negócio, não só pelo número da linha. Decida qual cópia fica e escreva o critério.",
+          "steps": [
+            "Gere um arquivo com duplicata de propósito.",
+            "Mostre o antes e o depois.",
+            "Não apague em silêncio."
+          ],
+          "definitionOfDone": [
+            "O critério de desempate está escrito.",
+            "Um exemplo numérico confere."
+          ]
+        },
+        {
+          "id": "en1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Verificação que falha",
+          "description": "Faça o fluxo parar quando a quantidade de linhas cai abaixo de um limite que você escolheu. O log diz a regra.",
+          "steps": [
+            "Defina o limite com um motivo.",
+            "Provoque a falha.",
+            "Mostre a execução que passa."
+          ],
+          "definitionOfDone": [
+            "As duas saídas estão registradas.",
+            "O limite não é um número mágico sem frase."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "en-fase-1-q1",
+          "prompt": "O que uma verificação de qualidade deve fazer com lixo?",
+          "reviewTopicId": "en-qualidade",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Falhar o fluxo ou isolar a linha, com o motivo registrado.",
+              "correct": true,
+              "explanation": "Engolir em silêncio contamina quem analisa."
+            },
+            {
+              "id": "b",
+              "text": "Corrigir o valor para a média e seguir.",
+              "correct": false,
+              "explanation": "Inventar dado é outra decisão, e rara."
+            },
+            {
+              "id": "c",
+              "text": "Apagar o log para o painel ficar limpo.",
+              "correct": false,
+              "explanation": "Sem log você não sabe o que sumiu."
+            }
+          ]
+        },
+        {
+          "id": "en-fase-1-q2",
+          "prompt": "Por que abrir uma amostra antes de carregar o arquivo inteiro?",
+          "reviewTopicId": "en-arquivo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Porque separador, acento e data aparecem cedo e quebram a carga.",
+              "correct": true,
+              "explanation": "Amostra não substitui a regra, mas evita surpresa óbvia."
+            },
+            {
+              "id": "b",
+              "text": "Porque CSV não tem linha quebrada.",
+              "correct": false,
+              "explanation": "CSV pode quebrar linha no meio de um campo entre aspas."
+            },
+            {
+              "id": "c",
+              "text": "Porque o banco adivinha a codificação.",
+              "correct": false,
+              "explanation": "Quem declara é você."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en-fase-2",
+      "number": 2,
+      "badgeTitle": "Movimento",
+      "title": "API, modelo analítico e repetição",
+      "topics": [
+        {
+          "id": "en-api",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Coletar de uma API",
+          "description": "Leia a página da API: autenticação, limite e o campo que indica a próxima página. Guarde a resposta bruta ou o suficiente para repetir. Não raspe HTML se a API existe. Se raspar, respeite robots.txt, intervalo e os termos, e não entre em área privada.",
+          "tags": [
+            "API",
+            "Coleta"
+          ],
+          "prerequisites": [
+            "en-arquivo"
+          ],
+          "resources": [
+            {
+              "title": "Requests, início rápido",
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "robots.txt",
+              "url": "https://www.robotstxt.org/robotstxt.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "urllib",
+              "url": "https://docs.python.org/pt-br/3/library/urllib.request.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "en-modelo",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Modelo para análise",
+          "description": "Separe o fato (uma linha por evento) da dimensão (o que descreve). Nome estável. A consulta do analista não deveria precisar adivinhar coluna.",
+          "tags": [
+            "Modelo"
+          ],
+          "prerequisites": [
+            "en-sql"
+          ],
+          "resources": [
+            {
+              "title": "DDL no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/ddl-basics.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Joins no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "en-orquestra",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Rodar de novo",
+          "description": "O fluxo tem hora, log e uma forma de reprocessar um dia sem apagar o mês. Agenda pode ser cron no começo. Airflow entra quando há várias etapas e dependência de verdade. Ferramenta não substitui a regra de qualidade.",
+          "tags": [
+            "Orquestração",
+            "Airflow"
+          ],
+          "prerequisites": [
+            "en-qualidade"
+          ],
+          "resources": [
+            {
+              "title": "Documentação do Airflow",
+              "url": "https://airflow.apache.org/docs/apache-airflow/stable/index.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Logs no 12-factor",
+              "url": "https://12factor.net/pt_br/logs",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "en2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Uma página de API",
+          "description": "Consuma uma API pública sem chave secreta, grave uma amostra e documente o campo da próxima página ou a ausência dele.",
+          "steps": [
+            "Escolha um endpoint de leitura.",
+            "Salve data e URL.",
+            "Não publique token."
+          ],
+          "definitionOfDone": [
+            "A amostra tem a fonte.",
+            "O limite de pedidos está respeitado no texto."
+          ]
+        },
+        {
+          "id": "en2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Fato e dimensão",
+          "description": "Transforme a amostra em duas tabelas com chave. Escreva uma consulta que o analista faria.",
+          "steps": [
+            "Desenhe o grão do fato.",
+            "Carregue de novo sem duplicar o mesmo evento.",
+            "Mostre a consulta."
+          ],
+          "definitionOfDone": [
+            "A segunda carga não dobra o fato.",
+            "A consulta tem uma pergunta em português."
+          ]
+        },
+        {
+          "id": "en2-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Reprocessar um dia",
+          "description": "Agende ou documente o comando que refaz um dia. O log diz início, fim e quantas linhas. Falha no meio não deixa a tabela pela metade sem aviso.",
+          "steps": [
+            "Escolha a chave do dia.",
+            "Mostre uma falha provocada.",
+            "Mostre a recuperação."
+          ],
+          "definitionOfDone": [
+            "Dá para repetir o comando.",
+            "O log não contém segredo."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "en-fase-2-q1",
+          "prompt": "Quando a raspagem de HTML fica para depois?",
+          "reviewTopicId": "en-api",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Quando existe API ou arquivo oficial da mesma informação.",
+              "correct": true,
+              "explanation": "Menos fragilidade e menos briga com o termo de uso."
+            },
+            {
+              "id": "b",
+              "text": "Quando o site tem muito CSS.",
+              "correct": false,
+              "explanation": "CSS não é o critério."
+            },
+            {
+              "id": "c",
+              "text": "Sempre: API é coisa de empresa grande.",
+              "correct": false,
+              "explanation": "API pequena também conta."
+            }
+          ]
+        },
+        {
+          "id": "en-fase-2-q2",
+          "prompt": "O que um fluxo repetível precisa ter além da ferramenta?",
+          "reviewTopicId": "en-orquestra",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Log, regra de qualidade e um jeito de refazer um pedaço.",
+              "correct": true,
+              "explanation": "Agenda sem isso só erra no horário."
+            },
+            {
+              "id": "b",
+              "text": "Um nome de marca no README.",
+              "correct": false,
+              "explanation": "Marca não executa."
+            },
+            {
+              "id": "c",
+              "text": "A senha do banco no código.",
+              "correct": false,
+              "explanation": "Segredo no código vaza."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

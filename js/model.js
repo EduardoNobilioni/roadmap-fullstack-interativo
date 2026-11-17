@@ -21,6 +21,54 @@ export const LEVEL_RANK = {
   avancado: 2,
 };
 
+/** A trilha publicada como Dados manteve este id ao passar a se chamar Ciência de Dados. */
+export const CIENCIA_DE_DADOS_ID = 'dados';
+
+export const TRACK_GROUPS = [
+  {
+    id: 'carreira',
+    title: 'Carreiras',
+    lead: 'Um caminho de profissão, com projeto em cada etapa.',
+  },
+  {
+    id: 'fundamentos',
+    title: 'Fundamentos',
+    lead: 'Computação que continua valendo quando a ferramenta muda.',
+  },
+  {
+    id: 'tecnologia',
+    title: 'Tecnologias',
+    lead: 'Uma ferramenta por vez. Pode ser a trilha principal ou entrar junto com uma carreira.',
+  },
+];
+
+export function foldText(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase();
+}
+
+export function trackHaystack(track) {
+  const keywords = Array.isArray(track.keywords) ? track.keywords : [];
+  return foldText([track.name, track.tagline, track.description, track.group, ...keywords].join(' '));
+}
+
+export function tracksMatching(list, query) {
+  const needle = foldText(query).trim();
+  const source = Array.isArray(list) ? list : [];
+  if (!needle) return source.slice();
+  return source.filter((track) => trackHaystack(track).includes(needle));
+}
+
+export function groupTracks(list) {
+  const source = Array.isArray(list) ? list : [];
+  return TRACK_GROUPS.map((group) => ({
+    ...group,
+    tracks: source.filter((track) => track.group === group.id),
+  })).filter((group) => group.tracks.length > 0);
+}
+
 const LEVEL_ALIASES = {
   iniciante: 'iniciante',
   intermediario: 'intermediario',
@@ -384,13 +432,34 @@ export function sanitizeTrackState(raw) {
   return base;
 }
 
+function emptyProfile() {
+  return {
+    onboarded: false,
+    primaryTrackId: null,
+    companionIds: [],
+    dismissedNotices: [],
+  };
+}
+
+function sanitizeProfile(raw) {
+  const profile = emptyProfile();
+  if (!isPlainObject(raw)) return profile;
+  profile.onboarded = !!raw.onboarded;
+  profile.primaryTrackId = isId(raw.primaryTrackId) ? raw.primaryTrackId : null;
+  profile.companionIds = sanitizeIdList(raw.companionIds)
+    .filter((id) => id !== profile.primaryTrackId)
+    .slice(0, 6);
+  profile.dismissedNotices = sanitizeIdList(raw.dismissedNotices).slice(0, 20);
+  return profile;
+}
+
 export function emptyState() {
   return {
     version: 2,
     theme: 'dark',
     strikethrough: true,
     activeTrackId: null,
-    profile: { onboarded: false },
+    profile: emptyProfile(),
     tracks: {},
   };
 }
@@ -405,7 +474,7 @@ export function normalizeState(raw) {
   if (!isPlainObject(raw)) return state;
   state.theme = raw.theme === 'light' ? 'light' : 'dark';
   state.strikethrough = typeof raw.strikethrough === 'boolean' ? raw.strikethrough : true;
-  state.profile.onboarded = !!(raw.profile && raw.profile.onboarded);
+  state.profile = sanitizeProfile(raw.profile);
   if (isPlainObject(raw.tracks)) {
     for (const [id, track] of Object.entries(raw.tracks)) {
       if (!isId(id)) continue;
@@ -469,6 +538,12 @@ export function applyImport(state, parsed) {
 
   if (parsed.theme === 'light' || parsed.theme === 'dark') state.theme = parsed.theme;
   if (typeof parsed.strikethrough === 'boolean') state.strikethrough = parsed.strikethrough;
+  if (isPlainObject(parsed.profile)) {
+    const kept = sanitizeProfile(parsed.profile);
+    state.profile.primaryTrackId = kept.primaryTrackId;
+    state.profile.companionIds = kept.companionIds;
+    state.profile.dismissedNotices = kept.dismissedNotices;
+  }
 
   for (const [id, raw] of Object.entries(parsed.tracks)) {
     if (!isId(id)) continue;
@@ -495,6 +570,12 @@ export function buildExport(state, exportedAt = new Date().toISOString()) {
     activeTrackId: state.activeTrackId,
     theme: state.theme,
     strikethrough: state.strikethrough,
+    profile: {
+      onboarded: !!state.profile.onboarded,
+      primaryTrackId: state.profile.primaryTrackId,
+      companionIds: state.profile.companionIds,
+      dismissedNotices: state.profile.dismissedNotices,
+    },
     completed: active.completed,
     notes: active.notes,
     phaseNotes: active.phaseNotes,

@@ -202,6 +202,43 @@ html.dark .choice-card {
   border-width: 2px;
 }
 
+.choice-card:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.onb-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.track-switch {
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: inherit;
+  border-radius: 2px;
+  min-height: 2rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+html.dark .track-switch {
+  border-color: var(--sage);
+  background: var(--card);
+}
+
+.track-switch[aria-current="page"] {
+  border-color: var(--terra);
+  border-width: 2px;
+  font-weight: 600;
+}
+
+html.dark .track-switch[aria-current="page"] {
+  border-color: var(--ochre);
+}
+
 html.dark .choice-card.is-selected {
   border-color: var(--ochre);
 }

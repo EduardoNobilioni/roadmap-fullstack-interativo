@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import {
   applyImport,
   applySharePlan,
+  CIENCIA_DE_DADOS_ID,
   buildExport,
   buildRoadmap,
   effectiveStatus,
@@ -16,8 +17,11 @@ import {
   isLegacyExport,
   moveId,
   projectPlanStats,
+  groupTracks,
+  normalizeState,
   roadmapStats,
   setTopicStatus,
+  tracksMatching,
   sharePlanFromTrack,
   stateFromLegacyStorage,
   validateTrack,
@@ -247,6 +251,49 @@ test('link de compartilhamento não leva anotação nem observação', async () 
   assert.equal(planFromHash(`#plano=${encoded}`), encoded);
 });
 
+test('a trilha Dados continua no id dados ao se chamar Ciência de Dados', () => {
+  const raw = {
+    version: 2,
+    profile: { onboarded: true, companionIds: ['python', 'dados'], primaryTrackId: 'dados' },
+    activeTrackId: 'dados',
+    tracks: {
+      dados: {
+        level: 'iniciante',
+        weeklyHours: 4,
+        completed: { 'ds-python': true },
+        notes: { 'ds-python': 'lembrar a média' },
+      },
+    },
+  };
+  const state = normalizeState(raw);
+  assert.equal(CIENCIA_DE_DADOS_ID, 'dados');
+  assert.equal(state.activeTrackId, 'dados');
+  assert.equal(state.tracks.dados.completed['ds-python'], true);
+  assert.equal(state.tracks.dados.notes['ds-python'], 'lembrar a média');
+  assert.deepEqual(state.profile.companionIds, ['python']);
+  const dados = JSON.parse(readFileSync(join(root, 'data', 'tracks', 'dados.json'), 'utf8'));
+  assert.equal(dados.id, 'dados');
+  assert.equal(dados.name, 'Ciência de Dados');
+  for (const id of ['ds-python', 'ds-excel', 'ds-bi', 'ds-ab', 'ds-coleta']) {
+    assert.ok(dados.phases.some((phase) => phase.topics.some((topic) => topic.id === id)), id);
+  }
+  const exported = buildExport(state, '2026-11-17T00:00:00.000Z');
+  const restored = normalizeState(exported);
+  assert.equal(restored.tracks.dados.completed['ds-python'], true);
+  assert.deepEqual(restored.profile.companionIds, ['python']);
+});
+
+test('busca de trilha ignora acento e agrupa por carreira, fundamentos e tecnologia', () => {
+  const list = [
+    { id: 'dados', name: 'Ciência de Dados', tagline: 'Python', description: '', group: 'carreira', keywords: ['excel'] },
+    { id: 'python', name: 'Python', tagline: 'Linguagem', description: '', group: 'tecnologia', keywords: [] },
+    { id: 'computacao', name: 'Fundamentos da Computação', tagline: 'Máquina', description: '', group: 'fundamentos', keywords: [] },
+  ];
+  assert.deepEqual(tracksMatching(list, 'ciencia').map((track) => track.id), ['dados']);
+  assert.deepEqual(tracksMatching(list, 'Excel').map((track) => track.id), ['dados']);
+  assert.deepEqual(groupTracks(list).map((group) => group.id), ['carreira', 'fundamentos', 'tecnologia']);
+});
+
 test('as trilhas publicadas são válidas e o Full-Stack conserva os 46 tópicos', () => {
   const index = JSON.parse(readFileSync(join(root, 'data', 'tracks', 'index.json'), 'utf8'));
   assert.equal(index.tracks.length >= 6, true);
@@ -257,7 +304,9 @@ test('as trilhas publicadas são válidas e o Full-Stack conserva os 46 tópicos
   }
   const fullstack = JSON.parse(readFileSync(join(root, 'data', 'tracks', 'fullstack.json'), 'utf8'));
   const ids = fullstack.phases.flatMap((phase) => phase.topics.map((topic) => topic.id));
-  assert.deepEqual(ids, FULLSTACK_IDS);
+  const kept = ids.filter((id) => FULLSTACK_IDS.includes(id));
+  assert.deepEqual(kept, FULLSTACK_IDS);
+  assert.ok(ids.includes('f4-http-cache'));
   assert.equal(
     fullstack.phases[0].topics[0].description,
     'Protocolos HTTP/HTTPS, funcionamento do DNS, nomes de domínio, hospedagem, modelo cliente-servidor e ciclo de renderização dos navegadores.',

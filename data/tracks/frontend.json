@@ -1168,6 +1168,7 @@
           ],
           "tags": [
             "Testing Library",
+            "Vitest",
             "Teste"
           ],
           "resources": [
@@ -1182,10 +1183,16 @@
               "url": "https://testing-library.com/docs/react-testing-library/example-intro",
               "lang": "en",
               "kind": "pratica"
+            },
+            {
+              "title": "Guia do Vitest",
+              "url": "https://vitest.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
             }
           ],
           "title": "Teste de componente",
-          "description": "Testing Library para o que a pessoa vê e faz: clicar, digitar, ver o texto. Não teste detalhe interno de state."
+          "description": "Testing Library olha o que a pessoa vê e faz: clicar, digitar, ler o texto. O Vitest (ou o Jest) roda esse teste no componente. O fluxo inteiro no navegador fica no tópico de Playwright."
         },
         {
           "id": "fe-portfolio",
@@ -1318,6 +1325,472 @@
               "text": "O próximo tópico apaga a necessidade deste.",
               "correct": false,
               "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-6",
+      "number": 6,
+      "badgeTitle": "Segurança",
+      "title": "Segurança no navegador",
+      "topics": [
+        {
+          "id": "fe-https",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "HTTPS no cliente",
+          "description": "O cadeado significa canal cifrado entre o navegador e o servidor. Formulário, cookie e API em produção saem por HTTPS. HTTP local serve para aprender; não é o endereço que você entrega.",
+          "tags": [
+            "HTTPS",
+            "TLS"
+          ],
+          "prerequisites": [
+            "fe-web"
+          ],
+          "resources": [
+            {
+              "title": "Glossário de HTTPS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Glossary/HTTPS",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Começando com Let's Encrypt",
+              "url": "https://letsencrypt.org/pt-br/getting-started/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "fe-cors",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "CORS sem chute",
+          "description": "O navegador bloqueia um JavaScript de uma origem quando ele lê a resposta de outra, a menos que o servidor autorize. Entenda origem, pedido simples e o preflight. Não \"desligue o CORS\" no navegador para fazer o app parecer pronto.",
+          "tags": [
+            "CORS",
+            "Origem"
+          ],
+          "prerequisites": [
+            "fe-async"
+          ],
+          "resources": [
+            {
+              "title": "CORS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Fetch API (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "fe-csp",
+          "level": "avancado",
+          "hours": 4,
+          "title": "Content Security Policy",
+          "description": "A CSP diz de onde a página pode carregar script, estilo e imagem. Uma política apertada reduz o estrago de um script injetado. Comece em modo de relatório, leia o que quebrou e só então bloqueie.",
+          "tags": [
+            "CSP",
+            "XSS"
+          ],
+          "prerequisites": [
+            "fe-https"
+          ],
+          "resources": [
+            {
+              "title": "CSP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CSP",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Folha CSP da OWASP",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "fe-owasp-cliente",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "OWASP no cliente",
+          "description": "No navegador, o risco clássico é XSS: um texto de usuário vira HTML e executa script. Escape a saída, evite innerHTML com dado externo e não guarde segredo em JavaScript, que qualquer pessoa lê. A OWASP Top 10 é um mapa, não uma lista para decorar.",
+          "tags": [
+            "OWASP",
+            "XSS"
+          ],
+          "prerequisites": [
+            "fe-html"
+          ],
+          "resources": [
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Prevenção de XSS (OWASP)",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Segurança na Web (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/Security",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "fe-auth-cliente",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Autenticação na interface",
+          "description": "A tela pede login, guarda a sessão com cuidado e trata 401. Cookie HttpOnly fica fora do JavaScript. Token no localStorage é visível para qualquer script da página. O front não decide sozinho quem pode ver um dado: o servidor recusa.",
+          "tags": [
+            "Sessão",
+            "Cookie",
+            "401"
+          ],
+          "prerequisites": [
+            "fe-async",
+            "fe-storage"
+          ],
+          "resources": [
+            {
+              "title": "Cookies (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Guides/Cookies",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Folha de autenticação (OWASP)",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Página só em HTTPS",
+          "description": "Publique uma página estática e abra o endereço HTTPS. Anote o que o navegador mostra se você trocar para HTTP.",
+          "steps": [
+            "Publique a página no GitHub Pages ou em outro hospedeiro estático.",
+            "Abra a URL com https e confira o cadeado e o domínio.",
+            "Escreva três linhas: o que o HTTPS protege e o que ele não impede (um site malicioso também pode ter cadeado)."
+          ],
+          "definitionOfDone": [
+            "O link HTTPS abre sem aviso de certificado.",
+            "O texto explica, com suas palavras, a diferença entre canal cifrado e site confiável."
+          ]
+        },
+        {
+          "id": "fe6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Dois endereços e um fetch",
+          "description": "Uma página em uma origem busca um JSON em outra. Documente o erro de CORS e a mudança mínima no servidor que libera só essa origem.",
+          "steps": [
+            "Suba a página e uma rota GET em origens diferentes.",
+            "Mostre no DevTools o erro de CORS antes da correção.",
+            "Autorize só a origem da página, não um curinga, e mostre a resposta chegar.",
+            "Escreva o que aconteceria se a API refletisse qualquer origem."
+          ],
+          "definitionOfDone": [
+            "O caso quebrado e o caso corrigido estão descritos com o status HTTP.",
+            "A liberação não usa * se a rota for autenticada."
+          ]
+        },
+        {
+          "id": "fe6-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "CSP e sessão",
+          "description": "Coloque uma CSP que bloqueia script solto e uma tela de login que trata 401 sem guardar senha no localStorage.",
+          "steps": [
+            "Comece com Content-Security-Policy-Report-Only e anote o que a página já carrega.",
+            "Aperte a política até o script da própria página passar e um script colado no HTML falhar.",
+            "No fluxo de login, mostre a mensagem de erro do 401 e onde a sessão fica (cookie ou memória), e o que você recusou guardar."
+          ],
+          "definitionOfDone": [
+            "Há um print ou log da CSP bloqueando o script indevido.",
+            "A senha não aparece no localStorage nem no README."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-6-q1",
+          "prompt": "Uma página em https://app.exemplo busca uma API em https://api.exemplo e o navegador bloqueia a leitura. O que está em jogo?",
+          "reviewTopicId": "fe-cors",
+          "choices": [
+            {
+              "id": "a",
+              "text": "A política de mesma origem: a API precisa autorizar essa origem.",
+              "correct": true,
+              "explanation": "CORS é uma decisão do servidor lida pelo navegador, não um bug do CSS."
+            },
+            {
+              "id": "b",
+              "text": "O DNS da página está errado.",
+              "correct": false,
+              "explanation": "Se a página abriu, o DNS já resolveu o nome dela."
+            },
+            {
+              "id": "c",
+              "text": "Falta um framework no front-end.",
+              "correct": false,
+              "explanation": "O bloqueio acontece antes do seu componente desenhar o JSON."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-6-q2",
+          "prompt": "Onde um segredo de API não deve ficar numa aplicação de front-end?",
+          "reviewTopicId": "fe-owasp-cliente",
+          "choices": [
+            {
+              "id": "a",
+              "text": "No JavaScript que o navegador baixa.",
+              "correct": true,
+              "explanation": "Quem abre as ferramentas do desenvolvedor lê esse arquivo."
+            },
+            {
+              "id": "b",
+              "text": "Num cookie HttpOnly, longe do script da página.",
+              "correct": false,
+              "explanation": "Esse cookie não entra no document.cookie."
+            },
+            {
+              "id": "c",
+              "text": "Só no README privado do repositório público.",
+              "correct": false,
+              "explanation": "Repositório público não é lugar privado."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe-fase-7",
+      "number": 7,
+      "badgeTitle": "Ofício",
+      "title": "Ferramentas, teste de ponta a ponta e ajuda de modelo",
+      "topics": [
+        {
+          "id": "fe-lint",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "ESLint e Prettier",
+          "description": "O ESLint aponta erro e cheiro no JavaScript. O Prettier só formata, para o diff não discutir vírgula. Os dois rodam no editor e no CI. Regra que ninguém entende vira ruído: comece com o recomendado e acrescente pouco.",
+          "tags": [
+            "ESLint",
+            "Prettier"
+          ],
+          "prerequisites": [
+            "fe-vite"
+          ],
+          "resources": [
+            {
+              "title": "Começando com ESLint",
+              "url": "https://eslint.org/docs/latest/use/getting-started",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Instalar o Prettier",
+              "url": "https://prettier.io/docs/install",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "fe-playwright",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Teste de ponta a ponta com Playwright",
+          "description": "O Playwright abre um navegador de verdade e faz o fluxo: entrar, preencher, ver o resultado. Use poucos testes, no caminho que não pode quebrar. O Vitest com Testing Library continua cobrindo o componente. Os dois não se substituem.",
+          "tags": [
+            "Playwright",
+            "E2E",
+            "Vitest"
+          ],
+          "prerequisites": [
+            "fe-test"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Playwright",
+              "url": "https://playwright.dev/docs/intro",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Escrevendo testes",
+              "url": "https://playwright.dev/docs/writing-tests",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Guia do Vitest",
+              "url": "https://vitest.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "fe-ia",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "Programar com ajuda de um modelo",
+          "description": "Um modelo de linguagem completa texto a partir de padrões. Serve para rascunho, explicação e um teste que você revisa. Não serve como autoridade: leia o diff, rode o código e recuse o que você não consegue explicar. Peça um recorte pequeno e cole o erro real, não a tarefa inteira.",
+          "tags": [
+            "LLM",
+            "Revisão"
+          ],
+          "prerequisites": [
+            "fe-js"
+          ],
+          "resources": [
+            {
+              "title": "Modelos de linguagem grandes (IBM)",
+              "url": "https://www.ibm.com/br-pt/topics/large-language-models",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Fundamentos de IA (Microsoft Learn)",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-started-ai-fundamentals/",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "fe7-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 3,
+          "title": "Formatar o que já existe",
+          "description": "Escolha um exercício antigo, rode o Prettier e descreva o que mudou no diff sem mudar o comportamento.",
+          "steps": [
+            "Rode o formatador só nesse projeto.",
+            "Leia o diff e separe formatação de mudança de lógica.",
+            "Escreva uma frase sobre o que você não deixaria uma ferramenta alterar sozinha."
+          ],
+          "definitionOfDone": [
+            "O diff de formatação está separado de qualquer correção.",
+            "O exercício continua abrindo como antes."
+          ]
+        },
+        {
+          "id": "fe7-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Um teste de componente e uma pergunta ao modelo",
+          "description": "Cubra um componente com Testing Library rodando no Vitest. Use um modelo só para propor casos, e anote qual caso você descartou e por quê.",
+          "steps": [
+            "Escreva um teste do que a pessoa vê, não do estado interno.",
+            "Peça ao modelo três casos de borda e fique com os que você entende.",
+            "No README, uma linha diz o que o teste garante e o que ele não vê."
+          ],
+          "definitionOfDone": [
+            "O teste falha se o texto principal sumir.",
+            "Há um caso que veio do modelo e um que você rejeitou, com o motivo."
+          ]
+        },
+        {
+          "id": "fe7-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Um fluxo no Playwright",
+          "description": "Automatize um caminho curto: abrir, preencher um formulário válido e ver a confirmação. O teste usa o texto da tela, não um seletor frágil de CSS gerado.",
+          "steps": [
+            "Suba a aplicação e grave o fluxo uma vez, se quiser, mas reescreva o teste para ficar legível.",
+            "Cubra o caminho feliz e um erro visível (campo vazio).",
+            "Rode o teste duas vezes seguidas. Se oscilar, conserte a espera."
+          ],
+          "definitionOfDone": [
+            "O comando do Playwright está no README.",
+            "O teste não depende de tempo fixo para \"ter sorte\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fe-fase-7-q1",
+          "prompt": "O que o Playwright cobre que o teste de componente com Testing Library não cobre?",
+          "reviewTopicId": "fe-playwright",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O fluxo no navegador, com navegação e página de verdade.",
+              "correct": true,
+              "explanation": "Componente e ponta a ponta respondem perguntas diferentes."
+            },
+            {
+              "id": "b",
+              "text": "A cor exata de cada token de CSS.",
+              "correct": false,
+              "explanation": "Contraste se mede; não é o papel do E2E."
+            },
+            {
+              "id": "c",
+              "text": "Se o servidor de produção está no ar agora.",
+              "correct": false,
+              "explanation": "Teste de ponta a ponta roda no ambiente que você subiu para o teste."
+            }
+          ]
+        },
+        {
+          "id": "fe-fase-7-q2",
+          "prompt": "Qual uso combina com um modelo de linguagem enquanto você estuda?",
+          "reviewTopicId": "fe-ia",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Pedir um rascunho pequeno e revisar o que você consegue explicar.",
+              "correct": true,
+              "explanation": "A ferramenta acelera; o entendimento continua seu."
+            },
+            {
+              "id": "b",
+              "text": "Colar a tarefa inteira e entregar a resposta sem ler.",
+              "correct": false,
+              "explanation": "Se você não explica, ainda não estudou."
+            },
+            {
+              "id": "c",
+              "text": "Desligar os testes porque o modelo disse que passou.",
+              "correct": false,
+              "explanation": "Teste é a sua evidência, não a frase do modelo."
             }
           ]
         }

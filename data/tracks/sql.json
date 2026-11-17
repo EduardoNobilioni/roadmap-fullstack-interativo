@@ -1,0 +1,370 @@
+{
+  "id": "sql",
+  "name": "SQL",
+  "tagline": "Perguntar a uma tabela e desenhar outra",
+  "description": "SELECT, JOIN, agregação, chave e índice. A trilha é a linguagem, não uma ferramenta de BI.",
+  "phases": [
+    {
+      "id": "sq-fase-1",
+      "number": 1,
+      "badgeTitle": "Pergunta",
+      "title": "Linha, filtro e grupo",
+      "topics": [
+        {
+          "id": "sq-select",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "SELECT",
+          "description": "Coluna, filtro e ordem. A pergunta em português vem antes da consulta. Estrela é rascunho.",
+          "tags": [
+            "SELECT"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/lesson/select_queries_introduction",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Tutorial SQL do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "sq-join",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "JOIN",
+          "description": "A chave liga as tabelas. O tipo do JOIN decide se a linha sem par aparece. Conte as linhas depois de juntar.",
+          "tags": [
+            "JOIN"
+          ],
+          "prerequisites": [
+            "sq-select"
+          ],
+          "resources": [
+            {
+              "title": "JOINs no SQLBolt",
+              "url": "https://sqlbolt.com/lesson/select_queries_with_joins",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Joins no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "sq-agg",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Agregação",
+          "description": "GROUP BY e HAVING. A unidade da resposta muda. Filtrar antes ou depois do grupo muda o número.",
+          "tags": [
+            "GROUP BY"
+          ],
+          "prerequisites": [
+            "sq-join"
+          ],
+          "resources": [
+            {
+              "title": "Agregação no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "sq1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Consultas comentadas",
+          "description": "Escreva quatro SELECT com a pergunta em cima.",
+          "steps": [
+            "Inclua filtro e ordem.",
+            "Confira um resultado na mão.",
+            "Evite estrela na versão final."
+          ],
+          "definitionOfDone": [
+            "As perguntas estão no arquivo.",
+            "Um resultado foi conferido."
+          ]
+        },
+        {
+          "id": "sq1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "JOIN com buraco",
+          "description": "Mostre uma linha que some num INNER e apareça num LEFT, e diga qual você queria.",
+          "steps": [
+            "Modele duas tabelas pequenas.",
+            "Rode os dois JOINs.",
+            "Escreva a escolha."
+          ],
+          "definitionOfDone": [
+            "Os dois resultados estão no texto.",
+            "A chave está nomeada."
+          ]
+        },
+        {
+          "id": "sq1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Média por grupo",
+          "description": "Agregue e use HAVING para ficar só com grupos que passam de um limite. Explique por que o limite não está no WHERE.",
+          "steps": [
+            "Calcule na mão um grupo.",
+            "Escreva a consulta.",
+            "Aponte o erro de filtrar cedo."
+          ],
+          "definitionOfDone": [
+            "A conta manual confere.",
+            "WHERE e HAVING estão distinguidos."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq-fase-1-q1",
+          "prompt": "INNER JOIN faz o quê com a linha sem par?",
+          "reviewTopicId": "sq-join",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Tira do resultado.",
+              "correct": true,
+              "explanation": "Sem par, não há combinação."
+            },
+            {
+              "id": "b",
+              "text": "Inventa a chave que falta.",
+              "correct": false,
+              "explanation": "Não inventa."
+            },
+            {
+              "id": "c",
+              "text": "Duplica a tabela da esquerda.",
+              "correct": false,
+              "explanation": "Não é cópia."
+            }
+          ]
+        },
+        {
+          "id": "sq-fase-1-q2",
+          "prompt": "HAVING filtra o quê?",
+          "reviewTopicId": "sq-agg",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O grupo, depois de agregar.",
+              "correct": true,
+              "explanation": "WHERE filtra a linha antes."
+            },
+            {
+              "id": "b",
+              "text": "A coluna do SELECT estrela.",
+              "correct": false,
+              "explanation": "Não é sobre estrela."
+            },
+            {
+              "id": "c",
+              "text": "O nome do banco.",
+              "correct": false,
+              "explanation": "Nome do banco não é grupo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sq-fase-2",
+      "number": 2,
+      "badgeTitle": "Desenho",
+      "title": "Tabela e índice",
+      "topics": [
+        {
+          "id": "sq-modelo",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Chave e tabela",
+          "description": "Uma tabela, um fato. Chave primária identifica. Estrangeira aponta. Repetir um bloco de colunas em várias linhas pede outra tabela.",
+          "tags": [
+            "Modelagem"
+          ],
+          "prerequisites": [
+            "sq-select"
+          ],
+          "resources": [
+            {
+              "title": "DDL no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/ddl-basics.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "sq-indice",
+          "level": "avancado",
+          "hours": 4,
+          "title": "Índice",
+          "description": "Índice acelera a busca que combina com ele e custa escrita. Índice em toda coluna não é estratégia. Olhe a consulta que dói antes de criar.",
+          "tags": [
+            "Índice"
+          ],
+          "prerequisites": [
+            "sq-modelo"
+          ],
+          "resources": [
+            {
+              "title": "Índices no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/indexes.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "sq-nulo",
+          "level": "intermediario",
+          "hours": 3,
+          "title": "NULL",
+          "description": "NULL não é zero nem texto vazio. Comparação com NULL não é verdadeira. Agregação trata NULL do jeito dela. Decida se a coluna pode ficar vazia.",
+          "tags": [
+            "NULL"
+          ],
+          "prerequisites": [
+            "sq-modelo"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial SQL do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "SQLite, SELECT",
+              "url": "https://sqlite.org/lang_select.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "sq2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Duas tabelas",
+          "description": "Separe um bloco repetido em outra tabela e ligue pela chave.",
+          "steps": [
+            "Desenhe antes.",
+            "Insira três linhas.",
+            "Escreva o JOIN."
+          ],
+          "definitionOfDone": [
+            "Não há coluna repetida sem motivo.",
+            "A chave estrangeira está declarada."
+          ]
+        },
+        {
+          "id": "sq2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "NULL de propósito",
+          "description": "Mostre uma consulta que erra se você tratar NULL como zero, e a versão que você considera certa.",
+          "steps": [
+            "Inclua uma linha com NULL.",
+            "Mostre as duas contas.",
+            "Escreva a regra da coluna."
+          ],
+          "definitionOfDone": [
+            "As duas contas estão no texto.",
+            "A coluna diz se NULL é permitido."
+          ]
+        },
+        {
+          "id": "sq2-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Um índice com motivo",
+          "description": "Escolha uma consulta com filtro, crie o índice que combina e escreva o que você espera que melhore. Não precisa de milhão de linhas: a justificativa basta.",
+          "steps": [
+            "Escreva a consulta.",
+            "Crie o índice.",
+            "Diga uma consulta que esse índice não ajuda."
+          ],
+          "definitionOfDone": [
+            "O motivo está no README.",
+            "Há o caso que o índice não cobre."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq-fase-2-q1",
+          "prompt": "NULL comparado com NULL, com =, resulta em...",
+          "reviewTopicId": "sq-nulo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Desconhecido, não em verdadeiro.",
+              "correct": true,
+              "explanation": "Por isso IS NULL existe."
+            },
+            {
+              "id": "b",
+              "text": "Verdadeiro.",
+              "correct": false,
+              "explanation": "Não é igualdade comum."
+            },
+            {
+              "id": "c",
+              "text": "Zero.",
+              "correct": false,
+              "explanation": "Zero é valor."
+            }
+          ]
+        },
+        {
+          "id": "sq-fase-2-q2",
+          "prompt": "Criar índice em todas as colunas é...",
+          "reviewTopicId": "sq-indice",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Um custo de escrita sem garantia de que as consultas usem.",
+              "correct": true,
+              "explanation": "Índice segue a consulta."
+            },
+            {
+              "id": "b",
+              "text": "A recomendação padrão.",
+              "correct": false,
+              "explanation": "Não é a recomendação: índice segue a consulta que dói."
+            },
+            {
+              "id": "c",
+              "text": "Obrigatório para ter chave primária.",
+              "correct": false,
+              "explanation": "Chave primária já cria o índice dela."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,585 @@
+{
+  "id": "computacao",
+  "name": "Fundamentos da Computação",
+  "tagline": "O que o computador faz, antes da ferramenta da moda",
+  "description": "Para quem está na faculdade e quer uma base que sobrevive à troca de linguagem: representação, máquina, sistema, rede e o hábito de ler erro.",
+  "phases": [
+    {
+      "id": "cs-fase-1",
+      "number": 1,
+      "badgeTitle": "Máquina",
+      "title": "O que executa o programa",
+      "topics": [
+        {
+          "id": "cs-bits",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Bit, byte e número",
+          "description": "O computador guarda ligado e desligado. Byte, inteiro e texto são convenções em cima disso. Um erro de um bit muda o valor, não \"a opinião\" da máquina.",
+          "tags": [
+            "Bit",
+            "Byte"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Representação de dados (CS Field Guide)",
+              "url": "https://www.csfieldguide.org.nz/en/chapters/data-representation/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Ciência da computação (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "cs-cpu",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Processador e memória",
+          "description": "A CPU executa instruções. A memória guarda o que está em uso e esquece quando falta energia. Disco guarda depois. Programa lento às vezes espera disco ou rede, não \"a CPU em geral\".",
+          "tags": [
+            "CPU",
+            "Memória"
+          ],
+          "prerequisites": [
+            "cs-bits"
+          ],
+          "resources": [
+            {
+              "title": "Nand2Tetris",
+              "url": "https://www.nand2tetris.org/",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Computation Structures (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "cs-so",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Sistema operacional",
+          "description": "O sistema reparte CPU, memória e arquivos entre programas. Processo é um programa em execução. Arquivo tem nome, dono e permissão. Sem isso, \"travou\" não vira diagnóstico.",
+          "tags": [
+            "Sistema operacional",
+            "Processo"
+          ],
+          "prerequisites": [
+            "cs-cpu"
+          ],
+          "resources": [
+            {
+              "title": "Sistema operacional (Wikipédia)",
+              "url": "https://pt.wikipedia.org/wiki/Sistema_operacional",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "The Missing Semester",
+              "url": "https://missing.csail.mit.edu/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "cs1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Um arquivo, por dentro",
+          "description": "Crie um arquivo de texto e outro com bytes que não são texto. Compare o tamanho e o que um editor mostra.",
+          "steps": [
+            "Grave uma frase curta e anote o tamanho em bytes.",
+            "Acrescente um acento e veja o tamanho mudar.",
+            "Abra um arquivo que não é texto e descreva o que o editor faz."
+          ],
+          "definitionOfDone": [
+            "Os dois tamanhos estão anotados.",
+            "Há uma frase sobre acento e byte."
+          ]
+        },
+        {
+          "id": "cs1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Processo e arquivo",
+          "description": "Liste processos enquanto um programa seu roda. Mostre o arquivo que ele leu e o que acontece com o processo quando você encerra.",
+          "steps": [
+            "Abra o monitor de processos do sistema.",
+            "Rode um programa pequeno e ache o processo.",
+            "Encerre e anote o que sumiu da lista."
+          ],
+          "definitionOfDone": [
+            "O nome do processo está no texto.",
+            "Fica claro que processo não é o arquivo do código."
+          ]
+        },
+        {
+          "id": "cs1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Do bit ao programa",
+          "description": "Siga o começo do Nand2Tetris ou do curso de estruturas de computação até você explicar, sem slide, como uma instrução mexe na memória.",
+          "steps": [
+            "Escolha uma aula ou um projeto inicial e faça o exercício.",
+            "Desenhe CPU, memória e uma instrução.",
+            "Escreva o que você ainda não sabe desenhar."
+          ],
+          "definitionOfDone": [
+            "O desenho tem os três elementos.",
+            "O limite do seu entendimento está escrito."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "cs-fase-1-q1",
+          "prompt": "O que a memória RAM não promete?",
+          "reviewTopicId": "cs-cpu",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Guardar o dado depois que falta energia.",
+              "correct": true,
+              "explanation": "RAM é trabalho em andamento, não arquivo."
+            },
+            {
+              "id": "b",
+              "text": "Executar a instrução no lugar da CPU.",
+              "correct": false,
+              "explanation": "Quem executa é o processador."
+            },
+            {
+              "id": "c",
+              "text": "Impedir dois programas de existirem.",
+              "correct": false,
+              "explanation": "Quem reparte isso é o sistema operacional."
+            }
+          ]
+        },
+        {
+          "id": "cs-fase-1-q2",
+          "prompt": "Processo e arquivo de código são a mesma coisa?",
+          "reviewTopicId": "cs-so",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Não. O arquivo guarda o programa; o processo é a execução.",
+              "correct": true,
+              "explanation": "Um pode existir sem o outro estar rodando."
+            },
+            {
+              "id": "b",
+              "text": "Sim, por isso o ícone e a janela têm o mesmo nome.",
+              "correct": false,
+              "explanation": "Nome parecido não junta os dois."
+            },
+            {
+              "id": "c",
+              "text": "Sim, os dois moram no processador.",
+              "correct": false,
+              "explanation": "O processador executa; não é gaveta de arquivo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cs-fase-2",
+      "number": 2,
+      "badgeTitle": "Rede",
+      "title": "Como uma mensagem atravessa",
+      "topics": [
+        {
+          "id": "cs-rede",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Endereço, pacote e nome",
+          "description": "A máquina tem endereço. O nome (o que você digita) passa por uma tradução. A mensagem vai em pacotes, não num fio contínuo só seu. Perder pacote faz parte do desenho, não é \"a internet caiu\" em toda falha.",
+          "tags": [
+            "IP",
+            "DNS"
+          ],
+          "prerequisites": [
+            "cs-so"
+          ],
+          "resources": [
+            {
+              "title": "Como a Web funciona (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "CS50",
+              "url": "https://cs50.harvard.edu/x/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        },
+        {
+          "id": "cs-http",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Pedido e resposta",
+          "description": "HTTP é um texto combinado: método, caminho, cabeçalho, corpo e um status na volta. 200, 404 e 500 não são a mesma falha. O conteúdo da página é o corpo, não o endereço.",
+          "tags": [
+            "HTTP",
+            "Status"
+          ],
+          "prerequisites": [
+            "cs-rede"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "HTTP Semantics (RFC 9110)",
+              "url": "https://datatracker.ietf.org/doc/html/rfc9110",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ]
+        },
+        {
+          "id": "cs-cliente",
+          "level": "intermediario",
+          "hours": 4,
+          "title": "Cliente e servidor",
+          "description": "O cliente pede. O servidor responde e não \"vê a sua tela\". Dois clientes podem pedir ao mesmo tempo. Estado de um usuário precisa ser deliberado, senão a resposta de um vaza para o outro.",
+          "tags": [
+            "Cliente",
+            "Servidor"
+          ],
+          "prerequisites": [
+            "cs-http"
+          ],
+          "resources": [
+            {
+              "title": "Como a Web funciona (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Métodos HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "cs2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Um nome, um endereço",
+          "description": "Escolha um site da universidade, anote o nome e descubra para qual endereço ele aponta. Diga o que mudaria se o nome mudasse e o servidor não.",
+          "steps": [
+            "Use o comando de consulta DNS do seu sistema ou um site de consulta confiável.",
+            "Anote nome e endereço.",
+            "Escreva uma frase separando nome de máquina."
+          ],
+          "definitionOfDone": [
+            "Os dois valores estão no texto.",
+            "Não há senha nem dado de outra pessoa."
+          ]
+        },
+        {
+          "id": "cs2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Três status",
+          "description": "Faça três pedidos de propósito: um que existe, um caminho que não existe e um erro que você provoca. Anote método, caminho e status.",
+          "steps": [
+            "Use o navegador ou curl contra um site público ou o seu.",
+            "Registre 2xx, 4xx e, se conseguir com segurança no seu servidor, um 5xx.",
+            "Diga quem errou em cada caso: cliente, servidor ou caminho."
+          ],
+          "definitionOfDone": [
+            "Os três registros têm status.",
+            "O texto não chama todo erro de \"bug do front\"."
+          ]
+        },
+        {
+          "id": "cs2-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Dois clientes",
+          "description": "Descreva uma API mínima e o que cada cliente precisa enviar para o servidor não misturar as pessoas. Aponte um dado que não pode ir parar na resposta do outro.",
+          "steps": [
+            "Desenhe cliente A, cliente B e o servidor.",
+            "Marque o que identifica a sessão.",
+            "Escreva o vazamento que você está evitando."
+          ],
+          "definitionOfDone": [
+            "O desenho distingue os dois clientes.",
+            "A identificação não é \"o servidor lembra a última pessoa\"."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "cs-fase-2-q1",
+          "prompt": "Um 404 diz o quê?",
+          "reviewTopicId": "cs-http",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O servidor alcançou o pedido e não achou aquele caminho.",
+              "correct": true,
+              "explanation": "O nome resolveu; o recurso é que não está lá."
+            },
+            {
+              "id": "b",
+              "text": "O cabo de rede foi desligado.",
+              "correct": false,
+              "explanation": "Sem rede o pedido nem completa."
+            },
+            {
+              "id": "c",
+              "text": "O navegador esqueceu CSS.",
+              "correct": false,
+              "explanation": "404 é status HTTP, não folha de estilo."
+            }
+          ]
+        },
+        {
+          "id": "cs-fase-2-q2",
+          "prompt": "O servidor enxerga o layout da tela?",
+          "reviewTopicId": "cs-cliente",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Não. Ele recebe o pedido, não a janela.",
+              "correct": true,
+              "explanation": "A tela é do cliente."
+            },
+            {
+              "id": "b",
+              "text": "Sim, por isso o HTML vai pronto com a cor do tema do usuário.",
+              "correct": false,
+              "explanation": "Tema no HTML ainda é resposta, não a janela."
+            },
+            {
+              "id": "c",
+              "text": "Sim, o DNS manda a screenshot.",
+              "correct": false,
+              "explanation": "DNS traduz nome, não imagem da tela."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cs-fase-3",
+      "number": 3,
+      "badgeTitle": "Programa",
+      "title": "Algoritmo, custo e erro",
+      "topics": [
+        {
+          "id": "cs-algo",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "Algoritmo não é a linguagem",
+          "description": "Algoritmo é a sequência que resolve a tarefa. A linguagem é o jeito de escrever para uma máquina. O mesmo algoritmo cabe em Python ou Java. Decoração de sintaxe não muda o passo.",
+          "tags": [
+            "Algoritmo"
+          ],
+          "prerequisites": [
+            "cs-bits"
+          ],
+          "resources": [
+            {
+              "title": "Algoritmos (Khan Academy)",
+              "url": "https://pt.khanacademy.org/computing/computer-science/algorithms",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Introdução a algoritmos (CS Field Guide)",
+              "url": "https://www.csfieldguide.org.nz/en/chapters/algorithms/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "cs-custo",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "O que cresce com o tamanho",
+          "description": "Quando a lista dobra, o seu procedimento dobra, quadriplica ou quase não muda? Essa pergunta vale mais do que o tempo de um exemplo pequeno. Notação de crescimento compara ideias, não o seu notebook com o do colega.",
+          "tags": [
+            "Complexidade"
+          ],
+          "prerequisites": [
+            "cs-algo"
+          ],
+          "resources": [
+            {
+              "title": "Projeto de algoritmos (IME-USP)",
+              "url": "https://www.ime.usp.br/~pf/algoritmos/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Big-O Cheat Sheet",
+              "url": "https://www.bigocheatsheet.com/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
+        },
+        {
+          "id": "cs-erro",
+          "level": "iniciante",
+          "hours": 4,
+          "title": "Ler o erro até o fim",
+          "description": "A mensagem diz o tipo, o arquivo e muitas vezes a linha. Leia de baixo se o topo for uma biblioteca. Mude uma coisa e rode de novo. Copiar o erro inteiro para um modelo sem ler a primeira linha adia o aprendizado.",
+          "tags": [
+            "Depuração"
+          ],
+          "prerequisites": [
+            "cs-algo"
+          ],
+          "resources": [
+            {
+              "title": "CS50",
+              "url": "https://cs50.harvard.edu/x/",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Introdução com Python (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "id": "cs3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 5,
+          "title": "O mesmo passo em duas escritas",
+          "description": "Escreva a receita de achar o maior número de uma lista em português e depois numa linguagem. As duas têm que ser o mesmo algoritmo.",
+          "steps": [
+            "Escreva os passos sem código.",
+            "Implemente.",
+            "Aponte a linha que corresponde a cada passo."
+          ],
+          "definitionOfDone": [
+            "Há um exemplo com três números.",
+            "Dá para ver que a linguagem não inventou um passo novo."
+          ]
+        },
+        {
+          "id": "cs3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Dobrar a entrada",
+          "description": "Pegue um procedimento simples (busca linear) e conte quantas comparações ele faz com 10 e com 20 itens no pior caso. Escreva a tendência, não o milissegundo.",
+          "steps": [
+            "Conte no papel.",
+            "Confira com um contador no código.",
+            "Diga o que acontece se a entrada multiplicar por dez."
+          ],
+          "definitionOfDone": [
+            "Os dois tamanhos estão contados.",
+            "A conclusão não depende do relógio do notebook."
+          ]
+        },
+        {
+          "id": "cs3-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Um erro, um caderno",
+          "description": "Quebre um programa de propósito, leia a mensagem e conserte com uma mudança por vez. Inclua uma tentativa que não funcionou.",
+          "steps": [
+            "Guarde a mensagem original.",
+            "Anote a hipótese antes de editar.",
+            "Mostre o diff mínimo que resolveu."
+          ],
+          "definitionOfDone": [
+            "A hipótese errada está no texto.",
+            "O programa volta a passar no exemplo."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "cs-fase-3-q1",
+          "prompt": "Para que serve comparar o crescimento, e não só o tempo de um teste?",
+          "reviewTopicId": "cs-custo",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Para prever o que acontece quando a entrada deixa de ser um exemplo pequeno.",
+              "correct": true,
+              "explanation": "Um notebook rápido esconde um procedimento que explode."
+            },
+            {
+              "id": "b",
+              "text": "Para escolher a cor do editor.",
+              "correct": false,
+              "explanation": "Editor não entra na conta."
+            },
+            {
+              "id": "c",
+              "text": "Para provar que a linguagem é lenta.",
+              "correct": false,
+              "explanation": "Linguagem muda constante; a curva é do procedimento."
+            }
+          ]
+        },
+        {
+          "id": "cs-fase-3-q2",
+          "prompt": "Qual o primeiro movimento diante de um stack trace?",
+          "reviewTopicId": "cs-erro",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Ler o tipo do erro e a linha do seu arquivo.",
+              "correct": true,
+              "explanation": "A mensagem já tem um endereço."
+            },
+            {
+              "id": "b",
+              "text": "Apagar o projeto e clonar de novo.",
+              "correct": false,
+              "explanation": "Você ainda não sabe o que quebrou."
+            },
+            {
+              "id": "c",
+              "text": "Pedir a resposta completa antes de ler a primeira linha.",
+              "correct": false,
+              "explanation": "Ler custa menos do que terceirizar o diagnóstico."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

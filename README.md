@@ -4,7 +4,7 @@ Guia de estudo para quem está na faculdade de tecnologia e não sabe por onde c
 
 Não é um curso e não emite certificado. Não há cadastro, servidor nem login.
 
-A trilha Full-Stack original (7 etapas e 46 tópicos) continua aqui, junto com Front-end, Back-end, Dados, Mobile e DevOps.
+A trilha Full-Stack original continua aqui (os 46 tópicos de antes, mais cache HTTP). Em volta dela há carreiras, fundamentos e tecnologias.
 
 Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
@@ -12,8 +12,8 @@ Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
 ## O que o app faz
 
-- **Onboarding.** Na primeira visita, três perguntas: área, nível (iniciante, intermediário ou avançado) e horas por semana. O botão **Refazer/Trocar trilha** abre as mesmas perguntas. O progresso de cada trilha fica guardado.
-- **Trilhas.** Front-end, Back-end, Full-Stack, Dados, Mobile e DevOps. Cada uma tem etapas, tópicos, horas estimadas, pré-requisitos e materiais gratuitos, de preferência em português.
+- **Onboarding.** Na primeira visita: trilha, nível (iniciante, intermediário ou avançado) e horas por semana. A escolha é em três grupos — Carreiras, Fundamentos e Tecnologias — com busca. O botão **Refazer/Trocar trilha** abre as mesmas perguntas. O progresso de cada trilha fica guardado.
+- **Tecnologia junto.** Na escolha da trilha dá para marcar uma ou mais trilhas de tecnologia (Python, JavaScript, SQL, Git e GitHub, Linux, Docker) para estudar ao lado da principal. O progresso não se mistura. No topo da página, os botões trocam de trilha.
 - **Personalização.** Tópicos abaixo do seu nível começam como opcionais. Você pode torná-los obrigatórios, ocultá-los, criar os seus e reordenar tópicos e etapas. Trocar de trilha não apaga as outras.
 - **Anotações.** Cada tópico tem anotações. Cada etapa tem um campo **Observações**.
 - **Projetos.** Cada etapa traz ideias por nível. Dá para ver só o seu nível ou todos. Muitos projetos têm roteiro e definição de pronto, com caixas para ir marcando. Você também pode criar uma ideia sua e marcar projetos como feitos.
@@ -27,9 +27,19 @@ Publicação: https://eduardonobilioni.github.io/roadmap-fullstack-interativo/
 
 ![Plano de estudo com a aula ocupando a segunda e a lista de sessões](docs/screenshots/plano.png)
 
+## Trilhas
+
+**Carreiras.** Front-end, Back-end, Full-Stack, Ciência de Dados, Analista de Dados, Engenharia de Dados, Machine Learning e IA, Java e Spring Boot, Mobile, QA e Testes de Software, DevOps.
+
+**Fundamentos.** Fundamentos da Computação, Estruturas de Dados e Algoritmos.
+
+**Tecnologias.** Python, JavaScript, SQL, Git e GitHub, Linux, Docker.
+
+Ciência de Dados é a trilha que se chamava Dados. O identificador no arquivo e no progresso salvo continua `dados`, então tópico marcado, anotação e autoavaliação antiga permanecem. Os tópicos novos (planilha, Power BI, teste A/B, coleta) entram sem apagar os antigos. Analista, Engenharia de Dados e Machine Learning são trilhas novas, com o próprio progresso. Quem abre a Ciência de Dados vê um aviso disso, uma vez.
+
 ## Como usar
 
-1. Abra o site. Se for a primeira vez, escolha a área, o nível e as horas. Leia o resumo e toque em **Começar trilha**.
+1. Abra o site. Se for a primeira vez, busque ou escolha a trilha, o nível e as horas. Se quiser, marque uma tecnologia para estudar junto. Leia o resumo e toque em **Começar trilha**.
 2. Marque um tópico quando terminar. O visto no quadrado confirma, além da cor. A barra mostra só os tópicos obrigatórios do seu plano.
 3. Abra **Anotar** para links e lembretes. Em cada etapa, **Observações** guarda um texto da etapa inteira.
 4. Em **Ideias de projeto**, siga o roteiro e a definição de pronto, ou adicione uma ideia sua.
@@ -65,7 +75,7 @@ O horário de aula é hachurado e traz a palavra **Ocupado**. A sessão de estud
 A meta prática é WCAG 2.2 nível AA. O contraste de texto e de interface também foi medido com APCA, o método de contraste do rascunho WCAG 3.
 
 - O idioma da página é `pt-BR`.
-- Dá para percorrer onboarding, trilha, autoavaliação e plano só com teclado. No plano, **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** mudam a sessão sem arrastar.
+- Dá para percorrer onboarding, trilha, autoavaliação e plano só com teclado. A busca da trilha é um campo com rótulo; Enter leva à primeira trilha visível. Os grupos são grupos de opção, e a tecnologia junto é caixa de seleção. No plano, **Dia anterior**, **Dia seguinte**, **−15 min** e **+15 min** mudam a sessão sem arrastar.
 - O foco tem contorno de 2 px, com contraste de pelo menos 3:1 com o fundo ao lado.
 - Botões e campos têm pelo menos 24 px de altura.
 - Há um link **Ir para o conteúdo**, títulos em ordem e a prévia do plano também em lista de texto.
@@ -74,13 +84,13 @@ A meta prática é WCAG 2.2 nível AA. O contraste de texto e de interface tamb�
 - `prefers-reduced-motion` desliga animação. Sem tema salvo, o app segue `prefers-color-scheme`.
 - O layout quebra em uma coluna por volta de 320 px e usa `rem`, para o texto a 200% não ficar preso.
 
-Como foi testado: `axe-core` 4.10 no Chrome, nas telas de onboarding, trilha e plano, e o Lighthouse na categoria acessibilidade (mobile e desktop). Os relatórios estão em `docs/auditoria/`. Na última rodada, o axe não apontou violação e o Lighthouse marcou 100 nas duas visões. Isso não substitui um teste com leitor de tela feito por uma pessoa.
+Como foi testado: `axe-core` 4.14 no Chrome, no onboarding (também a 390 px), na trilha e no plano. Os relatórios estão em `docs/auditoria/`. Nesta rodada o axe não apontou violação. O Lighthouse da rodada anterior marcou 100 nas duas visões e não foi reexecutado agora. Isso não substitui um teste com leitor de tela feito por uma pessoa.
 
 ## Dados e privacidade
 
 Tudo fica no seu navegador, na chave `localStorage` `trilha_estudos_ptbr_v2`. Quem usava a versão antiga é migrado de `roadmap_fullstack_ptbr_v1`.
 
-O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação e o plano de estudo com a grade importada. O link de compartilhar não leva isso: só área, nível, horas, ordem e o que você marcou como opcional ou oculto.
+O backup JSON inclui progresso, anotações, observações, projetos criados por você, respostas da autoavaliação, o plano de estudo com a grade importada e as tecnologias marcadas para estudar junto. O link de compartilhar não leva isso: só a trilha aberta, nível, horas, ordem e o que você marcou como opcional ou oculto.
 
 Não há analytics, conta nem envio dos seus dados para um servidor deste projeto. O `.ics` que você baixa é um arquivo no seu computador.
 

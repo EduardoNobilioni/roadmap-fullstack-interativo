@@ -6,10 +6,15 @@ O conteúdo mora em `data/tracks/`. Não precisa de build. Um arquivo JSON novo 
 
 1. Copie uma trilha curta, por exemplo `data/tracks/frontend.json`, para `data/tracks/seu-id.json`.
 2. Troque o `id` (letras minúsculas, números e hífen). O mesmo valor vai no arquivo e no índice.
-3. Inclua o arquivo em `data/tracks/index.json`, na ordem em que ele deve aparecer no onboarding.
-4. Rode `npm run validate`.
+3. Inclua o arquivo em `data/tracks/index.json`, na ordem em que ele deve aparecer dentro do grupo.
+4. Defina `group`: `carreira`, `fundamentos` ou `tecnologia`. `keywords` é uma lista opcional de termos para a busca (sem acento também funciona: a busca ignora acento).
+5. Rode `npm run validate`.
 
-Não mude o `id` de um tópico, projeto ou etapa depois que a trilha estiver publicada. O progresso das pessoas usa esses ids.
+Trilha de tecnologia pode ser a principal ou ser marcada para estudar junto com outra. O progresso continua separado, uma chave por `id` de trilha.
+
+Não mude o `id` de uma trilha, de um tópico, de um projeto ou de uma etapa depois de publicado. O progresso das pessoas usa esses ids.
+
+A trilha Ciência de Dados manteve o id `dados` de propósito, quando o nome visível deixou de ser Dados. Não copie o progresso dela para `analista-dados`, `engenharia-dados` ou `machine-learning`: são currículos novos. Tópico novo entra com id novo; tópico antigo não é renomeado.
 
 ## Formato
 

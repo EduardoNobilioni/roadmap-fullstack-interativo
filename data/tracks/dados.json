@@ -86,6 +86,38 @@
           ]
         },
         {
+          "id": "ds-excel",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Planilha antes do notebook",
+          "description": "Muita pergunta da faculdade e do estágio cabe em planilha: filtro, tabela dinâmica e um gráfico com título. Excel ou Google Planilhas. Saber isso evita abrir um notebook para contar vinte linhas, e mostra o que você vai repetir depois no Pandas.",
+          "tags": [
+            "Excel",
+            "Planilha"
+          ],
+          "prerequisites": [],
+          "resources": [
+            {
+              "title": "Excel no suporte da Microsoft",
+              "url": "https://support.microsoft.com/pt-br/excel",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Visão geral de fórmulas no Excel",
+              "url": "https://support.microsoft.com/pt-br/office/vis%C3%A3o-geral-de-f%C3%B3rmulas-no-excel-ecfdc708-9162-49e8-b993-c311f47ca173",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Tabelas dinâmicas",
+              "url": "https://support.microsoft.com/pt-br/office/criar-uma-tabela-din%C3%A2mica-para-analisar-dados-de-planilha-a9a84538-bfe9-40a9-a8e9-f99134456576",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ]
+        },
+        {
           "id": "ds-env",
           "level": "iniciante",
           "hours": 5,
@@ -329,6 +361,34 @@
           ],
           "title": "Inferência com cuidado",
           "description": "Amostra, intervalo e teste de hipótese no nível de quem precisa ler um resultado, não de quem vai demonstrar o teorema. Diga o que você não pode concluir."
+        },
+        {
+          "id": "ds-ab",
+          "level": "avancado",
+          "hours": 5,
+          "title": "Teste A/B sem teatro",
+          "description": "Um teste A/B compara duas versões com uma métrica definida antes de olhar o resultado. Tamanho do grupo, duração e o que você não vai decidir no meio do caminho importam mais do que o gráfico bonito. Se a amostra é a turma inteira escolhida a dedo, não chame isso de experimento.",
+          "tags": [
+            "A/B",
+            "Experimento"
+          ],
+          "prerequisites": [
+            "ds-inference"
+          ],
+          "resources": [
+            {
+              "title": "Estatística e probabilidade (Khan Academy)",
+              "url": "https://pt.khanacademy.org/math/statistics-probability",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Testes de significância (Khan Academy)",
+              "url": "https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ]
         }
       ],
       "projects": [
@@ -543,6 +603,40 @@
           ],
           "title": "SQL para análise",
           "description": "SELECT, WHERE, JOIN e GROUP BY para tirar a pergunta do banco antes de abrir o notebook. Nem tudo precisa caber na memória."
+        },
+        {
+          "id": "ds-coleta",
+          "level": "intermediario",
+          "hours": 5,
+          "title": "Coletar dado: API antes de raspagem",
+          "description": "Prefira uma API ou um arquivo que o dono publica. Se precisar ler HTML, obedeça o robots.txt, o intervalo entre pedidos e os termos do site. Não entre em área com login para puxar dado de outra pessoa. Guarde a fonte e a data.",
+          "tags": [
+            "API",
+            "Coleta"
+          ],
+          "prerequisites": [
+            "ds-python"
+          ],
+          "resources": [
+            {
+              "title": "urllib na documentação do Python",
+              "url": "https://docs.python.org/pt-br/3/library/urllib.request.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Início rápido do Requests",
+              "url": "https://requests.readthedocs.io/en/latest/user/quickstart/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "O que é o robots.txt",
+              "url": "https://www.robotstxt.org/robotstxt.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ]
         }
       ],
       "projects": [
@@ -729,6 +823,34 @@
           ],
           "title": "Uma frase por gráfico",
           "description": "O título diz a conclusão, não o tipo do gráfico. Corte o que não muda a decisão de quem lê."
+        },
+        {
+          "id": "ds-bi",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Um painel no Power BI",
+          "description": "Power BI (ou outra ferramenta de BI) serve para a pessoa filtrar sem abrir o seu notebook. Modele a tabela, escolha poucos visuais e escreva a pergunta que o painel responde. Gráfico a mais esconde a frase.",
+          "tags": [
+            "Power BI",
+            "Painel"
+          ],
+          "prerequisites": [
+            "ds-sql"
+          ],
+          "resources": [
+            {
+              "title": "O que é o Power BI Desktop",
+              "url": "https://learn.microsoft.com/pt-br/power-bi/fundamentals/desktop-what-is-desktop",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Obter dados no Power BI",
+              "url": "https://learn.microsoft.com/pt-br/training/modules/get-data-power-bi/",
+              "lang": "pt",
+              "kind": "curso"
+            }
+          ]
         }
       ],
       "projects": [
@@ -1254,7 +1376,7 @@
     }
   ],
   "id": "dados",
-  "name": "Dados",
+  "name": "Ciência de Dados",
   "tagline": "Pergunta, dado, gráfico e um modelo que você sabe explicar",
-  "description": "Data Science para quem está na faculdade e não sabe por onde entrar. Python, estatística, análise, visualização e um modelo simples com as limitações à vista."
+  "description": "A trilha que antes se chamava Dados. O identificador continua dados, então o progresso antigo permanece. Python, estatística, análise, visualização, um modelo simples e, agora, planilha, BI, experimento e coleta."
 }
