@@ -1,0 +1,9 @@
+{
+  "name": "trilha-estudos",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/model.test.mjs",
+    "validate": "node scripts/validate-tracks.mjs"
+  }
+}

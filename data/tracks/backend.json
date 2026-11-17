@@ -1,0 +1,1269 @@
+{
+  "phases": [
+    {
+      "id": "be-fase-1",
+      "number": 1,
+      "badgeTitle": "Base",
+      "title": "Programação e HTTP",
+      "topics": [
+        {
+          "id": "be-logic",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "Lógica",
+            "Funções"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial de Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Estruturas de dados em Python",
+              "url": "https://docs.python.org/pt-br/3/tutorial/datastructures.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Lógica antes do framework",
+          "description": "Variáveis, condição, laço, função e o hábito de quebrar um problema em passos. A linguagem muda; isso fica.",
+          "quiz": [
+            {
+              "id": "be-logic-quiz-q1",
+              "prompt": "Depois de estudar \"Lógica antes do framework\", o que você deve conseguir?",
+              "reviewTopicId": "be-logic",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "be-logic-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "be-logic",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "be-js",
+          "level": "iniciante",
+          "hours": 12,
+          "prerequisites": [
+            "be-logic"
+          ],
+          "tags": [
+            "Node.js",
+            "JavaScript",
+            "Módulos"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Node.js",
+              "url": "https://nodejs.org/pt/learn/getting-started/introduction-to-nodejs",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Módulos JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "JavaScript no servidor",
+          "description": "Tipos, módulos e async no Node.js. Esta trilha usa Node para o resto do caminho; a lógica serve em qualquer linguagem."
+        },
+        {
+          "id": "be-terminal",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "Terminal",
+            "Git",
+            "Ambiente"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Terminal e Git",
+          "description": "Navegar no projeto, variáveis de ambiente, commit e branch. O servidor começa na sua máquina, num diretório."
+        },
+        {
+          "id": "be-http",
+          "level": "iniciante",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "HTTP",
+            "Status",
+            "Métodos"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Códigos de status HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "O que o HTTP está pedindo",
+          "description": "Método, caminho, cabeçalho, corpo e status. Uma API é uma conversa com esses cinco elementos, não um monte de função solta."
+        }
+      ],
+      "projects": [
+        {
+          "id": "be1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Script que organiza uma lista",
+          "description": "Um programa de linha de comando que lê um arquivo simples, filtra e imprime um resumo. Sem framework.",
+          "steps": [
+            "Escreva em uma linha o que \"Script que organiza uma lista\" precisa mostrar.",
+            "Um programa de linha de comando que lê um arquivo simples, filtra e imprime um resumo. Sem framework.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 6,
+          "title": "Requisição explicada",
+          "description": "Escolha uma API pública e descreva, campo a campo, um GET e um POST: método, status esperados e o que acontece se o corpo vier vazio.",
+          "steps": [
+            "Escreva em uma linha o que \"Requisição explicada\" precisa mostrar.",
+            "Escolha uma API pública e descreva, campo a campo, um GET e um POST: método, status esperados e o que acontece se o corpo vier vazio.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be1-projeto-avancado",
+          "level": "avancado",
+          "hours": 6,
+          "title": "Pequeno cliente HTTP",
+          "description": "Escreva um script que chama uma API, trata timeout ou status de erro e devolve um código de saída diferente quando falha.",
+          "steps": [
+            "Escreva em uma linha o que \"Pequeno cliente HTTP\" precisa mostrar.",
+            "Escreva um script que chama uma API, trata timeout ou status de erro e devolve um código de saída diferente quando falha.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-1-q1",
+          "prompt": "HTTP tem método, caminho, cabeçalhos, corpo e status. Isso está certo?",
+          "reviewTopicId": "be-http",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-1-q2",
+          "prompt": "O que combina com \"Lógica antes do framework\"?",
+          "reviewTopicId": "be-logic",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Quebrar o problema em passos vem antes de escolher framework.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-fase-2",
+      "number": 2,
+      "badgeTitle": "APIs",
+      "title": "APIs HTTP",
+      "topics": [
+        {
+          "id": "be-express",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "be-js",
+            "be-http"
+          ],
+          "tags": [
+            "Express",
+            "Rotas",
+            "Middleware"
+          ],
+          "resources": [
+            {
+              "title": "Instalando o Express",
+              "url": "https://expressjs.com/pt-br/starter/installing.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Usando middleware no Express",
+              "url": "https://expressjs.com/pt-br/guide/using-middleware.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Express e rotas",
+          "description": "Rotas, middleware e erro centralizado. Cada rota faz uma coisa e o erro não vaza stack para quem chamou."
+        },
+        {
+          "id": "be-rest",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "be-express"
+          ],
+          "tags": [
+            "REST",
+            "Paginação",
+            "Recursos"
+          ],
+          "resources": [
+            {
+              "title": "Métodos HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Códigos de status HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Desenho de API REST",
+          "description": "Recursos no plural, métodos certos, filtro, paginação e um jeito estável de versionar quando o contrato mudar."
+        },
+        {
+          "id": "be-validation",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "be-rest"
+          ],
+          "tags": [
+            "Validação",
+            "Erros",
+            "400"
+          ],
+          "resources": [
+            {
+              "title": "Primeiros passos com Zod",
+              "url": "https://zod.dev/basics",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Roteamento no Express",
+              "url": "https://expressjs.com/pt-br/guide/routing.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Validação e erros",
+          "description": "Recuse corpo inválido com 400 e uma lista de campos. Não confie no que o cliente disse que era um número."
+        },
+        {
+          "id": "be-openapi",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "be-rest"
+          ],
+          "tags": [
+            "OpenAPI",
+            "Postman"
+          ],
+          "resources": [
+            {
+              "title": "Estrutura básica do OpenAPI",
+              "url": "https://swagger.io/docs/specification/v3_0/basic-structure/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Primeiros passos no Postman",
+              "url": "https://learning.postman.com/docs/getting-started/overview/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Contrato e teste manual",
+          "description": "OpenAPI descreve a API para outra pessoa. Postman (ou similar) guarda os casos que você repete toda hora."
+        },
+        {
+          "id": "be-realtime",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "be-rest"
+          ],
+          "tags": [
+            "WebSockets",
+            "Webhooks",
+            "GraphQL"
+          ],
+          "resources": [
+            {
+              "title": "API WebSocket (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Aprenda GraphQL",
+              "url": "https://graphql.org/learn/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Tempo real, com critério",
+          "description": "WebSockets quando a tela precisa atualizar sozinha. Webhook quando outro sistema avisa o seu. GraphQL só se o contrato REST já estiver claro."
+        }
+      ],
+      "projects": [
+        {
+          "id": "be2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "CRUD de um recurso",
+          "description": "Uma API de notas ou tarefas com listar, criar, atualizar e apagar. Status corretos e um erro legível.",
+          "steps": [
+            "Escreva em uma linha o que \"CRUD de um recurso\" precisa mostrar.",
+            "Uma API de notas ou tarefas com listar, criar, atualizar e apagar. Status corretos e um erro legível.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Lista paginada e documentada",
+          "description": "Acrescente filtro, paginação e um OpenAPI. O README mostra o curl ou a coleção do Postman.",
+          "steps": [
+            "Escreva em uma linha o que \"Lista paginada e documentada\" precisa mostrar.",
+            "Acrescente filtro, paginação e um OpenAPI. O README mostra o curl ou a coleção do Postman.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be2-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Um evento ao vivo",
+          "description": "Além do REST, envie uma atualização por WebSocket ou descreva um webhook de ponta a ponta, com retentativa quando o destino falhar.",
+          "steps": [
+            "Escreva em uma linha o que \"Um evento ao vivo\" precisa mostrar.",
+            "Além do REST, envie uma atualização por WebSocket ou descreva um webhook de ponta a ponta, com retentativa quando o destino falhar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-2-q1",
+          "prompt": "REST usa o método HTTP certo e um status que explica o resultado. Isso está certo?",
+          "reviewTopicId": "be-rest",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-2-q2",
+          "prompt": "O que combina com \"Validação e erros\"?",
+          "reviewTopicId": "be-validation",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Corpo inválido deve falhar com erro claro, em geral 400.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-fase-3",
+      "number": 3,
+      "badgeTitle": "Dados",
+      "title": "Dados e persistência",
+      "topics": [
+        {
+          "id": "be-sql",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [],
+          "tags": [
+            "SQL",
+            "PostgreSQL"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial.html",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "SQL com PostgreSQL",
+          "description": "Tabelas, SELECT, WHERE, INSERT e o básico de se relacionar duas tabelas. Os dados sobrevivem ao reinício do processo."
+        },
+        {
+          "id": "be-model",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "be-sql"
+          ],
+          "tags": [
+            "DER",
+            "Chaves",
+            "Normalização"
+          ],
+          "resources": [
+            {
+              "title": "Conceitos do tutorial PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Restrições e chaves",
+              "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Modelo relacional",
+          "description": "Entidades, chaves e normalização até a 3FN. Desenhe antes de criar a quinta coluna \"obs\"."
+        },
+        {
+          "id": "be-query",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "be-sql"
+          ],
+          "tags": [
+            "JOIN",
+            "Transação",
+            "Índice"
+          ],
+          "resources": [
+            {
+              "title": "JOINs no tutorial PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Índices no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/indexes.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Consultas que respondem pergunta",
+          "description": "JOIN, agregação, transação e índice. Olhe o que a consulta faz antes de colocar cache."
+        },
+        {
+          "id": "be-orm",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "be-sql"
+          ],
+          "tags": [
+            "Prisma",
+            "Migrations",
+            "ORM"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Prisma ORM",
+              "url": "https://www.prisma.io/docs/orm/overview/introduction",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Primeiros passos com Prisma Migrate",
+              "url": "https://www.prisma.io/docs/orm/prisma-migrate/getting-started",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Migrations",
+          "description": "O esquema mora no Git. Prisma, Drizzle ou SQL versionado: o que importa é recriar o banco do zero."
+        },
+        {
+          "id": "be-nosql",
+          "level": "avancado",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "MongoDB",
+            "NoSQL"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao MongoDB",
+              "url": "https://www.mongodb.com/pt-br/docs/manual/introduction/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiros passos no MongoDB",
+              "url": "https://www.mongodb.com/docs/manual/tutorial/getting-started/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "SQL ou documento",
+          "description": "MongoDB quando o documento é a unidade natural. Saiba dizer por que não usou tabela, em vez de escolher por moda."
+        }
+      ],
+      "projects": [
+        {
+          "id": "be3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Três tabelas",
+          "description": "Modele um domínio pequeno da faculdade (emprestimo de livro, cardápio, monitoria) e consulte \"quem está ligado a quê\".",
+          "steps": [
+            "Escreva em uma linha o que \"Três tabelas\" precisa mostrar.",
+            "Modele um domínio pequeno da faculdade (emprestimo de livro, cardápio, monitoria) e consulte \"quem está ligado a quê\".",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "API que persiste",
+          "description": "Ligue a API ao PostgreSQL com migration. Reiniciar o processo não pode apagar os dados.",
+          "steps": [
+            "Escreva em uma linha o que \"API que persiste\" precisa mostrar.",
+            "Ligue a API ao PostgreSQL com migration. Reiniciar o processo não pode apagar os dados.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be3-projeto-avancado",
+          "level": "avancado",
+          "hours": 10,
+          "title": "Uma decisão escrita",
+          "description": "Implemente um pedaço em SQL e explique, no README, um dado que ficaria melhor em documento — ou o contrário, com um exemplo concreto.",
+          "steps": [
+            "Escreva em uma linha o que \"Uma decisão escrita\" precisa mostrar.",
+            "Implemente um pedaço em SQL e explique, no README, um dado que ficaria melhor em documento — ou o contrário, com um exemplo concreto.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-3-q1",
+          "prompt": "SQL relacional guarda linhas em tabelas ligadas por chaves. Isso está certo?",
+          "reviewTopicId": "be-sql",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-3-q2",
+          "prompt": "O que combina com \"Modelo relacional\"?",
+          "reviewTopicId": "be-model",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Chave estrangeira aponta para a chave de outra tabela.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-fase-4",
+      "number": 4,
+      "badgeTitle": "Segurança",
+      "title": "Autenticação e segurança",
+      "topics": [
+        {
+          "id": "be-auth",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "be-rest"
+          ],
+          "tags": [
+            "JWT",
+            "Sessão",
+            "Senha"
+          ],
+          "resources": [
+            {
+              "title": "Introdução a JWT",
+              "url": "https://jwt.io/introduction",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Folha de autenticação da OWASP",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Sessão e JWT",
+          "description": "Onde a sessão mora, o que vai dentro do token e por que refresh token não é um detalhe. Senha nunca volta na resposta."
+        },
+        {
+          "id": "be-oauth",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "be-auth"
+          ],
+          "tags": [
+            "OAuth",
+            "OpenID Connect"
+          ],
+          "resources": [
+            {
+              "title": "OAuth 2.0",
+              "url": "https://oauth.net/2/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "OpenID Connect",
+              "url": "https://openid.net/connect/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Login com outro provedor",
+          "description": "O fluxo do OAuth 2.0 e do OpenID Connect em linhas gerais: quem é o cliente, quem emite o token e o que você guarda."
+        },
+        {
+          "id": "be-authz",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "be-auth"
+          ],
+          "tags": [
+            "RBAC",
+            "Permissões"
+          ],
+          "resources": [
+            {
+              "title": "Folha de autorização da OWASP",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Autorização",
+          "description": "Papel não é a mesma coisa que identidade. RBAC simples: membro vê o seu, admin vê o de todo mundo, e a checagem fica no servidor."
+        },
+        {
+          "id": "be-owasp",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "be-rest"
+          ],
+          "tags": [
+            "OWASP",
+            "CORS",
+            "CSRF"
+          ],
+          "resources": [
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Armazenamento de senha (OWASP)",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "OWASP no código",
+          "description": "Hashing de senha, CORS consciente, limite de taxa e defesa contra injeção, XSS e CSRF. Leia o Top 10 com o seu endpoint do lado."
+        }
+      ],
+      "projects": [
+        {
+          "id": "be4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Cadastro que não devolve a senha",
+          "description": "Crie usuário com senha hasheada e um login que devolve um token ou uma sessão. A resposta de cadastro não contém a senha.",
+          "steps": [
+            "Escreva em uma linha o que \"Cadastro que não devolve a senha\" precisa mostrar.",
+            "Crie usuário com senha hasheada e um login que devolve um token ou uma sessão. A resposta de cadastro não contém a senha.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Dono do recurso",
+          "description": "Um usuário não altera o recurso de outro. Teste isso com dois tokens e registre o status que a API devolve.",
+          "steps": [
+            "Escreva em uma linha o que \"Dono do recurso\" precisa mostrar.",
+            "Um usuário não altera o recurso de outro. Teste isso com dois tokens e registre o status que a API devolve.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be4-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Ameaça e mitigação",
+          "description": "Escolha três riscos do OWASP Top 10 que cabem na sua API e implemente uma mitigação para cada um. O README diz o que ficou sem cobertura.",
+          "steps": [
+            "Escreva em uma linha o que \"Ameaça e mitigação\" precisa mostrar.",
+            "Escolha três riscos do OWASP Top 10 que cabem na sua API e implemente uma mitigação para cada um. O README diz o que ficou sem cobertura.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-4-q1",
+          "prompt": "Autenticação responde quem é a pessoa; senha não volta na resposta. Isso está certo?",
+          "reviewTopicId": "be-auth",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-4-q2",
+          "prompt": "O que combina com \"Autorização\"?",
+          "reviewTopicId": "be-authz",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Autorização responde o que essa pessoa pode fazer.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be-fase-5",
+      "number": 5,
+      "badgeTitle": "Entrega",
+      "title": "Testes e publicação",
+      "topics": [
+        {
+          "id": "be-unit",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "be-js"
+          ],
+          "tags": [
+            "Jest",
+            "Vitest",
+            "Teste unitário"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Jest",
+              "url": "https://jestjs.io/pt-BR/docs/getting-started",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Guia do Vitest",
+              "url": "https://vitest.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Teste da regra",
+          "description": "Jest ou Vitest na função que decide desconto, permissão ou conflito de horário. Caso feliz, borda e erro."
+        },
+        {
+          "id": "be-integration",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "be-unit",
+            "be-rest"
+          ],
+          "tags": [
+            "Supertest",
+            "Integração"
+          ],
+          "resources": [
+            {
+              "title": "Supertest",
+              "url": "https://github.com/ladjs/supertest",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Pirâmide de testes",
+              "url": "https://martinfowler.com/bliki/TestPyramid.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Teste da rota",
+          "description": "Suba a API em teste, chame a rota e confira status e persistência. Supertest é um caminho comum em Node."
+        },
+        {
+          "id": "be-docker",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "be-express"
+          ],
+          "tags": [
+            "Docker",
+            "Dockerfile"
+          ],
+          "resources": [
+            {
+              "title": "O que é Docker (Red Hat)",
+              "url": "https://www.redhat.com/pt-br/topics/containers/what-is-docker",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Builds multi-stage",
+              "url": "https://docs.docker.com/build/building/multi-stage/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "API em contêiner",
+          "description": "Dockerfile, porta e variável de ambiente. Quem clonar o repositório sobe o serviço sem copiar configuração da sua máquina."
+        },
+        {
+          "id": "be-deploy",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "be-docker"
+          ],
+          "tags": [
+            "Deploy",
+            "PaaS",
+            "Ambiente"
+          ],
+          "resources": [
+            {
+              "title": "Web services no Render",
+              "url": "https://render.com/docs/web-services",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Configuração nos 12 fatores",
+              "url": "https://12factor.net/pt_br/config",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Publicar e configurar",
+          "description": "Um PaaS (Render, Fly ou similar), segredo fora do Git e um health check. O README separa o que é público do que é senha."
+        },
+        {
+          "id": "be-cicd",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "be-terminal"
+          ],
+          "tags": [
+            "GitHub Actions",
+            "CI"
+          ],
+          "resources": [
+            {
+              "title": "Entenda o GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/get-started/understand-github-actions",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Build e teste de Node no GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/tutorials/build-and-test-code/nodejs",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "CI que barra código quebrado",
+          "description": "GitHub Actions instala, testa e só então fala que pode seguir. O badge verde precisa significar alguma coisa."
+        }
+      ],
+      "projects": [
+        {
+          "id": "be5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Suíte pequena e honesta",
+          "description": "Cubra uma regra de negócio com testes. O comando de teste está no README e passa numa máquina limpa.",
+          "steps": [
+            "Escreva em uma linha o que \"Suíte pequena e honesta\" precisa mostrar.",
+            "Cubra uma regra de negócio com testes. O comando de teste está no README e passa numa máquina limpa.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Contêiner e pipeline",
+          "description": "A API sobe com Docker e o GitHub Actions roda os testes em todo push na branch principal.",
+          "steps": [
+            "Escreva em uma linha o que \"Contêiner e pipeline\" precisa mostrar.",
+            "A API sobe com Docker e o GitHub Actions roda os testes em todo push na branch principal.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "be5-projeto-avancado",
+          "level": "avancado",
+          "hours": 14,
+          "title": "No ar, com health check",
+          "description": "Publique a API, proteja o segredo e exponha uma rota de saúde. Descreva como você saberia se ela caiu.",
+          "steps": [
+            "Escreva em uma linha o que \"No ar, com health check\" precisa mostrar.",
+            "Publique a API, proteja o segredo e exponha uma rota de saúde. Descreva como você saberia se ela caiu.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "be-fase-5-q1",
+          "prompt": "Teste unitário cobre uma regra isolada, com caso feliz e erro. Isso está certo?",
+          "reviewTopicId": "be-unit",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "be-fase-5-q2",
+          "prompt": "O que combina com \"API em contêiner\"?",
+          "reviewTopicId": "be-docker",
+          "choices": [
+            {
+              "id": "a",
+              "text": "O contêiner sobe o serviço sem copiar a configuração secreta da sua máquina.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "backend",
+  "name": "Back-end",
+  "tagline": "APIs, dados e as regras que ficam no servidor",
+  "description": "Para quem quer fazer o serviço por trás da tela: rotas, banco, autenticação e um deploy que outra pessoa consegue repetir."
+}

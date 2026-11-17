@@ -1,0 +1,2182 @@
+{
+  "phases": [
+    {
+      "id": "fase-1",
+      "number": 1,
+      "badgeTitle": "Base Web & Git",
+      "title": "Fundamentos da Web e Controle de Versão",
+      "topics": [
+        {
+          "id": "f1-internet",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "HTTP/HTTPS",
+            "DNS",
+            "Cliente-Servidor",
+            "Browser"
+          ],
+          "resources": [
+            {
+              "title": "Visão geral do HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Como a Web funciona (MDN)",
+              "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Como a Internet Funciona",
+          "description": "Protocolos HTTP/HTTPS, funcionamento do DNS, nomes de domínio, hospedagem, modelo cliente-servidor e ciclo de renderização dos navegadores.",
+          "quiz": [
+            {
+              "id": "f1-internet-quiz-q1",
+              "prompt": "Depois de estudar \"Como a Internet Funciona\", o que você deve conseguir?",
+              "reviewTopicId": "f1-internet",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Explicar a ideia com um exemplo pequeno, sem ler a frase pronta.",
+                  "correct": true,
+                  "explanation": "Se a explicação não sai, o tópico ainda pede revisão."
+                },
+                {
+                  "id": "b",
+                  "text": "Repetir o título do tópico e seguir.",
+                  "correct": false,
+                  "explanation": "O título não mostra que você entendeu."
+                },
+                {
+                  "id": "c",
+                  "text": "Pular os recursos porque o nome já é familiar.",
+                  "correct": false,
+                  "explanation": "Familiaridade com o nome não é o mesmo que prática."
+                }
+              ]
+            },
+            {
+              "id": "f1-internet-quiz-q2",
+              "prompt": "Quando a autoavaliação erra, o que fazer?",
+              "reviewTopicId": "f1-internet",
+              "choices": [
+                {
+                  "id": "a",
+                  "text": "Abrir de novo o tópico e um recurso indicado.",
+                  "correct": true,
+                  "explanation": "O quiz é revisão, não nota de disciplina."
+                },
+                {
+                  "id": "b",
+                  "text": "Apagar a trilha e recomeçar do zero.",
+                  "correct": false,
+                  "explanation": "Um erro aponta um ponto, não a trilha inteira."
+                },
+                {
+                  "id": "c",
+                  "text": "Considerar o assunto encerrado mesmo assim.",
+                  "correct": false,
+                  "explanation": "Errar é o sinal para revisar antes de avançar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "f1-terminal",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "CLI",
+            "Bash",
+            "Zsh",
+            "Variáveis de Ambiente"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Linha de Comando (Terminal)",
+          "description": "Navegação entre diretórios, manipulação de arquivos, variáveis de ambiente, permissões e comandos essenciais de Bash/Zsh."
+        },
+        {
+          "id": "f1-git-local",
+          "level": "iniciante",
+          "hours": 5,
+          "prerequisites": [],
+          "tags": [
+            "Git",
+            "init",
+            "commit",
+            ".gitignore"
+          ],
+          "resources": [
+            {
+              "title": "Livro Pro Git em português",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Documentação do gitignore",
+              "url": "https://git-scm.com/docs/gitignore",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Git — Fluxo Local",
+          "description": "git init, clone, status, add, commit, log e .gitignore."
+        },
+        {
+          "id": "f1-git-branch",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "f1-git-local"
+          ],
+          "tags": [
+            "Git Branch",
+            "Merge",
+            "Rebase",
+            "Conflitos"
+          ],
+          "resources": [
+            {
+              "title": "Livro Pro Git — ramificações",
+              "url": "https://git-scm.com/book/pt-br/v2",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Git — Ramificação e Integração",
+          "description": "branch, switch/checkout, merge, rebase e resolução de conflitos."
+        },
+        {
+          "id": "f1-github",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "f1-git-local"
+          ],
+          "tags": [
+            "GitHub",
+            "Pull Requests",
+            "Code Review",
+            "Conventional Commits"
+          ],
+          "resources": [
+            {
+              "title": "Sobre pull requests (GitHub Docs)",
+              "url": "https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Conventional Commits",
+              "url": "https://www.conventionalcommits.org/pt-br/v1.0.0/",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "GitHub e Colaboração Remota",
+          "description": "push, pull, fetch, Pull Requests, Code Review e padrão Conventional Commits."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f1-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Mapa de uma requisição",
+          "description": "Escreva uma página (pode ser um README) explicando o caminho de um endereço digitado no navegador até a resposta HTTP. Inclua DNS, cliente-servidor e a diferença entre HTTP e HTTPS.",
+          "steps": [
+            "Escreva em uma linha o que \"Mapa de uma requisição\" precisa mostrar.",
+            "Escreva uma página (pode ser um README) explicando o caminho de um endereço digitado no navegador até a resposta HTTP. Inclua DNS, cliente-servidor e a diferença entre HTTP e HTTPS.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f1-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 8,
+          "title": "Repositório com fluxo de time",
+          "description": "Crie um repositório com duas branches, um pull request, uma revisão e commits no padrão Conventional Commits. Documente no README como outra pessoa repete o fluxo.",
+          "steps": [
+            "Escreva em uma linha o que \"Repositório com fluxo de time\" precisa mostrar.",
+            "Crie um repositório com duas branches, um pull request, uma revisão e commits no padrão Conventional Commits. Documente no README como outra pessoa repete o fluxo.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f1-projeto-avancado",
+          "level": "avancado",
+          "hours": 8,
+          "title": "Conflito de propósito",
+          "description": "Provoque um conflito de merge de verdade, resolva e registre no README o que cada lado mudou e qual critério você usou para ficar com o resultado final.",
+          "steps": [
+            "Escreva em uma linha o que \"Conflito de propósito\" precisa mostrar.",
+            "Provoque um conflito de merge de verdade, resolva e registre no README o que cada lado mudou e qual critério você usou para ficar com o resultado final.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-1-q1",
+          "prompt": "HTTP, DNS e o modelo cliente-servidor explicam uma requisição. Isso está certo?",
+          "reviewTopicId": "f1-internet",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-1-q2",
+          "prompt": "O que combina com \"Git — Fluxo Local\"?",
+          "reviewTopicId": "f1-git-local",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Commit grava uma versão; gitignore deixa fora o que não deve ir no repositório.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-2",
+      "number": 2,
+      "badgeTitle": "Frontend Pro",
+      "title": "Desenvolvimento Frontend",
+      "topics": [
+        {
+          "id": "f2-html5",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "HTML5",
+            "Semântica",
+            "ARIA",
+            "SEO"
+          ],
+          "resources": [
+            {
+              "title": "Estruturando conteúdo (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Structuring_content",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Acessibilidade no HTML (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Accessibility/HTML",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "HTML5",
+          "description": "Estruturação de páginas, tags semânticas (header, nav, main, section, article, footer), formulários modernos, validação nativa, acessibilidade web (ARIA, teclado) e SEO técnico básico."
+        },
+        {
+          "id": "f2-css-fundamentos",
+          "level": "iniciante",
+          "hours": 8,
+          "prerequisites": [
+            "f2-html5"
+          ],
+          "tags": [
+            "CSS3",
+            "Box Model",
+            "Especificidade",
+            "rem/vh/vw"
+          ],
+          "resources": [
+            {
+              "title": "Estilização básica (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Styling_basics",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Especificidade e cascata (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Cascade/Specificity",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "CSS3 — Fundamentos",
+          "description": "Seletores, especificidade, cascata, Box Model e unidades relativas (rem, em, vh/vw, %)."
+        },
+        {
+          "id": "f2-css-layouts",
+          "level": "iniciante",
+          "hours": 10,
+          "prerequisites": [
+            "f2-css-fundamentos"
+          ],
+          "tags": [
+            "Flexbox",
+            "CSS Grid",
+            "Mobile-First",
+            "Media Queries"
+          ],
+          "resources": [
+            {
+              "title": "Guia de Flexbox (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Guides/Flexible_box_layout",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Design responsivo (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "CSS3 — Layouts e Responsividade",
+          "description": "Posicionamento (relative, absolute, fixed, sticky), Flexbox, CSS Grid, abordagem Mobile-First e Media Queries."
+        },
+        {
+          "id": "f2-css-moderno",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "f2-css-fundamentos"
+          ],
+          "tags": [
+            "CSS Variables",
+            "Transitions",
+            "Animations"
+          ],
+          "resources": [
+            {
+              "title": "Variáveis CSS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Transições CSS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_transitions/Using_CSS_transitions",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "CSS3 — Recursos Modernos",
+          "description": "Variáveis CSS (--var), transições, transformações e animações."
+        },
+        {
+          "id": "f2-js-base",
+          "level": "iniciante",
+          "hours": 14,
+          "prerequisites": [],
+          "tags": [
+            "ES6+",
+            "Closures",
+            "Hoisting",
+            "ES Modules"
+          ],
+          "resources": [
+            {
+              "title": "Guia JavaScript (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Closures (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Closures",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "JavaScript (ES6+) — Base da Linguagem",
+          "description": "Tipos primitivos e de referência, escopo, closures, hoisting, arrow functions, desestruturação, spread/rest e módulos (import/export)."
+        },
+        {
+          "id": "f2-js-estruturas",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "f2-js-base"
+          ],
+          "tags": [
+            "map/filter/reduce",
+            "Classes",
+            "Prototypes",
+            "POO"
+          ],
+          "resources": [
+            {
+              "title": "Trabalhando com objetos (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Classes (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "JavaScript (ES6+) — Estruturas e POO",
+          "description": "Manipulação de arrays (map, filter, reduce), objetos, classes, protótipos e funções construtoras."
+        },
+        {
+          "id": "f2-js-dom",
+          "level": "intermediario",
+          "hours": 12,
+          "prerequisites": [
+            "f2-js-base"
+          ],
+          "tags": [
+            "DOM",
+            "Event Loop",
+            "async/await",
+            "Fetch API",
+            "Web Storage"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao DOM (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model/Introduction",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Usando Fetch (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API/Using_Fetch",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "JavaScript (ES6+) — DOM e Assincronismo",
+          "description": "Seleção e manipulação de elementos, delegação de eventos, Event Loop, Callbacks, Promises, async/await, Fetch API e Web Storage (localStorage, sessionStorage, cookies)."
+        },
+        {
+          "id": "f2-typescript",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "f2-js-base"
+          ],
+          "tags": [
+            "TypeScript",
+            "Generics",
+            "Utility Types",
+            "tsconfig"
+          ],
+          "resources": [
+            {
+              "title": "TypeScript em 5 minutos",
+              "url": "https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Utility types",
+              "url": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "TypeScript",
+          "description": "Tipagem estática, interface vs. type, generics, union/intersection types, type narrowing, utility types (Partial, Pick, Omit) e tsconfig.json."
+        },
+        {
+          "id": "f2-build-tools",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "npm",
+            "pnpm",
+            "yarn",
+            "Vite"
+          ],
+          "resources": [
+            {
+              "title": "Sobre o npm",
+              "url": "https://docs.npmjs.com/about-npm",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Guia do Vite",
+              "url": "https://vite.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Ferramentas de Build",
+          "description": "Gerenciadores de pacotes (npm, pnpm, yarn) e bundlers (Vite)."
+        },
+        {
+          "id": "f2-frameworks",
+          "level": "intermediario",
+          "hours": 18,
+          "prerequisites": [
+            "f2-html5",
+            "f2-js-dom"
+          ],
+          "tags": [
+            "React",
+            "Hooks",
+            "Next.js",
+            "SSR/SSG",
+            "Vue/Angular"
+          ],
+          "resources": [
+            {
+              "title": "Aprenda React",
+              "url": "https://pt-br.react.dev/learn",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Começando com Next.js",
+              "url": "https://nextjs.org/docs/app/getting-started",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Frameworks e Bibliotecas",
+          "description": "React (componentes, props, hooks essenciais, ciclo de vida), Next.js (SSR, SSG, rotas) ou Vue/Angular."
+        },
+        {
+          "id": "f2-estado-estilo",
+          "level": "avancado",
+          "hours": 12,
+          "prerequisites": [
+            "f2-frameworks"
+          ],
+          "tags": [
+            "Zustand",
+            "Redux Toolkit",
+            "Tailwind CSS",
+            "React Hook Form",
+            "Zod"
+          ],
+          "resources": [
+            {
+              "title": "Gerenciando estado (React)",
+              "url": "https://pt-br.react.dev/learn/managing-state",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiros passos com Zod",
+              "url": "https://zod.dev/basics",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Estado, Estilização e Formulários",
+          "description": "Gerenciamento de estado (Context API, Zustand ou Redux Toolkit), Tailwind CSS e validação com React Hook Form + Zod."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f2-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 10,
+          "title": "Página de uma disciplina",
+          "description": "Monte uma página semântica e responsiva sobre uma matéria da faculdade, só com HTML e CSS. Use cabeçalho, conteúdo, formulário de contato e um estado de foco visível no teclado.",
+          "steps": [
+            "Escreva em uma linha o que \"Página de uma disciplina\" precisa mostrar.",
+            "Monte uma página semântica e responsiva sobre uma matéria da faculdade, só com HTML e CSS. Use cabeçalho, conteúdo, formulário de contato e um estado de foco visível no teclado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f2-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 16,
+          "title": "Lista com busca",
+          "description": "Construa uma interface em React e TypeScript que consome uma API pública, com busca, estado de carregamento e mensagem de erro.",
+          "steps": [
+            "Escreva em uma linha o que \"Lista com busca\" precisa mostrar.",
+            "Construa uma interface em React e TypeScript que consome uma API pública, com busca, estado de carregamento e mensagem de erro.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f2-projeto-avancado",
+          "level": "avancado",
+          "hours": 16,
+          "title": "Formulário com estado",
+          "description": "No mesmo tipo de app, separe o estado compartilhado (Context ou Redux Toolkit), estilize com Tailwind e valide um formulário com React Hook Form e Zod.",
+          "steps": [
+            "Escreva em uma linha o que \"Formulário com estado\" precisa mostrar.",
+            "No mesmo tipo de app, separe o estado compartilhado (Context ou Redux Toolkit), estilize com Tailwind e valide um formulário com React Hook Form e Zod.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-2-q1",
+          "prompt": "HTML semântico e formulário acessível são a base da interface. Isso está certo?",
+          "reviewTopicId": "f2-html5",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-2-q2",
+          "prompt": "O que combina com \"JavaScript (ES6+) — DOM e Assincronismo\"?",
+          "reviewTopicId": "f2-js-dom",
+          "choices": [
+            {
+              "id": "a",
+              "text": "DOM e Fetch mudam a página e buscam dados sem recarregar tudo.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-3",
+      "number": 3,
+      "badgeTitle": "Backend & APIs",
+      "title": "Desenvolvimento Backend e APIs",
+      "topics": [
+        {
+          "id": "f3-runtime",
+          "level": "intermediario",
+          "hours": 12,
+          "prerequisites": [],
+          "tags": [
+            "Node.js",
+            "Streams",
+            "Processos",
+            "Python/Go/Java"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Node.js",
+              "url": "https://nodejs.org/pt/learn/getting-started/introduction-to-nodejs",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Synopsis da API do Node.js",
+              "url": "https://nodejs.org/docs/latest/api/synopsis.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Linguagem e Ambiente de Execução",
+          "description": "Node.js (módulos nativos, streams, variáveis de ambiente, gerenciamento de processos) ou alternativas (Python, Java, C#, Go)."
+        },
+        {
+          "id": "f3-frameworks-web",
+          "level": "intermediario",
+          "hours": 12,
+          "prerequisites": [
+            "f3-runtime"
+          ],
+          "tags": [
+            "Express",
+            "Fastify",
+            "NestJS",
+            "Middlewares"
+          ],
+          "resources": [
+            {
+              "title": "Instalando o Express",
+              "url": "https://expressjs.com/pt-br/starter/installing.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Usando middleware no Express",
+              "url": "https://expressjs.com/pt-br/guide/using-middleware.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Frameworks Web",
+          "description": "Express, Fastify ou NestJS para roteamento, middlewares, tratamento centralizado de erros e injeção de dependências."
+        },
+        {
+          "id": "f3-rest-apis",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "f3-runtime"
+          ],
+          "tags": [
+            "REST",
+            "HTTP Methods",
+            "Status Codes",
+            "Paginação"
+          ],
+          "resources": [
+            {
+              "title": "Métodos HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Códigos de status HTTP (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "RESTful APIs",
+          "description": "Design de recursos, métodos HTTP (GET, POST, PUT, PATCH, DELETE), códigos de status HTTP, paginação, filtros, ordenação e versionamento."
+        },
+        {
+          "id": "f3-realtime",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f3-rest-apis"
+          ],
+          "tags": [
+            "WebSockets",
+            "Webhooks",
+            "GraphQL"
+          ],
+          "resources": [
+            {
+              "title": "API WebSocket (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Aprenda GraphQL",
+              "url": "https://graphql.org/learn/",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Comunicação em Tempo Real e Integrações",
+          "description": "WebSockets (chats, notificações ao vivo), Webhooks e noções de GraphQL."
+        },
+        {
+          "id": "f3-docs-testes",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [
+            "f3-rest-apis"
+          ],
+          "tags": [
+            "OpenAPI",
+            "Swagger",
+            "Postman",
+            "Insomnia"
+          ],
+          "resources": [
+            {
+              "title": "Estrutura básica do OpenAPI",
+              "url": "https://swagger.io/docs/specification/v3_0/basic-structure/",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Primeiros passos no Postman",
+              "url": "https://learning.postman.com/docs/getting-started/overview/",
+              "lang": "en",
+              "kind": "curso"
+            }
+          ],
+          "title": "Documentação e Testes Manuais de API",
+          "description": "Especificação OpenAPI / Swagger e testes de endpoints com Postman ou Insomnia."
+        },
+        {
+          "id": "f3-auth",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "f3-rest-apis"
+          ],
+          "tags": [
+            "JWT",
+            "Refresh Tokens",
+            "OAuth 2.0",
+            "OpenID Connect"
+          ],
+          "resources": [
+            {
+              "title": "Introdução a JWT",
+              "url": "https://jwt.io/introduction",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "OAuth 2.0",
+              "url": "https://oauth.net/2/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Autenticação",
+          "description": "Sessões vs. JWT (JSON Web Tokens), Refresh Tokens, OAuth 2.0 e OpenID Connect (login social)."
+        },
+        {
+          "id": "f3-authz",
+          "level": "avancado",
+          "hours": 6,
+          "prerequisites": [
+            "f3-auth"
+          ],
+          "tags": [
+            "RBAC",
+            "Permissões",
+            "Controle de Acesso"
+          ],
+          "resources": [
+            {
+              "title": "Folha de autorização da OWASP",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Autorização",
+          "description": "Controle de acesso baseado em papéis (RBAC) e permissões granulares."
+        },
+        {
+          "id": "f3-seguranca",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f3-rest-apis"
+          ],
+          "tags": [
+            "OWASP",
+            "bcrypt/argon2",
+            "CORS",
+            "Rate Limiting",
+            "XSS/CSRF"
+          ],
+          "resources": [
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "O que é CORS (MDN)",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Glossary/CORS",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Segurança Web (OWASP)",
+          "description": "Hashing seguro de senhas (bcrypt ou argon2), CORS, HTTPS/TLS, Rate Limiting, sanitização de dados e proteção contra SQL Injection, XSS e CSRF."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f3-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Duas rotas e um erro claro",
+          "description": "Suba uma API mínima com uma rota que lista itens e outra que cria um item. Responda com status HTTP corretos e uma mensagem útil quando o corpo vier inválido.",
+          "steps": [
+            "Escreva em uma linha o que \"Duas rotas e um erro claro\" precisa mostrar.",
+            "Suba uma API mínima com uma rota que lista itens e outra que cria um item. Responda com status HTTP corretos e uma mensagem útil quando o corpo vier inválido.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f3-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 16,
+          "title": "API de tarefas com login",
+          "description": "Implemente uma API REST de tarefas com JWT, paginação e um arquivo OpenAPI. Teste os fluxos feliz e de erro no Postman ou em outro cliente HTTP.",
+          "steps": [
+            "Escreva em uma linha o que \"API de tarefas com login\" precisa mostrar.",
+            "Implemente uma API REST de tarefas com JWT, paginação e um arquivo OpenAPI. Teste os fluxos feliz e de erro no Postman ou em outro cliente HTTP.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f3-projeto-avancado",
+          "level": "avancado",
+          "hours": 16,
+          "title": "Papéis e abuso",
+          "description": "Acrescente dois papéis (admin e membro), limite de requisições e hashing de senha. Escreva quais itens do OWASP Top 10 o projeto cobre e quais ficaram de fora.",
+          "steps": [
+            "Escreva em uma linha o que \"Papéis e abuso\" precisa mostrar.",
+            "Acrescente dois papéis (admin e membro), limite de requisições e hashing de senha. Escreva quais itens do OWASP Top 10 o projeto cobre e quais ficaram de fora.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-3-q1",
+          "prompt": "Uma API REST combina recurso, método e status HTTP. Isso está certo?",
+          "reviewTopicId": "f3-rest-apis",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-3-q2",
+          "prompt": "O que combina com \"Autenticação\"?",
+          "reviewTopicId": "f3-auth",
+          "choices": [
+            {
+              "id": "a",
+              "text": "JWT e sessão são formas de lembrar quem já entrou.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-4",
+      "number": 4,
+      "badgeTitle": "Dados & Cache",
+      "title": "Bancos de Dados, Modelagem e Cache",
+      "topics": [
+        {
+          "id": "f4-sql",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "PostgreSQL",
+            "MySQL",
+            "SQL"
+          ],
+          "resources": [
+            {
+              "title": "Tutorial do PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial.html",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Bancos Relacionais (SQL)",
+          "description": "PostgreSQL ou MySQL."
+        },
+        {
+          "id": "f4-modelagem",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "f4-sql"
+          ],
+          "tags": [
+            "DER",
+            "Normalização",
+            "PK / FK"
+          ],
+          "resources": [
+            {
+              "title": "Conceitos do tutorial PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Restrições e chaves",
+              "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Modelagem de Dados",
+          "description": "Diagramas Entidade-Relacionamento (DER), normalização (1FN, 2FN, 3FN), chaves primárias e estrangeiras."
+        },
+        {
+          "id": "f4-consultas",
+          "level": "intermediario",
+          "hours": 10,
+          "prerequisites": [
+            "f4-sql"
+          ],
+          "tags": [
+            "JOINs",
+            "ACID",
+            "Índices",
+            "GROUP BY"
+          ],
+          "resources": [
+            {
+              "title": "JOINs no tutorial PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Índices no PostgreSQL",
+              "url": "https://www.postgresql.org/docs/current/indexes.html",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Consultas SQL e Performance",
+          "description": "JOINs, agregações (GROUP BY, HAVING), subqueries, transações (ACID) e criação de índices."
+        },
+        {
+          "id": "f4-orms",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "f4-sql"
+          ],
+          "tags": [
+            "Prisma",
+            "Drizzle ORM",
+            "TypeORM",
+            "Migrations",
+            "Seeds"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Prisma ORM",
+              "url": "https://www.prisma.io/docs/orm/overview/introduction",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Primeiros passos com Prisma Migrate",
+              "url": "https://www.prisma.io/docs/orm/prisma-migrate/getting-started",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "ORMs e Migrations",
+          "description": "Prisma, Drizzle ORM ou TypeORM para mapeamento objeto-relacional, controle de versão do esquema (Migrations) e população inicial (Seeds)."
+        },
+        {
+          "id": "f4-nosql",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [],
+          "tags": [
+            "MongoDB",
+            "NoSQL",
+            "Documentos",
+            "Agregações"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao MongoDB",
+              "url": "https://www.mongodb.com/pt-br/docs/manual/introduction/",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiros passos no MongoDB",
+              "url": "https://www.mongodb.com/docs/manual/tutorial/getting-started/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Bancos Não Relacionais (NoSQL)",
+          "description": "MongoDB (documentos, coleções, agregações) e critérios de escolha entre SQL e NoSQL."
+        },
+        {
+          "id": "f4-cache",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f4-sql"
+          ],
+          "tags": [
+            "Redis",
+            "Cache",
+            "RabbitMQ",
+            "BullMQ",
+            "Kafka"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Redis",
+              "url": "https://redis.io/docs/latest/develop/get-started/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Tutorial de RabbitMQ em JavaScript",
+              "url": "https://www.rabbitmq.com/tutorials/tutorial-one-javascript",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Cache e Mensageria",
+          "description": "Redis para cache em memória, sessões e filas simples; processamento assíncrono e message brokers (RabbitMQ, BullMQ ou Kafka)."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f4-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "Modelo de matrícula",
+          "description": "Desenhe o DER de aluno, disciplina e matrícula e crie as tabelas com chave primária e estrangeira. Insira dados de exemplo e faça três consultas simples.",
+          "steps": [
+            "Escreva em uma linha o que \"Modelo de matrícula\" precisa mostrar.",
+            "Desenhe o DER de aluno, disciplina e matrícula e crie as tabelas com chave primária e estrangeira. Insira dados de exemplo e faça três consultas simples.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f4-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Consultas e migration",
+          "description": "Escreva JOINs que respondam perguntas reais do modelo (quem cursa o quê) e versione o esquema com uma migration, no SQL ou no Prisma.",
+          "steps": [
+            "Escreva em uma linha o que \"Consultas e migration\" precisa mostrar.",
+            "Escreva JOINs que respondam perguntas reais do modelo (quem cursa o quê) e versione o esquema com uma migration, no SQL ou no Prisma.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f4-projeto-avancado",
+          "level": "avancado",
+          "hours": 12,
+          "title": "Consulta quente com cache",
+          "description": "Coloque Redis na frente de uma consulta mais pesada. Documente o que é guardado, por quanto tempo e em que momento o cache precisa ser apagado.",
+          "steps": [
+            "Escreva em uma linha o que \"Consulta quente com cache\" precisa mostrar.",
+            "Coloque Redis na frente de uma consulta mais pesada. Documente o que é guardado, por quanto tempo e em que momento o cache precisa ser apagado.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-4-q1",
+          "prompt": "Tabela relacional usa chave primária e, quando há ligação, chave estrangeira. Isso está certo?",
+          "reviewTopicId": "f4-sql",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-4-q2",
+          "prompt": "O que combina com \"Modelagem de Dados\"?",
+          "reviewTopicId": "f4-modelagem",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Normalizar evita repetir o mesmo fato em vários lugares.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-5",
+      "number": 5,
+      "badgeTitle": "Arquitetura & QA",
+      "title": "Arquitetura, Qualidade e Testes",
+      "topics": [
+        {
+          "id": "f5-boas-praticas",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [],
+          "tags": [
+            "Clean Code",
+            "SOLID",
+            "DRY",
+            "KISS"
+          ],
+          "resources": [
+            {
+              "title": "O que é refatoração",
+              "url": "https://refactoring.guru/pt-br/refactoring/what-is-refactoring",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Clean Code em JavaScript",
+              "url": "https://github.com/ryanmcdermott/clean-code-javascript",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Boas Práticas de Código",
+          "description": "Princípios Clean Code, SOLID, DRY e KISS."
+        },
+        {
+          "id": "f5-padroes",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f5-boas-praticas"
+          ],
+          "tags": [
+            "MVC",
+            "Camadas",
+            "DI",
+            "Clean Architecture"
+          ],
+          "resources": [
+            {
+              "title": "Catálogo de padrões de projeto",
+              "url": "https://refactoring.guru/pt-br/design-patterns/catalog",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Padrão Repository (Fowler)",
+              "url": "https://martinfowler.com/eaaCatalog/repository.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Padrões Arquiteturais",
+          "description": "MVC, Arquitetura em Camadas (Controller - Service - Repository), injeção de dependências e noções de Clean Architecture."
+        },
+        {
+          "id": "f5-unitarios",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [
+            "f2-js-base"
+          ],
+          "tags": [
+            "Vitest",
+            "Jest",
+            "Testes Unitários"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Jest",
+              "url": "https://jestjs.io/pt-BR/docs/getting-started",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Guia do Vitest",
+              "url": "https://vitest.dev/guide/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Testes Unitários",
+          "description": "Validação isolada de funções e regras de negócio com Vitest ou Jest."
+        },
+        {
+          "id": "f5-integracao",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f5-unitarios"
+          ],
+          "tags": [
+            "Supertest",
+            "Integração",
+            "HTTP Tests"
+          ],
+          "resources": [
+            {
+              "title": "Supertest",
+              "url": "https://github.com/ladjs/supertest",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Pirâmide de testes",
+              "url": "https://martinfowler.com/bliki/TestPyramid.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Testes de Integração",
+          "description": "Validação de rotas HTTP, middlewares e persistência no banco com Supertest."
+        },
+        {
+          "id": "f5-e2e",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f5-unitarios"
+          ],
+          "tags": [
+            "Playwright",
+            "Cypress",
+            "E2E"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Playwright",
+              "url": "https://playwright.dev/docs/intro",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Por que Cypress",
+              "url": "https://docs.cypress.io/app/get-started/why-cypress",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Testes End-to-End (E2E)",
+          "description": "Simulação do fluxo completo do usuário no navegador com Playwright ou Cypress."
+        },
+        {
+          "id": "f5-padronizacao",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "ESLint",
+            "Prettier",
+            "Husky",
+            "Linting"
+          ],
+          "resources": [
+            {
+              "title": "Começando com ESLint",
+              "url": "https://eslint.org/docs/latest/use/getting-started",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Instalando o Prettier",
+              "url": "https://prettier.io/docs/install",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Padronização de Código",
+          "description": "Linting com ESLint, formatação com Prettier e automação pré-commit com Husky."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f5-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 6,
+          "title": "Função longa, função clara",
+          "description": "Pegue um trecho de código seu com mais de uma responsabilidade e refatore nomes, duplicação e tamanho das funções. Mostre o antes e o depois no README.",
+          "steps": [
+            "Escreva em uma linha o que \"Função longa, função clara\" precisa mostrar.",
+            "Pegue um trecho de código seu com mais de uma responsabilidade e refatore nomes, duplicação e tamanho das funções. Mostre o antes e o depois no README.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f5-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 10,
+          "title": "Regra de negócio testada",
+          "description": "Escolha uma regra pequena (desconto, permissão ou cálculo) e cubra os casos feliz, borda e erro com Jest ou Vitest.",
+          "steps": [
+            "Escreva em uma linha o que \"Regra de negócio testada\" precisa mostrar.",
+            "Escolha uma regra pequena (desconto, permissão ou cálculo) e cubra os casos feliz, borda e erro com Jest ou Vitest.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f5-projeto-avancado",
+          "level": "avancado",
+          "hours": 14,
+          "title": "Da rota ao navegador",
+          "description": "Escreva um teste de integração de uma rota HTTP e um teste de ponta a ponta do fluxo principal da interface, com Playwright ou Cypress.",
+          "steps": [
+            "Escreva em uma linha o que \"Da rota ao navegador\" precisa mostrar.",
+            "Escreva um teste de integração de uma rota HTTP e um teste de ponta a ponta do fluxo principal da interface, com Playwright ou Cypress.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-5-q1",
+          "prompt": "Teste unitário verifica uma regra isolada. Isso está certo?",
+          "reviewTopicId": "f5-unitarios",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-5-q2",
+          "prompt": "O que combina com \"Boas Práticas de Código\"?",
+          "reviewTopicId": "f5-boas-praticas",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Nome claro e função pequena deixam o código mais fácil de mudar.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-6",
+      "number": 6,
+      "badgeTitle": "DevOps & Cloud",
+      "title": "DevOps, Contêineres e Nuvem",
+      "topics": [
+        {
+          "id": "f6-linux",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "Linux",
+            "Nginx",
+            "SSH",
+            "pm2",
+            "Firewall"
+          ],
+          "resources": [
+            {
+              "title": "Linha de comando para iniciantes (Ubuntu)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "lang": "en",
+              "kind": "curso"
+            },
+            {
+              "title": "Guia inicial do Nginx",
+              "url": "https://nginx.org/en/docs/beginners_guide.html",
+              "lang": "en",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Fundamentos de Linux e Servidores",
+          "description": "Gerenciamento de processos (pm2, systemd), análise de logs, portas de rede, firewall, proxy reverso (Nginx) e conexão remota via SSH."
+        },
+        {
+          "id": "f6-docker",
+          "level": "intermediario",
+          "hours": 8,
+          "prerequisites": [],
+          "tags": [
+            "Docker",
+            "Dockerfile",
+            "Multi-stage",
+            "Volumes"
+          ],
+          "resources": [
+            {
+              "title": "O que é Docker (Red Hat)",
+              "url": "https://www.redhat.com/pt-br/topics/containers/what-is-docker",
+              "lang": "pt",
+              "kind": "leitura"
+            },
+            {
+              "title": "Builds multi-stage",
+              "url": "https://docs.docker.com/build/building/multi-stage/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Docker",
+          "description": "Criação de Dockerfile otimizados (multi-stage builds), gerenciamento de imagens, volumes e redes."
+        },
+        {
+          "id": "f6-compose",
+          "level": "intermediario",
+          "hours": 5,
+          "prerequisites": [
+            "f6-docker"
+          ],
+          "tags": [
+            "Docker Compose",
+            "Orquestração Local"
+          ],
+          "resources": [
+            {
+              "title": "Começando com Docker Compose",
+              "url": "https://docs.docker.com/compose/gettingstarted/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Docker Compose",
+          "description": "Orquestração local de múltiplos serviços (API + Banco de Dados + Redis)."
+        },
+        {
+          "id": "f6-cicd",
+          "level": "intermediario",
+          "hours": 6,
+          "prerequisites": [
+            "f1-github"
+          ],
+          "tags": [
+            "CI/CD",
+            "GitHub Actions",
+            "Pipelines"
+          ],
+          "resources": [
+            {
+              "title": "Entenda o GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/get-started/understand-github-actions",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Início rápido do GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/get-started/quickstart",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "CI/CD (Integração e Entrega Contínua)",
+          "description": "Pipelines automatizados no GitHub Actions para testes, verificação de tipos, build e deploy."
+        },
+        {
+          "id": "f6-paas",
+          "level": "intermediario",
+          "hours": 4,
+          "prerequisites": [],
+          "tags": [
+            "Vercel",
+            "Render",
+            "Railway",
+            "Fly.io"
+          ],
+          "resources": [
+            {
+              "title": "Começando na Vercel",
+              "url": "https://vercel.com/docs/getting-started-with-vercel",
+              "lang": "en",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Web services no Render",
+              "url": "https://render.com/docs/web-services",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Computação em Nuvem — PaaS",
+          "description": "Deploy simplificado na Vercel (frontend/fullstack), Render, Railway ou Fly.io."
+        },
+        {
+          "id": "f6-aws",
+          "level": "avancado",
+          "hours": 12,
+          "prerequisites": [
+            "f6-linux"
+          ],
+          "tags": [
+            "AWS",
+            "EC2",
+            "S3",
+            "RDS",
+            "VPC",
+            "Route 53"
+          ],
+          "resources": [
+            {
+              "title": "Comece com a AWS",
+              "url": "https://aws.amazon.com/pt/getting-started/",
+              "lang": "pt",
+              "kind": "curso"
+            },
+            {
+              "title": "Conceitos do Amazon EC2",
+              "url": "https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/concepts.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Computação em Nuvem — Infraestrutura (AWS)",
+          "description": "Servidores virtuais (EC2), armazenamento de arquivos (S3), bancos gerenciados (RDS), redes privadas (VPC) e DNS (Route 53)."
+        },
+        {
+          "id": "f6-iac-monitor",
+          "level": "avancado",
+          "hours": 8,
+          "prerequisites": [
+            "f6-aws"
+          ],
+          "tags": [
+            "Terraform",
+            "Sentry",
+            "Prometheus",
+            "Grafana"
+          ],
+          "resources": [
+            {
+              "title": "Introdução ao Terraform",
+              "url": "https://developer.hashicorp.com/terraform/intro",
+              "lang": "en",
+              "kind": "leitura"
+            },
+            {
+              "title": "Primeiro painel no Grafana",
+              "url": "https://grafana.com/docs/grafana/latest/getting-started/",
+              "lang": "en",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Infraestrutura como Código e Monitoramento",
+          "description": "Noções de Terraform; logs estruturados, health checks e monitoramento de erros e métricas (Sentry, Prometheus/Grafana)."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f6-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "API em um contêiner",
+          "description": "Escreva um Dockerfile que sobe a sua API com um comando só. O README deve dizer qual porta abre e como passar uma variável de ambiente.",
+          "steps": [
+            "Escreva em uma linha o que \"API em um contêiner\" precisa mostrar.",
+            "Escreva um Dockerfile que sobe a sua API com um comando só. O README deve dizer qual porta abre e como passar uma variável de ambiente.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f6-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "Compose e CI",
+          "description": "Suba API e banco com Docker Compose e crie um workflow no GitHub Actions que instala dependências e roda os testes a cada push.",
+          "steps": [
+            "Escreva em uma linha o que \"Compose e CI\" precisa mostrar.",
+            "Suba API e banco com Docker Compose e crie um workflow no GitHub Actions que instala dependências e roda os testes a cada push.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f6-projeto-avancado",
+          "level": "avancado",
+          "hours": 16,
+          "title": "No ar, com sinal de vida",
+          "description": "Publique o serviço em um PaaS, exponha um health check e descreva, mesmo que em um esboço, o que você observaria (erro, latência, disco) se ele caísse de madrugada.",
+          "steps": [
+            "Escreva em uma linha o que \"No ar, com sinal de vida\" precisa mostrar.",
+            "Publique o serviço em um PaaS, exponha um health check e descreva, mesmo que em um esboço, o que você observaria (erro, latência, disco) se ele caísse de madrugada.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-6-q1",
+          "prompt": "Dockerfile descreve como a aplicação sobe num contêiner. Isso está certo?",
+          "reviewTopicId": "f6-docker",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-6-q2",
+          "prompt": "O que combina com \"CI/CD (Integração e Entrega Contínua)\"?",
+          "reviewTopicId": "f6-cicd",
+          "choices": [
+            {
+              "id": "a",
+              "text": "CI roda testes antes de considerar o código pronto para seguir.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fase-7",
+      "number": 7,
+      "badgeTitle": "Full-Stack Master",
+      "title": "Checkpoints Práticos (Portfólio)",
+      "topics": [
+        {
+          "id": "f7-checkpoint-1",
+          "level": "intermediario",
+          "hours": 20,
+          "prerequisites": [
+            "f2-frameworks"
+          ],
+          "tags": [
+            "Projeto Frontend",
+            "API Externa",
+            "Acessibilidade",
+            "Portfólio"
+          ],
+          "resources": [
+            {
+              "title": "Pensando do jeito React",
+              "url": "https://pt-br.react.dev/learn/thinking-in-react",
+              "lang": "pt",
+              "kind": "pratica"
+            },
+            {
+              "title": "Acessibilidade na MDN",
+              "url": "https://developer.mozilla.org/pt-BR/docs/Learn/Accessibility",
+              "lang": "pt",
+              "kind": "leitura"
+            }
+          ],
+          "title": "Checkpoint 1 — Aplicação Frontend",
+          "description": "Interface responsiva e acessível consumindo uma API externa, com busca, filtros, paginação e tratamento visual de carregamento e erros."
+        },
+        {
+          "id": "f7-checkpoint-2",
+          "level": "avancado",
+          "hours": 24,
+          "prerequisites": [
+            "f3-auth",
+            "f4-orms"
+          ],
+          "tags": [
+            "Projeto Backend",
+            "Node + TS",
+            "PostgreSQL",
+            "JWT",
+            "Swagger"
+          ],
+          "resources": [
+            {
+              "title": "Guia inicial do Express",
+              "url": "https://expressjs.com/pt-br/starter/installing.html",
+              "lang": "pt",
+              "kind": "documentacao"
+            },
+            {
+              "title": "Especificação OpenAPI",
+              "url": "https://swagger.io/specification/",
+              "lang": "en",
+              "kind": "documentacao"
+            }
+          ],
+          "title": "Checkpoint 2 — API Backend Completa",
+          "description": "Serviço RESTful em Node.js + TypeScript conectado a um banco PostgreSQL, com autenticação JWT, controle de permissões, testes automatizados e documentação Swagger."
+        },
+        {
+          "id": "f7-checkpoint-3",
+          "level": "avancado",
+          "hours": 30,
+          "prerequisites": [
+            "f7-checkpoint-1",
+            "f7-checkpoint-2",
+            "f6-docker"
+          ],
+          "tags": [
+            "Projeto Full-Stack",
+            "Docker",
+            "CI/CD",
+            "Produção"
+          ],
+          "resources": [
+            {
+              "title": "Get started do Docker",
+              "url": "https://docs.docker.com/get-started/",
+              "lang": "en",
+              "kind": "pratica"
+            },
+            {
+              "title": "Build e teste de Node no GitHub Actions",
+              "url": "https://docs.github.com/pt/actions/tutorials/build-and-test-code/nodejs",
+              "lang": "pt",
+              "kind": "pratica"
+            }
+          ],
+          "title": "Checkpoint 3 — Sistema Full-Stack em Produção",
+          "description": "Aplicação completa integrada de ponta a ponta, empacotada com Docker, com pipeline de CI/CD no GitHub Actions e publicada em ambiente de nuvem."
+        }
+      ],
+      "projects": [
+        {
+          "id": "f7-projeto-iniciante",
+          "level": "iniciante",
+          "hours": 8,
+          "title": "README que convida",
+          "description": "Publique o checkpoint de interface com README, um GIF ou captura do fluxo e o link no ar. Quem abrir o repositório precisa entender o que roda sem perguntar.",
+          "steps": [
+            "Escreva em uma linha o que \"README que convida\" precisa mostrar.",
+            "Publique o checkpoint de interface com README, um GIF ou captura do fluxo e o link no ar. Quem abrir o repositório precisa entender o que roda sem perguntar.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f7-projeto-intermediario",
+          "level": "intermediario",
+          "hours": 12,
+          "title": "API que se explica",
+          "description": "Entregue a API com testes automatizados verdes e a documentação Swagger acessível. O README diz como autenticar e quais permissões existem.",
+          "steps": [
+            "Escreva em uma linha o que \"API que se explica\" precisa mostrar.",
+            "Entregue a API com testes automatizados verdes e a documentação Swagger acessível. O README diz como autenticar e quais permissões existem.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        },
+        {
+          "id": "f7-projeto-avancado",
+          "level": "avancado",
+          "hours": 16,
+          "title": "Produção com retrospectiva",
+          "description": "Deixe o sistema full-stack no ar, com CI verde. Escreva uma página curta de retrospectiva: o que quebrou no deploy, o que você mediria e o que faria diferente.",
+          "steps": [
+            "Escreva em uma linha o que \"Produção com retrospectiva\" precisa mostrar.",
+            "Deixe o sistema full-stack no ar, com CI verde. Escreva uma página curta de retrospectiva: o que quebrou no deploy, o que você mediria e o que faria diferente.",
+            "Percorra a definição de pronto e ajuste o que ainda não está visível."
+          ],
+          "definitionOfDone": [
+            "O resultado está num arquivo, repositório ou texto que outra pessoa abre sozinha.",
+            "Dá para apontar o exemplo concreto pedido na descrição.",
+            "Há uma frase sobre o que este projeto não tenta resolver."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "fase-7-q1",
+          "prompt": "O checkpoint de interface precisa estar utilizável e explicado no README. Isso está certo?",
+          "reviewTopicId": "f7-checkpoint-1",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Sim. É o ponto central desse tópico.",
+              "correct": true,
+              "explanation": "Se ficou em dúvida, releia o tópico e o recurso indicado."
+            },
+            {
+              "id": "b",
+              "text": "Não. Isso é só detalhe visual sem efeito no entendimento.",
+              "correct": false,
+              "explanation": "O enunciado descreve o conteúdo do tópico, não um enfeite."
+            },
+            {
+              "id": "c",
+              "text": "Não. Esse assunto só importa em outro curso.",
+              "correct": false,
+              "explanation": "Ele está nesta etapa porque destrava o que vem depois."
+            }
+          ]
+        },
+        {
+          "id": "fase-7-q2",
+          "prompt": "O que combina com \"Checkpoint 3 — Sistema Full-Stack em Produção\"?",
+          "reviewTopicId": "f7-checkpoint-3",
+          "choices": [
+            {
+              "id": "a",
+              "text": "Produção inclui build, pipeline e um endereço no ar.",
+              "correct": true,
+              "explanation": "Esse é o critério de entendimento. Se errou, volte ao tópico."
+            },
+            {
+              "id": "b",
+              "text": "Basta marcar o tópico como concluído sem praticar.",
+              "correct": false,
+              "explanation": "Marcar não substitui saber explicar ou fazer."
+            },
+            {
+              "id": "c",
+              "text": "O próximo tópico apaga a necessidade deste.",
+              "correct": false,
+              "explanation": "Pré-requisito ignorado volta como buraco no projeto."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "id": "fullstack",
+  "name": "Full-Stack",
+  "tagline": "Da Web ao deploy, com interface, API, dados e nuvem",
+  "description": "A trilha completa que este app já oferecia: fundamentos, frontend, backend, bancos, qualidade, DevOps e projetos de portfólio. Serve para quem quer ver o caminho inteiro antes de escolher um recorte."
+}

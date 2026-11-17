@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roadmap Full-Stack Interativo — Trilha de Estudos</title>
-  
-  <!-- Fontes Google: Inter para interface e JetBrains Mono para badges técnicos e métricas -->
+  <title>Trilha de Estudos</title>
+  <meta name="description" content="Monte uma trilha de estudos personalizada para a faculdade de tecnologia. Sem cadastro, no seu navegador." />
+  <meta name="theme-color" content="#090d16" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310b981'/%3E%3Cpath d='M9 17l4 4 10-10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS via CDN -->
+  <link rel="stylesheet" href="css/app.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -39,1413 +39,302 @@
         }
       }
     };
+    try {
+      const raw = localStorage.getItem('trilha_estudos_ptbr_v2') || localStorage.getItem('roadmap_fullstack_ptbr_v1');
+      if (raw && JSON.parse(raw).theme === 'light') document.documentElement.classList.remove('dark');
+    } catch (error) {
+      /* o app segue no tema escuro */
+    }
   </script>
-
-  <style>
-    /* Estilização refinada da barra de rolagem e transições globais */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(100, 116, 139, 0.35);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(100, 116, 139, 0.55);
-    }
-  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-[#090d16] dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#090d16] dark:text-slate-100 font-sans antialiased min-h-screen selection:bg-emerald-500/30">
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-  <!-- Container Principal -->
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+  <div id="loading" role="status" class="max-w-3xl mx-auto px-4 py-24 text-center">
+    <p class="text-sm font-medium text-slate-600 dark:text-slate-300">Carregando trilhas…</p>
+  </div>
 
-    <!-- Cabeçalho Superior -->
-    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-      <div class="flex items-start sm:items-center gap-3.5">
-        <div class="p-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 shrink-0">
-          <!-- Ícone Terminal / Code -->
-          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <div>
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
-              Roadmap Full-Stack Interativo
-            </h1>
-            <span class="px-2.5 py-0.5 text-xs font-mono font-semibold rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
-              v2026
-            </span>
+  <div id="loadError" hidden class="max-w-xl mx-auto px-4 py-24">
+    <div class="rounded-2xl border border-rose-500/30 bg-white dark:bg-slate-900 p-6">
+      <h1 class="text-xl font-bold">Não foi possível abrir as trilhas</h1>
+      <p id="loadErrorText" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+    </div>
+  </div>
+
+  <div id="onboarding" hidden class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="flex items-center justify-between gap-3 mb-8">
+      <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-400">Trilha de Estudos</p>
+      <button id="onbThemeBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Tema</button>
+    </div>
+    <p id="onbStepLabel" class="text-xs font-mono uppercase tracking-wider text-slate-500">Passo 1 de 4</p>
+    <h1 id="onbHeading" class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">Qual é a sua área?</h1>
+    <p id="onbLead" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+
+    <div id="onbStep1">
+      <div id="onbTrackGrid" class="mt-6 grid sm:grid-cols-2 gap-3"></div>
+    </div>
+
+    <fieldset id="onbStep2" hidden class="mt-6 space-y-3">
+      <legend class="sr-only">Nível atual</legend>
+    </fieldset>
+
+    <fieldset id="onbStep3" hidden class="mt-6 space-y-3">
+      <legend class="sr-only">Horas por semana</legend>
+      <div id="hourChoices" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      <label class="block text-sm" for="hoursCustom">Outra quantidade
+        <input id="hoursCustom" type="number" min="1" max="60" inputmode="numeric" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+      </label>
+    </fieldset>
+
+    <div id="onbStep4" hidden class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5">
+      <div id="planPreview"></div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-between gap-3">
+      <button id="onbBack" type="button" class="px-4 py-2.5 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Voltar</button>
+      <div class="flex gap-2">
+        <button id="onbNext" type="button" class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Continuar</button>
+        <button id="onbStart" type="button" hidden class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Começar trilha</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" hidden>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+      <header class="flex flex-col gap-4 mb-8 lg:flex-row lg:items-start lg:justify-between">
+        <div class="flex items-start gap-3.5">
+          <div id="trackIcon" class="p-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-cyan-600 text-white shadow-lg shadow-emerald-500/20 shrink-0" aria-hidden="true"></div>
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Trilha de Estudos</h1>
+              <span id="trackBadge" class="px-2.5 py-0.5 text-xs font-mono font-semibold rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30"></span>
+            </div>
+            <p id="trackTagline" class="text-sm text-slate-600 dark:text-slate-400 mt-1"></p>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
-            Trilha completa de engenharia de software — do protocolo HTTP ao deploy em nuvem.
-          </p>
         </div>
-      </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="shareBtn" type="button" class="px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Compartilhar</button>
+          <button id="retakeBtn" type="button" class="px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">Refazer/Trocar trilha</button>
+          <button id="themeToggleBtn" type="button" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700">
+            <span id="themeIcon" aria-hidden="true"></span>
+            <span id="themeLabel">Tema claro</span>
+          </button>
+        </div>
+      </header>
 
-      <!-- Alternador de Tema (Escuro / Claro) -->
-      <div class="flex items-center self-start sm:self-center">
-        <button
-          id="themeToggleBtn"
-          type="button"
-          aria-label="Alternar tema claro ou escuro"
-          class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-sm font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 shadow-sm transition-all cursor-pointer"
-        >
-          <span id="themeIcon"></span>
-          <span id="themeLabel">Tema Claro</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- 1. PAINEL GERAL DE PROGRESSO -->
-    <section aria-label="Painel Geral de Progresso" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/90 p-5 sm:p-6 shadow-sm dark:shadow-xl dark:shadow-black/20 mb-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        
-        <!-- Progresso Total e Contador -->
-        <div class="lg:col-span-7 space-y-3">
-          <div class="flex items-baseline justify-between gap-2">
-            <div>
-              <span class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
-                Progresso Geral da Trilha
-              </span>
-              <div class="flex items-baseline gap-3 mt-1">
-                <span id="overallPercent" class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">
-                  0%
-                </span>
-                <span id="overallCounter" class="text-sm font-mono text-slate-600 dark:text-slate-400">
-                  0 de 46 tópicos concluídos
-                </span>
+      <section aria-label="Painel geral de progresso" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-5 sm:p-6 mb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Progresso do seu plano</span>
+                <div class="flex items-baseline gap-3 mt-1 flex-wrap">
+                  <span id="overallPercent" class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-600 dark:text-emerald-400">0%</span>
+                  <span id="overallCounter" class="text-sm font-mono text-slate-600 dark:text-slate-400"></span>
+                </div>
               </div>
+              <span id="overallStatusTag" class="hidden sm:inline-flex px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20"></span>
             </div>
-            <span id="overallStatusTag" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20">
-              Iniciando jornada
-            </span>
-          </div>
-
-          <!-- Barra de Progresso Geral -->
-          <div class="w-full h-3.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden p-0.5">
-            <div
-              id="overallProgressBar"
-              class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 transition-all duration-500 ease-out"
-              style="width: 0%"
-            ></div>
-          </div>
-        </div>
-
-        <!-- Indicador da Fase Atual em Andamento -->
-        <div class="lg:col-span-5">
-          <div class="rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800 p-4">
-            <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold mb-1.5">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
-              </span>
-              Foco Atual em Andamento
+            <div class="w-full h-3.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden p-0.5">
+              <div id="overallProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500" style="width:0%"></div>
             </div>
-            <p id="currentPhaseName" class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 line-clamp-1">
-              Fase 1: Fundamentos da Web e Controle de Versão
-            </p>
-            <p id="currentPhaseSub" class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-mono">
-              0/5 tópicos concluídos nesta fase
-            </p>
+            <p id="planEstimate" class="text-sm text-slate-600 dark:text-slate-300"></p>
+            <p id="projectCounter" class="text-xs font-mono text-slate-500"></p>
+          </div>
+          <div class="lg:col-span-5 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800 p-4">
+            <p class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">Foco atual</p>
+            <p id="currentPhaseName" class="mt-1 text-sm sm:text-base font-bold"></p>
+            <p id="currentPhaseSub" class="text-xs text-slate-500 mt-1 font-mono"></p>
           </div>
         </div>
-      </div>
-
-      <!-- Badges de Conquista por Fase Concluída -->
-      <div class="mt-6 pt-5 border-t border-slate-200/80 dark:border-slate-800">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-            </svg>
-            Conquistas por Fase Concluída
-          </span>
-          <span id="badgesUnlockedCounter" class="text-xs font-mono text-slate-500 dark:text-slate-400">
-            0/7 desbloqueadas
-          </span>
+        <div class="mt-5 flex flex-col sm:flex-row sm:items-end gap-3">
+          <label class="text-sm" for="weeklyHoursInput">Horas por semana
+            <input id="weeklyHoursInput" type="number" min="1" max="60" class="mt-1 block w-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          </label>
+          <p id="levelLabel" class="text-sm text-slate-600 dark:text-slate-300 sm:mb-2"></p>
         </div>
-        <div id="badgesContainer" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
-          <!-- Badges renderizadas dinamicamente via JS -->
+        <label class="mt-3 flex items-start gap-2 text-sm">
+          <input id="includeBelowLevel" type="checkbox" class="mt-1" />
+          <span>Contar tópicos abaixo do meu nível no progresso. <span id="optionalHint" class="text-slate-500"></span></span>
+        </label>
+        <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Conquistas por etapa</span>
+            <span id="badgesUnlockedCounter" class="text-xs font-mono text-slate-500"></span>
+          </div>
+          <div id="badgesContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 2. BARRA DE FERRAMENTAS -->
-    <section aria-label="Barra de Ferramentas e Filtros" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/90 p-4 mb-6 shadow-sm space-y-3.5">
-      
-      <!-- Linha Superior: Busca e Filtros de Status -->
-      <div class="flex flex-col md:flex-row gap-3">
-        <!-- Campo de Busca em Tempo Real -->
-        <div class="relative flex-1">
-          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input
-            id="searchInput"
-            type="text"
-            placeholder="Buscar por tópico, tecnologia ou palavra-chave (ex: React, JWT, Docker)..."
-            class="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
-          />
-          <button
-            id="clearSearchBtn"
-            type="button"
-            title="Limpar busca"
-            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer"
-          >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+      <section aria-label="Busca, filtros e ações" class="rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-4 mb-6 space-y-3">
+        <div class="flex flex-col md:flex-row gap-3">
+          <div class="relative flex-1">
+            <label class="sr-only" for="searchInput">Buscar tópicos</label>
+            <input id="searchInput" type="search" placeholder="Buscar tópico, tecnologia, projeto ou observação" class="w-full px-3 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800" />
+          </div>
+          <div role="group" aria-label="Filtrar por status" class="inline-flex flex-wrap rounded-xl bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800">
+            <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Todos</button>
+            <button type="button" data-filter="pending" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Pendentes</button>
+            <button type="button" data-filter="completed" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Concluídos</button>
+            <button type="button" data-filter="optional" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Opcionais</button>
+            <button type="button" data-filter="hidden" class="filter-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm">Ocultos</button>
+          </div>
         </div>
-
-        <!-- Filtros de Status: Todos, Pendentes, Concluídos -->
-        <div role="group" aria-label="Filtrar por status" class="inline-flex rounded-xl bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800 shrink-0">
-          <button
-            type="button"
-            data-filter="all"
-            class="filter-btn flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer"
-          >
-            Todos
-          </button>
-          <button
-            type="button"
-            data-filter="pending"
-            class="filter-btn flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer"
-          >
-            Pendentes
-          </button>
-          <button
-            type="button"
-            data-filter="completed"
-            class="filter-btn flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all cursor-pointer"
-          >
-            Concluídos
-          </button>
-        </div>
-      </div>
-
-      <!-- Linha Inferior: Ações Rápidas (Expandir/Recolher, Estilo Tachado, Exportar, Importar, Resetar) -->
-      <div class="flex flex-wrap items-center justify-between gap-2.5 pt-2.5 border-t border-slate-200/70 dark:border-slate-800/80">
-        
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Botão Expandir / Recolher Todas -->
-          <button
-            id="toggleAllPhasesBtn"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/70 transition-colors cursor-pointer"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-            </svg>
-            <span id="toggleAllPhasesLabel">Recolher Todas</span>
-          </button>
-
-          <!-- Alternador Opcional de Estilo Tachado nos Concluídos -->
-          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/70 cursor-pointer select-none">
-            <input id="strikethroughToggle" type="checkbox" class="rounded text-emerald-500 focus:ring-emerald-500 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-600 cursor-pointer" checked />
+        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+          <button id="toggleAllPhasesBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700"><span id="toggleAllPhasesLabel">Recolher todas</span></button>
+          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">
+            <input id="strikethroughToggle" type="checkbox" checked />
             <span>Tachar concluídos</span>
           </label>
+          <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">
+            <input id="allProjectLevels" type="checkbox" />
+            <span>Mostrar projetos de outros níveis</span>
+          </label>
+          <button id="addTopicBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">Novo tópico</button>
+          <button id="openPlanBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-500/40 text-emerald-700 dark:text-emerald-300">Plano de estudo</button>
+          <button id="exportJsonBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Exportar JSON</button>
+          <button id="exportMdBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Markdown</button>
+          <button id="exportPngBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">PNG</button>
+          <button id="exportPdfBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">PDF</button>
+          <button id="importJsonBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700">Importar JSON</button>
+          <input id="importFileInput" type="file" accept=".json,application/json" class="sr-only" />
+          <button id="resetProgressBtn" type="button" class="px-3 py-2 rounded-xl text-xs font-medium border border-rose-500/30 text-rose-600 dark:text-rose-400">Resetar</button>
         </div>
+      </section>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Exportar JSON -->
-          <button
-            id="exportJsonBtn"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 border border-slate-200 dark:border-slate-700/70 transition-colors cursor-pointer"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            <span>Exportar JSON</span>
-          </button>
-
-          <!-- Importar JSON -->
-          <button
-            id="importJsonBtn"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-700/70 transition-colors cursor-pointer"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-            </svg>
-            <span>Importar JSON</span>
-          </button>
-          <input id="importFileInput" type="file" accept=".json,application/json" class="hidden" />
-
-          <!-- Resetar Progresso -->
-          <button
-            id="resetProgressBtn"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20 border border-rose-500/20 transition-colors cursor-pointer"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-            <span>Resetar</span>
-          </button>
-        </div>
+      <div id="emptyState" hidden class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-10 text-center mb-6">
+        <h2 class="text-base font-bold">Nenhum tópico encontrado</h2>
+        <p class="text-sm text-slate-500 mt-1">Limpe a busca ou mude o filtro.</p>
+        <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 text-white">Limpar filtros e busca</button>
       </div>
-    </section>
 
-    <!-- Estado Vazio quando a busca/filtro não encontra resultados -->
-    <div id="emptyState" class="hidden rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-10 text-center my-6">
-      <div class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      </div>
-      <h3 class="text-base font-bold text-slate-800 dark:text-slate-100">Nenhum tópico encontrado</h3>
-      <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-md mx-auto">
-        Não encontramos nenhum tópico correspondente aos filtros ou termo pesquisado. Tente limpar a busca ou mudar o filtro de status.
-      </p>
-      <button
-        id="resetFiltersBtn"
-        type="button"
-        class="mt-4 px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer"
-      >
-        Limpar Filtros e Busca
-      </button>
-    </div>
+      <main id="conteudo" class="space-y-5" aria-label="Etapas da trilha"></main>
 
-    <!-- LISTA DE FASES E TÓPICOS DO ROADMAP -->
-    <main id="phasesContainer" class="space-y-5">
-      <!-- Renderizado dinamicamente via JavaScript -->
-    </main>
+      <div id="orphans" hidden class="mt-5"></div>
 
-    <!-- Rodapé Discreto -->
-    <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
-      <p>Progresso e anotações salvos automaticamente no armazenamento local (<code class="font-mono text-emerald-600 dark:text-emerald-400">localStorage</code>) do seu navegador.</p>
-      <p class="font-mono">7 Fases • 46 Tópicos Essenciais</p>
-    </footer>
-  </div>
-
-  <!-- MODAL DE CONFIRMAÇÃO PARA RESETAR PROGRESSO (Sem uso de window.confirm) -->
-  <div id="resetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm">
-    <div role="dialog" aria-modal="true" aria-labelledby="resetModalTitle" class="w-full max-w-md rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-2xl">
-      <div class="flex items-center gap-3 text-rose-600 dark:text-rose-400 mb-3">
-        <div class="p-2.5 rounded-xl bg-rose-500/10">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-        </div>
-        <h2 id="resetModalTitle" class="text-lg font-bold text-slate-900 dark:text-white">
-          Resetar todo o progresso?
-        </h2>
-      </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-        Esta ação irá desmarcar todos os tópicos concluídos e apagar todas as suas anotações pessoais salvas neste navegador. Recomendamos exportar um backup JSON antes.
-      </p>
-      <div class="flex items-center justify-end gap-3">
-        <button
-          id="cancelResetBtn"
-          type="button"
-          class="px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer"
-        >
-          Cancelar
-        </button>
-        <button
-          id="confirmResetBtn"
-          type="button"
-          class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/20 transition-colors cursor-pointer"
-        >
-          Sim, resetar tudo
-        </button>
-      </div>
+      <footer class="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row sm:justify-between gap-2">
+        <p>Progresso, anotações e observações ficam neste navegador, separados por trilha.</p>
+        <p id="footerStats" class="font-mono"></p>
+      </footer>
     </div>
   </div>
 
-  <!-- NOTIFICAÇÃO TOAST FLUTUANTE -->
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0"></div>
-
-  <!-- LÓGICA DA APLICAÇÃO -->
-  <script>
-    /**
-     * Estrutura completa do Roadmap Full-Stack (7 Fases e 46 Tópicos exatos)
-     */
-    const ROADMAP_DATA = [
-      {
-        id: 'fase-1',
-        number: 1,
-        badgeTitle: 'Base Web & Git',
-        title: 'Fase 1: Fundamentos da Web e Controle de Versão',
-        accent: 'emerald',
-        items: [
-          {
-            id: 'f1-internet',
-            title: 'Como a Internet Funciona',
-            description: 'Protocolos HTTP/HTTPS, funcionamento do DNS, nomes de domínio, hospedagem, modelo cliente-servidor e ciclo de renderização dos navegadores.',
-            tags: ['HTTP/HTTPS', 'DNS', 'Cliente-Servidor', 'Browser']
-          },
-          {
-            id: 'f1-terminal',
-            title: 'Linha de Comando (Terminal)',
-            description: 'Navegação entre diretórios, manipulação de arquivos, variáveis de ambiente, permissões e comandos essenciais de Bash/Zsh.',
-            tags: ['CLI', 'Bash', 'Zsh', 'Variáveis de Ambiente']
-          },
-          {
-            id: 'f1-git-local',
-            title: 'Git — Fluxo Local',
-            description: 'git init, clone, status, add, commit, log e .gitignore.',
-            tags: ['Git', 'init', 'commit', '.gitignore']
-          },
-          {
-            id: 'f1-git-branch',
-            title: 'Git — Ramificação e Integração',
-            description: 'branch, switch/checkout, merge, rebase e resolução de conflitos.',
-            tags: ['Git Branch', 'Merge', 'Rebase', 'Conflitos']
-          },
-          {
-            id: 'f1-github',
-            title: 'GitHub e Colaboração Remota',
-            description: 'push, pull, fetch, Pull Requests, Code Review e padrão Conventional Commits.',
-            tags: ['GitHub', 'Pull Requests', 'Code Review', 'Conventional Commits']
-          }
-        ]
-      },
-      {
-        id: 'fase-2',
-        number: 2,
-        badgeTitle: 'Frontend Pro',
-        title: 'Fase 2: Desenvolvimento Frontend',
-        accent: 'cyan',
-        items: [
-          {
-            id: 'f2-html5',
-            title: 'HTML5',
-            description: 'Estruturação de páginas, tags semânticas (header, nav, main, section, article, footer), formulários modernos, validação nativa, acessibilidade web (ARIA, teclado) e SEO técnico básico.',
-            tags: ['HTML5', 'Semântica', 'ARIA', 'SEO']
-          },
-          {
-            id: 'f2-css-fundamentos',
-            title: 'CSS3 — Fundamentos',
-            description: 'Seletores, especificidade, cascata, Box Model e unidades relativas (rem, em, vh/vw, %).',
-            tags: ['CSS3', 'Box Model', 'Especificidade', 'rem/vh/vw']
-          },
-          {
-            id: 'f2-css-layouts',
-            title: 'CSS3 — Layouts e Responsividade',
-            description: 'Posicionamento (relative, absolute, fixed, sticky), Flexbox, CSS Grid, abordagem Mobile-First e Media Queries.',
-            tags: ['Flexbox', 'CSS Grid', 'Mobile-First', 'Media Queries']
-          },
-          {
-            id: 'f2-css-moderno',
-            title: 'CSS3 — Recursos Modernos',
-            description: 'Variáveis CSS (--var), transições, transformações e animações.',
-            tags: ['CSS Variables', 'Transitions', 'Animations']
-          },
-          {
-            id: 'f2-js-base',
-            title: 'JavaScript (ES6+) — Base da Linguagem',
-            description: 'Tipos primitivos e de referência, escopo, closures, hoisting, arrow functions, desestruturação, spread/rest e módulos (import/export).',
-            tags: ['ES6+', 'Closures', 'Hoisting', 'ES Modules']
-          },
-          {
-            id: 'f2-js-estruturas',
-            title: 'JavaScript (ES6+) — Estruturas e POO',
-            description: 'Manipulação de arrays (map, filter, reduce), objetos, classes, protótipos e funções construtoras.',
-            tags: ['map/filter/reduce', 'Classes', 'Prototypes', 'POO']
-          },
-          {
-            id: 'f2-js-dom',
-            title: 'JavaScript (ES6+) — DOM e Assincronismo',
-            description: 'Seleção e manipulação de elementos, delegação de eventos, Event Loop, Callbacks, Promises, async/await, Fetch API e Web Storage (localStorage, sessionStorage, cookies).',
-            tags: ['DOM', 'Event Loop', 'async/await', 'Fetch API', 'Web Storage']
-          },
-          {
-            id: 'f2-typescript',
-            title: 'TypeScript',
-            description: 'Tipagem estática, interface vs. type, generics, union/intersection types, type narrowing, utility types (Partial, Pick, Omit) e tsconfig.json.',
-            tags: ['TypeScript', 'Generics', 'Utility Types', 'tsconfig']
-          },
-          {
-            id: 'f2-build-tools',
-            title: 'Ferramentas de Build',
-            description: 'Gerenciadores de pacotes (npm, pnpm, yarn) e bundlers (Vite).',
-            tags: ['npm', 'pnpm', 'yarn', 'Vite']
-          },
-          {
-            id: 'f2-frameworks',
-            title: 'Frameworks e Bibliotecas',
-            description: 'React (componentes, props, hooks essenciais, ciclo de vida), Next.js (SSR, SSG, rotas) ou Vue/Angular.',
-            tags: ['React', 'Hooks', 'Next.js', 'SSR/SSG', 'Vue/Angular']
-          },
-          {
-            id: 'f2-estado-estilo',
-            title: 'Estado, Estilização e Formulários',
-            description: 'Gerenciamento de estado (Context API, Zustand ou Redux Toolkit), Tailwind CSS e validação com React Hook Form + Zod.',
-            tags: ['Zustand', 'Redux Toolkit', 'Tailwind CSS', 'React Hook Form', 'Zod']
-          }
-        ]
-      },
-      {
-        id: 'fase-3',
-        number: 3,
-        badgeTitle: 'Backend & APIs',
-        title: 'Fase 3: Desenvolvimento Backend e APIs',
-        accent: 'indigo',
-        items: [
-          {
-            id: 'f3-runtime',
-            title: 'Linguagem e Ambiente de Execução',
-            description: 'Node.js (módulos nativos, streams, variáveis de ambiente, gerenciamento de processos) ou alternativas (Python, Java, C#, Go).',
-            tags: ['Node.js', 'Streams', 'Processos', 'Python/Go/Java']
-          },
-          {
-            id: 'f3-frameworks-web',
-            title: 'Frameworks Web',
-            description: 'Express, Fastify ou NestJS para roteamento, middlewares, tratamento centralizado de erros e injeção de dependências.',
-            tags: ['Express', 'Fastify', 'NestJS', 'Middlewares']
-          },
-          {
-            id: 'f3-rest-apis',
-            title: 'RESTful APIs',
-            description: 'Design de recursos, métodos HTTP (GET, POST, PUT, PATCH, DELETE), códigos de status HTTP, paginação, filtros, ordenação e versionamento.',
-            tags: ['REST', 'HTTP Methods', 'Status Codes', 'Paginação']
-          },
-          {
-            id: 'f3-realtime',
-            title: 'Comunicação em Tempo Real e Integrações',
-            description: 'WebSockets (chats, notificações ao vivo), Webhooks e noções de GraphQL.',
-            tags: ['WebSockets', 'Webhooks', 'GraphQL']
-          },
-          {
-            id: 'f3-docs-testes',
-            title: 'Documentação e Testes Manuais de API',
-            description: 'Especificação OpenAPI / Swagger e testes de endpoints com Postman ou Insomnia.',
-            tags: ['OpenAPI', 'Swagger', 'Postman', 'Insomnia']
-          },
-          {
-            id: 'f3-auth',
-            title: 'Autenticação',
-            description: 'Sessões vs. JWT (JSON Web Tokens), Refresh Tokens, OAuth 2.0 e OpenID Connect (login social).',
-            tags: ['JWT', 'Refresh Tokens', 'OAuth 2.0', 'OpenID Connect']
-          },
-          {
-            id: 'f3-authz',
-            title: 'Autorização',
-            description: 'Controle de acesso baseado em papéis (RBAC) e permissões granulares.',
-            tags: ['RBAC', 'Permissões', 'Controle de Acesso']
-          },
-          {
-            id: 'f3-seguranca',
-            title: 'Segurança Web (OWASP)',
-            description: 'Hashing seguro de senhas (bcrypt ou argon2), CORS, HTTPS/TLS, Rate Limiting, sanitização de dados e proteção contra SQL Injection, XSS e CSRF.',
-            tags: ['OWASP', 'bcrypt/argon2', 'CORS', 'Rate Limiting', 'XSS/CSRF']
-          }
-        ]
-      },
-      {
-        id: 'fase-4',
-        number: 4,
-        badgeTitle: 'Dados & Cache',
-        title: 'Fase 4: Bancos de Dados, Modelagem e Cache',
-        accent: 'violet',
-        items: [
-          {
-            id: 'f4-sql',
-            title: 'Bancos Relacionais (SQL)',
-            description: 'PostgreSQL ou MySQL.',
-            tags: ['PostgreSQL', 'MySQL', 'SQL']
-          },
-          {
-            id: 'f4-modelagem',
-            title: 'Modelagem de Dados',
-            description: 'Diagramas Entidade-Relacionamento (DER), normalização (1FN, 2FN, 3FN), chaves primárias e estrangeiras.',
-            tags: ['DER', 'Normalização', 'PK / FK']
-          },
-          {
-            id: 'f4-consultas',
-            title: 'Consultas SQL e Performance',
-            description: 'JOINs, agregações (GROUP BY, HAVING), subqueries, transações (ACID) e criação de índices.',
-            tags: ['JOINs', 'ACID', 'Índices', 'GROUP BY']
-          },
-          {
-            id: 'f4-orms',
-            title: 'ORMs e Migrations',
-            description: 'Prisma, Drizzle ORM ou TypeORM para mapeamento objeto-relacional, controle de versão do esquema (Migrations) e população inicial (Seeds).',
-            tags: ['Prisma', 'Drizzle ORM', 'TypeORM', 'Migrations', 'Seeds']
-          },
-          {
-            id: 'f4-nosql',
-            title: 'Bancos Não Relacionais (NoSQL)',
-            description: 'MongoDB (documentos, coleções, agregações) e critérios de escolha entre SQL e NoSQL.',
-            tags: ['MongoDB', 'NoSQL', 'Documentos', 'Agregações']
-          },
-          {
-            id: 'f4-cache',
-            title: 'Cache e Mensageria',
-            description: 'Redis para cache em memória, sessões e filas simples; processamento assíncrono e message brokers (RabbitMQ, BullMQ ou Kafka).',
-            tags: ['Redis', 'Cache', 'RabbitMQ', 'BullMQ', 'Kafka']
-          }
-        ]
-      },
-      {
-        id: 'fase-5',
-        number: 5,
-        badgeTitle: 'Arquitetura & QA',
-        title: 'Fase 5: Arquitetura, Qualidade e Testes',
-        accent: 'amber',
-        items: [
-          {
-            id: 'f5-boas-praticas',
-            title: 'Boas Práticas de Código',
-            description: 'Princípios Clean Code, SOLID, DRY e KISS.',
-            tags: ['Clean Code', 'SOLID', 'DRY', 'KISS']
-          },
-          {
-            id: 'f5-padroes',
-            title: 'Padrões Arquiteturais',
-            description: 'MVC, Arquitetura em Camadas (Controller - Service - Repository), injeção de dependências e noções de Clean Architecture.',
-            tags: ['MVC', 'Camadas', 'DI', 'Clean Architecture']
-          },
-          {
-            id: 'f5-unitarios',
-            title: 'Testes Unitários',
-            description: 'Validação isolada de funções e regras de negócio com Vitest ou Jest.',
-            tags: ['Vitest', 'Jest', 'Testes Unitários']
-          },
-          {
-            id: 'f5-integracao',
-            title: 'Testes de Integração',
-            description: 'Validação de rotas HTTP, middlewares e persistência no banco com Supertest.',
-            tags: ['Supertest', 'Integração', 'HTTP Tests']
-          },
-          {
-            id: 'f5-e2e',
-            title: 'Testes End-to-End (E2E)',
-            description: 'Simulação do fluxo completo do usuário no navegador com Playwright ou Cypress.',
-            tags: ['Playwright', 'Cypress', 'E2E']
-          },
-          {
-            id: 'f5-padronizacao',
-            title: 'Padronização de Código',
-            description: 'Linting com ESLint, formatação com Prettier e automação pré-commit com Husky.',
-            tags: ['ESLint', 'Prettier', 'Husky', 'Linting']
-          }
-        ]
-      },
-      {
-        id: 'fase-6',
-        number: 6,
-        badgeTitle: 'DevOps & Cloud',
-        title: 'Fase 6: DevOps, Contêineres e Nuvem',
-        accent: 'sky',
-        items: [
-          {
-            id: 'f6-linux',
-            title: 'Fundamentos de Linux e Servidores',
-            description: 'Gerenciamento de processos (pm2, systemd), análise de logs, portas de rede, firewall, proxy reverso (Nginx) e conexão remota via SSH.',
-            tags: ['Linux', 'Nginx', 'SSH', 'pm2', 'Firewall']
-          },
-          {
-            id: 'f6-docker',
-            title: 'Docker',
-            description: 'Criação de Dockerfile otimizados (multi-stage builds), gerenciamento de imagens, volumes e redes.',
-            tags: ['Docker', 'Dockerfile', 'Multi-stage', 'Volumes']
-          },
-          {
-            id: 'f6-compose',
-            title: 'Docker Compose',
-            description: 'Orquestração local de múltiplos serviços (API + Banco de Dados + Redis).',
-            tags: ['Docker Compose', 'Orquestração Local']
-          },
-          {
-            id: 'f6-cicd',
-            title: 'CI/CD (Integração e Entrega Contínua)',
-            description: 'Pipelines automatizados no GitHub Actions para testes, verificação de tipos, build e deploy.',
-            tags: ['CI/CD', 'GitHub Actions', 'Pipelines']
-          },
-          {
-            id: 'f6-paas',
-            title: 'Computação em Nuvem — PaaS',
-            description: 'Deploy simplificado na Vercel (frontend/fullstack), Render, Railway ou Fly.io.',
-            tags: ['Vercel', 'Render', 'Railway', 'Fly.io']
-          },
-          {
-            id: 'f6-aws',
-            title: 'Computação em Nuvem — Infraestrutura (AWS)',
-            description: 'Servidores virtuais (EC2), armazenamento de arquivos (S3), bancos gerenciados (RDS), redes privadas (VPC) e DNS (Route 53).',
-            tags: ['AWS', 'EC2', 'S3', 'RDS', 'VPC', 'Route 53']
-          },
-          {
-            id: 'f6-iac-monitor',
-            title: 'Infraestrutura como Código e Monitoramento',
-            description: 'Noções de Terraform; logs estruturados, health checks e monitoramento de erros e métricas (Sentry, Prometheus/Grafana).',
-            tags: ['Terraform', 'Sentry', 'Prometheus', 'Grafana']
-          }
-        ]
-      },
-      {
-        id: 'fase-7',
-        number: 7,
-        badgeTitle: 'Full-Stack Master',
-        title: 'Fase 7: Checkpoints Práticos (Portfólio)',
-        accent: 'rose',
-        items: [
-          {
-            id: 'f7-checkpoint-1',
-            title: 'Checkpoint 1 — Aplicação Frontend',
-            description: 'Interface responsiva e acessível consumindo uma API externa, com busca, filtros, paginação e tratamento visual de carregamento e erros.',
-            tags: ['Projeto Frontend', 'API Externa', 'Acessibilidade', 'Portfólio']
-          },
-          {
-            id: 'f7-checkpoint-2',
-            title: 'Checkpoint 2 — API Backend Completa',
-            description: 'Serviço RESTful em Node.js + TypeScript conectado a um banco PostgreSQL, com autenticação JWT, controle de permissões, testes automatizados e documentação Swagger.',
-            tags: ['Projeto Backend', 'Node + TS', 'PostgreSQL', 'JWT', 'Swagger']
-          },
-          {
-            id: 'f7-checkpoint-3',
-            title: 'Checkpoint 3 — Sistema Full-Stack em Produção',
-            description: 'Aplicação completa integrada de ponta a ponta, empacotada com Docker, com pipeline de CI/CD no GitHub Actions e publicada em ambiente de nuvem.',
-            tags: ['Projeto Full-Stack', 'Docker', 'CI/CD', 'Produção']
-          }
-        ]
-      }
-    ];
-
-    const STORAGE_KEY = 'roadmap_fullstack_ptbr_v1';
-
-    /**
-     * Estado da Aplicação
-     */
-    let state = {
-      completed: {},        // { [itemId]: true }
-      notes: {},            // { [itemId]: "texto da anotação" }
-      openNotes: {},        // { [itemId]: true }
-      collapsedPhases: {},  // { [phaseId]: true }
-      filter: 'all',        // 'all' | 'pending' | 'completed'
-      search: '',
-      strikethrough: true,
-      theme: 'dark'         // 'dark' | 'light'
-    };
-
-    /**
-     * Carrega estado salvo do localStorage com segurança
-     */
-    function loadState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          state.completed = parsed.completed || {};
-          state.notes = parsed.notes || {};
-          state.collapsedPhases = parsed.collapsedPhases || {};
-          state.strikethrough = typeof parsed.strikethrough === 'boolean' ? parsed.strikethrough : true;
-          state.theme = parsed.theme === 'light' ? 'light' : 'dark';
-        }
-      } catch (err) {
-        console.warn('Não foi possível acessar o localStorage:', err);
-      }
-    }
-
-    /**
-     * Persiste estado automaticamente no localStorage
-     */
-    function saveState() {
-      try {
-        const payload = {
-          completed: state.completed,
-          notes: state.notes,
-          collapsedPhases: state.collapsedPhases,
-          strikethrough: state.strikethrough,
-          theme: state.theme
-        };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-      } catch (err) {
-        console.warn('Erro ao salvar no localStorage:', err);
-      }
-    }
-
-    /**
-     * Exibe notificação toast discreta
-     */
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      
-      const styles = {
-        success: 'bg-slate-900 dark:bg-slate-800 text-white border-emerald-500/40',
-        info: 'bg-slate-900 dark:bg-slate-800 text-white border-cyan-500/40',
-        error: 'bg-rose-950 text-rose-100 border-rose-500/50'
-      };
-
-      const iconSvg = type === 'error'
-        ? `<svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
-        : `<svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
-
-      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl border shadow-xl text-xs sm:text-sm font-medium transition-all duration-300 translate-y-2 opacity-0 ${styles[type] || styles.success}`;
-      toast.innerHTML = `${iconSvg}<span>${escapeHtml(message)}</span>`;
-
-      container.appendChild(toast);
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 3200);
-    }
-
-    /**
-     * Escapa caracteres HTML para evitar XSS em anotações e buscas
-     */
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    /**
-     * Aplica o tema escuro ou claro
-     */
-    function applyTheme() {
-      const htmlEl = document.documentElement;
-      const themeIcon = document.getElementById('themeIcon');
-      const themeLabel = document.getElementById('themeLabel');
-
-      if (state.theme === 'dark') {
-        htmlEl.classList.add('dark');
-        themeLabel.textContent = 'Tema Claro';
-        themeIcon.innerHTML = `<svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`;
-      } else {
-        htmlEl.classList.remove('dark');
-        themeLabel.textContent = 'Tema Escuro';
-        themeIcon.innerHTML = `<svg class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>`;
-      }
-    }
-
-    /**
-     * Atualiza o Painel Geral de Progresso, Fase Atual e Badges de Conquista
-     */
-    function updateDashboard() {
-      let totalItems = 0;
-      let totalCompleted = 0;
-      let currentActivePhase = null;
-      let unlockedBadgesCount = 0;
-
-      const badgesContainer = document.getElementById('badgesContainer');
-      badgesContainer.innerHTML = '';
-
-      ROADMAP_DATA.forEach((phase) => {
-        const phaseTotal = phase.items.length;
-        const phaseDone = phase.items.filter(item => !!state.completed[item.id]).length;
-        const isPhaseCompleted = phaseDone === phaseTotal && phaseTotal > 0;
-
-        totalItems += phaseTotal;
-        totalCompleted += phaseDone;
-
-        if (!isPhaseCompleted && !currentActivePhase) {
-          currentActivePhase = {
-            title: phase.title,
-            done: phaseDone,
-            total: phaseTotal
-          };
-        }
-
-        if (isPhaseCompleted) {
-          unlockedBadgesCount++;
-        }
-
-        // Renderiza Badge de Conquista da Fase
-        const badgeEl = document.createElement('div');
-        badgeEl.title = isPhaseCompleted
-          ? `Conquista desbloqueada: ${phase.title}`
-          : `Conclua todos os ${phaseTotal} tópicos da Fase ${phase.number} para desbloquear`;
-
-        badgeEl.className = isPhaseCompleted
-          ? 'flex items-center gap-2 p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 animate-badge-glow transition-all'
-          : 'flex items-center gap-2 p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 text-slate-400 dark:text-slate-600 opacity-70 transition-all';
-
-        badgeEl.innerHTML = `
-          <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 font-mono text-xs font-bold ${
-            isPhaseCompleted
-              ? 'bg-emerald-500 text-white shadow-sm'
-              : 'bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-500'
-          }">
-            ${isPhaseCompleted
-              ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`
-              : `F${phase.number}`
-            }
-          </div>
-          <div class="min-w-0">
-            <div class="text-[11px] font-bold truncate">${escapeHtml(phase.badgeTitle)}</div>
-            <div class="text-[10px] font-mono opacity-80">${phaseDone}/${phaseTotal}</div>
-          </div>
-        `;
-        badgesContainer.appendChild(badgeEl);
-      });
-
-      const percent = totalItems > 0 ? Math.round((totalCompleted / totalItems) * 100) : 0;
-
-      document.getElementById('overallPercent').textContent = `${percent}%`;
-      document.getElementById('overallCounter').textContent = `${totalCompleted} de ${totalItems} tópicos concluídos`;
-      document.getElementById('overallProgressBar').style.width = `${percent}%`;
-      document.getElementById('badgesUnlockedCounter').textContent = `${unlockedBadgesCount}/${ROADMAP_DATA.length} desbloqueadas`;
-
-      // Status geral
-      const statusTag = document.getElementById('overallStatusTag');
-      if (percent === 0) {
-        statusTag.textContent = 'Pronto para começar';
-      } else if (percent < 100) {
-        statusTag.textContent = 'Em evolução contínua';
-      } else {
-        statusTag.textContent = 'Roadmap 100% Concluído!';
-      }
-
-      // Indicador da Fase Atual em Andamento
-      const currentPhaseNameEl = document.getElementById('currentPhaseName');
-      const currentPhaseSubEl = document.getElementById('currentPhaseSub');
-
-      if (currentActivePhase) {
-        currentPhaseNameEl.textContent = currentActivePhase.title;
-        currentPhaseSubEl.textContent = `${currentActivePhase.done}/${currentActivePhase.total} tópicos concluídos nesta fase`;
-      } else {
-        currentPhaseNameEl.textContent = 'Todas as 7 fases foram concluídas!';
-        currentPhaseSubEl.textContent = 'Parabéns! Você completou toda a trilha Full-Stack.';
-      }
-    }
-
-    /**
-     * Atualiza visual dos botões de filtro e botão Expandir/Recolher Todas
-     */
-    function updateToolbarUI() {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        const isActive = btn.dataset.filter === state.filter;
-        if (isActive) {
-          btn.className = 'filter-btn flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm transition-all cursor-pointer';
-        } else {
-          btn.className = 'filter-btn flex-1 sm:flex-initial px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-all cursor-pointer';
-        }
-      });
-
-      const allCollapsed = ROADMAP_DATA.every(p => !!state.collapsedPhases[p.id]);
-      document.getElementById('toggleAllPhasesLabel').textContent = allCollapsed ? 'Expandir Todas' : 'Recolher Todas';
-
-      const clearSearchBtn = document.getElementById('clearSearchBtn');
-      if (state.search.trim().length > 0) {
-        clearSearchBtn.classList.remove('hidden');
-      } else {
-        clearSearchBtn.classList.add('hidden');
-      }
-    }
-
-    /**
-     * Renderiza as 7 fases e seus respectivos tópicos filtrados
-     */
-    function renderRoadmap() {
-      const container = document.getElementById('phasesContainer');
-      const emptyState = document.getElementById('emptyState');
-      container.innerHTML = '';
-
-      const query = state.search.trim().toLowerCase();
-      let totalVisibleItems = 0;
-
-      ROADMAP_DATA.forEach((phase) => {
-        const phaseTotal = phase.items.length;
-        const phaseDone = phase.items.filter(item => !!state.completed[item.id]).length;
-        const phasePercent = Math.round((phaseDone / phaseTotal) * 100);
-        const isPhaseAllDone = phaseDone === phaseTotal;
-        const isCollapsed = !!state.collapsedPhases[phase.id];
-
-        // Filtra tópicos da fase de acordo com status e busca
-        const visibleItems = phase.items.filter((item) => {
-          const isDone = !!state.completed[item.id];
-          if (state.filter === 'completed' && !isDone) return false;
-          if (state.filter === 'pending' && isDone) return false;
-
-          if (query) {
-            const noteText = (state.notes[item.id] || '').toLowerCase();
-            const matchTitle = item.title.toLowerCase().includes(query);
-            const matchDesc = item.description.toLowerCase().includes(query);
-            const matchTags = item.tags.some(t => t.toLowerCase().includes(query));
-            const matchNote = noteText.includes(query);
-            return matchTitle || matchDesc || matchTags || matchNote;
-          }
-          return true;
-        });
-
-        // Se houver busca ou filtro ativo e nenhum item desta fase bater, oculta a fase
-        if (visibleItems.length === 0 && (query !== '' || state.filter !== 'all')) {
-          return;
-        }
-
-        totalVisibleItems += visibleItems.length;
-
-        const phaseCard = document.createElement('section');
-        phaseCard.className = `rounded-2xl bg-white dark:bg-slate-900/90 border transition-all duration-300 overflow-hidden shadow-sm ${
-          isPhaseAllDone
-            ? 'border-emerald-500/40 dark:border-emerald-500/30'
-            : 'border-slate-200 dark:border-slate-800/90'
-        }`;
-
-        // Cabeçalho da Fase
-        const headerHtml = `
-          <div class="p-4 sm:p-5 bg-slate-50/70 dark:bg-slate-900 border-b ${isCollapsed ? 'border-transparent' : 'border-slate-200/80 dark:border-slate-800'}">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              
-              <!-- Título e Número da Fase (Clicável para expandir/recolher) -->
-              <button
-                type="button"
-                data-action="toggle-phase"
-                data-phase-id="${phase.id}"
-                aria-expanded="${!isCollapsed}"
-                class="flex items-center gap-3 text-left group cursor-pointer focus:outline-none"
-              >
-                <span class="w-8 h-8 rounded-xl flex items-center justify-center font-mono text-xs font-bold shrink-0 transition-colors ${
-                  isPhaseAllDone
-                    ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/30'
-                    : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-600 dark:group-hover:text-emerald-400'
-                }">
-                  0${phase.number}
-                </span>
-                <div>
-                  <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                    ${escapeHtml(phase.title)}
-                  </h2>
-                </div>
-              </button>
-
-              <!-- Controles da Fase: Contador, Marcar/Desmarcar Fase, Chevron -->
-              <div class="flex items-center justify-between sm:justify-end gap-2.5 pl-11 sm:pl-0">
-                <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold ${
-                  isPhaseAllDone
-                    ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-400'
-                    : 'bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
-                }">
-                  ${phaseDone}/${phaseTotal} concluídos
-                </span>
-
-                <button
-                  type="button"
-                  data-action="toggle-all-in-phase"
-                  data-phase-id="${phase.id}"
-                  title="${isPhaseAllDone ? 'Desmarcar todos os tópicos desta fase' : 'Marcar toda a fase como concluída'}"
-                  class="px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
-                    isPhaseAllDone
-                      ? 'bg-slate-100 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                      : 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25 hover:bg-emerald-500/20'
-                  }"
-                >
-                  ${isPhaseAllDone ? 'Desmarcar fase' : 'Concluir fase'}
-                </button>
-
-                <button
-                  type="button"
-                  data-action="toggle-phase"
-                  data-phase-id="${phase.id}"
-                  aria-label="${isCollapsed ? 'Expandir fase' : 'Recolher fase'}"
-                  class="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors cursor-pointer"
-                >
-                  <svg class="w-5 h-5 transition-transform duration-200 ${isCollapsed ? '-rotate-90' : 'rotate-0'}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- Barra de Progresso Individual da Fase -->
-            <div class="mt-3.5 w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-              <div
-                class="h-full rounded-full transition-all duration-500 ease-out ${
-                  isPhaseAllDone
-                    ? 'bg-emerald-500'
-                    : 'bg-gradient-to-r from-emerald-500 to-cyan-500'
-                }"
-                style="width: ${phasePercent}%"
-              ></div>
-            </div>
-          </div>
-        `;
-
-        // Lista de Tópicos da Fase
-        let itemsHtml = '';
-        if (!isCollapsed) {
-          itemsHtml = `<div class="divide-y divide-slate-200/70 dark:divide-slate-800/80">`;
-          visibleItems.forEach((item) => {
-            const isChecked = !!state.completed[item.id];
-            const noteContent = state.notes[item.id] || '';
-            const hasNote = noteContent.trim().length > 0;
-            const isNoteOpen = !!state.openNotes[item.id];
-            const strikeClass = isChecked && state.strikethrough ? 'line-through opacity-65' : '';
-
-            const tagsHtml = item.tags.map(tag => `
-              <span class="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-100 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/70">
-                ${escapeHtml(tag)}
-              </span>
-            `).join('');
-
-            itemsHtml += `
-              <div class="p-4 sm:px-5 sm:py-4 transition-colors duration-200 ${
-                isChecked
-                  ? 'bg-emerald-500/[0.03] dark:bg-emerald-500/[0.03]'
-                  : 'hover:bg-slate-50/90 dark:hover:bg-slate-800/30'
-              }">
-                <div class="flex items-start gap-3.5">
-                  
-                  <!-- Checkbox Customizado -->
-                  <button
-                    type="button"
-                    role="checkbox"
-                    aria-checked="${isChecked}"
-                    data-action="toggle-item"
-                    data-item-id="${item.id}"
-                    class="mt-0.5 w-6 h-6 rounded-lg flex items-center justify-center shrink-0 border-2 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500/50 ${
-                      isChecked
-                        ? 'bg-emerald-500 border-emerald-500 text-white animate-check-pop shadow-sm shadow-emerald-500/30'
-                        : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-950 hover:border-emerald-500'
-                    }"
-                  >
-                    ${isChecked ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>` : ''}
-                  </button>
-
-                  <!-- Conteúdo do Tópico -->
-                  <div class="flex-1 min-w-0">
-                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                      <h3
-                        data-action="toggle-item"
-                        data-item-id="${item.id}"
-                        class="text-sm sm:text-[15px] font-semibold text-slate-900 dark:text-slate-100 cursor-pointer select-none transition-all ${strikeClass}"
-                      >
-                        ${escapeHtml(item.title)}
-                      </h3>
-
-                      <!-- Botão Discreto de Anotações / Links -->
-                      <button
-                        type="button"
-                        data-action="toggle-note"
-                        data-item-id="${item.id}"
-                        class="self-start inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors shrink-0 cursor-pointer ${
-                          hasNote || isNoteOpen
-                            ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30'
-                            : 'bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 border border-transparent'
-                        }"
-                      >
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                        <span>${hasNote ? 'Anotações (1)' : 'Anotar'}</span>
-                      </button>
-                    </div>
-
-                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 leading-relaxed ${isChecked && state.strikethrough ? 'opacity-65' : ''}">
-                      ${escapeHtml(item.description)}
-                    </p>
-
-                    <!-- Tags de Tecnologias-Chave -->
-                    <div class="flex flex-wrap gap-1.5 mt-2.5">
-                      ${tagsHtml}
-                    </div>
-
-                    <!-- Campo Discreto de Anotações / Links de Estudo -->
-                    ${isNoteOpen ? `
-                      <div class="mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-800">
-                        <label for="note-${item.id}" class="block text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
-                          Anotações Pessoais / Links de Estudo
-                        </label>
-                        <textarea
-                          id="note-${item.id}"
-                          data-action="edit-note"
-                          data-item-id="${item.id}"
-                          rows="3"
-                          placeholder="Cole links de artigos, repositórios, resumos ou dúvidas sobre ${escapeHtml(item.title)}..."
-                          class="w-full p-2.5 rounded-xl text-xs sm:text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 transition-all"
-                        >${escapeHtml(noteContent)}</textarea>
-                      </div>
-                    ` : ''}
-                  </div>
-                </div>
-              </div>
-            `;
-          });
-          itemsHtml += `</div>`;
-        }
-
-        phaseCard.innerHTML = headerHtml + itemsHtml;
-        container.appendChild(phaseCard);
-      });
-
-      // Alterna exibição do estado vazio
-      if (totalVisibleItems === 0) {
-        emptyState.classList.remove('hidden');
-      } else {
-        emptyState.classList.add('hidden');
-      }
-    }
-
-    /**
-     * Atualiza toda a interface de forma sincronizada
-     */
-    function refreshAll() {
-      applyTheme();
-      updateDashboard();
-      updateToolbarUI();
-      renderRoadmap();
-    }
-
-    /**
-     * Exporta progresso e anotações como arquivo JSON
-     */
-    function exportProgressToJson() {
-      const exportData = {
-        app: 'Roadmap Full-Stack Interativo',
-        exportedAt: new Date().toISOString(),
-        completed: state.completed,
-        notes: state.notes
-      };
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      const dateStamp = new Date().toISOString().slice(0, 10);
-      link.href = url;
-      link.download = `roadmap-fullstack-progresso-${dateStamp}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      showToast('Backup JSON exportado com sucesso!');
-    }
-
-    /**
-     * Importa progresso e anotações de um arquivo JSON válido
-     */
-    function handleImportFile(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const parsed = JSON.parse(e.target.result);
-          if (!parsed || typeof parsed !== 'object' || typeof parsed.completed !== 'object') {
-            throw new Error('Formato de arquivo inválido.');
-          }
-          state.completed = parsed.completed || {};
-          state.notes = parsed.notes || {};
-          saveState();
-          refreshAll();
-          showToast('Progresso importado e restaurado com sucesso!');
-        } catch (err) {
-          showToast('Arquivo JSON inválido. Verifique o formato.', 'error');
-        } finally {
-          event.target.value = '';
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    /**
-     * Inicialização e Event Listeners
-     */
-    document.addEventListener('DOMContentLoaded', () => {
-      loadState();
-      document.getElementById('strikethroughToggle').checked = state.strikethrough;
-      refreshAll();
-
-      // Alternar Tema
-      document.getElementById('themeToggleBtn').addEventListener('click', () => {
-        state.theme = state.theme === 'dark' ? 'light' : 'dark';
-        saveState();
-        applyTheme();
-      });
-
-      // Busca em tempo real
-      const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', (e) => {
-        state.search = e.target.value;
-        updateToolbarUI();
-        renderRoadmap();
-      });
-
-      // Botão limpar busca
-      document.getElementById('clearSearchBtn').addEventListener('click', () => {
-        state.search = '';
-        searchInput.value = '';
-        updateToolbarUI();
-        renderRoadmap();
-        searchInput.focus();
-      });
-
-      // Botão limpar filtros no estado vazio
-      document.getElementById('resetFiltersBtn').addEventListener('click', () => {
-        state.search = '';
-        state.filter = 'all';
-        searchInput.value = '';
-        updateToolbarUI();
-        renderRoadmap();
-      });
-
-      // Filtros de status
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          state.filter = btn.dataset.filter;
-          updateToolbarUI();
-          renderRoadmap();
-        });
-      });
-
-      // Expandir / Recolher todas as fases
-      document.getElementById('toggleAllPhasesBtn').addEventListener('click', () => {
-        const allCollapsed = ROADMAP_DATA.every(p => !!state.collapsedPhases[p.id]);
-        if (allCollapsed) {
-          state.collapsedPhases = {};
-        } else {
-          ROADMAP_DATA.forEach(p => {
-            state.collapsedPhases[p.id] = true;
-          });
-        }
-        saveState();
-        updateToolbarUI();
-        renderRoadmap();
-      });
-
-      // Toggle estilo tachado
-      document.getElementById('strikethroughToggle').addEventListener('change', (e) => {
-        state.strikethrough = e.target.checked;
-        saveState();
-        renderRoadmap();
-      });
-
-      // Exportar JSON
-      document.getElementById('exportJsonBtn').addEventListener('click', exportProgressToJson);
-
-      // Importar JSON
-      const importFileInput = document.getElementById('importFileInput');
-      document.getElementById('importJsonBtn').addEventListener('click', () => {
-        importFileInput.click();
-      });
-      importFileInput.addEventListener('change', handleImportFile);
-
-      // Modal de Reset
-      const resetModal = document.getElementById('resetModal');
-      document.getElementById('resetProgressBtn').addEventListener('click', () => {
-        resetModal.classList.remove('hidden');
-      });
-      document.getElementById('cancelResetBtn').addEventListener('click', () => {
-        resetModal.classList.add('hidden');
-      });
-      resetModal.addEventListener('click', (e) => {
-        if (e.target === resetModal) {
-          resetModal.classList.add('hidden');
-        }
-      });
-      document.getElementById('confirmResetBtn').addEventListener('click', () => {
-        state.completed = {};
-        state.notes = {};
-        state.openNotes = {};
-        saveState();
-        resetModal.classList.add('hidden');
-        refreshAll();
-        showToast('Todo o progresso foi resetado.', 'info');
-      });
-
-      // Delegação de eventos dentro das fases e tópicos
-      const phasesContainer = document.getElementById('phasesContainer');
-
-      phasesContainer.addEventListener('click', (e) => {
-        const actionEl = e.target.closest('[data-action]');
-        if (!actionEl) return;
-
-        const action = actionEl.dataset.action;
-
-        if (action === 'toggle-item') {
-          const itemId = actionEl.dataset.itemId;
-          const wasCompleted = !!state.completed[itemId];
-          if (wasCompleted) {
-            delete state.completed[itemId];
-          } else {
-            state.completed[itemId] = true;
-          }
-
-          // Verifica se a fase inteira acabou de ser concluída para parabenizar
-          const parentPhase = ROADMAP_DATA.find(p => p.items.some(i => i.id === itemId));
-          if (!wasCompleted && parentPhase) {
-            const allDone = parentPhase.items.every(i => !!state.completed[i.id]);
-            if (allDone) {
-              showToast(`Conquista desbloqueada: ${parentPhase.badgeTitle}!`);
-            }
-          }
-
-          saveState();
-          updateDashboard();
-          renderRoadmap();
-        }
-
-        if (action === 'toggle-phase') {
-          const phaseId = actionEl.dataset.phaseId;
-          if (state.collapsedPhases[phaseId]) {
-            delete state.collapsedPhases[phaseId];
-          } else {
-            state.collapsedPhases[phaseId] = true;
-          }
-          saveState();
-          updateToolbarUI();
-          renderRoadmap();
-        }
-
-        if (action === 'toggle-all-in-phase') {
-          const phaseId = actionEl.dataset.phaseId;
-          const phase = ROADMAP_DATA.find(p => p.id === phaseId);
-          if (!phase) return;
-
-          const allDone = phase.items.every(item => !!state.completed[item.id]);
-          phase.items.forEach(item => {
-            if (allDone) {
-              delete state.completed[item.id];
-            } else {
-              state.completed[item.id] = true;
-            }
-          });
-
-          if (!allDone) {
-            showToast(`Fase ${phase.number} concluída! Conquista "${phase.badgeTitle}" desbloqueada.`);
-          }
-
-          saveState();
-          updateDashboard();
-          renderRoadmap();
-        }
-
-        if (action === 'toggle-note') {
-          const itemId = actionEl.dataset.itemId;
-          if (state.openNotes[itemId]) {
-            delete state.openNotes[itemId];
-          } else {
-            state.openNotes[itemId] = true;
-          }
-          renderRoadmap();
-          if (state.openNotes[itemId]) {
-            const textarea = document.getElementById(`note-${itemId}`);
-            if (textarea) textarea.focus();
-          }
-        }
-      });
-
-      // Salvamento automático das anotações enquanto o usuário digita
-      phasesContainer.addEventListener('input', (e) => {
-        if (e.target.dataset.action === 'edit-note') {
-          const itemId = e.target.dataset.itemId;
-          const val = e.target.value;
-          if (val.trim() === '') {
-            delete state.notes[itemId];
-          } else {
-            state.notes[itemId] = val;
-          }
-          saveState();
-        }
-      });
-    });
-  </script>
+  <dialog id="confirmDialog" aria-labelledby="confirmTitle">
+    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+      <h2 id="confirmTitle" class="text-lg font-bold"></h2>
+      <p id="confirmBody" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+      <div class="mt-6 flex justify-end gap-2">
+        <button value="cancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
+        <button id="confirmAccept" value="confirm" class="px-4 py-2 rounded-xl text-sm font-semibold bg-rose-600 text-white">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="shareDialog" aria-labelledby="shareTitle">
+    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+      <h2 id="shareTitle" class="text-lg font-bold">Compartilhar plano</h2>
+      <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">O link leva a área, o nível, as horas, a ordem, os tópicos opcionais ou ocultos e as ideias que você criou. Progresso, anotações e observações ficam só no seu navegador.</p>
+      <label class="sr-only" for="shareUrl">Link do plano</label>
+      <input id="shareUrl" readonly class="mt-4 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs" />
+      <div class="mt-4 flex justify-end gap-2">
+        <button id="copyShareBtn" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Copiar link</button>
+        <button value="close" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Fechar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="sharedDialog" aria-labelledby="sharedTitle">
+    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+      <h2 id="sharedTitle" class="text-lg font-bold">Aplicar plano compartilhado?</h2>
+      <p id="sharedBody" class="mt-2 text-sm text-slate-600 dark:text-slate-300"></p>
+      <div class="mt-6 flex justify-end gap-2">
+        <button value="cancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Agora não</button>
+        <button id="applyShareBtn" type="button" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Aplicar plano</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="topicDialog" aria-labelledby="topicDialogTitle">
+    <form id="topicForm" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[80vh] overflow-y-auto">
+      <h2 id="topicDialogTitle" class="text-lg font-bold">Novo tópico</h2>
+      <div class="mt-4 space-y-3 text-sm">
+        <label class="block">Etapa
+          <select id="topicPhase" required class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+        </label>
+        <label class="block">Título
+          <input id="topicTitle" required maxlength="140" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        </label>
+        <label class="block">Descrição
+          <textarea id="topicDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></textarea>
+        </label>
+        <div class="grid grid-cols-2 gap-3">
+          <label>Nível
+            <select id="topicLevel" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+          </label>
+          <label>Horas
+            <input id="topicHours" type="number" min="1" max="60" value="4" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          </label>
+        </div>
+        <label class="block">Tags, separadas por vírgula
+          <input id="topicTags" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        </label>
+        <label class="block">Nome de um recurso gratuito
+          <input id="topicResourceTitle" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        </label>
+        <label class="block">URL do recurso
+          <input id="topicResourceUrl" type="url" placeholder="https://" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        </label>
+      </div>
+      <div class="mt-5 flex justify-end gap-2">
+        <button type="button" id="topicCancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
+        <button type="submit" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="projectDialog" aria-labelledby="projectDialogTitle">
+    <form id="projectForm" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6">
+      <h2 id="projectDialogTitle" class="text-lg font-bold">Nova ideia de projeto</h2>
+      <div class="mt-4 space-y-3 text-sm">
+        <label class="block">Etapa
+          <select id="projectPhase" required class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+        </label>
+        <label class="block">Título
+          <input id="projectTitle" required maxlength="140" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+        </label>
+        <label class="block">Descrição
+          <textarea id="projectDescription" rows="3" maxlength="600" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></textarea>
+        </label>
+        <div class="grid grid-cols-2 gap-3">
+          <label>Nível
+            <select id="projectLevel" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2"></select>
+          </label>
+          <label>Horas
+            <input id="projectHours" type="number" min="1" max="60" value="6" class="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 px-3 py-2" />
+          </label>
+        </div>
+      </div>
+      <div class="mt-5 flex justify-end gap-2">
+        <button type="button" id="projectCancel" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Cancelar</button>
+        <button type="submit" class="px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-600 text-white">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="planScreen" hidden class="min-h-screen bg-slate-50 dark:bg-[#090d16]"></div>
+
+  <dialog id="quizDialog" aria-labelledby="quizTitle">
+    <form method="dialog" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[85vh] overflow-y-auto">
+      <h2 id="quizTitle" class="text-lg font-bold">Autoavaliação</h2>
+      <p class="mt-1 text-sm text-slate-500">Isto não é nota nem certificado. Serve para ver se vale revisar antes de seguir.</p>
+      <div id="quizBody" class="mt-4 space-y-4"></div>
+      <div class="mt-5 flex justify-end">
+        <button value="close" class="px-4 py-2 rounded-xl text-sm border border-slate-200 dark:border-slate-700">Fechar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4 sm:px-0" aria-live="polite"></div>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
