@@ -875,8 +875,10 @@ export function applySharePlan(state, plan) {
 }
 
 export function newId(prefix) {
-  const token = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
-  return `${prefix}-${token}`.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 80);
+  const bytes = new Uint8Array(8);
+  crypto.getRandomValues(bytes);
+  const token = [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  return `${prefix}-${Date.now().toString(36)}${token}`.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 80);
 }
 
 export function validateTrack(data) {

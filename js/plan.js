@@ -244,7 +244,12 @@ function compareSessions(a, b) {
 }
 
 export function generateSessions(plan, items, options = {}) {
-  const idFactory = options.idFactory || (() => `sessao-${Math.random().toString(36).slice(2, 10)}`);
+  const idFactory = options.idFactory || (() => {
+    const bytes = new Uint8Array(6);
+    crypto.getRandomValues(bytes);
+    const token = [...bytes].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+    return `sessao-${token}`;
+  });
   const fromDate = options.fromDate || plan.startDate;
   const kept = (plan.sessions || []).filter((session) => {
     if (session.locked) return true;

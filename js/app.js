@@ -955,6 +955,8 @@ function onRoadmapClick(event) {
       delete trackState.overrides[id];
       persist();
       refresh();
+    }, () => {
+      toast('Não foi possível confirmar a exclusão.', 'error');
     });
     return;
   }
@@ -987,6 +989,8 @@ function onRoadmapClick(event) {
       delete trackState.completedProjects[id];
       persist();
       refresh();
+    }, () => {
+      toast('Não foi possível confirmar a exclusão.', 'error');
     });
     return;
   }
@@ -1280,8 +1284,6 @@ function onQuizChange(event) {
   if (!input.dataset.question) return;
   activeTrackState().quizAnswers[input.dataset.question] = input.value;
   persist();
-  const scope = $('quizBody').querySelector('[data-review-topic], fieldset') ? null : null;
-  const openPhase = document.querySelector('#quizTitle')?.textContent || '';
   const questionId = input.dataset.question;
   const view = buildRoadmap(activeTrack(), activeTrackState());
   let questions = [];
@@ -1305,8 +1307,6 @@ function onQuizChange(event) {
   if (quizScore(questions, activeTrackState().quizAnswers).needsReview) {
     toast('Vale revisar antes de seguir. Isso não é uma nota.');
   }
-  void openPhase;
-  void scope;
 }
 
 async function loadTracks() {
@@ -1343,4 +1343,4 @@ async function boot() {
   else refresh();
 }
 
-boot();
+await boot();
