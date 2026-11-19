@@ -146,8 +146,8 @@ npm run validate
 O site é estático. Não há build.
 
 1. No repositório, abra **Settings → Pages**.
-2. Em **Build and deployment**, escolha **Deploy from a branch**.
-3. Use o branch `main` e a pasta `/` (root).
+2. Em **Build and deployment**, escolha **GitHub Actions**.
+3. O workflow `.github/workflows/deploy-pages.yml` publica o conteúdo da raiz a cada push na `main`.
 4. O arquivo `.nojekyll` na raiz impede o Jekyll de ignorar pastas.
 
 O site fica em https://eduardonobilioni.github.io/rumo-guia-de-estudos/
